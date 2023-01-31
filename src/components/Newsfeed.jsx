@@ -1,7 +1,7 @@
 const Newsfeed = () => {
   return (
-    <div>
-      newsfeed
+    <div className="componente">
+      <h1>componente Newsfeed</h1>
     </div>
   );
 };

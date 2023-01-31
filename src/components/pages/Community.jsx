@@ -1,7 +1,7 @@
 const Community = () => {
   return (
-    <div>
-      community
+    <div className="componente">
+      <h1>componente Community</h1>
     </div>
   );
 };

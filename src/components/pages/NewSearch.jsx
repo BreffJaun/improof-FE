@@ -1,8 +1,14 @@
+
+
+
 const NewSearch = () => {
+  
   return (
-    <div>
-        NewSearch
-    </div>
+    < div className="componente">
+        <p>
+        NEW SEARCH
+        </p>
+    </ div>
   );
 };
 

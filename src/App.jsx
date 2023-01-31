@@ -2,9 +2,14 @@ import { useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { Routes, Route}  from "react-router-dom"
 
+
+// STYLES
 import './App.css'
+import "./styles/general.scss"
+import "./styles/fonts.scss"
 
 
+// COMPONENTEN
 import Login from './components/pages/Login.jsx'
 import Registration from './components/pages/Registration.jsx'
 import Main from './components/pages/Main.jsx'

@@ -1,7 +1,7 @@
 const StarProjects = () => {
   return (
-    <div>
-      <p>star projects</p>
+    <div className="componente">
+      <h1>componente StarProjects</h1>
     </div>
   );
 };

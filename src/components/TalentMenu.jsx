@@ -8,9 +8,8 @@ const TalentMenu = () => {
 
 
   return (
-    <div>
-      <h2>talent menu</h2>
-
+    <div className="componente">
+      <h1>componente RecruiterMenu</h1>
       <p onClick={ ()=> navigate("/createproject")}>new project</p>
       <p onClick={ ()=> navigate("/myprojects")}>my projects</p>
       <p onClick={ ()=> navigate("/starprojects")}>star projects</p>

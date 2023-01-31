@@ -3,6 +3,16 @@ import { BurgerMenuRecruiter, BurgerMenuTalent } from "./BurgerMenus.jsx";
 
 import { useState } from "react";
 
+// STYLE
+import '../styles/navbar.scss'
+
+// ICONS
+import { BiMessageAlt } from 'react-icons/bi'
+import { GrNotification } from "react-icons/gr"
+import { GrSearch } from "react-icons/gr"
+import { MdOutlinePerson } from "react-icons/md"
+
+
 
 
 const Navbar = () => {
@@ -11,23 +21,21 @@ const Navbar = () => {
 
   const navigate = useNavigate()
 
+
   return (
-    <div>
-      Navbar
+    <>
+      <div className="navbar">
+        <p onClick={ ()=> navigate("/messages")} >< BiMessageAlt /></p>
+        <p onClick={ ()=> navigate("/notifications")} >< GrNotification /></p>
+        <p>< GrSearch /></p>
+        <p onClick={ ()=> setShowMenu(!showMenu)} >< MdOutlinePerson /></p>
+      </div>
 
       <div>
-        <p onClick={ ()=> navigate("/")}>messages</p>
-        <p onClick={ ()=> navigate("/")}>notifications</p>
-        <p onClick={ ()=> navigate("/")}>search</p>
-        <p onClick={ ()=> setShowMenu(!showMenu)}>my profile</p>
-      </div>
-      <div>
-        <p onClick={ ()=> navigate("/login") }>logout</p>
-      </div>
-      <div>
         { showMenu&& < BurgerMenuTalent />}
+        { showMenu&& < BurgerMenuRecruiter />}
       </div>
-    </div>
+    </>
   );
 };
 

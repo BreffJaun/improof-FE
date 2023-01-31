@@ -1,8 +1,15 @@
+import { useNavigate } from "react-router-dom";
+
+// STYLE
+import "../styles/logo.scss"
+
 
 const LogoS = () => {
+  const navigate = useNavigate()
+  
   return (
-    <div>
-      hier steht das Logo-S
+    <div className="logoContainer">
+      <div onClick={() => navigate("/")} className="logoS"></div>
     </div>
   );
 };
@@ -10,8 +17,8 @@ const LogoS = () => {
 
 const LogoL = () => {
   return (
-    <div>
-      hier steht das Logo-L
+    <div className="logoContainer">
+      <div className="logoL"></div>
     </div>
   );
 };

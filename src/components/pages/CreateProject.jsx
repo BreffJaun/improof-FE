@@ -1,7 +1,7 @@
 const CreateProject = () => {
   return (
-    <div>
-      create project
+    <div className="componente">
+      <h1>componente CreateProject</h1>
     </div>
   );
 };
