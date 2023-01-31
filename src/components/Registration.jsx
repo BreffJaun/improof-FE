@@ -17,8 +17,13 @@ const Registration = () => {
         setRegistrationData({...registrationData, [event.target.name]: event.target.value});
     }
 
-    const handleRadio = (event) => {
-        setRegistrationData({...registrationData, [event.target.value]: true});
+    const handleTalent = (event) => {
+        console.log(event.target)
+        setRegistrationData({...registrationData, isTalent: true, isRecruiter: false});
+    }
+    const handleRecruiter = (event) => {
+        console.log(event.target)
+        setRegistrationData({...registrationData, isRecruiter: true,  isTalent: false});
     }
 
 
@@ -35,9 +40,9 @@ const Registration = () => {
                 <input type="password" placeholder="confirm password"/>
             </div>
             <form>
-                <input type="radio" name="whoAmI" value="isTalent" onChange={handleRadio}/>
+                <input type="radio" name="whoAmI" value="isTalent" onChange={handleTalent}/>
                 <label>i am a talent</label>
-                <input type="radio" name="whoAmI" value="isRecruiter" onChange={handleRadio}/>
+                <input type="radio" name="whoAmI" value="isRecruiter" onChange={handleRecruiter}/>
                 <label>i am a recruiter</label>
             </form>
         </form>
