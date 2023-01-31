@@ -1,6 +1,6 @@
 import {useState, useEffect, useContext} from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { host } from "../api/host.jsx"
+
 
 
 import { toast, ToastContainer } from "react-toastify";
@@ -26,7 +26,7 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const sendData = async () => {
-      await fetch(`${host}/login`, {
+      await fetch(`${host}/users/login`, {
         method: 'POST',
         body: JSON.stringify(loginData),
         headers: {
