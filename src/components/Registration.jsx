@@ -17,19 +17,19 @@ const Registration = () => {
         theme: "dark",
     };
 
-    const [registrationData, setRegistrationData] = useState({})
+    const [registrationData, setRegistrationData] = useState({profile:{}})
 
     const handleInput = (event) => {
-        setRegistrationData({...registrationData, [event.target.name]: event.target.value});
+        setRegistrationData({...registrationData, [profile.event.target.name]: event.target.value});
     }
 
     const handleTalent = (event) => {
         console.log(event.target)
-        setRegistrationData({...registrationData, isTalent: true, isRecruiter: false});
+        setRegistrationData({...registrationData, [profile.isTalent]: true, [profile.isRecruiter]: false});
     }
     const handleRecruiter = (event) => {
         console.log(event.target)
-        setRegistrationData({...registrationData, isRecruiter: true,  isTalent: false});
+        setRegistrationData({...registrationData, [profile.isRecruiter]: true,  [profile.isTalent]: false});
     }
 
     const handleSubmit = async (event) => {
