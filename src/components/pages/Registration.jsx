@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { host } from "../api/host.jsx"
+import { host } from "../../api/host.jsx"
 
 
 import { toast, ToastContainer } from "react-toastify";
