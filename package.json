@@ -14,8 +14,8 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.8.0",
-    "sass": "^1.57.1",
-    "toastify": "^2.0.1"
+    "react-toastify": "^9.1.1",
+    "sass": "^1.57.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
