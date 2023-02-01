@@ -1,8 +1,16 @@
+import { useContext } from "react";
 import { Chrono } from "react-chrono";
 import {GiStoneSphere as Stepstone} from "react-icons/gi"
 import Footer from "../elements/Footer.jsx";
 
+//CONTEXT
+import UserContext from "../../context/userContext.jsx";
+
 const ProjectDetails = () => {
+
+  const [user, setUser] = useContext(UserContext)
+
+  console.log("USER", user);
 
   const items = [{
     title: Date.now(),

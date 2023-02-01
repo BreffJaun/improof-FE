@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router"
+import { useNavigate, Route, Routes } from "react-router"
 import { useEffect, useState, useContext } from "react";
 
 import { host } from "../../api/host.jsx";
@@ -19,18 +19,33 @@ import Community from "./Community.jsx";
 import SearchHistory from "./SearchHistory.jsx";
 import NewSearch from "./NewSearch.jsx";
 import ProjectDetails from "./ProjectDetails.jsx";
+
 // FOOTER-COMPONENTEN
 import Footer from "../elements/Footer.jsx";
 import EFJM from "./EFJM.jsx";
 
+//CONTEXT
+import UserContext from "../../context/userContext.jsx";
+
 const Main = () =>{
+    const [user, setUser] = useContext(UserContext)
+    const navigate = useNavigate()
+
+    // AUTHENTIFIZIERUNG VOM COOKIE
     useEffect(() => {
         fetch(`${host}/users/checklogin`,{
             credentials:"include"
         })
         .then((response) => response.json())
-        .then((json) => console.log(json));  
+        .then((json) => {
+            if(json.status){
+                setUser(json.user)
+            }else{
+                navigate("/login")
+            }
+        });  
     },[])
+
 
     return(
         <>

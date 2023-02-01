@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Route, Routes } from "react-router"
 import { toast, ToastContainer } from "react-toastify";
@@ -11,21 +12,18 @@ import TalentMenu from "../TalentMenu.jsx";
 import RecruiterMenu from "../RecruiterMenu.jsx";
 import Footer from "../elements/Footer.jsx";
 
+// CONTEXT
+import UserContext from "../../context/userContext.jsx";
+
 
 const Start = () => {
+  const [user, setUser] = useContext(UserContext)
   return (
     <>
       < Newsfeed />
       < CategoriesFilter />
-
-      < TalentMenu />
-      <RecruiterMenu />
-      
-      {/* {user.isTalent ?
-      < TalentMenu />
-      : 
-      < RecruiterMenu />
-      } */}
+    {user?.profile?.isTalent && < TalentMenu />}
+    {user?.profile?.isRecruiter && <RecruiterMenu />}
       < Footer />
     </>
   );

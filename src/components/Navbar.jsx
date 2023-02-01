@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { BurgerMenuRecruiter, BurgerMenuTalent } from "./BurgerMenus.jsx";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 // STYLE
 import '../styles/navbar.scss'
@@ -12,6 +12,8 @@ import { GrNotification } from "react-icons/gr"
 import { GrSearch } from "react-icons/gr"
 import { MdOutlinePerson } from "react-icons/md"
 
+// CONTEXT
+import UserContext from "../context/userContext.jsx";
 
 
 
@@ -19,6 +21,8 @@ const Navbar = () => {
 
   const [showMenu, setShowMenu] = useState(false)
   const [showSearch, setshowSearch] = useState()
+  const [user, setUser] = useContext(UserContext)
+
   const navigate = useNavigate()
 
 
@@ -34,8 +38,8 @@ const Navbar = () => {
  
 
       <div>
-        { showMenu&& < BurgerMenuTalent setShowMenu={setShowMenu} showMenu={showMenu}/>}
-        { showMenu&& < BurgerMenuRecruiter setShowMenu={setShowMenu} showMenu={showMenu}/>}
+        { showMenu && user?.profile?.isTalent && <BurgerMenuTalent setShowMenu={setShowMenu} showMenu={showMenu}/>}
+        { showMenu && user?.profile?.isRecruiter && <BurgerMenuRecruiter setShowMenu={setShowMenu} showMenu={showMenu}/>}
       </div>
     </>
   );
