@@ -6,7 +6,7 @@ const RecruiterMenu = () => {
 
   return (
     <div className="z mt2 mb2">
-      <sl>RecruiterMenu</sl>
+      <h1>RecruiterMenu</h1>
       <div className="col">
         <button 
           className="bg-FAV" 
