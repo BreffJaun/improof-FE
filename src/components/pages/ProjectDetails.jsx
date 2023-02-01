@@ -1,5 +1,6 @@
 import { Chrono } from "react-chrono";
 import {GiStoneSphere as Stepstone} from "react-icons/gi"
+import Footer from "../elements/Footer.jsx";
 
 const ProjectDetails = () => {
 
@@ -73,7 +74,7 @@ const ProjectDetails = () => {
           <h4>current Position</h4>
         </div>
      </div>
-
+     <Footer/>
     </div>
   );
 };
