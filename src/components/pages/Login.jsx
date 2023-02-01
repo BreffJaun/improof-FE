@@ -1,4 +1,4 @@
-import {useState, useEffect, useContext} from "react";
+import {useState} from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { host } from "../../api/host.jsx";
 
@@ -27,6 +27,7 @@ const Login = () => {
     event.preventDefault();
     const sendData = async () => {
       await fetch(`${host}/users/login`, {
+        credentials:"include",
         method: 'POST',
         body: JSON.stringify(loginData),
         headers: {
