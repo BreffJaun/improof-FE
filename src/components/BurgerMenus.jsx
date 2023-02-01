@@ -17,7 +17,7 @@ const BurgerMenuTalent = () => {
         <p>TALENT BURGER MENU</p>
         <div>
           lightmode/darkmode
-          <p onClick={ ()=> navigate("/")}>my profile</p>
+          <p onClick={ ()=> navigate("/myprofil")}>my profile</p>
         </div>
         <div>
           <p onClick={ ()=> navigate("/createproject")}>new project</p>
@@ -43,13 +43,13 @@ const BurgerMenuRecruiter = () => {
         <p>RECRUITER BURGER MENU</p>
         <div>
           lightmode/darkmode
-          <p onClick={ ()=> navigate("/")}>my profile</p>
+          <p onClick={ ()=> navigate("/myprofil")}>my profile</p>
         </div>
         <div>
-          <p onClick={ ()=> navigate("/community")}>show all talents</p>
-          <p onClick={ ()=> navigate("/")}>star talents</p>
-          <p onClick={ ()=> navigate("/")}>star projects</p>
-          <p onClick={ ()=> navigate("/")}>search history</p>
+          <p onClick={ ()=> navigate("/newsearch")}>newsearch</p>
+          <p onClick={ ()=> navigate("/community")}>star talents</p>
+          <p onClick={ ()=> navigate("/starprojects")}>star projects</p>
+          <p onClick={ ()=> navigate("/searchhistory")}>search history</p>
         </div>
         <div>
           <p onClick={ ()=> navigate("/login")}><IoIosLogOut /></p>

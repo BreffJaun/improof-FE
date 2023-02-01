@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Navbar from "../Navbar.jsx";
 import Notifications from "./Notifications.jsx";
 import Messages from "./Messages"
+import MyProfil from "./MyProfil.jsx";
 
 
 // COMPONENTS
@@ -44,22 +45,24 @@ const Main = () =>{
 
 
             < Routes>
+                {/* ROUTES BOTH */}
                 <Route path="/" element={<Start/>} />
+                <Route path="/myprofil" element={<MyProfil/>} />
+                <Route path="/starprojects" element={<StarProjects/>} />
+                <Route path="/community" element={<Community/>} />
+                <Route path="/efjm" element={<EFJM/>} />
 
+                {/* ROUTES TALENT */}
                 <Route path="/createproject" element={<CreateProject/>} />
                 <Route path="/myprojects" element={<MyProjects/>} />
 
-                <Route path="/starprojects" element={<StarProjects/>} />
-                <Route path="/community" element={<Community/>} />
-
+                {/* ROUTES RECRUITER */}
                 <Route path="/newsearch" element={<NewSearch/>}/>
                 <Route path="/searchhistory" element={<SearchHistory/>} />
 
+                {/* ROUTES NAVBAR */}
                 <Route path="/notifications" element={<Notifications/>} />
                 <Route path="/messages" element={<Messages/>} />
-
-                <Route path="/efjm" element={<EFJM/>} />
-
             </Routes>
 
             < Footer/>

@@ -1,0 +1,167 @@
+
+:root {
+    // TALENT
+    --DB1: rgb(0, 75, 200);
+    --DB2: rgb(0, 35, 150);
+
+    --B1: rgb(0, 125, 190);
+    --B2: rgb(0, 70, 175);
+
+    --LB1: rgb(90, 200, 230);
+    --LB2: rgb(45, 130, 230);
+
+    --PU1: rgb(100, 0, 100);
+    --PU2: rgb(60, 0, 75);
+
+    --PI1: rgb(250, 0, 150);
+    --PI2: rgb(125, 0, 100);
+
+    --O1: rgb(250, 175, 0);
+    --O2: rgb(250, 100, 0);
+
+
+    // RECRUITER
+    --GR1:rgb(50, 210, 100);
+    --GR2:rgb(40, 170, 90);
+    --GR3:rgb(30, 130, 80);
+    --GR4:rgb(20, 90, 70);
+    --GR5:rgb(10, 50, 60);
+    --GR6:rgb(0, 32, 50);
+
+
+    // THEME
+    --A100: rgb(250, 255, 255);
+    --A90: rgb(234, 236, 235);
+    --A80:rgb(211,215,227);
+    --A70:rgb(184,195,213);
+    --A60:rgb(154,165,187);
+    --A50:rgb(109,119,144);
+    --A40:rgb(80,92,116);
+    --A30:rgb(60,70,95);
+    --A20:rgb(46,57,75);
+    --A10:rgb(35,42,61);
+    --A0:rgb(25,29,41);
+}
+
+
+
+// BG COLORS TALENT
+.bg-gDB{
+    background-image: linear-gradient(135deg, var(--DB1), var(--DB2));
+}
+
+.bg-gB{
+    background-image: linear-gradient(135deg, var(--B1), var(--B2));
+}
+
+.bg-gLB{
+    background-image: linear-gradient(135deg, var(--LB1), var(--LB2));
+}
+
+.bg-gPU{
+    background-image: linear-gradient(135deg, var(--PU1), var(--PU2));
+}
+
+.bg-gPI{
+    background-image: linear-gradient(135deg, var(--PI1), var(--PI2));
+}
+
+.bg-gO{
+    background-image: linear-gradient(135deg, var(--O1), var(--O2));
+}
+
+.bg-gA{
+    background-image: linear-gradient(135deg, var(--A10), var(--A0));
+}
+
+
+
+
+
+
+
+
+.c-LB1{
+    color: var(--LB1);
+}
+.c-LB2{
+    color: var(--LB2);
+}
+
+
+.c-DB1{
+    color: var(--DB1);
+}
+.c-DB2{
+    color: var(--DB2);
+}
+
+
+.c-B1{
+    color: var(--B1);
+}
+.c-B2{
+    color: var(--B2);
+}
+
+
+
+
+
+.c-PU1{
+    color: var(--PU1);
+}
+.c-PU2{
+    color: var(--PU2);
+}
+
+
+.c-PI1{
+    color: var(--PI1);
+}
+.c-PI2{
+    color: var(--PI2);
+}
+
+
+.c-O1{
+    color: var(--O1);
+}
+.c-O2{
+    color: var(--O2);
+}
+
+
+.c-A0{
+    color: var(--A0)
+}
+.c-A10{
+    color: var(--A10)
+}
+.c-A20{
+    color: var(--A20)
+}
+.c-A30{
+    color: var(--A30)
+}
+.c-A40{
+    color: var(--A40)
+}
+.c-A50{
+    color: var(--A50)
+}
+.c-A60{
+    color: var(--A60)
+}
+.c-A70{
+    color: var(--A70)
+}
+.c-A80{
+    color: var(--A80)
+}
+.c-A90{
+    color: var(--A90)
+}
+.c-A100{
+    color: var(--A100)
+}
