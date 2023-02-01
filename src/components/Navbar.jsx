@@ -18,18 +18,20 @@ import { MdOutlinePerson } from "react-icons/md"
 const Navbar = () => {
 
   const [showMenu, setShowMenu] = useState(false)
-
+  const [showSearch, setshowSearch] = useState()
   const navigate = useNavigate()
 
 
   return (
     <>
       <div className="navbar">
-        <p onClick={ ()=> navigate("/messages")} >< BiMessageAlt /></p>
-        <p onClick={ ()=> navigate("/notifications")} >< GrNotification /></p>
-        <p>< GrSearch /></p>
-        <p onClick={ ()=> setShowMenu(!showMenu)} >< MdOutlinePerson /></p>
+        <div onClick={ ()=> navigate("/messages")} >< BiMessageAlt /></div>
+        <div onClick={ ()=> navigate("/notifications")} >< GrNotification /></div>
+        {showSearch ? 
+        <div><input type="text" /><GrSearch onClick={ ()=> setshowSearch(!showSearch)}/></div> : <div onClick={ ()=> setshowSearch(!showSearch)}>< GrSearch /></div>}
+        <div onClick={ ()=> setShowMenu(!showMenu)} >< MdOutlinePerson /></div>
       </div>
+ 
 
       <div>
         { showMenu&& < BurgerMenuTalent setShowMenu={setShowMenu} showMenu={showMenu}/>}
