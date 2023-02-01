@@ -5,6 +5,7 @@ import { host } from "../../api/host.jsx"
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "../elements/Footer.jsx";
 
 
 const Registration = () => {
@@ -91,6 +92,7 @@ const Registration = () => {
                  </p>
         </div>
             </form>
+            <Footer/>
             <ToastContainer />
         </>
     )

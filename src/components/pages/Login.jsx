@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "../elements/Footer.jsx";
 
 
 const Login = () => {
@@ -65,6 +66,7 @@ const Login = () => {
         </div>
       </form>
       <ToastContainer />
+      <Footer/>
     </div>
   );
 };

@@ -187,3 +187,29 @@
 .c-A100{
     color: var(--A100)
 }
+
+
+
+
+
+.bg-FAV{
+    background-image: linear-gradient(135deg, var(--O1), var(--O2));
+}
+.c-FAV{
+    color: var(--O2);
+}
+
+
+
+// HELPER
+.x{
+    border: 2px solid red;
+}
+
+.y{
+    border: 2px solid lightseagreen;
+}
+
+.z{
+    border: 2px solid greenyellow;
+}

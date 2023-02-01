@@ -8,12 +8,26 @@ const TalentMenu = () => {
 
 
   return (
-    <div className="componente">
-      <h1>componente RecruiterMenu</h1>
-      <p onClick={ ()=> navigate("/createproject")}>new project</p>
-      <p onClick={ ()=> navigate("/myprojects")}>my projects</p>
-      <p onClick={ ()=> navigate("/starprojects")}>star projects</p>
-      <p onClick={ ()=> navigate("/community")}>community</p>
+    <div className="z mt2 mb2">
+      <sl>TalentMenu</sl>
+      <div className="col">
+        <button
+          className="bg-FAV" 
+          onClick={ ()=> navigate("/createproject")}>new project
+        </button>
+        <button
+          className="bg-FAV" 
+          onClick={ ()=> navigate("/myprojects")}>my projects
+        </button>
+        <button
+          className="bg-FAV" 
+          onClick={ ()=> navigate("/starprojects")}>star projects
+        </button>
+        <button
+          className="bg-FAV" 
+          onClick={ ()=> navigate("/community")}>community
+        </button>
+      </div>
     </div>
   );
 };

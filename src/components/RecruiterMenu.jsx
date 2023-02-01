@@ -5,12 +5,26 @@ const RecruiterMenu = () => {
   const navigate = useNavigate()
 
   return (
-    <div className="componente">
-      <h1>componente RecruiterMenu</h1>
-      <p onClick={ ()=> navigate("/newsearch")}>new search</p>
-      <p onClick={ ()=> navigate("/searchhistory")}>search history</p>
-      <p onClick={ ()=> navigate("/starprojects")}>star projects</p>
-      <p onClick={ ()=> navigate("/community")}>star talents</p>
+    <div className="z mt2 mb2">
+      <sl>RecruiterMenu</sl>
+      <div className="col">
+        <button 
+          className="bg-FAV" 
+          onClick={ ()=> navigate("/newsearch")}>new search
+        </button>
+        <button 
+          className="bg-FAV" 
+          onClick={ ()=> navigate("/searchhistory")}>search history
+        </button>
+        <button 
+          className="bg-FAV" 
+          onClick={ ()=> navigate("/starprojects")}>star projects
+        </button>
+        <button 
+          className="bg-FAV" 
+          onClick={ ()=> navigate("/community")}>star talents
+        </button>
+      </div>
     </div>
   );
 };

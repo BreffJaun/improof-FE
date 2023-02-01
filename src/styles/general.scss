@@ -4,3 +4,37 @@
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
+
+.rel{
+    display: flex;
+    position: relative;
+}
+.abs{
+    display: flex;
+    position: absolute;
+}
+
+.col{
+    display: flex;
+    flex-direction: column;
+}
+
+.r8{
+    border-radius: 8px;
+}
+
+.mt2{
+    margin-top: 2rem;
+}
+
+.mb2{
+    margin-bottom: 2rem;
+}
+
+.flex{
+    display: flex;
+}
+
+
+
+

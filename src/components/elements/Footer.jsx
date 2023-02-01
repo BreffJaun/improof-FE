@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 
 // STYLE
-import '../styles/logo.scss'
+import '../../styles/logo.scss'
 
 
 const Footer = () => {
@@ -12,7 +12,7 @@ const Footer = () => {
   return (
     <div className="logoContainer">
       <div 
-      className="efjm"
+      className="efjm bg-FAV"
       onClick= { ()=> navigate("/efjm")}>efjm</div>
     </div>
   );

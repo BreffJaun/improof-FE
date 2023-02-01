@@ -29,7 +29,7 @@ import NewSearch from "./NewSearch.jsx";
 
 
 // FOOTER-COMPONENTEN
-import Footer from "../Footer.jsx";
+import Footer from "../elements/Footer.jsx";
 import EFJM from "./EFJM.jsx";
 
 
@@ -42,8 +42,6 @@ const Main = () =>{
         <>
             < Navbar/>
             < LogoS />
-
-
             < Routes>
                 {/* ROUTES BOTH */}
                 <Route path="/" element={<Start/>} />
@@ -64,11 +62,8 @@ const Main = () =>{
                 <Route path="/notifications" element={<Notifications/>} />
                 <Route path="/messages" element={<Messages/>} />
             </Routes>
-
-            < Footer/>
         </>
     )
-
 }
 
 export default Main;
