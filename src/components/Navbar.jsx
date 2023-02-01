@@ -32,8 +32,8 @@ const Navbar = () => {
       </div>
 
       <div>
-        { showMenu&& < BurgerMenuTalent />}
-        { showMenu&& < BurgerMenuRecruiter />}
+        { showMenu&& < BurgerMenuTalent setShowMenu={setShowMenu} showMenu={showMenu}/>}
+        { showMenu&& < BurgerMenuRecruiter setShowMenu={setShowMenu} showMenu={showMenu}/>}
       </div>
     </>
   );
