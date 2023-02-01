@@ -9,7 +9,6 @@ const TalentMenu = () => {
 
   return (
     <div className="z mt2 mb2">
-      <h1>TalentMenu</h1>
       <div className="col">
         <button
           className="bg-FAV" 

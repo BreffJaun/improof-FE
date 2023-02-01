@@ -1,4 +1,7 @@
 import { Route, Routes } from "react-router"
+import { useEffect, useState, useContext } from "react";
+
+import { host } from "../../api/host.jsx";
 
 // NAVBAR-COMPONENTEN
 import Navbar from "../Navbar.jsx";
@@ -21,6 +24,14 @@ import Footer from "../elements/Footer.jsx";
 import EFJM from "./EFJM.jsx";
 
 const Main = () =>{
+    useEffect(() => {
+        fetch(`${host}/users/checklogin`,{
+            credentials:"include"
+        })
+        .then((response) => response.json())
+        .then((json) => console.log(json));  
+    },[])
+
     return(
         <>
             < Navbar/>
