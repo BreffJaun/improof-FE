@@ -1,7 +1,6 @@
 import {useState, useEffect, useContext} from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-
-
+import { host } from "../../api/host.jsx";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,7 +14,7 @@ const Login = () => {
   const [loginData, setLoginData] = useState({});
 
   const handleInput = (event) => {
-    setLoginData({...loginData, [event.target.name]: event.target.value});
+    setLoginData({...loginData, profile:{...loginData.profile, [event.target.name]: event.target.value}});
   }
 
   const toastOptions = {
@@ -56,7 +55,7 @@ const Login = () => {
           <p>{loginData.email}</p>
           <p>{loginData.password}</p>
           <input type="text" name="email" placeholder="email" onChange={handleInput}/>
-          <input type="text" name="password" placeholder="password" onChange={handleInput}/>
+          <input type="password" name="password" placeholder="password" onChange={handleInput}/>
           <button type="submit">submit</button>
         </div>
         <div>
