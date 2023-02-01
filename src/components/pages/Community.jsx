@@ -10,10 +10,9 @@ const Community = () => {
         <Newsfeed/>
         <CategoriesFilter/>
       </div>
-      
       <div className="bo-DARK"></div>
 
-      <h1 className="c-FAV mb2">community</h1>
+      <h1 className="central c-FAV mb2">community</h1>
       <div className="mb2 mt2">
         <p className="sl c-FAV">i follow</p>
         <CategoriesFilter/>

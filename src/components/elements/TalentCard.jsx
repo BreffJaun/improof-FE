@@ -10,7 +10,7 @@ import {FiSend} from "react-icons/fi"
 const TalentCardFollow = () => {
   return (
     <div className="card talent flex">
-      <div className="talent-circle bg-FAV"></div>
+      <div className="circle50 bg-FAV"></div>
       <div>
         <p className="c-FAV">talent name</p>
         <p className="c-A20">current position</p>
@@ -26,7 +26,7 @@ const TalentCardFollow = () => {
 const TalentCardAdd = () => {
   return (
     <div className="card talent flex">
-      <div className="talent-circle bg-FAV"></div>
+      <div className="circle50 bg-FAV"></div>
       <div>
         <p className="c-FAV">talent name</p>
         <p className="c-A20">current position</p>
