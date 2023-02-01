@@ -5,6 +5,7 @@ const MyProjects = () => {
   return (
     <div className="componente">
       <h1>componente MyProjects</h1>
+      <Footer/>
     </div>
   );
 };
