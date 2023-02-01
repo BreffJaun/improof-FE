@@ -37,6 +37,7 @@ const BurgerMenuTalent = () => {
 
 
 const BurgerMenuRecruiter = () => {
+  const navigate = useNavigate()
   return (
     <div className ="burger-container">
       <div className="burger-recruiter">
