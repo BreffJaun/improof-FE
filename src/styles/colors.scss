@@ -49,45 +49,54 @@
 .bg-gDB{
     background-image: linear-gradient(135deg, var(--DB1), var(--DB2));
 }
-
 .bg-gB{
     background-image: linear-gradient(135deg, var(--B1), var(--B2));
 }
-
 .bg-gLB{
     background-image: linear-gradient(135deg, var(--LB1), var(--LB2));
 }
-
 .bg-gPU{
     background-image: linear-gradient(135deg, var(--PU1), var(--PU2));
 }
-
 .bg-gPI{
     background-image: linear-gradient(135deg, var(--PI1), var(--PI2));
 }
-
 .bg-gO{
     background-image: linear-gradient(135deg, var(--O1), var(--O2));
 }
-
 .bg-gA{
     background-image: linear-gradient(135deg, var(--A10), var(--A0));
 }
 
+// BG COLORS RECRUITER
+.bg-GR1{
+    background-image: linear-gradient(135deg, var(--GR1), var(--GR0));
+}
+.bg-GR2{
+    background-image: linear-gradient(135deg, var(--GR2), var(--GR1));
+}
+.bg-GR3{
+    background-image: linear-gradient(135deg, var(--GR3), var(--GR2));
+}
+.bg-GR4{
+    background-image: linear-gradient(135deg, var(--GR4), var(--GR3));
+}
+.bg-GR5{
+    background-image: linear-gradient(135deg, var(--GR5), var(--GR4));
+}
+.bg-GR6{
+    background-image: linear-gradient(135deg, var(--GR6), var(--GR5));
+}
 
 
 
-
-
-
-
+// FONT COLORS TALENT
 .c-LB1{
     color: var(--LB1);
 }
 .c-LB2{
     color: var(--LB2);
 }
-
 
 .c-DB1{
     color: var(--DB1);
@@ -96,17 +105,12 @@
     color: var(--DB2);
 }
 
-
 .c-B1{
     color: var(--B1);
 }
 .c-B2{
     color: var(--B2);
 }
-
-
-
-
 
 .c-PU1{
     color: var(--PU1);
@@ -115,14 +119,12 @@
     color: var(--PU2);
 }
 
-
 .c-PI1{
     color: var(--PI1);
 }
 .c-PI2{
     color: var(--PI2);
 }
-
 
 .c-O1{
     color: var(--O1);
@@ -131,7 +133,27 @@
     color: var(--O2);
 }
 
+// FONT COLORS RECRUITER
+.c-GR1{
+    color: var(--GR1);
+}
+.c-GR2{
+    color: var(--GR2);
+}
+.c-GR3{
+    color: var(--GR3);
+}
+.c-GR4{
+    color: var(--GR4);
+}
+.c-GR5{
+    color: var(--GR5);
+}
+.c-GR6{
+    color: var(--GR6);
+}
 
+// FONT COLORS THEME
 .c-A0{
     color: var(--A0)
 }
