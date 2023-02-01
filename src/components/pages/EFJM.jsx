@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 
-
 // ICONS
 import {GrClose} from "react-icons/gr"
 
