@@ -38,7 +38,7 @@ const Login = () => {
         .then((json) => {
           console.log(json);
           if(!json.status) {
-            toast.error(json.error, toastOptions);
+            toast.error("invalid password", toastOptions);
           } else {
             navigate("/")
           }

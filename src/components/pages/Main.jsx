@@ -49,7 +49,7 @@ const Main = () =>{
 
     return(
         <>
-            < Navbar/>
+            < Navbar />
             < LogoS />
             < Routes>
                 {/* ROUTES BOTH */}
@@ -57,20 +57,20 @@ const Main = () =>{
                 <Route path="/myprofil" element={<MyProfil/>} />
                 <Route path="/starprojects" element={<StarProjects/>} />
                 <Route path="/community" element={<Community/>} />
-                <Route path="/efjm" element={<EFJM/>} />
+                <Route path="/efjm" element={<EFJM />} />
                 <Route path="/projectdetails" element={<ProjectDetails/>} />
 
                 {/* ROUTES TALENT */}
-                <Route path="/createproject" element={<CreateProject/>} />
-                <Route path="/myprojects" element={<MyProjects/>} />
+                <Route path="/createproject" element={<CreateProject />} />
+                <Route path="/myprojects" element={<MyProjects />} />
 
                 {/* ROUTES RECRUITER */}
-                <Route path="/newsearch" element={<NewSearch/>}/>
-                <Route path="/searchhistory" element={<SearchHistory/>} />
+                <Route path="/newsearch" element={<NewSearch />}/>
+                <Route path="/searchhistory" element={<SearchHistory />} />
 
                 {/* ROUTES NAVBAR */}
-                <Route path="/notifications" element={<Notifications/>} />
-                <Route path="/messages" element={<Messages/>} />
+                <Route path="/notifications" element={<Notifications />} />
+                <Route path="/messages" element={<Messages />} />
             </Routes>
         </>
     )
