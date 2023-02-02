@@ -1,9 +1,11 @@
 import {RxCross2} from "react-icons/rx"
 import {HiPlus} from "react-icons/hi"
+import { host } from "../../api/host.jsx";
+import { ToastContainer, toast } from "react-toastify";
 
 //FOLLOW ADDEN
 const handleAddFollow = async (talentId, userId, firstName) => {
-  fetch(`${host}/users/follow/add`, {
+  await fetch(`${host}/users/follow/add`, {
   method: 'POST',
   body: JSON.stringify({
     talentId, 
@@ -25,7 +27,7 @@ const handleAddFollow = async (talentId, userId, firstName) => {
 
 // FOLLOW LÖSCHEN
 const handleDeleteFollow = async (talentId, userId, firstName) => {
-  fetch(`${host}/users/follow/delete`, {
+  await fetch(`${host}/users/follow/delete`, {
   method: 'DELETE',
   body: JSON.stringify({
     talentId, 

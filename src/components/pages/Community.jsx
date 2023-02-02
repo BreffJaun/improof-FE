@@ -26,7 +26,7 @@ useEffect( () => {
   getUsers()
 },[])
 
-console.log(user);
+
   return (
     <>
       <div className="mb2 mt2">
@@ -42,15 +42,9 @@ console.log(user);
       </div>
       {user?.follows?.length === 0 ?
       <p>Time to get some friends you creep</p> : 
-      user?.follows?.map(talent => <TalentCardFollow
-      key={talent._id} 
-      talentId={talent._id}
-      userId={user?._id}
-      firstName={talent.profile.firstName}
-      lastName={talent.profile.lastName}
-      img={talent.profile.avatar}
-      initials={talent.profile.initials}
-      position={talent.profile.position}
+      user?.follows?.map(talent => <TalentCardFollow follower={talent}
+      key={talent._id}       
+      userId={user?._id}      
       />)}
       
      
@@ -63,15 +57,11 @@ console.log(user);
         <CategoriesFilter/>
       </div>
 
-      {talents && talents.map((talent)=> <TalentCardAdd
-      key={talent._id}
-      talentId={talent._id}
-      userId={user?._id}
-      firstName={talent.profile.firstName}
-      lastName={talent.profile.lastName}
-      img={talent.profile.avatar}
-      initials={talent.profile.initials}
-      position={talent.profile.position}
+      {talents && talents.map((talent)=> 
+      <TalentCardAdd
+      key={talent._id}       
+      follower={talent}
+      userId={user?._id} 
       /> )}  
 
       <Footer/>
