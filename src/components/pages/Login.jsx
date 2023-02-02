@@ -67,7 +67,7 @@ const Login = () => {
 
             <input type="text" name="email" placeholder="email" onChange={handleInput}/>
             <input type="password" name="password" placeholder="password" onChange={handleInput}/>
-            <button type="submit">submit</button>
+            <button className="bg-FAV" type="submit">submit</button>
             <div className="col central">
             <p>Not registered yet?</p>
             <p>
