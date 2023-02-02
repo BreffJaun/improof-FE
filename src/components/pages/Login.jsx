@@ -6,6 +6,9 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../elements/Footer.jsx";
 
+// COMPONENTS
+import { LogoL } from "../Logo.jsx";
+
 
 const Login = () => {
 
@@ -50,17 +53,27 @@ const Login = () => {
 
   return (
     <div>
+      <div className="mb2 mt2">
+        <LogoL/>
+      </div>
+      <div className="bo-DARK"></div>
       <form onSubmit={handleSubmit}>
         <div>
-          <p>login</p>
-          <input type="text" name="email" placeholder="email" onChange={handleInput}/>
-          <input type="password" name="password" placeholder="password" onChange={handleInput}/>
-          <button type="submit">submit</button>
+        <h1 className="central c-FAV mb2">login</h1>
         </div>
-        <div>
-          <p>Not registered yet? 
-            <NavLink to="/registration">click here</NavLink>
-          </p>
+          <div className="y central col pa1">
+            <p>{loginData.email}</p>
+            <p>{loginData.password}</p>
+
+            <input type="text" name="email" placeholder="email" onChange={handleInput}/>
+            <input type="password" name="password" placeholder="password" onChange={handleInput}/>
+            <button className="bg-FAV" type="submit">submit</button>
+            <div className="col central">
+            <p>Not registered yet?</p>
+            <p>
+              <NavLink to="/registration">click here</NavLink>
+            </p> 
+          </div>
         </div>
       </form>
       <ToastContainer />
