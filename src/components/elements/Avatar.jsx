@@ -1,7 +1,16 @@
+import { useContext } from "react";
+import UserContext from "../../context/userContext.jsx";
+
+
 const AvatarL = () => {
+  const [user, setUser] = useContext(UserContext)
+
   return (
     <div className="central">
-      <div className="circle70 bg-FAV"></div>
+      {!user?.profile?.avatar ? 
+      <div className="circle70 bg-FAV">{user?.profile?.initials}</div> :
+      <div className="circle70 bg-FAV">{user?.profile?.img}</div>
+      }
     </div>
   );
 };

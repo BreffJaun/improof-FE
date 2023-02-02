@@ -40,45 +40,39 @@ const handleDeleteFollow = async (talentId, userId, firstName) => {
 
 
 
-const TalentCardFollow = ({firstName, lastName, position, img, initials, talentId, userId}) => {
-  const navigate = useNavigate()
+const TalentCardFollow = ({follower, userId}) => {
+  console.log(follower);
+  console.log(userId);
   return (
     <div className="card talent flex" onClick={()=> navigate(`/userDetails/${talentId}`)}>
       <div className="circle50 bg-FAV">
-        { img ? <img src={img} width="50"/> : <p>{initials}</p> }
+        { follower?.profile?.avatar? <img src={follower.profile.avatar} width="50"/> : <p>{follower?.profile?.initials}</p> }
       </div>
       <div>
-        <p className="c-FAV">{firstName} {lastName}</p>
-        <p className="c-A20">{position}</p>
+        <p className="c-FAV">{follower?.profile?.firstName} {follower?.profile?.lastName}</p>
+        <p className="c-A20">{follower?.profile?.position}</p>
       </div>
       <div className="flex">
-
-        <SendMessageBtn talentId={talentId} userId={userId} firstName={firstName}/>  
-              
-        <FollowDeleteBtn talentId={talentId} userId={userId} firstName={firstName}/>
-        
+        <button className="action" onClick={() => handleMessage(follower?.profile?._id, userId, follower?.profile?.firstName)}><FiSend /></button>
+        <button className="action" onClick={()=> handleDeleteFollow(follower?.profile?._id, userId, follower?.profile?.firstName)}><RxCross2 /></button>
       </div>
     </div>
   );
 };
 
-const TalentCardAdd = ({firstName, lastName, position, img, initials, talentId, userId}) => {
-  const navigate = useNavigate()
+const TalentCardAdd = ({follower, userId}) => {
   return (
 <div className="card talent flex" onClick={()=> navigate(`/userDetails/${talentId}`)}>
       <div className="circle50 bg-FAV">
-        { img ? <img src={img} width="50"/> : <p>{initials}</p> }
+        { follower?.profile?.avatar? <img src={follower?.profile?.avatar} width="50"/> : <p>{follower?.profile?.initials}</p> }
       </div>
       <div>
-        <p className="c-FAV">{firstName} {lastName}</p>
-        <p className="c-A20">{position}</p>
+        <p className="c-FAV">{follower?.profile?.firstName} {follower?.profile?.lastName}</p>
+        <p className="c-A20">{follower?.profile?.position}</p>
       </div>
       <div className="flex">
-
-        <SendMessageBtn talentId={talentId} userId={userId} firstName={firstName}/>
-
-        <FollowAddBtn talentId={talentId} userId={userId} firstName={firstName}/>
-
+        <button className="action" onClick={() => handleMessage(follower?.profile?._id, userId, follower?.profile?.firstName)}><FiSend /></button>
+        <button className="action" onClick={() => handleAddFollow(follower?.profile?._id, userId)}><HiPlus /></button>
       </div>
       <ToastContainer/>
     </div>
