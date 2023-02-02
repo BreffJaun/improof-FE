@@ -9,6 +9,8 @@ import {HiPlus} from "react-icons/hi"
 import {FiSend} from "react-icons/fi"
 import { toast } from "react-toastify"
 
+
+//FOLLOW ADDEN
 const handleAddFollow = async (talentId, userId, firstName) => {
   fetch(`${host}/users/follow/add`, {
   method: 'POST',
@@ -21,9 +23,17 @@ const handleAddFollow = async (talentId, userId, firstName) => {
   },
 })
   .then((response) => response.json())
-  .then((json) => toast.info(`you added ${firstName}`));
+  .then((json) => {
+    if(json.status){
+      toast.info(`you added ${firstName}`)
+    }else{
+      toast.info(`something went wrong!`)
+    }
+  });
 }
-const handleDeleteFollow = async (talentId, userId) => {
+
+// FOLLOW LÖSCHEN
+const handleDeleteFollow = async (talentId, userId, firstName) => {
   fetch(`${host}/users/follow/delete`, {
   method: 'DELETE',
   body: JSON.stringify({
@@ -35,9 +45,16 @@ const handleDeleteFollow = async (talentId, userId) => {
   },
 })
   .then((response) => response.json())
-  .then((json) =>  toast.info(`you deleted ${firstName}`));
+  .then((json) =>{
+    if(json.status){
+      toast.info(`you deleted ${firstName}`)
+    }else{
+      toast.info(`something went wrong!`)
+    }
+  });
 }
 
+//SEND MESSAGE
 const handleMessage = async (talentId, userId) => {
 
 }
