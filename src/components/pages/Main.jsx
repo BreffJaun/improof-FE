@@ -19,6 +19,7 @@ import Community from "./Community.jsx";
 import SearchHistory from "./SearchHistory.jsx";
 import NewSearch from "./NewSearch.jsx";
 import ProjectDetails from "./ProjectDetails.jsx";
+import UserDetails from "./UserDetails.jsx";
 
 // FOOTER-COMPONENTEN
 import Footer from "../elements/Footer.jsx";
@@ -59,6 +60,7 @@ const Main = () =>{
                 <Route path="/community" element={<Community/>} />
                 <Route path="/efjm" element={<EFJM />} />
                 <Route path="/projectdetails" element={<ProjectDetails/>} />
+                <Route path="/userdetails/:id" element={<UserDetails/>}/>
 
                 {/* ROUTES TALENT */}
                 <Route path="/createproject" element={<CreateProject />} />

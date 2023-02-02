@@ -2,6 +2,7 @@ import "../../styles/cards.scss"
 import "../../styles/colors.scss"
 
 import { host } from "../../api/host.jsx"
+import { useNavigate } from "react-router-dom"
 
 // ICONS
 import {RxCross2} from "react-icons/rx"
@@ -60,9 +61,10 @@ const handleMessage = async (talentId, userId) => {
 }
 
 
-const TalentCardFollow = ({firstName, lastName, position, img, initials}) => {
+const TalentCardFollow = ({firstName, lastName, position, img, initials, talentId, userId}) => {
+  const navigate = useNavigate()
   return (
-    <div className="card talent flex">
+    <div className="card talent flex" onClick={()=> navigate(`/userDetails/${talentId}`)}>
       <div className="circle50 bg-FAV">
         { img ? <img src={img} width="50"/> : <p>{initials}</p> }
       </div>
@@ -79,8 +81,9 @@ const TalentCardFollow = ({firstName, lastName, position, img, initials}) => {
 };
 
 const TalentCardAdd = ({firstName, lastName, position, img, initials, talentId, userId}) => {
+  const navigate = useNavigate()
   return (
-<div className="card talent flex">
+<div className="card talent flex" onClick={()=> navigate(`/userDetails/${talentId}`)}>
       <div className="circle50 bg-FAV">
         { img ? <img src={img} width="50"/> : <p>{initials}</p> }
       </div>
