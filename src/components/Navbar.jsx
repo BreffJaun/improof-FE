@@ -17,11 +17,10 @@ import UserContext from "../context/userContext.jsx";
 
 
 
-const Navbar = () => {
+const Navbar = ({user}) => {
 
   const [showMenu, setShowMenu] = useState(false)
   const [showSearch, setshowSearch] = useState()
-  const [user, setUser] = useContext(UserContext)
 
   const navigate = useNavigate()
 
