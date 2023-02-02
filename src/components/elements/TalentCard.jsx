@@ -7,13 +7,15 @@ import {HiPlus} from "react-icons/hi"
 import {FiSend} from "react-icons/fi"
 
 
-const TalentCardFollow = () => {
+const TalentCardFollow = ({name, position, img, initials}) => {
   return (
     <div className="card talent flex">
-      <div className="circle50 bg-FAV"></div>
+      <div className="circle50 bg-FAV">
+        { img ? <img src={img} width="50"/> : <p>{initials}</p> }
+      </div>
       <div>
-        <p className="c-FAV">talent name</p>
-        <p className="c-A20">current position</p>
+        <p className="c-FAV">{name}</p>
+        <p className="c-A20">{position}</p>
       </div>
       <div className="flex">
         <button className="action"><FiSend /></button>

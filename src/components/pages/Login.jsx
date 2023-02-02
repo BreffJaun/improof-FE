@@ -53,8 +53,6 @@ const Login = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <p>login</p>
-          <p>{loginData.email}</p>
-          <p>{loginData.password}</p>
           <input type="text" name="email" placeholder="email" onChange={handleInput}/>
           <input type="password" name="password" placeholder="password" onChange={handleInput}/>
           <button type="submit">submit</button>
