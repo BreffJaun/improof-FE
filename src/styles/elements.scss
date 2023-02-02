@@ -9,6 +9,7 @@ button{
     margin: auto;
     width: 150px;
     margin-bottom: 0.5rem;
+    background-color: var(--g);
 }
 
 
@@ -41,4 +42,13 @@ button{
     width: 30px;
     height: 30px;
     border-radius: 15px;
+}
+
+
+input{
+    background-color: var(--A90);
+    border-radius: 12px;
+    text-decoration: none;
+    border: none;
+    margin: 0.5rem;
 }
