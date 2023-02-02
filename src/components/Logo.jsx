@@ -10,7 +10,7 @@ const LogoS = () => {
   
   return (
     <div className="logoContainer">
-      <div onClick={() => navigate("/")} className="logoS bg-FAV"></div>
+      <div onClick={() => navigate("/")} className="logoS bgG"></div>
     </div>
   );
 };
@@ -19,7 +19,7 @@ const LogoS = () => {
 const LogoL = () => {
   return (
     <div className="logoContainer">
-      <div className="logoL bg-FAV"></div>
+      <div className="logoL bgG"></div>
     </div>
   );
 };

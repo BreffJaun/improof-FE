@@ -60,37 +60,39 @@ const handleMessage = async (talentId, userId) => {
 }
 
 
-const TalentCardFollow = ({firstName, lastName, position, img, initials}) => {
+const TalentCardFollow = ({follower, userId}) => {
+  console.log(follower);
+  console.log(userId);
   return (
     <div className="card talent flex">
       <div className="circle50 bg-FAV">
-        { img ? <img src={img} width="50"/> : <p>{initials}</p> }
+        { follower?.profile?.avatar? <img src={follower.profile.avatar} width="50"/> : <p>{follower?.profile?.initials}</p> }
       </div>
       <div>
-        <p className="c-FAV">{firstName} {lastName}</p>
-        <p className="c-A20">{position}</p>
+        <p className="c-FAV">{follower?.profile?.firstName} {follower?.profile?.lastName}</p>
+        <p className="c-A20">{follower?.profile?.position}</p>
       </div>
       <div className="flex">
-        <button className="action" onClick={() => handleMessage(talentId, userId, firstName)}><FiSend /></button>
-        <button className="action" onClick={()=> handleDeleteFollow(talentId, userId, firstName)}><RxCross2 /></button>
+        <button className="action" onClick={() => handleMessage(follower?.profile?._id, userId, follower?.profile?.firstName)}><FiSend /></button>
+        <button className="action" onClick={()=> handleDeleteFollow(follower?.profile?._id, userId, follower?.profile?.firstName)}><RxCross2 /></button>
       </div>
     </div>
   );
 };
 
-const TalentCardAdd = ({firstName, lastName, position, img, initials, talentId, userId}) => {
+const TalentCardAdd = ({follower, userId}) => {
   return (
 <div className="card talent flex">
       <div className="circle50 bg-FAV">
-        { img ? <img src={img} width="50"/> : <p>{initials}</p> }
+        { follower?.profile?.avatar? <img src={follower?.profile?.avatar} width="50"/> : <p>{follower?.profile?.initials}</p> }
       </div>
       <div>
-        <p className="c-FAV">{firstName} {lastName}</p>
-        <p className="c-A20">{position}</p>
+        <p className="c-FAV">{follower?.profile?.firstName} {follower?.profile?.lastName}</p>
+        <p className="c-A20">{follower?.profile?.position}</p>
       </div>
       <div className="flex">
-        <button className="action" onClick={() => handleMessage(talentId, userId, firstName)}><FiSend /></button>
-        <button className="action" onClick={() => handleAddFollow(talentId, userId)}><HiPlus /></button>
+        <button className="action" onClick={() => handleMessage(follower?.profile?._id, userId, follower?.profile?.firstName)}><FiSend /></button>
+        <button className="action" onClick={() => handleAddFollow(follower?.profile?._id, userId)}><HiPlus /></button>
       </div>
     </div>
   );

@@ -96,7 +96,11 @@ const MyProjectCard = () => {
           </div>
         </div>
 
-        <button className="action"><RxCross2 /></button>
+        <div className="col">
+          <button className="action"><RxCross2 /></button>
+          <p>delete</p>
+        </div>
+
       </div>
     </div>
   );
