@@ -7,31 +7,13 @@ import { useNavigate } from "react-router-dom"
 // ICONS
 import {RxCross2} from "react-icons/rx"
 import {HiPlus} from "react-icons/hi"
-import {FiSend} from "react-icons/fi"
-import { toast } from "react-toastify"
+import { toast, ToastContainer } from "react-toastify"
+
+// ELEMENTE
+import { FollowAddBtn, FollowDeleteBtn } from "../buttons/FollowBtn.jsx"
+import { SendMessageBtn } from "../buttons/MessageBtn.jsx"
 
 
-//FOLLOW ADDEN
-const handleAddFollow = async (talentId, userId, firstName) => {
-  fetch(`${host}/users/follow/add`, {
-  method: 'POST',
-  body: JSON.stringify({
-    talentId, 
-    userId    
-  }),
-  headers: {
-    'Content-type': 'application/json; charset=UTF-8',
-  },
-})
-  .then((response) => response.json())
-  .then((json) => {
-    if(json.status){
-      toast.info(`you added ${firstName}`)
-    }else{
-      toast.info(`something went wrong!`)
-    }
-  });
-}
 
 // FOLLOW LÖSCHEN
 const handleDeleteFollow = async (talentId, userId, firstName) => {
@@ -55,10 +37,7 @@ const handleDeleteFollow = async (talentId, userId, firstName) => {
   });
 }
 
-//SEND MESSAGE
-const handleMessage = async (talentId, userId) => {
 
-}
 
 
 const TalentCardFollow = ({firstName, lastName, position, img, initials, talentId, userId}) => {
@@ -73,8 +52,11 @@ const TalentCardFollow = ({firstName, lastName, position, img, initials, talentI
         <p className="c-A20">{position}</p>
       </div>
       <div className="flex">
-        <button className="action" onClick={() => handleMessage(talentId, userId, firstName)}><FiSend /></button>
-        <button className="action" onClick={()=> handleDeleteFollow(talentId, userId, firstName)}><RxCross2 /></button>
+
+        <SendMessageBtn talentId={talentId} userId={userId} firstName={firstName}/>  
+              
+        <FollowDeleteBtn talentId={talentId} userId={userId} firstName={firstName}/>
+        
       </div>
     </div>
   );
@@ -92,9 +74,13 @@ const TalentCardAdd = ({firstName, lastName, position, img, initials, talentId, 
         <p className="c-A20">{position}</p>
       </div>
       <div className="flex">
-        <button className="action" onClick={() => handleMessage(talentId, userId, firstName)}><FiSend /></button>
-        <button className="action" onClick={() => handleAddFollow(talentId, userId)}><HiPlus /></button>
+
+        <SendMessageBtn talentId={talentId} userId={userId} firstName={firstName}/>
+
+        <FollowAddBtn talentId={talentId} userId={userId} firstName={firstName}/>
+
       </div>
+      <ToastContainer/>
     </div>
   );
 };

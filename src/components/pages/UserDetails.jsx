@@ -1,3 +1,4 @@
+import "../../styles/elements.scss"
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 
@@ -27,8 +28,12 @@ const UserDetails = () => {
   console.log(talent);
   return (
     <div>
-      <div className="circle70">
+      <div className="circle70 bg-FAV">
         {talent?.profile?.avatar ? <img src="" alt="" /> : <p>{talent?.profile?.initials}</p>}
+      </div>
+      <div className="c-FAV">
+        <h2>{talent?.profile?.firstName} {talent?.profile?.lastName}</h2>
+        <p>{talent?.profile?.description ? talent?.profile?.description : "no description"}</p>
       </div>
     </div>
   );

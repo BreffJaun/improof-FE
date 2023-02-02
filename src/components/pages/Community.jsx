@@ -41,7 +41,7 @@ console.log(user);
         <CategoriesFilter/>
       </div>
       {user?.follows?.length === 0 ?
-      <p>Time to get some friend you creep</p> : 
+      <p>Time to get some friends you creep</p> : 
       user?.follows?.map(talent => <TalentCardFollow
       key={talent._id} 
       talentId={talent._id}
