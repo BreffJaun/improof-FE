@@ -10,7 +10,7 @@ import { toast, ToastContainer } from "react-toastify"
 import { FollowAddBtn, FollowDeleteBtn } from "../buttons/FollowBtn.jsx"
 import { SendMessageBtn } from "../buttons/MessageBtn.jsx"
 
-const TalentCardFollow = ({follower, userId}) => {
+const TalentCardFollow = ({follower, userId, trigger, setTrigger}) => {
   const navigate = useNavigate()
   return (
     <div className="card talent flex" >
@@ -23,15 +23,15 @@ const TalentCardFollow = ({follower, userId}) => {
       </div>
       <div className="flex">
 
-        <SendMessageBtn talentId={follower.TalentId} userId={userId} firstName={follower?.profile?.firstName}/>
+        <SendMessageBtn talentId={follower.TalentId} userId={userId} firstName={follower?.profile?.firstName} />
 
-        <FollowDeleteBtn talentId={follower.TalentId} userId={userId} firstName={follower?.profile?.firstName}/>      
+        <FollowDeleteBtn talentId={follower.TalentId} userId={userId} firstName={follower?.profile?.firstName} trigger={trigger} setTrigger={setTrigger}/>      
         </div>
     </div>
   );
 };
 
-const TalentCardAdd = ({follower, userId}) => {
+const TalentCardAdd = ({follower, userId, trigger, setTrigger}) => {
   const navigate = useNavigate()
   return (
 <div className="card talent flex" >
@@ -46,7 +46,7 @@ const TalentCardAdd = ({follower, userId}) => {
 
         <SendMessageBtn talentId={follower.TalentId} userId={userId} firstName={follower?.profile?.firstName}/>
 
-        <FollowAddBtn talentId={follower.TalentId} userId={userId} firstName={follower?.profile?.firstName}/>
+        <FollowAddBtn talentId={follower.TalentId} userId={userId} firstName={follower?.profile?.firstName} trigger={trigger} setTrigger={setTrigger}/>
 
       </div>
       <ToastContainer/>

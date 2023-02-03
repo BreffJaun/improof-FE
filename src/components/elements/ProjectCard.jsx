@@ -7,6 +7,8 @@ import "../../styles/banner.scss"
 import {RxCross2} from "react-icons/rx"
 import {HiPlus} from "react-icons/hi"
 
+// ELEMENTS
+import {TalentCardFollow} from "../elements/TalentCard.jsx"
 
 
 const ProjectCardFollow = () => {
@@ -71,28 +73,29 @@ const ProjectAdd = () => {
 
 
 
-const MyProjectCard = () => {
+const MyProjectCard = ({project, userId}) => {
   return (
     <div className="project card col">
       <div className="project-banner bg-FAV"></div>
       <div className="project-body">
         <div>
           <div>
-            <p className="c-FAV">project name</p>
-            <p className="c-A20 mt05">description Lorem ipsum dolor sit amet consectetur </p>
+            <p className="c-FAV">{project?.name}</p>
+            <p className="c-A20 mt05">{project?.description}</p>
           </div>
           <div className="mt15">
-            <p className="c-FAV">contributors:</p>
-            <div className="flex mt05">
-              <div className="circle40 bg-FAV mr05"></div>
-              <div className="circle40 bg-FAV mr05"></div>
-              <div className="circle40 bg-FAV mr05"></div>
-              <div className="circle40 bg-FAV mr05"></div>
-            </div>
+            {project?.team?.length &&
+            <>
+              <p className="c-FAV">contributors:</p>
+              <div className="flex mt05">
+                {project?.team?.map(member => <TalentCardFollow key={member._id} follower={member} userId={userId}/>)}
+              </div>
+            </>            
+            }
           </div>
           <div className="mt15">
             <p className="c-FAV">status:</p>
-            <p className="c-A20 mt">open</p>
+            <p className="c-A20 mt">{project.private ? "closed" : "open"}</p>
           </div>
         </div>
 

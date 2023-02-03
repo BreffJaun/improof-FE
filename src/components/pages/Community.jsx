@@ -12,6 +12,7 @@ import UserContext from "../../context/userContext.jsx";
 const Community = () => {
 const [talents, setTalents] = useState(undefined)
 const [user, setUser] = useContext(UserContext)
+const [trigger, setTrigger] = useState(true)
 
 
 useEffect( () => {
@@ -26,7 +27,9 @@ useEffect( () => {
   getUsers()
 },[])
 
+// DER TRIGGER MUSS AUF GET USER GESETZT WERDEN!! 
 
+console.log(trigger);
   return (
     <>
       <div className="mb2 mt2">
@@ -42,13 +45,15 @@ useEffect( () => {
       </div>
       {user?.follows?.length === 0 ?
       <p>Time to get some friends you creep</p> : 
-      user?.follows?.map(talent => <TalentCardFollow follower={talent}
+      user?.follows?.map(talent => 
+      <TalentCardFollow
+      follower={talent}
       key={talent._id}       
-      userId={user?._id}      
-      />)}
-      
-     
-
+      userId={user?._id}
+      trigger={trigger} 
+      setTrigger={setTrigger}     
+      />
+      )}
 
       <div className="bo-DARK"></div>
 
@@ -58,11 +63,14 @@ useEffect( () => {
       </div>
 
       {talents && talents.map((talent)=> 
-      <TalentCardAdd
-      key={talent._id}       
-      follower={talent}
-      userId={user?._id} 
-      /> )}  
+        <TalentCardAdd
+        key={talent._id}       
+        follower={talent}
+        userId={user?._id}
+        trigger={trigger}
+        setTrigger={setTrigger} 
+        /> 
+      )}  
 
       <Footer/>
     </>
