@@ -52,33 +52,42 @@ const Login = () => {
 
 
   return (
-    <div>
+    <>
       <div className="mb2 mt2">
         <LogoL/>
       </div>
-      <div className="bo-DARK"></div>
-      <form onSubmit={handleSubmit}>
-        <div>
-        <h1 className="central c-FAV mb2">login</h1>
-        </div>
-          <div className="y central col pa1">
-            <p>{loginData.email}</p>
-            <p>{loginData.password}</p>
 
-            <input type="text" name="email" placeholder="email" onChange={handleInput}/>
-            <input type="password" name="password" placeholder="password" onChange={handleInput}/>
-            <button className="bg-FAV" type="submit">submit</button>
-            <div className="col central">
+      <form onSubmit={handleSubmit}>
+        <div className="central col pa1 mb2">
+
+          {/* <p>{loginData.email}</p>
+          <p>{loginData.password}</p> */}
+
+          <input 
+            type="text" 
+            name="email" 
+            placeholder="email" 
+            onChange={handleInput}
+          />
+          <input 
+            type="password" 
+            name="password" 
+            placeholder="password" 
+            onChange={handleInput}
+          />
+
+          <button className="bg-FAV" type="submit">login</button>
+          <div className="col central">
             <p>Not registered yet?</p>
             <p>
               <NavLink to="/registration">click here</NavLink>
             </p> 
-          </div>
+        </div>
         </div>
       </form>
       <ToastContainer />
       <Footer/>
-    </div>
+    </>
   );
 };
 

@@ -27,7 +27,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar">
+      <div className="navbar mt2">
         <div onClick={ ()=> navigate("/messages")} >< BiMessageAlt /></div>
         <div onClick={ ()=> navigate("/notifications")} >< GrNotification /></div>
         {showSearch ? 

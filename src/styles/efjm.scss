@@ -1,0 +1,22 @@
+.contact{
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.efjm-avatar-container{
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    top: -35px;
+    h1{
+        font-weight: 900;
+        font-size: 1.5rem;
+        color: white;
+    }
+}
+
+.efjm-card{
+    margin-top: 4rem;
+}

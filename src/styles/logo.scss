@@ -3,20 +3,47 @@
     justify-content: center;
 }
 
-.logoS{
-    width: 5rem;
-    height: 5rem;
-    border-radius: 5rem;
-}
 
 .logoL{
-    width: 10rem;
-    height: 10rem;
-    border-radius: 10rem;
+    align-items: center;
+    >img{
+        width: 10rem;
+    }
+    h1{
+        font-size: 3rem;
+        font-weight: 900;
+    }
 }
 
+
+.logoS{
+    align-items: center;
+    >img{
+        width: 3.2rem;
+    }
+    h1{
+        font-size: 1.2rem;
+        font-weight: 900;
+    }
+}
+
+
 .efjm{
+    align-items: center;
+    border-radius: 3rem;
+    padding: 0.2rem;
     width: 3rem;
-    height: 1.5rem;
-    border-radius: 1.5rem;
+    color: white;
+    font-weight: 900;
+    >img{
+        display: flex;
+        object-fit: contain;
+        width: 100%;
+    }
+    .whity{
+        width: 90%;
+        border: 1px solid white;
+        border-radius: 3rem;
+    }
+
 }
