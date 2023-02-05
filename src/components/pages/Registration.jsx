@@ -8,6 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Footer from "../elements/Footer.jsx";
 
 
+// componenten
+import { LogoL } from "../../components/Logo"
+
 const Registration = () => {
 
     const navigate = useNavigate();
@@ -68,29 +71,35 @@ const Registration = () => {
 
     return (
         <>
-            <p>create your account</p>
+            <div className="mb2 mt2">
+                <LogoL/>
+            </div>
+            <p className="central c-FAV mb2">create your account</p>
+
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="central col">
                     <input type="text" name="firstName" placeholder="first name" required onChange={handleInput}/>
                     <input type="text" name="lastName" placeholder="last name" required onChange={handleInput} />
                     <input type="email" name="email" placeholder="email" required onChange={handleInput}/>
                 </div>
-                <div>
+                <div className="central col mb2 mt2">
                     <input type="password" name="password" placeholder="password" required onChange={handleInput}/>
                     <input type="password" name="confirmPassword" placeholder="confirm password" required onChange={handleInput}/>
                 </div>
-                <div>
+                <div className="central">
                     <input type="radio" name="whoAmI" value="isTalent" onChange={handleTalent} />
                     <label>i am a talent</label>
                     <input type="radio" name="whoAmI" value="isRecruiter" onChange={handleRecruiter} />
                     <label>i am a recruiter</label>
                 </div>
-                <button type="submit">register</button>
-                <div>
-                <p>already registered? 
-                <NavLink to="/login">click here</NavLink>
-                 </p>
-        </div>
+                <div className="central mb2">
+                    <button type="submit">register</button>
+                </div>
+                <div className="central b2">
+                    <p>already registered? 
+                        <NavLink to="/login">click here</NavLink>
+                    </p>
+                </div>
             </form>
             <Footer/>
             <ToastContainer />
