@@ -21,10 +21,6 @@ button{
 }
 
 
-
-
-
-
 .circle20{
     width: 20px;
     height: 20px;
@@ -78,12 +74,68 @@ button{
 
 
 
-
-input{
-    background-color: var(--A90);
-    border-radius: 12px;
-    text-decoration: none;
+// TEXT EMAIL PASSWORD
+input[type=text],
+input[type=email],
+input[type=password]{
+    background-color: whitesmoke;
     border: none;
-    margin: 0.5rem;
+    outline: 1px solid rgba(255,255,255,0);
+    text-decoration: none;
+    margin: 0.25rem;
+    padding: 0.7rem 1rem;
+    border-radius: 3rem;
+    transition: 0.4s;
 }
 
+input[type=text]:hover,
+input[type=email]:hover,
+input[type=password]:hover{
+    outline: 1px solid var(--O2);
+}
+
+// RADIO
+input[type=radio]{
+    appearance: none;
+    margin-top: 3px;
+    font: inherit;
+    width: 1.15em;
+    height: 1.15em;
+    border: 1px solid var(--O2);
+    border-radius: 50%;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+}
+
+input[type=radio]::before {
+    content:"";
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 0.12s transform ease-in-out;
+    box-shadow: inset 1em 1em var(--O2);
+}
+
+input[type=radio]:checked::before {
+    transform: scale(1);
+}
+
+//RADIO FRAME
+// input[type=radio]:focus {
+//   outline: 1px solid var(--O2);
+//   outline-offset: 2px;
+// }
+
+
+
+.up-icon{
+    display: flex;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid var(--A60);
+    background-color: white;
+}

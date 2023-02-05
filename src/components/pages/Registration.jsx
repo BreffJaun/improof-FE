@@ -7,9 +7,9 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../elements/Footer.jsx";
 
-
 // componenten
 import { LogoL } from "../../components/Logo"
+
 
 const Registration = () => {
 
@@ -78,24 +78,56 @@ const Registration = () => {
 
             <form onSubmit={handleSubmit}>
                 <div className="central col">
-                    <input type="text" name="firstName" placeholder="first name" required onChange={handleInput}/>
-                    <input type="text" name="lastName" placeholder="last name" required onChange={handleInput} />
-                    <input type="email" name="email" placeholder="email" required onChange={handleInput}/>
+                    <input
+                        type="text"
+                        name="firstName"
+                        placeholder="first name"
+                        required
+                        onChange={handleInput}
+                    />
+                    <input 
+                        type="text" 
+                        name="lastName" 
+                        placeholder="last name" 
+                        required 
+                        onChange={handleInput} 
+                    />
+                    <input 
+                        type="email" 
+                        name="email" 
+                        placeholder="email" 
+                        required 
+                        onChange={handleInput}
+                    />
                 </div>
                 <div className="central col mb2 mt2">
                     <input type="password" name="password" placeholder="password" required onChange={handleInput}/>
                     <input type="password" name="confirmPassword" placeholder="confirm password" required onChange={handleInput}/>
                 </div>
                 <div className="central">
-                    <input type="radio" name="whoAmI" value="isTalent" onChange={handleTalent} />
-                    <label>i am a talent</label>
-                    <input type="radio" name="whoAmI" value="isRecruiter" onChange={handleRecruiter} />
-                    <label>i am a recruiter</label>
+                    <div className="mb05">
+                        <input
+                            type="radio"
+                            name="whoAmI"
+                            value="isTalent"
+                            onChange={handleTalent}
+                        />
+                        <label className="ml05">i am a talent</label>
+                    </div>
+                    <div className="mb05 ml2">
+                        <input
+                            type="radio"
+                            name="whoAmI"
+                            value="isRecruiter"
+                            onChange={handleRecruiter}
+                        />
+                        <label className="ml05">i am a recruiter</label>
+                    </div>
                 </div>
-                <div className="central mb2">
-                    <button type="submit">register</button>
+                <div className="central mb2 mt2">
+                    <button type="submit" className="bg-FAV">register</button>
                 </div>
-                <div className="central b2">
+                <div className="central">
                     <p>already registered? 
                         <NavLink to="/login">click here</NavLink>
                     </p>

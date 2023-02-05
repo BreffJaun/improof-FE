@@ -27,6 +27,7 @@ const MyProfil = () => {
 
       <>
         {/* talentprofil */}
+        <div className="bo-DARK"></div>
         <AvatarL/>
         <ColorCardTalent/>
         <h1 className="central c-FAV mb2">{user?.profile?.firstName} {user?.profile?.lastName}</h1>
