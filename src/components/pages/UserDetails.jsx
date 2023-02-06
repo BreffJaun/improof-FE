@@ -35,7 +35,7 @@ const UserDetails = () => {
         }
       })};
     getUser()
-  },[])
+  },[id])
 
   return !isPending && user &&
     <div>
@@ -65,7 +65,7 @@ const UserDetails = () => {
       <div>
         <h1>MY COMMUNITY ({talent.follows.length})</h1>
         {talent.follows.length ? 
-        talent.follows.map(follow => <TalentCard key={follow._id} talent={talent} user={user}/> ):
+        talent.follows.map(follow => <TalentCard key={follow._id} talent={follow} user={user}/> ):
         <p>You´re not following anybody</p>}
       </div>
       <div>

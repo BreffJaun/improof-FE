@@ -1,7 +1,35 @@
-const CategoriesFilter = () => {
+import { useState, useEffect, useContext } from "react";
+import UserContext from "../../context/userContext.jsx";
+import TriggerContext from "../../context/triggerContext.jsx";
+import { host } from "../../api/host.jsx";
+
+const CategoriesFilter = ({setCategory}) => { 
+    const [user, setUser] = useContext(UserContext) 
+    const [trigger, setTrigger] = useContext(TriggerContext) 
+    
+    const handleCategory = (event)=> {
+        setCategory(event.target.value)
+    }
+
+    useEffect(() => {
+        fetch(`${host}/users/checklogin`,{            
+        credentials:"include"
+        })
+        .then((response) => response.json())
+        .then((json) => {
+            if(json.status){
+                setUser(json.user)
+                setTrigger(!trigger)
+            }else{
+                navigate("/login")
+            }
+        });  
+    },[setCategory])
+
+
     return (
         <>
-            <select name="newsfeed-filter">
+            <select onChange={handleCategory} name="newsfeed-filter">
                 <option value="">All categories</option>
                 <option value="Web-Development">Web-Development</option>
                 <option value="Software-Development">Software-Development</option>

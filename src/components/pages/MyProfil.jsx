@@ -23,8 +23,8 @@ const MyProfil = () => {
       <>
         {/* talentprofil */}
         <div className="bo-DARK"></div>
-        <AvatarL/>
-        <ColorCardTalent/>
+        <AvatarL />
+        <ColorCardTalent />
         <h1 className="central c-FAV mb2">{user?.profile?.firstName} {user?.profile?.lastName}</h1>
         <div>
           <p className="c-FAV">that's me:</p>

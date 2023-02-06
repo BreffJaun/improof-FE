@@ -62,9 +62,7 @@ const FollowBtn = ({talent, user}) => {
   return ( user.follows.find(follow => follow._id === talent._id) ? 
     <button className="action" onClick={() => handleDeleteFollow(talent, user, trigger, setTrigger)}><RxCross2 /></button> : 
     <button className="action" onClick={() => handleAddFollow(talent, user, trigger, setTrigger)}><HiPlus /></button>
-
   )
 }
-
 
 export {FollowBtn}

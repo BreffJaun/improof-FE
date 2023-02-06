@@ -72,8 +72,6 @@ const ProjectAdd = () => {
   );
 };
 
-
-
 const MyProjectCard = ({project, user}) => {
   return (
     <div className="project card col">

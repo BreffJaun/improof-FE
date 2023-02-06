@@ -5,24 +5,25 @@ import { useContext, useEffect, useState } from "react";
 import { TalentCard } from "../elements/TalentCard.jsx";
 import CategoriesFilter from "../elements/CategoriesFilter.jsx";
 import Footer from "../elements/Footer.jsx";
-import Newsfeed from "../elements/Newsfeed.jsx";
 
 // CONTEXT
 import TriggerContext from "../../context/triggerContext.jsx";
 import UserContext from "../../context/userContext.jsx";
 
 const Community = () => {
-const [talents, setTalents] = useState(undefined)
-const [user, setUser] = useContext(UserContext)
-const [trigger, setTrigger] = useContext(TriggerContext)
-const [isPending, setPending] = useState(true)
+  const [category, setCategory] = useState(undefined)
+  const [talents, setTalents] = useState(undefined)
+  const [user, setUser] = useContext(UserContext)
+  const [trigger, setTrigger] = useContext(TriggerContext)
+  const [isPending, setPending] = useState(true)
 
 
 
+console.log(category)
 
 useEffect( () => {
+  setPending(true)
   const getUsers = async () => {
-    setPending(true)
     fetch(`${host}/users`)
       .then((response) => response.json())
       .then((json) => {
@@ -32,7 +33,7 @@ useEffect( () => {
       });
   }
   getUsers()
-},[])
+},[category])
 
 useEffect(() => {
   fetch(`${host}/users/checklogin`,{
@@ -42,26 +43,34 @@ useEffect(() => {
   .then((json) => {
       if(json.status){
           setUser(json.user)
-
       }else{
           navigate("/login")
       }
   });  
-},[trigger])
+},[trigger, category])
 
 
 
-  return ( !isPending &&
+  return ( 
     <>
       <div className="bo-DARK"></div>
       <h1 className="central c-FAV mb2">community</h1>
+        <CategoriesFilter setCategory={setCategory}/>
       <div className="mb2 mt2">
         <p className="sl c-FAV">i follow</p>
-        <CategoriesFilter/>
       </div>
-      {user.follows.length === 0 ?
+      {user.follows.length === 0 && !category ?
       <p>Time to get some friends you creep</p> : 
       user.follows.map(talent => 
+        talent.profile.category && talent.profile.category === category &&
+        <TalentCard
+        key={talent._id}
+        talent={talent}
+        user={user} 
+        />
+      )} 
+      {!category &&      
+      user.follows.map(talent =>         
         <TalentCard
         key={talent._id}
         talent={talent}
@@ -73,18 +82,26 @@ useEffect(() => {
 
       <div className="mb2 mt2">
         <p className="sl c-FAV">meet new talents</p>
-        <CategoriesFilter/>
       </div>
 
       {talents && talents.map((talent) =>
         !user.follows.find(follow => follow._id === talent._id) &&
+        talent.profile.category && talent.profile.category === category && 
         <TalentCard
         key={talent._id}
         talent={talent}
         user={user} 
-        /> 
+        />
+      )} 
+      {!category &&      
+        talents?.map(talent => 
+          !user.follows.find(follow => follow._id === talent._id || talent._id === user._id) &&        
+          <TalentCard
+          key={talent._id}
+          talent={talent}
+          user={user} 
+          />
       )}  
-
       <Footer/>
     </>
   );
