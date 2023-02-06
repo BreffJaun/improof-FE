@@ -1,6 +1,8 @@
 // COMPONENTS
 import Footer from "../elements/Footer.jsx";
 import CategoriesFilter from "../elements/CategoriesFilter.jsx";
+import { ColorTalentProject } from "../buttons/ColorRadioBtn.jsx";
+
 
 const CreateProject = () => {
   return (
@@ -33,9 +35,9 @@ const CreateProject = () => {
             </div>
           </div>
 
-          <div className="col">
-            <p>roject color</p>
-            <p>color palette talent || recruiter</p>
+          <div className="col central">
+            <p>project color</p>
+            <ColorTalentProject />
           </div>
 
           <div className="col">

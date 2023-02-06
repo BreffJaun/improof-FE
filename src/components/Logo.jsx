@@ -8,17 +8,15 @@ import logo from "../images/improof_OR.png"
 
 const LogoS = () => {
   const navigate = useNavigate()
-  
   return (
     <div className="logoContainer mt2">
       <div onClick={() => navigate("/")} className="logoS col">
         <img src={logo} alt="improof-logo"/>
-        {/* <h1 className="c-FAV">improof</h1> */}
+        <h1 className="c-FAV">improof</h1>
       </div>
     </div>
   );
 };
-
 
 const LogoL = () => {
   return (

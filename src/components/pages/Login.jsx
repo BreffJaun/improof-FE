@@ -58,31 +58,31 @@ const Login = () => {
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div className="central col pa1 mb2">
+        <div className="central col">
 
           {/* <p>{loginData.email}</p>
           <p>{loginData.password}</p> */}
 
-          <input 
-            type="text" 
-            name="email" 
-            placeholder="email" 
-            onChange={handleInput}
-          />
-          <input 
-            type="password" 
-            name="password" 
-            placeholder="password" 
-            onChange={handleInput}
-          />
+          <div className="mb2 col">
+            <input 
+              type="text" 
+              name="email" 
+              placeholder="email" 
+              onChange={handleInput}
+            />
+            <input
+              type="password" 
+              name="password" 
+              placeholder="password" 
+              onChange={handleInput}
+            />
+          </div>
 
-          <button className="bg-FAV" type="submit">login</button>
+          <button className="bg-FAV mb2" type="submit">login</button>
           <div className="col central">
             <p>Not registered yet?</p>
-            <p>
-              <NavLink to="/registration">click here</NavLink>
-            </p> 
-        </div>
+            <p><NavLink to="/registration">click here</NavLink></p> 
+          </div>
         </div>
       </form>
       <ToastContainer />
