@@ -6,9 +6,10 @@ import "../../styles/banner.scss"
 // ICONS
 import {RxCross2} from "react-icons/rx"
 import {HiPlus} from "react-icons/hi"
+import { TalentCard } from "./TalentCard.jsx"
 
 // ELEMENTS
-import {TalentCardFollow} from "../elements/TalentCard.jsx"
+
 
 
 const ProjectCardFollow = () => {
@@ -73,7 +74,7 @@ const ProjectAdd = () => {
 
 
 
-const MyProjectCard = ({project, userId}) => {
+const MyProjectCard = ({project, user}) => {
   return (
     <div className="project card col">
       <div className="project-banner bg-FAV"></div>
@@ -87,15 +88,15 @@ const MyProjectCard = ({project, userId}) => {
             {project?.team?.length &&
             <>
               <p className="c-FAV">contributors:</p>
-              <div className="flex mt05">
-                {project?.team?.map(member => <TalentCardFollow key={member._id} follower={member} userId={userId}/>)}
+              <div className="col mt05">
+                {project?.team?.length && project?.team?.map(member => <TalentCard key={member._id} talent={member} user={user}/>)}
               </div>
             </>            
             }
           </div>
           <div className="mt15">
             <p className="c-FAV">status:</p>
-            <p className="c-A20 mt">{project.private ? "closed" : "open"}</p>
+            <p className="c-A20 mt">{project?.private ? "closed" : "open"}</p>
           </div>
         </div>
 

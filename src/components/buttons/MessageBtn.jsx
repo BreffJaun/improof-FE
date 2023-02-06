@@ -1,10 +1,10 @@
 import {FiSend} from "react-icons/fi"
 
-const handleMessage = async (talentId, userId, firstName) => {}
+const handleMessage = async (talent, user) => {}
 
-  const SendMessageBtn = ({talentId, userId, firstName}) => {
+  const SendMessageBtn = ({talent, user}) => {
   return (
-    <button className="action" onClick={() => handleMessage(talentId, userId, firstName)}><FiSend /></button>
+    <button className="action" onClick={() => handleMessage(talent, user)}><FiSend /></button>
   )
 }
 

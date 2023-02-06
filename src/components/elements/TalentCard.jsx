@@ -4,54 +4,33 @@ import "../../styles/colors.scss"
 import { useNavigate } from "react-router-dom"
 
 // ICONS
-import { toast, ToastContainer } from "react-toastify"
+import { ToastContainer } from "react-toastify"
 
 // ELEMENTE
-import { FollowAddBtn, FollowDeleteBtn } from "../buttons/FollowBtn.jsx"
+import { FollowBtn } from "../buttons/FollowBtn.jsx"
 import { SendMessageBtn } from "../buttons/MessageBtn.jsx"
 
-const TalentCardFollow = ({follower, userId, trigger, setTrigger}) => {
+const TalentCard = ({talent, user}) => {
   const navigate = useNavigate()
   return (
     <div className="card talent flex" >
-      <div className="circle50 bg-FAV" onClick={()=> navigate(`/userDetails/${follower._id}`)}>
-        { follower?.profile?.avatar? <img src={follower.profile.avatar} width="50"/> : <p>{follower?.profile?.initials}</p> }
+      <div className="circle50 bg-FAV" onClick={()=> navigate(`/userDetails/${talent._id}`)}>
+        { talent.profile.avatar ? 
+        <img src={talent.profile.avatar} width="50"/> : 
+        <p>{talent.profile.initials}</p> }
       </div>
       <div>
-        <p className="c-FAV" onClick={()=> navigate(`/userDetails/${follower.talentId}`)}>{follower?.profile?.firstName} {follower?.profile?.lastName}</p>
-        <p className="c-A20">{follower?.profile?.position}</p>
+        <p className="c-FAV" onClick={()=> navigate(`/userDetails/${talent._id}`)}>{talent.profile.firstName} {talent.profile.lastName}</p>
+        <p className="c-A20">{talent.profile.position}</p>
       </div>
       <div className="flex">
-
-        <SendMessageBtn talentId={follower.TalentId} userId={userId} firstName={follower?.profile?.firstName} />
-
-        <FollowDeleteBtn talentId={follower.TalentId} userId={userId} firstName={follower?.profile?.firstName} trigger={trigger} setTrigger={setTrigger}/>      
-        </div>
-    </div>
-  );
-};
-
-const TalentCardAdd = ({follower, userId, trigger, setTrigger}) => {
-  const navigate = useNavigate()
-  return (
-<div className="card talent flex" >
-      <div className="circle50 bg-FAV" onClick={()=> navigate(`/userDetails/${follower._id}`)}>
-        { follower?.profile?.avatar? <img src={follower?.profile?.avatar} width="50"/> : <p>{follower?.profile?.initials}</p> }
-      </div>
-      <div>
-        <p className="c-FAV" onClick={()=> navigate(`/userDetails/${follower._id}`)}>{follower?.profile?.firstName} {follower?.profile?.lastName}</p>
-        <p className="c-A20">{follower?.profile?.position}</p>
-      </div>
-      <div className="flex">
-
-        <SendMessageBtn talentId={follower.TalentId} userId={userId} firstName={follower?.profile?.firstName}/>
-
-        <FollowAddBtn talentId={follower.TalentId} userId={userId} firstName={follower?.profile?.firstName} trigger={trigger} setTrigger={setTrigger}/>
-
+        <SendMessageBtn talent={talent} user={user} />
+        {user.follows.find(follow => follow._id === talent._id) ? <FollowBtn talent={talent} user={user}/> : <FollowBtn talent={talent} user={user}/>}
       </div>
       <ToastContainer/>
     </div>
   );
 };
 
-export {TalentCardFollow, TalentCardAdd};
+
+export {TalentCard};

@@ -1,36 +1,57 @@
+import { host } from "../../api/host.jsx";
+import { useContext, useEffect, useState } from "react";
+
+//ELEMENTE 
+import { TalentCard } from "../elements/TalentCard.jsx";
 import CategoriesFilter from "../elements/CategoriesFilter.jsx";
 import Footer from "../elements/Footer.jsx";
 import Newsfeed from "../elements/Newsfeed.jsx";
-import {TalentCardFollow, TalentCardAdd} from "../elements/TalentCard.jsx";
-import { host } from "../../api/host.jsx";
-
-import { useContext, useEffect, useState } from "react";
 
 // CONTEXT
+import TriggerContext from "../../context/triggerContext.jsx";
 import UserContext from "../../context/userContext.jsx";
 
 const Community = () => {
 const [talents, setTalents] = useState(undefined)
 const [user, setUser] = useContext(UserContext)
-const [trigger, setTrigger] = useState(true)
+const [trigger, setTrigger] = useContext(TriggerContext)
+const [isPending, setPending] = useState(true)
+
+
 
 
 useEffect( () => {
   const getUsers = async () => {
+    setPending(true)
     fetch(`${host}/users`)
       .then((response) => response.json())
       .then((json) => {
           const onlyTalents = json.filter(user => user.profile.isTalent)
           setTalents(onlyTalents)
+          setPending(false)
       });
   }
   getUsers()
 },[])
 
-// DER TRIGGER MUSS AUF GET USER GESETZT WERDEN!! 
+useEffect(() => {
+  fetch(`${host}/users/checklogin`,{
+      credentials:"include"
+  })
+  .then((response) => response.json())
+  .then((json) => {
+      if(json.status){
+          setUser(json.user)
 
-console.log(trigger);
-  return (
+      }else{
+          navigate("/login")
+      }
+  });  
+},[trigger])
+
+
+
+  return ( !isPending &&
     <>
       <div className="bo-DARK"></div>
       <h1 className="central c-FAV mb2">community</h1>
@@ -38,16 +59,14 @@ console.log(trigger);
         <p className="sl c-FAV">i follow</p>
         <CategoriesFilter/>
       </div>
-      {user?.follows?.length === 0 ?
+      {user.follows.length === 0 ?
       <p>Time to get some friends you creep</p> : 
-      user?.follows?.map(talent => 
-      <TalentCardFollow
-      follower={talent}
-      key={talent._id}       
-      userId={user?._id}
-      trigger={trigger} 
-      setTrigger={setTrigger}     
-      />
+      user.follows.map(talent => 
+        <TalentCard
+        key={talent._id}
+        talent={talent}
+        user={user} 
+        />
       )}
 
       <div className="bo-DARK"></div>
@@ -57,13 +76,12 @@ console.log(trigger);
         <CategoriesFilter/>
       </div>
 
-      {talents && talents.map((talent)=> 
-        <TalentCardAdd
-        key={talent._id}       
-        follower={talent}
-        userId={user?._id}
-        trigger={trigger}
-        setTrigger={setTrigger} 
+      {talents && talents.map((talent) =>
+        !user.follows.find(follow => follow._id === talent._id) &&
+        <TalentCard
+        key={talent._id}
+        talent={talent}
+        user={user} 
         /> 
       )}  
 

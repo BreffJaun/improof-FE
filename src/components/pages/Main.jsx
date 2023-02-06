@@ -30,10 +30,12 @@ import UserContext from "../../context/userContext.jsx";
 
 const Main = () =>{
     const [user, setUser] = useContext(UserContext)
+    const [isPending, setPending] = useState(true)
     const navigate = useNavigate()
 
     // AUTHENTIFIZIERUNG VOM COOKIE
     useEffect(() => {
+        setPending(true)
         fetch(`${host}/users/checklogin`,{
             credentials:"include"
         })
@@ -41,6 +43,7 @@ const Main = () =>{
         .then((json) => {
             if(json.status){
                 setUser(json.user)
+                setPending(false)
             }else{
                 navigate("/login")
             }
@@ -48,7 +51,7 @@ const Main = () =>{
     },[])
 
 
-    return(
+    return( !isPending && 
         <>
             < Navbar />
             < LogoS />

@@ -7,7 +7,7 @@ const MyProjects = () => {
   return (
     <div className="mb2 mt2">
       <h1 className="central c-FAV mb2">my projects</h1>
-      <MyProjectCard />
+      {/* <MyProjectCard user={user}/> */}
 
       <Footer/>
     </div>

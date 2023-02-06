@@ -1,18 +1,22 @@
 import {RxCross2} from "react-icons/rx"
 import {HiPlus} from "react-icons/hi"
 import { host } from "../../api/host.jsx";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
+
+import { useContext } from "react";
+
+//CONTEXT
+import TriggerContext from "../../context/triggerContext.jsx";
 
 
 //FOLLOW ADDEN
-const handleAddFollow = async (talentId, userId, firstName, trigger, setTrigger) => {
-  console.log(userId);
+const handleAddFollow = async (talent, user, trigger, setTrigger) => {
   await fetch(`${host}/users/follow/add`, {
   credentials:"include",
   method: 'PATCH',
   body: JSON.stringify({
-    follUserId: talentId, 
-    userId
+    follUserId: talent._id, 
+    userId: user._id
   }),
   headers: {
     'Content-type': 'application/json; charset=UTF-8',
@@ -21,7 +25,7 @@ const handleAddFollow = async (talentId, userId, firstName, trigger, setTrigger)
   .then((response) => response.json())
   .then((json) => {
     if(json.status){
-      toast.info(`you added ${firstName}`)
+      toast.info(`you added ${talent.profile.firstName}`)
       setTrigger(!trigger)
     }else{
       toast.info(`something went wrong!`)
@@ -30,21 +34,22 @@ const handleAddFollow = async (talentId, userId, firstName, trigger, setTrigger)
 }
 
 // FOLLOW LÖSCHEN
-const handleDeleteFollow = async (talentId, userId, firstName, trigger, setTrigger) => {
+const handleDeleteFollow = async (talent, user, trigger, setTrigger) => {
   await fetch(`${host}/users/follow/delete`, {
-  method: 'DELETE',
-  body: JSON.stringify({
-    talentId, 
-    userId    
-  }),
-  headers: {
-    'Content-type': 'application/json; charset=UTF-8',
-  },
+    credentials:"include",
+    method: 'DELETE',
+    body: JSON.stringify({
+      follUserId: talent._id, 
+      userId: user._id    
+    }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
 })
   .then((response) => response.json())
   .then((json) =>{
     if(json.status){
-      toast.info(`you deleted ${firstName}`)
+      toast.info(`you deleted ${talent.profile.firstName}`)
       setTrigger(!trigger)
     }else{
       toast.info(`something went wrong!`)
@@ -52,19 +57,14 @@ const handleDeleteFollow = async (talentId, userId, firstName, trigger, setTrigg
   });
 }
 
-const FollowAddBtn = ({talentId, userId, firstName, trigger, setTrigger}) => {
-  console.log(userId);
-  return (
-    <button className="action" onClick={() => handleAddFollow(talentId, userId, firstName, trigger, setTrigger)}><HiPlus /></button>
-  );
-};
-
-const FollowDeleteBtn = ({talentId, userId, firstName, trigger, setTrigger}) => {
-  return (
-    <button className="action" onClick={() => handleDeleteFollow(talentId, userId, firstName, trigger, setTrigger)}><RxCross2 /></button>
+const FollowBtn = ({talent, user}) => {
+  const [trigger, setTrigger] = useContext(TriggerContext)
+  return ( user.follows.find(follow => follow._id === talent._id) ? 
+    <button className="action" onClick={() => handleDeleteFollow(talent, user, trigger, setTrigger)}><RxCross2 /></button> : 
+    <button className="action" onClick={() => handleAddFollow(talent, user, trigger, setTrigger)}><HiPlus /></button>
 
   )
 }
 
 
-export {FollowAddBtn, FollowDeleteBtn}
+export {FollowBtn}
