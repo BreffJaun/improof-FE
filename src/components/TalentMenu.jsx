@@ -6,7 +6,6 @@ const TalentMenu = () => {
 
   const navigate = useNavigate()
 
-
   return (
     <div className="z mt2 mb2">
       <div className="col">

@@ -7,7 +7,6 @@ import { host } from "../../api/host.jsx";
 import Navbar from "../Navbar.jsx";
 import Notifications from "./Notifications.jsx";
 import Messages from "./Messages"
-import MyProfil from "./MyProfil.jsx";
 
 // COMPONENTS
 import Start from "./Start.jsx";
@@ -58,7 +57,6 @@ const Main = () =>{
             < Routes>
                 {/* ROUTES BOTH */}
                 <Route path="/" element={<Start/>} />
-                <Route path="/myprofil" element={<MyProfil/>} />
                 <Route path="/starprojects" element={<StarProjects/>} />
                 <Route path="/community" element={<Community/>} />
                 <Route path="/efjm" element={<EFJM />} />

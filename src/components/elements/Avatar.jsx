@@ -8,7 +8,9 @@ const AvatarL = () => {
   return (
     <div className="central">
       {!user?.profile?.avatar ? 
-      <div className="circle70 bg-FAV">{user?.profile?.initials}</div> :
+        <div className="circle80 bg-FAV central initials">
+          {user?.profile?.initials}
+        </div> :
       <div className="circle70 bg-FAV">{user?.profile?.img}</div>
       }
     </div>
