@@ -55,7 +55,11 @@ useEffect(() => {
     <>
       <div className="bo-DARK"></div>
       <h1 className="central c-FAV mb2">community</h1>
+
+      <div className="central">
         <CategoriesFilter setCategory={setCategory}/>
+      </div>
+        
       <div className="mb2 mt2">
         <p className="sl c-FAV">i follow</p>
       </div>
@@ -85,7 +89,7 @@ useEffect(() => {
       </div>
 
       {talents && talents.map((talent) =>
-        !user.follows.find(follow => follow._id === talent._id) &&
+        !user.follows.find(follow => follow._id === talent._id || talent._id === user._id) &&
         talent.profile.category && talent.profile.category === category && 
         <TalentCard
         key={talent._id}

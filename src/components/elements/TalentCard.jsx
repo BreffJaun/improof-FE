@@ -14,10 +14,11 @@ const TalentCard = ({talent, user}) => {
   const navigate = useNavigate()
   return (
     <div className="card talent flex" >
-      <div className="circle50 bg-FAV" onClick={()=> navigate(`/userDetails/${talent._id}`)}>
+      <div className="circle50 bg-FAV central" onClick={()=> navigate(`/userDetails/${talent._id}`)}>
         { talent.profile.avatar ? 
-        <img src={talent.profile.avatar} width="50"/> : 
-        <p>{talent.profile.initials}</p> }
+          <img src={talent.profile.avatar} width="50" /> : 
+          <p className="initials">{talent.profile.initials}</p> 
+}
       </div>
       <div>
         <p className="c-FAV" onClick={()=> navigate(`/userDetails/${talent._id}`)}>{talent.profile.firstName} {talent.profile.lastName}</p>
