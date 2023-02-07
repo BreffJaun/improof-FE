@@ -35,6 +35,7 @@ const UserDetails = () => {
   const [showInfos, setShowInfos] = useState(false)
 
   useEffect(() => {
+    setIsPending(true)
     const getUser = ()=>{
       fetch(`${host}/users/${id}`,{
       credentials:"include"
@@ -50,22 +51,28 @@ const UserDetails = () => {
   },[id])
 
   useEffect(()=> {
-    fetch(`${host}/users/checklogin`,{
-      credentials:"include"
-  })
-  .then((response) => response.json())
-  .then((json) => {
-    setIsPending(false)
-      if(json.status){
-          setUser(json.user)
-      }else{
-          navigate("/login")
-      }      
-  });
+    setIsPending(true)
+    const getUser = async () => {
+      await fetch(`${host}/users/checklogin`,{
+        credentials:"include"
+        })
+        .then((response) => response.json())
+        .then((json) => {
+          setIsPending(false)
+          if(json.status){
+            setUser(json.user)
+            setIsPending(false)
+          }else{
+            navigate("/login")
+          }      
+      })
+    }
+    getUser()
+;
   },[trigger])
 
 
-  return !isPending && user &&
+  return talent &&( 
     <>
     <div className="central col mt3">
 
@@ -187,6 +194,7 @@ const UserDetails = () => {
     <Footer />
     <ToastContainer/>
   </> 
+  ) 
 };
 
 

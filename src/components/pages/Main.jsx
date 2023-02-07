@@ -28,12 +28,11 @@ import EFJM from "./EFJM";
 
 //CONTEXT
 import UserContext from "../../context/userContext.jsx";
-import TriggerContext from "../../context/triggerContext.jsx";
+
 
 
 const Main = () =>{
     const [user, setUser] = useContext(UserContext)
-    const [trigger, setTrigger] = useContext(TriggerContext)
     const [isPending, setPending] = useState(true)
     const navigate = useNavigate()
 
