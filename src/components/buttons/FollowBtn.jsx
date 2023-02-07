@@ -25,7 +25,7 @@ const handleAddFollow = async (talent, user, trigger, setTrigger) => {
   .then((response) => response.json())
   .then((json) => {
     if(json.status){
-      toast.info(`you added ${talent.profile.firstName}`)
+      toast.info(`you added ${talent.profile?.firstName}`)
       setTrigger(!trigger)
     }else{
       toast.info(`something went wrong!`)
@@ -49,7 +49,7 @@ const handleDeleteFollow = async (talent, user, trigger, setTrigger) => {
   .then((response) => response.json())
   .then((json) =>{
     if(json.status){
-      toast.info(`you deleted ${talent.profile.firstName}`)
+      toast.info(`you deleted ${talent?.profile?.firstName}`)
       setTrigger(!trigger)
     }else{
       toast.info(`something went wrong!`)

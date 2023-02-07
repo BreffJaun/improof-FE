@@ -51,7 +51,7 @@ useEffect(() => {
 
 
 
-  return ( 
+  return !isPending && (
     <>
       <div className="bo-DARK"></div>
       <h1 className="central c-FAV mb2">community</h1>
