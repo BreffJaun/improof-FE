@@ -1,87 +1,73 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import { Chrono } from "react-chrono";
 import {GiStoneSphere as Stepstone} from "react-icons/gi"
 import Footer from "../elements/Footer.jsx";
 
+import {host} from "../../api/host.jsx"
+
 //CONTEXT
 import UserContext from "../../context/userContext.jsx";
 
+//ELEMENTS
+import { TalentCard } from "../elements/TalentCard.jsx";
+
 const ProjectDetails = () => {
-
+  const {id} = useParams("id")
   const [user, setUser] = useContext(UserContext)
-
-  console.log("USER", user);
-
-  const items = [{
-    title: Date.now(),
-    cardTitle: "Stepstone",
-    cardSubtitle:"Timeline",
-    cardDetailedText: "today if build this Timeline with react Chrono",
-  }, 
-  {
-    title: Date.now(),
-    cardTitle: "Milestone",
-    cardSubtitle:"title",
-    cardDetailedText: "Description",
-    media: {
-      type: "IMAGE",
-      source: {
-        url: "https://www.downloadclipart.net/thumb/9394-stone-1-vector-thumb.png"
-      }
+  const [project, setProject] = useState({})
+  const [isPending, setPending] = useState(true)
+  
+  useEffect(() => {
+    setPending(true)
+    const fetchProject = async () => {
+      fetch(`${host}/projects/${id}`,{
+        credentials:"include"
+      })
+        
+        .then((response) => response.json())
+        .then((json) => {
+          if(json.status){
+            setProject(json.data)
+            setPending(false)
+          }
+        });
     }
-  },
-  {
-    title: Date.now(),
-    cardTitle: "Stepstone",
-    cardSubtitle:"Timeline",
-    cardDetailedText: "today if build this Timeline with react Chrono",
-  }, 
-  {
-    title: Date.now(),
-    cardTitle: "Milestone",
-    cardSubtitle:"title",
-    cardDetailedText: "Description",
-    media: {
-      type: "IMAGE",
-      source: {
-        url: "https://www.downloadclipart.net/thumb/9394-stone-1-vector-thumb.png"
-      }
-    }
-  }];
-
-  return (
+    fetchProject()
+  },[])
+  
+  console.log(project)
+  const items = !isPending && project.stones.map(stone => {
+   return {
+    title: stone.date, 
+    cardTitle:stone.title, 
+    cardSubtitle:stone.description,
+    timelineContent:
+    <div >
+      {stone?.team?.map(member => <TalentCard key={member._id} talent={member} user={user}/> )}
+    </div>
+  }
+  })
+  
+  return !isPending && user &&( 
     <div className="componente">
 
       <div>
-        <img src="https://www.downloadclipart.net/thumb/9394-stone-1-vector-thumb.png" alt="Thumbnail" />
-        <h1>Project Name</h1>
-        <p>description</p>
+        {/* <img src="https://www.downloadclipart.net/thumb/9394-stone-1-vector-thumb.png" alt="Thumbnail" /> */}
+        <h1>{project.name}</h1>
+        <p>{project.description}</p>
       </div>
       
 
-     <Chrono items={items}/>
+     <Chrono items={items} cardHeight="300" />
+      
 
 
       <h1>Project Team</h1>
-     <div>      
-        <div>
-          <img src="https://www.downloadclipart.net/thumb/9394-stone-1-vector-thumb.png" alt="" />
-          <h5>NAME</h5>
-          <h4>current Position</h4>
-        </div>
-
-        <div>
-          <img src="https://www.downloadclipart.net/thumb/9394-stone-1-vector-thumb.png" alt="" />
-          <h5>NAME</h5>
-          <h4>current Position</h4>
-        </div>
-
-        <div>
-          <img src="https://www.downloadclipart.net/thumb/9394-stone-1-vector-thumb.png" alt="" />
-          <h5>NAME</h5>
-          <h4>current Position</h4>
-        </div>
-     </div>
+     {
+      project.team.map((member) =>  <TalentCard key={member._id} talent={member} user={user}/>)
+     }
      <Footer/>
     </div>
   );

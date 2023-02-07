@@ -11,13 +11,14 @@ import { FollowBtn } from "../buttons/FollowBtn.jsx"
 import { SendMessageBtn } from "../buttons/MessageBtn.jsx"
 
 const TalentCard = ({talent, user}) => {
+  
   const navigate = useNavigate()
   return (
     <div className="card talent flex" >
       <div className="circle50 bg-FAV central" onClick={()=> navigate(`/userDetails/${talent._id}`)}>
-        { talent.profile.avatar ? 
+        { talent?.profile?.avatar ? 
           <img src={talent.profile.avatar} width="50" /> : 
-          <p className="initials">{talent.profile.initials}</p> 
+          <p className="initials">{talent.profile?.initials}</p> 
 }
       </div>
       <div>
