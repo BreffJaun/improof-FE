@@ -15,43 +15,42 @@ const Community = () => {
   const [talents, setTalents] = useState(undefined)
   const [user, setUser] = useContext(UserContext)
   const [trigger, setTrigger] = useContext(TriggerContext)
-  const [isPending, setPending] = useState(true)
+  const [isPending, setPending] = useState(false)
 
-
-
-console.log(category)
 
 useEffect( () => {
   setPending(true)
   const getUsers = async () => {
     fetch(`${host}/users`)
       .then((response) => response.json())
-      .then((json) => {
-          const onlyTalents = json.filter(user => user.profile.isTalent)
-          setTalents(onlyTalents)
-          setPending(false)
+      .then((json) => {        
+        const onlyTalents = json.filter(user => user.profile.isTalent)
+        setTalents(onlyTalents)
+        setPending(false)
       });
   }
   getUsers()
 },[category])
 
 useEffect(() => {
+
   fetch(`${host}/users/checklogin`,{
       credentials:"include"
   })
   .then((response) => response.json())
   .then((json) => {
+    setPending(false)
       if(json.status){
           setUser(json.user)
       }else{
           navigate("/login")
-      }
+      }      
   });  
 },[trigger, category])
 
 
 
-  return !isPending && (
+  return(
     <>
       <h1 className="central c-FAV mt1 mb2">community</h1>
       <div className="central">
@@ -70,7 +69,7 @@ useEffect(() => {
         talent={talent}
         user={user} 
         />
-      )} 
+      )}
       {!category &&      
       user.follows.map(talent =>         
         <TalentCard
