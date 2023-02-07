@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+
 import { host } from "../../api/host.jsx";
 
 
@@ -8,18 +10,21 @@ import UserContext from "../../context/userContext.jsx";
 
 
 //BUTTONS
-import {FollowBtn} from "../buttons/FollowBtn.jsx"
+import { FollowBtn } from "../buttons/FollowBtn.jsx"
 import { SendMessageBtn } from "../buttons/MessageBtn.jsx";
-
+import { MdEdit } from "react-icons/md"
 
 //ELEMENTS
 import { MyProjectCard } from "../elements/ProjectCard.jsx";
 import { TalentCard } from "../elements/TalentCard.jsx";
 import Up from "../elements/Up.jsx";
 import Footer from "../elements/Footer.jsx";
+import UserEdit from "./UserEdit.jsx";
 
 
 const UserDetails = () => {
+  const navigate = useNavigate()
+
   const {id} = useParams("id")
   const [user, setUser] = useContext(UserContext)
   const [talent, setTalent] = useState(undefined)
@@ -46,12 +51,21 @@ const UserDetails = () => {
 
   return !isPending && user &&
     <>
-      <div className="central col mt3">
-        <div className="circle70 bg-FAV central">
+    <div className="central col mt3">
+
+      <div className="rel">
+        <div className="circle90 bg-FAV central">
           {talent.profile.avatar ? <img src="" alt="" /> :
             <div className="initials"><p>{talent.profile.initials}</p></div>
           }
         </div>
+
+
+        <div className="x circle40 bg-FAV central editBtn" onClick={() => navigate(`/useredit/${user._id}`)}>
+          <p className="c-A100">edit</p>
+        </div>
+      </div>
+
         <h1 className="central c-FAV mt05">{talent.profile.firstName} {talent.profile.lastName}</h1>
         <p className="mt05 mb1">{talent.profile.description ? talent.profile.description : "You could add some info to your profile."}</p>
         {showInfos ?

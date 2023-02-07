@@ -1,7 +1,9 @@
 // COMPONENTS
 import CategoriesFilter from "../elements/CategoriesFilter.jsx";
-import { ColorTalentProject } from "../../components/buttons/ColorTalentProject";
+import RadioPrivacy from "../buttons/RadioPrivacy"
+import { RadioProjectColor } from "../buttons/RadioColor.jsx";
 import Footer from "../elements/Footer.jsx";
+
 
 const CreateProject = () => {
   return (
@@ -35,7 +37,7 @@ const CreateProject = () => {
 
           <div className="col central">
             <p>project color</p>
-            <ColorTalentProject />
+            <RadioProjectColor />
           </div>
 
           <div className="col">
@@ -51,7 +53,7 @@ const CreateProject = () => {
         <h1 className="central c-FAV mb2">invite others</h1>
 
         <div className="bo-DARK"></div>
-        <p className="central c-FAV mb2">privat -vs- public</p>
+        <RadioPrivacy/>
 
         <div className="col">
           <div className="bo-DARK col"></div>
