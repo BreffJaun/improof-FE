@@ -22,8 +22,9 @@ const TalentCard = ({talent, user}) => {
 }
       </div>
       <div>
-        <p className="c-FAV" onClick={()=> navigate(`/userDetails/${talent._id}`)}>{talent?.profile?.firstName} {talent.profile?.lastName}</p>
-        <p className="c-A20">{talent.profile?.position}</p>
+        <p onClick={()=> navigate(`/userDetails/${talent._id}`)}>{talent.profile.firstName} {talent.profile.lastName}</p>
+        <p className="c-A80">{talent.profile.position}</p>
+        <p className="c-A80">{talent.profile.toolsAndSkills}</p>
       </div>
       <div className="flex">
         <SendMessageBtn talent={talent} user={user} />

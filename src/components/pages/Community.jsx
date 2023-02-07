@@ -53,14 +53,12 @@ useEffect(() => {
 
   return !isPending && (
     <>
-      <div className="bo-DARK"></div>
-      <h1 className="central c-FAV mb2">community</h1>
-
+      <h1 className="central c-FAV mt1 mb2">community</h1>
       <div className="central">
         <CategoriesFilter setCategory={setCategory}/>
       </div>
         
-      <div className="mb2 mt2">
+      <div className="mb1 mt3 central">
         <p className="sl c-FAV">i follow</p>
       </div>
       {user.follows.length === 0 && !category ?
@@ -82,10 +80,8 @@ useEffect(() => {
         />
       )}
 
-      <div className="bo-DARK"></div>
-
-      <div className="mb2 mt2">
-        <p className="sl c-FAV">meet new talents</p>
+      <div className="mb1 mt3 central">
+        <p className="sl c-FAV">discover new talents</p>
       </div>
 
       {talents && talents.map((talent) =>

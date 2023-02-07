@@ -20,8 +20,10 @@ const Start = () => {
   const [user, setUser] = useContext(UserContext)
   return (
     <>
+      <div className="bo-DARK"></div>
       < Newsfeed />
       < CategoriesFilter />
+      <div className="bo-DARK"></div>
     {user?.profile?.isTalent && < TalentMenu />}
     {user?.profile?.isRecruiter && <RecruiterMenu />}
       < Footer />
