@@ -5,7 +5,7 @@ import { host } from "../../api/host.jsx";
 
 
 import UserContext from "../../context/userContext.jsx";
-
+import TriggerContext from "../../context/triggerContext.jsx";
 
 //BUTTONS
 import {FollowBtn} from "../buttons/FollowBtn.jsx"
@@ -22,6 +22,7 @@ import Footer from "../elements/Footer.jsx";
 const UserDetails = () => {
   const {id} = useParams("id")
   const [user, setUser] = useContext(UserContext)
+  const [trigger, setTrigger] = useContext(TriggerContext)
   const [talent, setTalent] = useState(undefined)
   const [isPending, setIsPending] = useState(true)
 
@@ -42,6 +43,21 @@ const UserDetails = () => {
       })};
     getUser()
   },[id])
+
+  useEffect(()=> {
+    fetch(`${host}/users/checklogin`,{
+      credentials:"include"
+  })
+  .then((response) => response.json())
+  .then((json) => {
+    setIsPending(false)
+      if(json.status){
+          setUser(json.user)
+      }else{
+          navigate("/login")
+      }      
+  });
+  },[trigger])
 
 
   return !isPending && user &&
