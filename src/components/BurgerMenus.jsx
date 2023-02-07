@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 
-
 // STYLE
 import '../styles/burgermenu.scss'
 

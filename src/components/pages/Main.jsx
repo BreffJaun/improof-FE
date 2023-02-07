@@ -19,13 +19,17 @@ import SearchHistory from "./SearchHistory.jsx";
 import NewSearch from "./NewSearch.jsx";
 import ProjectDetails from "./ProjectDetails.jsx";
 import UserDetails from "./UserDetails.jsx";
+import UserEdit from "./UserEdit.jsx";
+
 
 // FOOTER-COMPONENTEN
 import EFJM from "./EFJM";
 
+
 //CONTEXT
 import UserContext from "../../context/userContext.jsx";
 import TriggerContext from "../../context/triggerContext.jsx";
+
 
 const Main = () =>{
     const [user, setUser] = useContext(UserContext)
@@ -50,23 +54,27 @@ const Main = () =>{
         });  
     },[])
 
-
     return( !isPending && 
         <>
             < Navbar />
             < LogoS />
             < Routes>
-                {/* ROUTES BOTH */}
                 <Route path="/" element={<Start/>} />
-                <Route path="/starprojects" element={<StarProjects/>} />
+                <Route path="/efjm" element={<EFJM />} />
+
+                {/* ROUTES USER */}
                 <Route path="/community" element={<Community/>} />
                 <Route path="/efjm" element={<EFJM />} />
                 <Route path="/projectdetails/:id" element={<ProjectDetails/>} />
                 <Route path="/userdetails/:id" element={<UserDetails/>}/>
+                <Route path="/userdetails/:id" element={<UserDetails />} />
+                <Route path="/useredit/:id" element={<UserEdit />} />
 
-                {/* ROUTES TALENT */}
+                {/* ROUTES PROJECTS */}
                 <Route path="/createproject" element={<CreateProject />} />
                 <Route path="/myprojects" element={<MyProjects />} />
+                <Route path="/projectdetails" element={<ProjectDetails />} />
+                <Route path="/starprojects" element={<StarProjects/>} />
 
                 {/* ROUTES RECRUITER */}
                 <Route path="/newsearch" element={<NewSearch />}/>

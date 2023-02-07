@@ -12,6 +12,15 @@ button{
     background-color: gray;
 }
 
+.editBtn{
+    border: 2px solid var(--A100);
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 4.5rem;
+}
+
+
 .circle15{
     width: 15px;
     height: 15px;
