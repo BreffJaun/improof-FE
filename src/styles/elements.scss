@@ -13,11 +13,15 @@ button{
 }
 
 .editBtn{
+    cursor: pointer;
     border: 4px solid var(--A100);
     display: flex;
     position: absolute;
     bottom: 0;
     left: 4.5rem;
+    p{
+        font-size: 1.3rem;
+    }
 }
 
 
@@ -172,3 +176,29 @@ input[type=radio]:checked::before {
         outline-offset: 7px;
     }
 }
+
+
+
+
+// N I C H T   L Ö S C H E N
+
+// [title]:hover:after {
+//     opacity: 1;
+//     transition: all 0.1s ease 0.5s;
+//     visibility: visible;
+// }
+// [title]:after {
+//     content: attr(title);
+//     background-color: var(--A100);
+//     border-radius: 8px;
+//     color: var(--A60);
+//     position: absolute;
+//     padding: 0.25rem 0.5rem;
+//     left: 100%;
+//     white-space: nowrap;
+//     font-size: 0.9rem;
+//     box-shadow: 0.3rem 0.3rem 0.6rem rgba(0, 0, 0, 0.2);
+//     opacity: 0;
+//     z-index: 1;
+//     visibility: hidden;
+// }

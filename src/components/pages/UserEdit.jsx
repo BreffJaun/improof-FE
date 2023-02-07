@@ -8,10 +8,13 @@ import "../../styles/colors.scss"
 
 
 //ICONS
+import { AiOutlineCamera } from "react-icons/ai"
+import { BiCheck } from "react-icons/bi";
+import { SlTrash } from "react-icons/sl"
 
 
 //BUTTONS
-import {FollowBtn} from "../buttons/FollowBtn.jsx"
+import { FollowBtn } from "../buttons/FollowBtn.jsx"
 import { SendMessageBtn } from "../buttons/MessageBtn.jsx";
 
 
@@ -28,9 +31,9 @@ const UserEdit = () => {
   const [user, setUser] = useContext(UserContext)
   const [talent, setTalent] = useState(undefined)
   const [isPending, setIsPending] = useState(true)
-
   const [showContact, setShowContact] = useState(false)
   const [showInfos, setShowInfos] = useState(false)
+
 
   useEffect(() => {
     const getUser = ()=>{
@@ -49,73 +52,92 @@ const UserEdit = () => {
 
 
   return !isPending && user &&
-    <>
+    <form>
       <div className="central col mt3">
-        <div className="circle90 bg-FAV central">
+        <div className="circle90 bg-FAV central rel">
           {talent.profile.avatar ? <img src="" alt="" /> :
             <div className="initials"><p>{talent.profile.initials}</p></div>
-          }
-        </div>
-        <h1 className="central c-FAV mt05">edit {talent.profile.firstName} {talent.profile.lastName}</h1>
+        }
+        <div
+          title="upload image"
+          className="circle40 bg-FAV central editBtn">
+        <p className="c-A100"><AiOutlineCamera/>
+        </p>
+      </div>
+      </div>
+        <h1 className="central c-FAV mt05">Hi, {talent.profile.firstName}!</h1>
+        <p className="central c-FAV">Let´s spice up your profile!</p>
       </div>
     
       <div className="col mt2 mb1">
-        <p>first name</p>
-        <input type="text" placeholder={user.profile.firstName} />
+        <p>first name<span className="c-FAV fw900">*</span></p>
+        <input type="text" defaultValue={user.profile.firstName} />
       </div>
       <div className="col mb1">
-        <p>last name</p>
-        <input type="text" placeholder={user.profile.lastName} />
+        <p>last name<span className="c-FAV fw900">*</span></p>
+        <input type="text" defaultValue={user.profile.lastName} />
       </div>
       <div className="col mb1">
         <p>that´s me</p>
-        <input type="text" placeholder={user.profile.description} />
+        <input type="text" defaultValue={user.profile.description} />
       </div>
       <div className="col mb1">
         <p>i do right now</p>
-        <input type="text" placeholder={user.profile.position} />
+        <input type="text" defaultValue={user.profile.position} />
       </div>
       <div className="col mb1">
         <p>i want to achieve</p>
-        <input type="text" placeholder={user.profile.goal} />
+        <input type="text" defaultValue={user.profile.goal} />
       </div>
+
+      <div className="central">
+        <button
+          title="save changes"
+          className="bg-FAV"><BiCheck />
+        </button>
+        <button
+          title="delete changes"
+          className="bg-FAV"><SlTrash />
+        </button>
+      </div>
+
 
       <div className="bo-DARK"></div>
       <h1 className="central c-FAV mt05">contact</h1>
       <div className="col mb1">
         <p>mobile</p>
-        <input type="text" placeholder={user.contact.mobile} />
+        <input type="text" defaultValue={user.contact.mobile} />
       </div>
       <div className="col mb1">
         <p>own website</p>
-        <input type="text" placeholder={user.contact.website} />
+        <input type="text" defaultValue={user.contact.website} />
       </div>
       <div className="col mb1">
         <p>1st online profile</p>
-        <input type="text" placeholder={user.contact.online1} />
+        <input type="text" defaultValue={user.contact.online1} />
       </div>
       <div className="col mb1">
         <p>2nd online profile</p>
-        <input type="text" placeholder={user.contact.online2} />
+        <input type="text" defaultValue={user.contact.online2} />
       </div>
       <div className="col mb1">
         <p>3rd online profile</p>
-        <input type="text" placeholder={user.contact.online3} />
+        <input type="text" defaultValue={user.contact.online3} />
       </div>
 
       <div className="bo-DARK"></div>
       <h1 className="central c-FAV mt05">location</h1>
       <div className="col mb1">
         <p>street</p>
-        <input type="text" placeholder={user.location.street} />
+        <input type="text" defaultValue={user.location.street} />
       </div>
       <div className="col mb1">
         <p>zip</p>
-        <input type="text" placeholder={user.location.street} />
+        <input type="text" defaultValue={user.location.street} />
       </div>
       <div className="col mb1">
         <p>city</p>
-        <input type="text" placeholder={user.location.street} />
+        <input type="text" defaultValue={user.location.street} />
       </div>
 
       <div className="bo-DARK"></div>
@@ -127,11 +149,23 @@ const UserEdit = () => {
       <div className="col mb1">
         <p>confirm new password</p>
         <input type="text" placeholder="confirm password"/>
-      </div>
+    </div>
+    
+    <div className="bo-DARK"></div>
+    <div className="central">
+      <button
+        title="save changes"
+        className="bg-FAV"><BiCheck />
+      </button>
+      <button
+        title="delete changes"
+        className="bg-FAV"><SlTrash />
+      </button>
+    </div>
 
     <Footer />
     <ToastContainer/>
-  </> 
+  </form> 
 };
 
 

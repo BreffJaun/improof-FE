@@ -12,7 +12,7 @@ import TriggerContext from "../../context/triggerContext.jsx";
 //BUTTONS
 import { FollowBtn } from "../buttons/FollowBtn.jsx"
 import { SendMessageBtn } from "../buttons/MessageBtn.jsx";
-import { MdEdit } from "react-icons/md"
+import { AiFillEdit } from "react-icons/ai"
 
 //ELEMENTS
 import { MyProjectCard } from "../elements/ProjectCard.jsx";
@@ -22,7 +22,7 @@ import Footer from "../elements/Footer.jsx";
 import UserEdit from "./UserEdit.jsx";
 
 
-const UserDetails = () => {
+const TalentDetails = () => {
   const navigate = useNavigate()
 
   const {id} = useParams("id")
@@ -83,21 +83,16 @@ const UserDetails = () => {
           }
         </div>
         {user._id === talent._id ?
-          <div
-            className="circle40 bg-FAV central editBtn"
-            onClick={() => navigate(`/useredit/${user._id}`)}>
-            <p className="c-A100">edit
+            <div
+              title="edit your profile"
+              className="circle40 bg-FAV central editBtn"
+              onClick={() => navigate(`/useredit/${user._id}`)}>
+            <p className="c-A100"><AiFillEdit/>
             </p>
           </div>
           : ""
         }
       </div>
-
-        <div className="col">
-          <div>user id: {user._id}</div>
-          <div>talent id:{talent._id}</div>
-        </div>
-
         <h1 className="central c-FAV mt05">{talent.profile.firstName} {talent.profile.lastName}</h1>
         <p className="mt05 mb1">{talent.profile.description ? talent.profile.description : "You could add some info to your profile."}</p>
         {showInfos ?
@@ -206,5 +201,4 @@ const UserDetails = () => {
   ) 
 };
 
-
-export default UserDetails;
+export default TalentDetails;
