@@ -1,27 +1,26 @@
-import "../../styles/cards.scss"
-import "../../styles/colors.scss"
-import "../../styles/banner.scss"
-
+import "../../styles/cards.scss";
+import "../../styles/colors.scss";
+import "../../styles/banner.scss";
 
 // ICONS
-import {RxCross2} from "react-icons/rx"
-import {HiPlus} from "react-icons/hi"
-import { TalentCard } from "./TalentCard.jsx"
+import { RxCross2 } from "react-icons/rx";
+import { HiPlus } from "react-icons/hi";
+import { TalentCard } from "./TalentCard.jsx";
+import { FollowBtn } from "../buttons/FollowBtn.jsx";
+import ProjectBtn from "../buttons/ProjectBtn.jsx";
 
 // ELEMENTS
 
-
-
-const ProjectCardFollow = () => {
+const ProjectCardFollow = ({ projectName, projectDescription }) => {
   return (
     <div className="project card col">
       <div className="project-banner bg-FAV"></div>
       <div className="project-body">
         <div>
-          <p className="c-FAV">project name</p>
-          <p className="c-A20">description Lorem ipsum dolor sit amet consectetur </p>
+          <p className="c-FAV">{projectName}</p>
+          <p className="c-A20">{projectDescription}</p>
         </div>
-        <button className="action"><RxCross2 /></button>
+        <ProjectBtn />
       </div>
     </div>
   );
@@ -33,15 +32,17 @@ const ProjectFollow = () => {
       <div className="project-body">
         <div>
           <p className="c-FAV">project name</p>
-          <p className="c-A20">description Lorem ipsum dolor sit amet consectetur </p>
+          <p className="c-A20">
+            description Lorem ipsum dolor sit amet consectetur{" "}
+          </p>
         </div>
-        <button className="action"><RxCross2 /></button>
+        <button className="action">
+          <RxCross2 />
+        </button>
       </div>
     </div>
   );
 };
-
-
 
 const ProjectCardAdd = () => {
   return (
@@ -50,9 +51,13 @@ const ProjectCardAdd = () => {
       <div className="project-body">
         <div>
           <p className="c-FAV">project name</p>
-          <p className="c-A20">description Lorem ipsum dolor sit amet consectetur </p>
+          <p className="c-A20">
+            description Lorem ipsum dolor sit amet consectetur{" "}
+          </p>
         </div>
-        <button className="action"><HiPlus /></button>
+        <button className="action">
+          <HiPlus />
+        </button>
       </div>
     </div>
   );
@@ -64,15 +69,19 @@ const ProjectAdd = () => {
       <div className="project-body">
         <div>
           <p className="c-FAV">project name</p>
-          <p className="c-A20">description Lorem ipsum dolor sit amet consectetur </p>
+          <p className="c-A20">
+            description Lorem ipsum dolor sit amet consectetur{" "}
+          </p>
         </div>
-        <button className="action"><HiPlus /></button>
+        <button className="action">
+          <HiPlus />
+        </button>
       </div>
     </div>
   );
 };
 
-const MyProjectCard = ({project, user}) => {
+const MyProjectCard = ({ project, user }) => {
   return (
     <div className="project card col">
       <div className="project-banner bg-FAV"></div>
@@ -83,14 +92,21 @@ const MyProjectCard = ({project, user}) => {
             <p className="c-A20 mt05">{project?.description}</p>
           </div>
           <div className="mt15">
-            {project?.team?.length &&
-            <>
-              <p className="c-FAV">contributors:</p>
-              <div className="col mt05">
-                {project?.team?.length && project?.team?.map(member => <TalentCard key={member._id} talent={member} user={user}/>)}
-              </div>
-            </>            
-            }
+            {project?.team?.length && (
+              <>
+                <p className="c-FAV">contributors:</p>
+                <div className="col mt05">
+                  {project?.team?.length &&
+                    project?.team?.map((member) => (
+                      <TalentCard
+                        key={member._id}
+                        talent={member}
+                        user={user}
+                      />
+                    ))}
+                </div>
+              </>
+            )}
           </div>
           <div className="mt15">
             <p className="c-FAV">status:</p>
@@ -99,15 +115,17 @@ const MyProjectCard = ({project, user}) => {
         </div>
 
         <div className="col">
-          <button className="action"><RxCross2 /></button>
-          <p>delete</p>
+          <ProjectBtn project={project} user={user} />
         </div>
-
       </div>
     </div>
   );
 };
 
-
-
-export {ProjectCardFollow, ProjectCardAdd, ProjectFollow, ProjectAdd, MyProjectCard};
+export {
+  ProjectCardFollow,
+  ProjectCardAdd,
+  ProjectFollow,
+  ProjectAdd,
+  MyProjectCard,
+};
