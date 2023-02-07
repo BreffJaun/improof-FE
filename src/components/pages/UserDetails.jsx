@@ -82,12 +82,21 @@ const UserDetails = () => {
             <div className="initials"><p>{talent.profile.initials}</p></div>
           }
         </div>
-
-
-        <div className="x circle40 bg-FAV central editBtn" onClick={() => navigate(`/useredit/${user._id}`)}>
-          <p className="c-A100">edit</p>
-        </div>
+        {user._id === talent._id ?
+          <div
+            className="circle40 bg-FAV central editBtn"
+            onClick={() => navigate(`/useredit/${user._id}`)}>
+            <p className="c-A100">edit
+            </p>
+          </div>
+          : ""
+        }
       </div>
+
+        <div className="col">
+          <div>user id: {user._id}</div>
+          <div>talent id:{talent._id}</div>
+        </div>
 
         <h1 className="central c-FAV mt05">{talent.profile.firstName} {talent.profile.lastName}</h1>
         <p className="mt05 mb1">{talent.profile.description ? talent.profile.description : "You could add some info to your profile."}</p>

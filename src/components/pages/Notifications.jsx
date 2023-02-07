@@ -18,7 +18,7 @@ const Notifications = () => {
            {user.notifications.map(notification => 
             <div className="componente">
               <p>{notification.notText}</p>
-            </div>)}
+            </div>).reverse()}
         </div>
       </div>
       <Footer/>
