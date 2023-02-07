@@ -1,14 +1,12 @@
 // COMPONENTS
-import Footer from "../elements/Footer.jsx";
 import CategoriesFilter from "../elements/CategoriesFilter.jsx";
-import { ColorTalentProject } from "../buttons/ColorRadioBtn.jsx";
-
+import { ColorTalentProject } from "../../components/buttons/ColorTalentProject";
+import Footer from "../elements/Footer.jsx";
 
 const CreateProject = () => {
   return (
     <>
-      <div className="bo-DARK"></div>
-      <h1 className="central c-FAV mb2">new project</h1>
+      <h1 className="central c-FAV mt1 mb2">new project</h1>
 
       <form>
         <div className="central col pa1 mb2">

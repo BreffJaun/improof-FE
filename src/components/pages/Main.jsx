@@ -21,8 +21,7 @@ import ProjectDetails from "./ProjectDetails.jsx";
 import UserDetails from "./UserDetails.jsx";
 
 // FOOTER-COMPONENTEN
-import Footer from "../elements/Footer.jsx";
-import EFJM from "./EFJM.jsx";
+import EFJM from "./EFJM";
 
 //CONTEXT
 import UserContext from "../../context/userContext.jsx";
