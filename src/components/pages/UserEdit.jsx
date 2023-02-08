@@ -33,9 +33,11 @@ const UserEdit = () => {
 
   const {id} = useParams("id")
   const [user, setUser] = useContext(UserContext)
-  console.log(user)
-
-  const [userData, setUserData] = useState(user)
+  const initialUserData = {...user}
+  delete initialUserData.profile.password
+  const [userData, setUserData] = useState(initialUserData)
+  console.log("userdata",userData)
+  console.log("user",user);
 
   const [talent, setTalent] = useState(undefined)
   const [isPending, setIsPending] = useState(true)
@@ -98,6 +100,7 @@ const UserEdit = () => {
 
 
   return !isPending && user.profile.isTalent ?
+  <>
       <form onSubmit={handleSubmit}>
       <div className="central col mt3">
         <div className="circle90 bg-FAV central rel">
@@ -203,9 +206,10 @@ const UserEdit = () => {
     <Footer />
     <ToastContainer/>
     </form>
+  </>
 
-    :
-
+    : user.profile.isRecruiter && !isPending ? 
+    <>
     <form onSubmit={handleSubmit}>
         <div className="central col mt3">
           <div className="circle90 bg-FAV central rel">
@@ -287,6 +291,9 @@ const UserEdit = () => {
       <Footer />
       <ToastContainer/>
     </form>
+    </> 
+  :
+  null
 };
 
 
