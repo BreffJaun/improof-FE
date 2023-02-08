@@ -146,7 +146,7 @@ const TalentDetails = () => {
         <h1 className="central c-FAV">following</h1>
         <p className="central c-FAV mb2">({talent.follows.length})</p>
         {talent.follows.length ? 
-        talent.follows.map(follow => <TalentCard key={follow._id} talent={follow} user={user}/> ):
+        talent.follows.map(follow => follow._id !== user._id && <TalentCard key={follow._id} talent={follow} user={user}/> ):
         <p>You´re not following anybody!</p>
         }
       </div>

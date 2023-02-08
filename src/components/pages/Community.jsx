@@ -85,7 +85,7 @@ useEffect(() => {
       </div>
 
       {talents && talents.map((talent) =>
-        !user.follows.find(follow => follow._id === talent._id || talent._id === user._id) &&
+        !user.follows.find(follow => follow._id === talent._id) && talent._id !== user._id &&
         talent.profile.category && talent.profile.category === category && 
         <TalentCard
         key={talent._id}
@@ -94,8 +94,8 @@ useEffect(() => {
         />
       )} 
       {!category &&      
-        talents?.map(talent => 
-          !user.follows.find(follow => follow._id === talent._id || talent._id === user._id) &&        
+        talents?.map((talent) => 
+          !user.follows.find(follow => follow._id === talent._id) && talent._id !== user._id &&        
           <TalentCard
           key={talent._id}
           talent={talent}
