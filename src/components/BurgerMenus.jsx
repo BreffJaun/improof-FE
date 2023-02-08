@@ -53,9 +53,9 @@ const BurgerMenuRecruiter = ({setShowMenu, showMenu}) => {
         </div>
         <div onClick={() => setShowMenu(!showMenu)} className="mb15 col central">
           <p className="mb05" onClick={ ()=> navigate(`/userDetails/${user._id}`)}>my profile</p>
-          <p className="mb05" onClick={ ()=> navigate("/newsearch")}>newsearch</p>
-          <p className="mb05" onClick={ ()=> navigate("/community")}>star talents</p>
-          <p className="mb05" onClick={ ()=> navigate("/starprojects")}>star projects</p>
+          <p className="mb05" onClick={ ()=> navigate("/community")}>find talents</p>
+          <p className="mb05" onClick={() => navigate("/starprojects")}>find projects</p>
+          <p className="mb05" onClick={ ()=> navigate("/newsearch")}>new search</p>
           <p className="mb05" onClick={ ()=> navigate("/searchhistory")}>search history</p>
         </div>
         <div onClick={()=> setShowMenu(!showMenu)} className="central mb05" >
