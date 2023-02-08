@@ -2,7 +2,7 @@ import { host } from "../../api/host.jsx";
 import { useContext, useEffect, useSate, useState } from "react";
 
 // ELEMENTE
-import { MyProjectCard } from "./ProjectCard.jsx";
+import { ProjectCardNewsFeed } from "./ProjectCard.jsx";
 
 // CONTEXT
 import TriggerContext from "../../context/triggerContext.jsx";
@@ -44,14 +44,20 @@ const Newsfeed = () => {
         });
     };
   }, [user]);
-
-  console.log(projects);
-  console.log(trigger);
+  const sortedProjects = projects.sort(function (a, b) {
+    return (
+      new Date(b.createdAt ?? b.updatedAt) -
+      new Date(a.createdAt ?? a.updatedAt)
+    );
+  });
+  // Sort will change the initial array
+  console.log("projects", projects);
+  // console.log("sorted", sortedProjects);
   return (
     <div className="mt2">
       <p className="sl c-FAV">newsFeed</p>
-      {projects.map((project) => {
-        return <MyProjectCard project={project} user={user} />;
+      {projects.slice(0, 10).map((project) => {
+        return <ProjectCardNewsFeed project={project} user={user} />;
       })}
     </div>
   );

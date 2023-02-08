@@ -122,10 +122,57 @@ const MyProjectCard = ({ project, user }) => {
   );
 };
 
+const ProjectCardNewsFeed = ({ project, user }) => {
+  return (
+    <div className="project card col">
+      <div className="project-banner bg-FAV"></div>
+      <div className="project-body">
+        <div>
+          <div>
+            <p className="c-FAV">{project?.name}</p>
+            <p className="c-A20 mt05">{project?.description}</p>
+          </div>
+          <div className="mt15">
+            {project?.team?.length && (
+              <>
+                <p className="c-FAV">contributors:</p>
+                <div className="col mt05">
+                  <div className="card talent flex">
+                    {project?.team?.length &&
+                      project?.team?.map((member) => (
+                        <div
+                          className="circle50 bg-FAV central"
+                          onClick={() => navigate(`/userDetails/${member._id}`)}
+                        >
+                          {member?.profile?.avatar ? (
+                            <img src={member.profile.avatar} width="50" />
+                          ) : (
+                            <p className="initials">
+                              {member.profile?.initials}
+                            </p>
+                          )}
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+
+        <div className="col">
+          <ProjectBtn project={project} user={user} />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export {
   ProjectCardFollow,
   ProjectCardAdd,
   ProjectFollow,
   ProjectAdd,
   MyProjectCard,
+  ProjectCardNewsFeed,
 };
