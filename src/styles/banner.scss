@@ -1,4 +1,4 @@
-.banner{
+.banner-light{
     display:flex;
     position: relative;
     height: 200px;
@@ -10,6 +10,25 @@
         bottom: 0;
         padding: 0.5rem;
         background-color: rgba(0,0,0,0.2);
+        >*{
+            display: flex;
+            flex-direction: row;
+        }
+    }
+}
+
+.banner-dark{
+    display:flex;
+    position: relative;
+    height: 200px;
+    >.innerTxt{
+        display: flex;
+        position: absolute;
+        flex-direction: column;
+        width: 100%;
+        bottom: 0;
+        padding: 0.5rem;
+        background-color: rgba(244, 242, 242, 0);
         >*{
             display: flex;
             flex-direction: row;

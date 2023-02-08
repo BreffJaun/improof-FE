@@ -28,7 +28,7 @@
 }
 
 
-.efjm{
+.efjm-light{
     align-items: center;
     border-radius: 3rem;
     padding: 0.2rem;
@@ -45,5 +45,23 @@
         border: 1px solid white;
         border-radius: 3rem;
     }
+}
 
+.efjm-dark{
+    align-items: center;
+    border-radius: 3rem;
+    padding: 0.2rem;
+    width: 3rem;
+    color: white;
+    font-weight: 900;
+    >img{
+        display: flex;
+        object-fit: contain;
+        width: 100%;
+    }
+    .whity{
+        width: 90%;
+        border: 1px solid white;
+        border-radius: 3rem;
+    }
 }

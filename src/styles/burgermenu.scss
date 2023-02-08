@@ -1,4 +1,4 @@
-.burger-container{
+.burger-container-light{
     display: flex;
     position: relative;
     text-align: left;
@@ -11,6 +11,25 @@
         padding: 1rem;
         right: 0;
         background-color: white;
+        box-shadow: 0.3rem 0.3rem 0.6rem rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+    }
+}
+
+.burger-container-dark{
+    display: flex;
+    position: relative;
+    text-align: left;
+    >*{
+        display:flex;
+        flex-direction: column;
+        position: absolute;
+        z-index: 10;
+        width: 15rem;
+        padding: 1rem;
+        right: 0;
+        background-color: #333;
+        color:#fff;
         box-shadow: 0.3rem 0.3rem 0.6rem rgba(0, 0, 0, 0.2);
         border-radius: 8px;
     }

@@ -2,6 +2,8 @@ import "../../styles/cards.scss";
 import "../../styles/colors.scss";
 import "../../styles/banner.scss";
 
+import { useContext } from "react";
+
 // ICONS
 import { RxCross2 } from "react-icons/rx";
 import { HiPlus } from "react-icons/hi";
@@ -9,11 +11,18 @@ import { TalentCard } from "./TalentCard.jsx";
 import { FollowBtn } from "../buttons/FollowBtn.jsx";
 import ProjectBtn from "../buttons/ProjectBtn.jsx";
 
+// CONTEXT
+import DarkModeContext from "../../context/darkModeContext.jsx";
+
 // ELEMENTS
 
 const ProjectCardFollow = ({ projectName, projectDescription }) => {
+  const [darkMode, setDarkMode] = useContext(DarkModeContext);
+
   return (
-    <div className="project card col">
+    <div
+      className={darkMode ? `project card-dark col` : `project card-light col`}
+    >
       <div className="project-banner bg-FAV"></div>
       <div className="project-body">
         <div>
@@ -27,8 +36,12 @@ const ProjectCardFollow = ({ projectName, projectDescription }) => {
 };
 
 const ProjectFollow = () => {
+  const [darkMode, setDarkMode] = useContext(DarkModeContext);
+
   return (
-    <div className="project card col">
+    <div
+      className={darkMode ? `project card-dark col` : `project card-light col`}
+    >
       <div className="project-body">
         <div>
           <p className="c-FAV">project name</p>
@@ -45,13 +58,23 @@ const ProjectFollow = () => {
 };
 
 const ProjectCardAdd = () => {
+  const [darkMode, setDarkMode] = useContext(DarkModeContext);
+
   return (
-    <div className="project card col">
+    <div
+      className={darkMode ? `project card-dark col` : `project card-light col`}
+    >
       <div className="project-banner bg-FAV"></div>
       <div className="project-body">
         <div>
-          <p className="c-FAV">project name</p>
-          <p className="c-A20">
+          <p
+            className={
+              darkMode ? `project card-dark col` : `project card-light col`
+            }
+          >
+            project name
+          </p>
+          <p className={darkMode ? `` : `c-A20`}>
             description Lorem ipsum dolor sit amet consectetur{" "}
           </p>
         </div>
@@ -64,8 +87,12 @@ const ProjectCardAdd = () => {
 };
 
 const ProjectAdd = () => {
+  const [darkMode, setDarkMode] = useContext(DarkModeContext);
+
   return (
-    <div className="project card col">
+    <div
+      className={darkMode ? `project card-dark col` : `project card-light col`}
+    >
       <div className="project-body">
         <div>
           <p className="c-FAV">project name</p>
@@ -82,14 +109,20 @@ const ProjectAdd = () => {
 };
 
 const MyProjectCard = ({ project, user }) => {
+  const [darkMode, setDarkMode] = useContext(DarkModeContext);
+
   return (
-    <div className="project card col">
+    <div
+      className={darkMode ? `project card-dark col` : `project card-light col`}
+    >
       <div className="project-banner bg-FAV"></div>
       <div className="project-body">
         <div>
           <div>
             <p className="c-FAV">{project?.name}</p>
-            <p className="c-A20 mt05">{project?.description}</p>
+            <p className={darkMode ? ` mt05` : `c-A20 mt05`}>
+              {project?.description}
+            </p>
           </div>
           <div className="mt15">
             {project?.team?.length && (
@@ -123,14 +156,20 @@ const MyProjectCard = ({ project, user }) => {
 };
 
 const ProjectCardNewsFeed = ({ project, user }) => {
+  const [darkMode, setDarkMode] = useContext(DarkModeContext);
+
   return (
-    <div className="project card col">
+    <div
+      className={darkMode ? `project card-dark col` : `project card-light col`}
+    >
       <div className="project-banner bg-FAV"></div>
       <div className="project-body">
         <div>
           <div>
             <p className="c-FAV">{project?.name}</p>
-            <p className="c-A20 mt05">{project?.description}</p>
+            <p className={darkMode ? ` mt05` : `c-A20 mt05`}>
+              {project?.description}
+            </p>
           </div>
           <div className="mt15">
             {project?.team?.length && (
