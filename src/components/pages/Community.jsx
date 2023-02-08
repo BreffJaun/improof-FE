@@ -63,7 +63,7 @@ useEffect(() => {
       {user.follows.length === 0 && !category ?
       <p>Time to get some friends you creep</p> : 
       user.follows.map(talent => 
-        talent.profile.category && talent.profile.category === category &&
+        talent.profile.category && talent.profile.category === category && talent._id !== user._id &&
         <TalentCard
         key={talent._id}
         talent={talent}
@@ -71,7 +71,8 @@ useEffect(() => {
         />
       )}
       {!category &&      
-      user.follows.map(talent =>         
+      user.follows.map(talent => 
+        talent._id !== user._id &&        
         <TalentCard
         key={talent._id}
         talent={talent}
