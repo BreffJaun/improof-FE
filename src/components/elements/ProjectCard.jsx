@@ -2,13 +2,14 @@ import "../../styles/cards.scss"
 import "../../styles/colors.scss"
 import "../../styles/banner.scss"
 
+import { useNavigate } from "react-router-dom"
 
 // ICONS
-import {RxCross2} from "react-icons/rx"
-import {HiPlus} from "react-icons/hi"
-import { TalentCard } from "./TalentCard.jsx"
+import { RxCross2 } from "react-icons/rx"
+import { HiPlus } from "react-icons/hi"
 
 // ELEMENTS
+import { TalentCard } from "./TalentCard.jsx"
 
 
 
@@ -73,9 +74,10 @@ const ProjectAdd = () => {
 };
 
 const MyProjectCard = ({project, user}) => {
+  const navigate = useNavigate()
   return (
     <div className="project card col">
-      <div className="project-banner bg-FAV"></div>
+      <div className="project-banner bg-FAV" onClick={() => navigate(`/projectdetails/${project._id}`)}></div>
       <div className="project-body">
         <div>
           <div>
@@ -87,7 +89,14 @@ const MyProjectCard = ({project, user}) => {
             <>
               <p className="c-FAV">contributors:</p>
               <div className="col mt05">
-                {project?.team?.length && project?.team?.map(member => <TalentCard key={member._id} talent={member} user={user}/>)}
+                {project?.team?.length && project?.team?.map(member =>{ 
+                  // console.log("membID",member._id) 
+                  // console.log("USERID",user._id) 
+                  console.log(user._id !== member._id) 
+                   if(member._id !== user._id){
+                     return <TalentCard key={member._id} talent={member} user={user}/>                     
+                  }
+                })}
               </div>
             </>            
             }

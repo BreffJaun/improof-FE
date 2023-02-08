@@ -1,3 +1,5 @@
+import "../../styles/project-details.scss"
+
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -24,8 +26,7 @@ const ProjectDetails = () => {
     const fetchProject = async () => {
       fetch(`${host}/projects/${id}`,{
         credentials:"include"
-      })
-        
+      })        
         .then((response) => response.json())
         .then((json) => {
           if(json.status){
@@ -44,8 +45,12 @@ const ProjectDetails = () => {
     cardTitle:stone.title, 
     cardSubtitle:stone.description,
     timelineContent:
-    <div >
-      {stone?.team?.map(member => <TalentCard key={member._id} talent={member} user={user}/> )}
+    <div className="timeline-content">
+      {stone?.team?.map(member =>
+      <div className=" bg-gDB">
+        {member.profile.avatar ? <img src={member.profile.avatar}/> : <p>{member.profile.initials}</p>}
+      </div>
+       )}
     </div>
   }
   })
@@ -60,7 +65,23 @@ const ProjectDetails = () => {
       </div>
       
 
-     <Chrono items={items} cardHeight="300" />
+     <Chrono 
+    //  items={items} 
+     className="my-timeline"
+     classNames={
+      {
+        card:"my-card", 
+        cardMedia: 'my-card-media',
+        cardSubTitle: 'my-card-subtitle',
+        cardText: 'my-card-text',
+        cardTitle: 'my-card-title',
+        controls: 'my-controls',
+        title: 'my-title',
+        timelineContent:"timeline-content"
+      }} >
+        
+      </Chrono>
+
       
 
 

@@ -64,7 +64,6 @@ const Main = () =>{
                 {/* ROUTES USER */}
                 <Route path="/community" element={<Community/>} />
                 <Route path="/efjm" element={<EFJM />} />
-                <Route path="/projectdetails/:id" element={<ProjectDetails/>} />
                 <Route path="/userdetails/:id" element={<UserDetails/>}/>
                 <Route path="/userdetails/:id" element={<UserDetails />} />
                 <Route path="/useredit/:id" element={<UserEdit />} />
@@ -72,8 +71,8 @@ const Main = () =>{
                 {/* ROUTES PROJECTS */}
                 <Route path="/createproject" element={<CreateProject />} />
                 <Route path="/myprojects" element={<MyProjects />} />
-                <Route path="/projectdetails" element={<ProjectDetails />} />
                 <Route path="/starprojects" element={<StarProjects/>} />
+                <Route path="/projectdetails/:id" element={<ProjectDetails/>} />
 
                 {/* ROUTES RECRUITER */}
                 <Route path="/newsearch" element={<NewSearch />}/>
