@@ -15,7 +15,7 @@ const Notifications = () => {
         <h1 className="c-FAV mt2 mb2">notifications</h1>
         <div className="col">
           {user.notifications.map(notification => 
-            <div className="mb1">
+            <div className="mb1" key ={notification._id}>
                 <p className="c-FAV">{notification.notText}</p>
                 <p>{notification.createdAt}</p>
             </div>).reverse()}
