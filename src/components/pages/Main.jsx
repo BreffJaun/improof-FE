@@ -65,7 +65,6 @@ const Main = () =>{
                 <Route path="/community" element={<Community/>} />
                 <Route path="/efjm" element={<EFJM />} />
                 <Route path="/userdetails/:id" element={<UserDetails/>}/>
-                <Route path="/userdetails/:id" element={<UserDetails />} />
                 <Route path="/useredit/:id" element={<UserEdit />} />
 
                 {/* ROUTES PROJECTS */}

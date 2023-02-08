@@ -38,17 +38,16 @@ const BurgerMenuTalent = ({setShowMenu, showMenu}) => {
 };
 
 
-
-
 const BurgerMenuRecruiter = ({setShowMenu, showMenu}) => {
   const navigate = useNavigate()
+  const [user, setUser] = useContext(UserContext)
   return (
     <div className ="burger-container">
       <div className="burger-recruiter">
         <p>RECRUITER BURGER MENU</p>
         <div onClick={()=> setShowMenu(!showMenu)}>
           lightmode/darkmode
-          <p onClick={ ()=> navigate("/myprofil")}>my profile</p>
+          <p onClick={ ()=> navigate(`/userDetails/${user._id}`)}>my profile</p>
         </div>
         <div onClick={()=> setShowMenu(!showMenu)}>
           <p onClick={ ()=> navigate("/newsearch")}>newsearch</p>
