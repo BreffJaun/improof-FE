@@ -13,5 +13,12 @@
         background-color: white;
         box-shadow: 0.3rem 0.3rem 0.6rem rgba(0, 0, 0, 0.2);
         border-radius: 8px;
+        >*{
+            cursor: pointer;
+            :hover{
+                color: var(--O15);
+                font-weight: 500;
+            }
+        }
     }
 }

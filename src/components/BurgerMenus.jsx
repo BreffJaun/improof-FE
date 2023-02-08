@@ -16,20 +16,22 @@ const BurgerMenuTalent = ({setShowMenu, showMenu}) => {
   const [user, setUser] = useContext(UserContext)
 
   return (
-    <div className="burger-container ">
+    <div className="burger-container">
       <div>
-        <p>TALENT BURGER MENU</p>
-        <div onClick={()=> setShowMenu(!showMenu)}>
+        <div >
+          <p className="c-A80">talent menu</p>
+        </div>
+        <div onClick={()=> setShowMenu(!showMenu)} className="mb2">
           lightmode/darkmode
-          <p onClick={() => { navigate(`/userdetails/${user._id}`)}}>my profile</p>
         </div>
-        <div onClick={()=> setShowMenu(!showMenu)}>
-          <p onClick={ ()=> navigate("/createproject")}>new project</p>
-          <p onClick={ ()=> navigate("/myprojects")}>my projects</p>
-          <p onClick={ ()=> navigate("/starprojects")}>star projects</p>
-          <p onClick={ ()=> navigate("/community")}>community</p>
+        <div onClick={() => setShowMenu(!showMenu)} className="mb15 col central">
+          <p className="mb05" onClick={() => { navigate(`/userdetails/${user._id}`)}}>my profile</p>
+          <p className="mb05" onClick={ ()=> navigate("/createproject")}>new project</p>
+          <p className="mb05" onClick={ ()=> navigate("/myprojects")}>my projects</p>
+          <p className="mb05" onClick={ ()=> navigate("/starprojects")}>star projects</p>
+          <p className="mb05" onClick={ ()=> navigate("/community")}>community</p>
         </div>
-        <div onClick={()=> setShowMenu(!showMenu)}>
+        <div onClick={()=> setShowMenu(!showMenu)} className="central mb05">
           <p onClick={ ()=> navigate("/login")}><IoIosLogOut /></p>
         </div>
       </div>
@@ -37,26 +39,27 @@ const BurgerMenuTalent = ({setShowMenu, showMenu}) => {
   );
 };
 
-
 const BurgerMenuRecruiter = ({setShowMenu, showMenu}) => {
   const navigate = useNavigate()
   const [user, setUser] = useContext(UserContext)
   return (
-    <div className ="burger-container">
-      <div className="burger-recruiter">
-        <p>RECRUITER BURGER MENU</p>
-        <div onClick={()=> setShowMenu(!showMenu)}>
+    <div className="burger-container">
+      <div>
+        <div >
+          <p className="c-A80">recruiter menu</p>
+        </div>
+        <div onClick={()=> setShowMenu(!showMenu)} className="mb2">
           lightmode/darkmode
-          <p onClick={ ()=> navigate(`/userDetails/${user._id}`)}>my profile</p>
         </div>
-        <div onClick={()=> setShowMenu(!showMenu)}>
-          <p onClick={ ()=> navigate("/newsearch")}>newsearch</p>
-          <p onClick={ ()=> navigate("/community")}>star talents</p>
-          <p onClick={ ()=> navigate("/starprojects")}>star projects</p>
-          <p onClick={ ()=> navigate("/searchhistory")}>search history</p>
+        <div onClick={() => setShowMenu(!showMenu)} className="mb15 col central">
+          <p className="mb05" onClick={ ()=> navigate(`/userDetails/${user._id}`)}>my profile</p>
+          <p className="mb05" onClick={ ()=> navigate("/newsearch")}>newsearch</p>
+          <p className="mb05" onClick={ ()=> navigate("/community")}>star talents</p>
+          <p className="mb05" onClick={ ()=> navigate("/starprojects")}>star projects</p>
+          <p className="mb05" onClick={ ()=> navigate("/searchhistory")}>search history</p>
         </div>
-        <div onClick={()=> setShowMenu(!showMenu)}>
-          <p onClick={ ()=> navigate("/login")}><IoIosLogOut /></p>
+        <div onClick={()=> setShowMenu(!showMenu)} className="central mb05" >
+          <p className="mb05" onClick={ ()=> navigate("/login")}><IoIosLogOut /></p>
         </div>
       </div>
     </div>

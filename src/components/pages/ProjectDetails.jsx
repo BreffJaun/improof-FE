@@ -13,6 +13,9 @@ import {host} from "../../api/host.jsx"
 import UserContext from "../../context/userContext.jsx";
 import TriggerContext from "../../context/triggerContext.jsx";
 
+
+// STYLE
+import "../../styles/chrono.scss"
 //ELEMENTS
 import { TalentCard } from "../elements/TalentCard.jsx";
 
@@ -100,10 +103,10 @@ const ProjectDetails = () => {
                 <h1>{stone.title}</h1>
                 <p>{stone.kind}</p>
                 <p>{stone.description}</p>
-                <div className="flex">
+                <div className="mt1 flex g05">
                     {stone?.team?.map(member =>
-                      <div className="circle50 bg-gDB">
-                        {member.profile.avatar ? <img src={member.profile.avatar}/> : <p className="central">{member.profile.initials}</p>}
+                      <div className="circle50 bg-FAV central">
+                        {member.profile.avatar ? <img src={member.profile.avatar}/> : <p className="c-A100">{member.profile.initials}</p>}
                       </div>
                     )}
                 </div>
