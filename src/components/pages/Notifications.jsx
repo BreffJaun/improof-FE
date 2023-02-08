@@ -11,13 +11,13 @@ const Notifications = () => {
 
   return (
     <>
-      <div className="bo-DARK"></div>
-      <div className="c-FAV mb2">
-        <h1>notifications</h1>
+      <div className="central col">
+        <h1 className="c-FAV mt2 mb2">notifications</h1>
         <div className="col">
-           {user.notifications.map(notification => 
-            <div className="componente">
-              <p>{notification.notText}</p>
+          {user.notifications.map(notification => 
+            <div className="mb1">
+                <p className="c-FAV">{notification.notText}</p>
+                <p>{notification.createdAt}</p>
             </div>).reverse()}
         </div>
       </div>
