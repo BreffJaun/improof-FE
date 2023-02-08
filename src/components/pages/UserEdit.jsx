@@ -16,7 +16,6 @@ import { SlTrash } from "react-icons/sl";
 import {RxCross2} from "react-icons/rx"
 
 
-
 //BUTTONS
 import { FollowBtn } from "../buttons/FollowBtn.jsx"
 import { SendMessageBtn } from "../buttons/MessageBtn.jsx";
@@ -26,6 +25,7 @@ import { SendMessageBtn } from "../buttons/MessageBtn.jsx";
 import { MyProjectCard } from "../elements/ProjectCard.jsx";
 import { TalentCard } from "../elements/TalentCard.jsx";
 import Up from "../elements/Up.jsx";
+import CategoriesFilter from "../elements/CategoriesFilter.jsx";
 import Footer from "../elements/Footer.jsx";
 
 
@@ -74,6 +74,11 @@ const UserEdit = () => {
   const handleInputContact = (event) => {
     setUserData({ ...userData, contact:{...userData.contact, [event.target.name]: event.target.value }});
   }
+
+  const handleCategoryProfile = (event) => {
+    setUserData({ ...userData, profile:{...userData.profile, [event.target.name]: event.target.value }})
+  }
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -129,6 +134,26 @@ const UserEdit = () => {
       <div className="col mb1">
         <p>that´s me</p>
         <input onChange={handleInputProfile} name="description" type="text" defaultValue={user.profile.description} />
+        </div>
+        <div className="central">
+          <p>here i perform best</p>
+              <select onChange={handleCategoryProfile} name="category">
+                <option value="">All categories</option>
+                <option value="Web-Development">Web-Development</option>
+                <option value="Software-Development">Software-Development</option>
+                <option value="Online-Marketing">Online-Marketing</option>
+                <option value="Social-Media-Management">Social-Media-Management</option>
+                <option value="UX-UI">UX-UI</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Metalworking">Metalworking</option>
+                <option value="Woodworking">Woodworking</option>
+                <option value="Handworking">Handworking</option>
+                <option value="Gardening">Gardening</option>
+                <option value="Gastronomy/Cooking">Gastronomy/Cooking</option>
+                <option value="Pedagogy">Pedagogy</option>
+                <option value="Science">Science</option>
+                <option value="others">others</option>
+            </select>
       </div>
       <div className="col mb1">
         <p>i do right now</p>

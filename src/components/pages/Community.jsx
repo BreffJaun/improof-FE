@@ -101,7 +101,7 @@ useEffect(() => {
           talent={talent}
           user={user} 
           />
-      )}  
+      )}
       <Footer/>
     </>
   );
