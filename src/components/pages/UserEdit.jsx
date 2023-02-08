@@ -1,9 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
-import { ToastContainer } from "react-toastify";
 import { host } from "../../api/host.jsx";
 import { useNavigate } from "react-router-dom";
-
+import { toast, ToastContainer } from "react-toastify";
 
 import UserContext from "../../context/userContext.jsx";
 import "../../styles/colors.scss"
@@ -92,6 +91,10 @@ const UserEdit = () => {
         })
         .then((json) => json.json())
         .then((data) => {
+          if(data.status){
+            console.log(data)
+            toast.info(data.message)
+          }
           if (data.error) {
             data.error.map((err) => {
               toast.error(err.msg, toastOptions);

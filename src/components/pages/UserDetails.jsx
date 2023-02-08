@@ -67,8 +67,7 @@ const TalentDetails = () => {
           }      
       })
     }
-    getUser()
-;
+    getUser();
   },[trigger])
 
 
