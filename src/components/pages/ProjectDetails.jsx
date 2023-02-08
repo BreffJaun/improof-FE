@@ -1,6 +1,6 @@
 import "../../styles/project-details.scss"
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { Chrono } from "react-chrono";
@@ -11,6 +11,7 @@ import {host} from "../../api/host.jsx"
 
 //CONTEXT
 import UserContext from "../../context/userContext.jsx";
+import TriggerContext from "../../context/triggerContext.jsx";
 
 //ELEMENTS
 import { TalentCard } from "../elements/TalentCard.jsx";
@@ -18,9 +19,11 @@ import { TalentCard } from "../elements/TalentCard.jsx";
 const ProjectDetails = () => {
   const {id} = useParams("id")
   const [user, setUser] = useContext(UserContext)
+  const [trigger, setTrigger] = useContext(TriggerContext)
   const [project, setProject] = useState({})
   const [isPending, setPending] = useState(true)
-  
+  // const icons = useRef(null)
+
   useEffect(() => {
     setPending(true)
     const fetchProject = async () => {
@@ -37,6 +40,24 @@ const ProjectDetails = () => {
     }
     fetchProject()
   },[])
+
+  useEffect(()=> {
+
+    const getUser = async () => {
+      await fetch(`${host}/users/checklogin`,{
+        credentials:"include"
+        })
+        .then((response) => response.json())
+        .then((json) => {
+          if(json.status){
+            setUser(json.user)
+          }else{
+            navigate("/login")
+          }      
+      })
+    }
+    getUser();
+  },[trigger])
   
   console.log(project)
   const items = !isPending && project.stones.map(stone => {
@@ -45,16 +66,16 @@ const ProjectDetails = () => {
     cardTitle:stone.title, 
     cardSubtitle:stone.description,
     timelineContent:
-    <div className="timeline-content">
+    <div className="timeline-content stone-card">
       {stone?.team?.map(member =>
-      <div className=" bg-gDB">
+      <div className="circle50 bg-gDB">
         {member.profile.avatar ? <img src={member.profile.avatar}/> : <p>{member.profile.initials}</p>}
       </div>
        )}
     </div>
   }
-  })
-  
+  })  
+
   return !isPending && user &&( 
     <div className="componente">
 
@@ -65,21 +86,37 @@ const ProjectDetails = () => {
       </div>
       
 
-     <Chrono 
-    //  items={items} 
-     className="my-timeline"
-     classNames={
-      {
-        card:"my-card", 
-        cardMedia: 'my-card-media',
-        cardSubTitle: 'my-card-subtitle',
-        cardText: 'my-card-text',
-        cardTitle: 'my-card-title',
-        controls: 'my-controls',
-        title: 'my-title',
-        timelineContent:"timeline-content"
-      }} >
-        
+     <Chrono>
+
+        {
+        !isPending && project.stones.map(stone =>{
+          // const icons = document.querySelector(".chrono-icons")
+          // stone.kind === "stepstone" && icon.append(<img src={Stepstone}/>)
+
+          return (
+            <>
+              <div>
+                {stone.media && <img src="" alt="" />}
+                <h1>{stone.title}</h1>
+                <p>{stone.kind}</p>
+                <p>{stone.description}</p>
+                <div className="flex">
+                    {stone?.team?.map(member =>
+                      <div className="circle50 bg-gDB">
+                        {member.profile.avatar ? <img src={member.profile.avatar}/> : <p className="central">{member.profile.initials}</p>}
+                      </div>
+                    )}
+                </div>
+              </div>     
+            </>
+          )
+        })        
+        }                
+        <div className="chrono-icons">
+        </div>
+
+    
+    
       </Chrono>
 
       
