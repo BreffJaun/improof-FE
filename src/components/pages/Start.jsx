@@ -20,9 +20,15 @@ const Start = () => {
   const [user, setUser] = useContext(UserContext)
   return (
     <>
-      <div className="bo-DARK"></div>
-      < Newsfeed />
-      < CategoriesFilter />
+      <div className="mt2 mb2">
+        <h1 className="central c-FAV">What´s new on improof?</h1>
+        < Newsfeed />
+      </div>
+      <div className="central col">
+        <h1 className="c-FAV mb1">filter your interest</h1>
+        < CategoriesFilter />
+      </div>
+
       <div className="bo-DARK"></div>
     {user?.profile?.isTalent && < TalentMenu />}
     {user?.profile?.isRecruiter && <RecruiterMenu />}

@@ -34,7 +34,6 @@ const Navbar = () => {
         <div><input type="text" /><GrSearch onClick={ ()=> setshowSearch(!showSearch)}/></div> : <div onClick={ ()=> setshowSearch(!showSearch)}>< GrSearch /></div>}
         <div onClick={ ()=> setShowMenu(!showMenu)} >< MdOutlinePerson /></div>
       </div>
- 
 
       <div>
         { showMenu && user?.profile?.isTalent && <BurgerMenuTalent setShowMenu={setShowMenu} showMenu={showMenu}/>}
