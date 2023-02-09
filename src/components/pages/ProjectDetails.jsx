@@ -40,7 +40,7 @@ const ProjectDetails = () => {
         });
     }
     fetchProject()
-  },[trigger])
+  },[])
 
   useEffect(()=> {
     const getUser = async () => {
@@ -81,7 +81,7 @@ const ProjectDetails = () => {
                 <p>{stone.description}</p>
                 <div className="mt1 flex g05">
                     {stone?.team?.map(member =>
-                      <div className="circle50 bg-FAV central">
+                      <div key={member._id}className="circle50 bg-FAV central">
                         {member.profile.avatar ? <img src={member.profile.avatar}/> : <p className="c-A100">{member.profile.initials}</p>}
                       </div>
                     )}

@@ -90,10 +90,7 @@ const MyProjectCard = ({project, user}) => {
   const navigate = useNavigate()
   return ( project && user &&
     <div className="project card col">
-      <div
-        className="project-banner bg-FAV"
-        onClick={() => navigate(`/projectdetails/${project._id}`)}
-      ></div>
+      {project.thumbnail && <div className="project-banner bg-FAV" onClick={() => navigate(`/projectdetails/${project._id}`)}></div>}
       <div className="project-body">
         <div>
           <div>
@@ -142,10 +139,10 @@ const ProjectCardNewsFeed = ({ project, user }) => {
   const navigate = useNavigate()
   return (
     <div className="project card col">
-      <div className="project-banner bg-FAV" onClick={() => navigate(`/projectdetails/${project._id}`)}></div>
-      <div className="project-body">
+      {project.thumbnail && <div className="project-banner bg-FAV" onClick={() => navigate(`/projectdetails/${project._id}`)}></div>}
+      <div className="project-body" >
         <div>
-          <div>
+          <div onClick={() => navigate(`/projectdetails/${project._id}`)}>
             <p className="c-FAV">{project?.name}</p>
             <p className="mt05 c-A20">{project?.description}</p>
           </div>
