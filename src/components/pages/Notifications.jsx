@@ -19,7 +19,7 @@ const Notifications = () => {
               const date = date1[0].split("-").reverse().join(".")
               const time = date1[1].slice(0,5)            
               return <div className="mb1" key ={notification._id}>
-                <p className="c-FAV">{notification.notText}</p>
+                <p className={notification.isRead ? "c-FAV": "bg-gGR1"}>{notification.notText}</p>
                 <p>{date + " " +  time}</p>
             </div>}).reverse()}          
         </div>

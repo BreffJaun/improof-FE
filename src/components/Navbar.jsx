@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { BurgerMenuRecruiter, BurgerMenuTalent } from "./BurgerMenus.jsx";
-
 import { useContext, useState } from "react";
+import { host } from "../api/host.jsx";
+
+import { BurgerMenuRecruiter, BurgerMenuTalent } from "./BurgerMenus.jsx";
 
 // STYLE
 import '../styles/navbar.scss'
@@ -23,22 +24,45 @@ const Navbar = () => {
   const [showSearch, setshowSearch] = useState()
 
   const navigate = useNavigate()
+  console.log(user);
+  const unreadNots = user?.notifications?.filter(not => !not.isRead)
+  const unreadMsgs = user?.conversations?.message?.filter(msg => !msg.isRead)
 
+  const handleReadNotification = async () => {
+    await fetch(`${host}/notifications/read`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        userId: user._id,
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+  }
 
   return (
     <>
       <div className="navbar mt2">
+        <div onClick={() => {
+          navigate("/notifications")
+          handleReadNotification()
+          }} className="rel" >
+          < GrNotification />
+          {unreadNots?.length > 0  && 
+            <div className="signal circle15 bg-FAV central abs" >
+              <div className="c-A100">{unreadNots.length}</div>
+            </div>
+          }
+        </div>
         <div onClick={() => navigate("/messages")} className="rel">
           < BiMessageAlt />
-          <div className="signal circle15 bg-FAV central abs">
-            <div className="c-A100">5</div>
-          </div>
-        </div>
-        <div onClick={() => navigate("/notifications")} className="rel" >
-          < GrNotification />
-          <div className="signal circle15 bg-FAV central abs">
-            <div className="c-A100">5</div>
-          </div>
+          {unreadMsgs?.length && 
+            <div className="signal circle15 bg-FAV central abs">
+              <div className="c-A100">{unreadMsgs?.length}</div>
+            </div>
+          }
         </div>
         {showSearch ? 
         <div><input type="text" /><GrSearch onClick={ ()=> setshowSearch(!showSearch)}/></div> : <div onClick={ ()=> setshowSearch(!showSearch)}>< GrSearch /></div>}
