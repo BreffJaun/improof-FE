@@ -28,8 +28,18 @@ const Navbar = () => {
   return (
     <>
       <div className="navbar mt2">
-        <div onClick={ ()=> navigate("/messages")} >< BiMessageAlt /></div>
-        <div onClick={ ()=> navigate("/notifications")} >< GrNotification /></div>
+        <div onClick={() => navigate("/messages")} className="rel">
+          < BiMessageAlt />
+          <div className="signal circle15 bg-FAV central abs">
+            <div className="c-A100">5</div>
+          </div>
+        </div>
+        <div onClick={() => navigate("/notifications")} className="rel" >
+          < GrNotification />
+          <div className="signal circle15 bg-FAV central abs">
+            <div className="c-A100">5</div>
+          </div>
+        </div>
         {showSearch ? 
         <div><input type="text" /><GrSearch onClick={ ()=> setshowSearch(!showSearch)}/></div> : <div onClick={ ()=> setshowSearch(!showSearch)}>< GrSearch /></div>}
         <div onClick={ ()=> setShowMenu(!showMenu)} >< MdOutlinePerson /></div>

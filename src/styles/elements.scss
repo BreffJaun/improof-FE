@@ -157,6 +157,14 @@ input[type=radio]:checked::before {
     background-color: white;
 }
 
+.signal{
+    bottom: 0;
+    right: -10px;
+    >*{
+        font-size: 0.7rem;
+        font-weight: 700;
+    }
+}
 
 .colorCard{
     border: 1px solid var(--A60);
