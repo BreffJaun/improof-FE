@@ -51,7 +51,7 @@ const Navbar = () => {
           navigate("/notifications")
           handleReadNotification()
           }} className="rel" >
-          < Bell />
+          <Bell />
           {unreadNots?.length > 0  && 
             <div className="signal circle15 bg-FAV central abs" >
               <div className="c-A100">{unreadNots.length}</div>
@@ -59,18 +59,20 @@ const Navbar = () => {
           }
         </div>
         <div onClick={() => navigate("/messages")} className="rel">
-          < BiMessageAlt />
+          <BiMessageAlt />
           {unreadMsgs?.length && 
             <div className="signal circle15 bg-FAV central abs">
               <div className="c-A100">{unreadMsgs?.length}</div>
             </div>
           }
-        </div>
-        {showSearch ? 
-          <div><input type="text" onClick={() => setshowSearch(!showSearch)} /> <Lupe /> </div> : <div onClick={() => setshowSearch(!showSearch)}>
-            <Lupe /> </div>}
-        <div onClick={() => navigate("/")} className="rel">< Home /></div>
-        <div onClick={ ()=> setShowMenu(!showMenu)} >< RxHamburgerMenu /></div>
+        </div>        
+        <div>
+          {showSearch && <input type="text" /> }
+          <Lupe onClick={() => setshowSearch(!showSearch)}/> 
+        </div> 
+
+        <div onClick={() => navigate("/")} className="rel"><Home /></div>
+        <div onClick={ ()=> setShowMenu(!showMenu)} ><RxHamburgerMenu /></div>
       </div>
 
       <div>
