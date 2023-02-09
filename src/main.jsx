@@ -4,17 +4,17 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { UserContextProvider } from "./context/userContext.jsx";
 import { TriggerContextProvider } from "./context/triggerContext.jsx";
-import { DarkModeProvider } from "./context/darkModeContext.jsx";
+import { LightModeProvider } from "./context/lightModeContext.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <TriggerContextProvider>
-      <DarkModeProvider>
+      <LightModeProvider>
         <UserContextProvider>
           <BrowserRouter>
             <App />
           </BrowserRouter>
         </UserContextProvider>
-      </DarkModeProvider>
+      </LightModeProvider>
     </TriggerContextProvider>
   </React.StrictMode>
 );

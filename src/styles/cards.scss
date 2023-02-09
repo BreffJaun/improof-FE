@@ -76,7 +76,7 @@
 
 
 
-.action{
+.action-light{
     padding: 0.3rem;
     color: white;
     display: flex;
@@ -92,9 +92,9 @@
 
 .action-dark{
     padding: 0.3rem;
-    color: white;
+    color: #fff;
     display: flex;
-    background-color: #fff;
+    background-color: #333;
     width: 30px;
     height: 30px;
     font-size: 2rem;

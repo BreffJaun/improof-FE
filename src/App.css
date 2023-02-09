@@ -7,31 +7,28 @@
 }
 
 /* dark */
-#root{
-  max-width: 1100px;
-  margin: 0 auto;
-  padding-right: 2rem;
-  padding-left: 2rem;
+.root-dark{
   background-color: #333;
   color: #fff;
 }
-/* .App{
+
+.root-light{
+  background-color: #fff;
+  color: #333;
+}
+.App-dark{
+
   background-color: #333;
+}
+
+.App-light{
+  background-color: #fff;
   padding: 20px;
-} */
+}
+
 
 *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
-
-.dark{
-  background-color: rgb(28, 27, 27);
-  color: white;
-}
-
-.light{
-  background-color: white;
-  color: rgb(28, 27, 27);
 }

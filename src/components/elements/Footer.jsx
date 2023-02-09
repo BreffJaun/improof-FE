@@ -7,10 +7,10 @@ import "../../styles/logo.scss";
 import Up from "../elements/Up.jsx";
 
 // CONTEXT
-import DarkModeContext from "../../context/darkModeContext.jsx";
+import LightModeContext from "../../context/lightModeContext.jsx";
 
 const Footer = () => {
-  const [darkMode, setDarkMode] = useContext(DarkModeContext);
+  const [lightMode, setLightMode] = useContext(LightModeContext);
 
   const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ const Footer = () => {
       <Up />
       <div className="logoContainer central">
         <div
-          className={darkMode ? `efjm-dark` : `efjm-light bg-FAV`}
+          className={!lightMode ? `efjm-dark` : `efjm-light bg-FAV`}
           onClick={() => navigate("/efjm")}
         >
           <img src={efjm} alt="efjm" />

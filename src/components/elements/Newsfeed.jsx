@@ -7,14 +7,14 @@ import { ProjectCardNewsFeed } from "./ProjectCard.jsx";
 // CONTEXT
 import TriggerContext from "../../context/triggerContext.jsx";
 import UserContext from "../../context/userContext.jsx";
-import DarkModeContext from "../../context/darkModeContext.jsx";
+import LightModeContext from "../../context/lightModeContext.jsx";
 
 const Newsfeed = () => {
   const [projects, setProjects] = useState([]);
   const [user, setUser] = useContext(UserContext);
   const [trigger, setTrigger] = useState(true);
   const [isPending, setPending] = useState(true);
-  const [darkMode, setDarkMode] = useContext(DarkModeContext);
+  const [lightMode, setLightMode] = useContext(LightModeContext);
 
   useEffect(() => {
     const getProjects = async () => {
@@ -54,8 +54,7 @@ const Newsfeed = () => {
   });
 
   // Sort will change the initial array
-  console.log("projects", projects);
-  // console.log("sorted", sortedProjects);
+
   return (
     <div className="mt2">
       <p className="sl c-FAV">newsFeed</p>
