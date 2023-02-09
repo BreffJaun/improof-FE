@@ -89,7 +89,7 @@ const Navbar = () => {
         { showMenu && user?.profile?.isRecruiter && <BurgerMenuRecruiter setShowMenu={setShowMenu} showMenu={showMenu}/>}
       </div>
       <div>
-        { showNotifications && <Notifications/> }        
+        { showNotifications && <Notifications showNotifications={showNotifications} setShowNotifications={setShowNotifications} /> }        
       </div>
     </>
   );

@@ -214,3 +214,15 @@ input[type=radio]:checked::before {
 //     z-index: 1;
 //     visibility: hidden;
 // }
+
+
+.wide{
+    display: flex;
+    width: 500px;
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

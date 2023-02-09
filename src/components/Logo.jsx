@@ -9,7 +9,7 @@ import logo from "../images/improof_OR.png"
 const LogoS = () => {
   const navigate = useNavigate()
   return (
-    <div className="logoContainer mt2">
+    <div className="logoContainer mt2" title="back to start">
       <div onClick={() => navigate("/")} className="logoS col">
         <img src={logo} alt="improof-logo"/>
       </div>
