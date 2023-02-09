@@ -9,9 +9,11 @@ import '../styles/navbar.scss'
 
 // ICONS
 import { BiMessageAlt } from 'react-icons/bi'
-import { GrNotification } from "react-icons/gr"
-import { GrSearch } from "react-icons/gr"
-import { MdOutlinePerson } from "react-icons/md"
+import { AiOutlineBell as Bell } from "react-icons/ai"
+import { RxHamburgerMenu } from "react-icons/rx"
+import { RxMagnifyingGlass as Lupe } from "react-icons/rx"
+import { RiHomeLine as Home} from "react-icons/ri"
+
 
 // CONTEXT
 import UserContext from "../context/userContext.jsx";
@@ -49,7 +51,7 @@ const Navbar = () => {
           navigate("/notifications")
           handleReadNotification()
           }} className="rel" >
-          < GrNotification />
+          < Bell />
           {unreadNots?.length > 0  && 
             <div className="signal circle15 bg-FAV central abs" >
               <div className="c-A100">{unreadNots.length}</div>
@@ -65,8 +67,10 @@ const Navbar = () => {
           }
         </div>
         {showSearch ? 
-        <div><input type="text" /><GrSearch onClick={ ()=> setshowSearch(!showSearch)}/></div> : <div onClick={ ()=> setshowSearch(!showSearch)}>< GrSearch /></div>}
-        <div onClick={ ()=> setShowMenu(!showMenu)} >< MdOutlinePerson /></div>
+          <div><input type="text" onClick={() => setshowSearch(!showSearch)} /> <Lupe /> </div> : <div onClick={() => setshowSearch(!showSearch)}>
+            <Lupe /> </div>}
+        <div onClick={() => navigate("/")} className="rel">< Home /></div>
+        <div onClick={ ()=> setShowMenu(!showMenu)} >< RxHamburgerMenu /></div>
       </div>
 
       <div>

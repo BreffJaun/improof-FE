@@ -8,6 +8,10 @@ import '../styles/burgermenu.scss'
 import { RxHamburgerMenu } from "react-icons/rx"
 import { IoIosLogOut } from "react-icons/io"
 import { MdOutlinePerson } from "react-icons/md"
+import { MdPeopleOutline as Community } from "react-icons/md"
+import { AiOutlineAppstoreAdd as Projects } from "react-icons/ai"
+import { AiOutlinePlusSquare as NewProject } from "react-icons/ai"
+import { AiOutlineStar as Star } from "react-icons/ai"
 
 // CONTEXT
 import UserContext from "../context/userContext";
@@ -28,10 +32,10 @@ const BurgerMenuTalent = ({setShowMenu, showMenu}) => {
         </div>
         <div onClick={() => setShowMenu(!showMenu)} className="mb15 col central">
           <button className="mb05" onClick={() => { navigate(`/userdetails/${user._id}`)}}>< MdOutlinePerson /> my profile</button>
-          <button className="mb05" onClick={ ()=> navigate("/createproject")}>new project</button>
-          <button className="mb05" onClick={ ()=> navigate("/myprojects")}>my projects</button>
-          <button className="mb05" onClick={ ()=> navigate("/starprojects")}>star projects</button>
-          <button className="mb05" onClick={ ()=> navigate("/community")}>community</button>
+          <button className="mb05" onClick={ ()=> navigate("/createproject")}><NewProject/>new project</button>
+          <button className="mb05" onClick={ ()=> navigate("/myprojects")}><Projects/> my projects</button>
+          <button className="mb05" onClick={ ()=> navigate("/starprojects")}><Star/>star projects</button>
+          <button className="mb05" onClick={ ()=> navigate("/community")}><Community/> community</button>
         </div>
         <div onClick={()=> setShowMenu(!showMenu)} className="central mb05">
           <button onClick={ ()=> navigate("/login")}><IoIosLogOut /> logout</button>
