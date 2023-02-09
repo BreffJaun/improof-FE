@@ -142,22 +142,14 @@ const MyProjectCard = ({ project, user }) => {
 };
 
 const ProjectCardNewsFeed = ({ project, user }) => {
-  const [lightMode, setLightMode] = useContext(LightModeContext);
-
   return (
-    <div
-      className={
-        !lightMode ? `project card-dark col` : `project card-light col`
-      }
-    >
+    <div className="project card col">
       <div className="project-banner bg-FAV"></div>
       <div className="project-body">
         <div>
           <div>
             <p className="c-FAV">{project?.name}</p>
-            <p className={!lightMode ? ` mt05` : `c-A20 mt05`}>
-              {project?.description}
-            </p>
+            <p className="mt05 c-A20">{project?.description}</p>
           </div>
           <div className="mt15">
             {project?.team?.length && (

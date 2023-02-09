@@ -8,7 +8,6 @@ import { useContext } from "react";
 //CONTEXT
 import TriggerContext from "../../context/triggerContext.jsx";
 import UserContext from "../../context/userContext.jsx";
-import LightModeContext from "../../context/lightModeContext.jsx";
 
 const handleAddFollow = async (project, user, setUser) => {
   await fetch(`${host}/projects/follow/add`, {
@@ -57,18 +56,17 @@ const handleDeleteFollow = async (project, user, setUser) => {
 };
 const ProjectBtn = ({ project }) => {
   const [user, setUser] = useContext(UserContext);
-  const [lightMode, setLightMode] = useContext(LightModeContext);
 
   return user.starProjects.find((projekt) => projekt._id === project._id) ? (
     <button
-      className={!lightMode ? `action-dark` : `action-light`}
+      className="action"
       onClick={() => handleDeleteFollow(project, user, setUser)}
     >
       <RxCross2 />
     </button>
   ) : (
     <button
-      className={!lightMode ? `action-dark` : `action-light`}
+      className="action"
       onClick={() => handleAddFollow(project, user, setUser)}
     >
       <HiPlus />
