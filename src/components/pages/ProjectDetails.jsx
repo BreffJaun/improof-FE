@@ -1,23 +1,20 @@
+// STYLE
 import "../../styles/project-details.scss"
+import "../../styles/chrono.scss"
+
 import React from "react";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-
 import { Chrono } from "react-chrono";
-import {GiStoneSphere as Stepstone} from "react-icons/gi"
-import Footer from "../elements/Footer.jsx";
-
-import {host} from "../../api/host.jsx"
+import { host } from "../../api/host.jsx"
 
 //CONTEXT
 import UserContext from "../../context/userContext.jsx";
 import TriggerContext from "../../context/triggerContext.jsx";
 
-
-// STYLE
-import "../../styles/chrono.scss"
 //ELEMENTS
 import { TalentCard } from "../elements/TalentCard.jsx";
+import Footer from "../elements/Footer.jsx";
 
 const ProjectDetails = () => {
   const {id} = useParams("id")
@@ -75,11 +72,10 @@ const ProjectDetails = () => {
 
      <Chrono>
 
-        {
+        {   // HIER FUNKTIONIERT DAS KEY ATTRIBUT NICHT.. WEIß NICHT WARUM!
         !isPending && project.stones.map(stone =>{
-          return (
-     
-              <div>
+          return (     
+              <div key={stone._id}>
                 {stone.media && <img src="" alt="" />}
                 <h1>{stone.title}</h1>
                 <p>{stone.kind}</p>
@@ -91,13 +87,19 @@ const ProjectDetails = () => {
                       </div>
                     )}
                 </div>
-              </div>     
-       
+              </div>      
           )
         })        
         }                
-        <div className="chrono-icons" id="icons" ref={icons2}>
-          
+        <div className="chrono-icons" id="icons">
+          {project?.stones.map(stone => {
+            return (
+                stone.kind === "flintstone" && <img src="" alt="" key={stone._id}/> ||
+                stone.kind === "stepstone" && <img src="https://www.downloadclipart.net/thumb/9394-stone-1-vector-thumb.png" alt="" key={stone._id} /> ||
+                stone.kind === "milestone" && <img src="" alt="" key={stone._id} /> ||
+                stone.kind === "endstone" && <img src="" alt="" key={stone._id} />             
+            )
+          })}
         </div>
 
     
