@@ -1,0 +1,88 @@
+.logoContainer{
+  display: flex;
+  justify-content: center;
+}
+
+.logoXs{
+  align-items: center;
+  >img{
+      width: 4rem;
+  }
+  h1{
+      font-size: 1.2rem;
+      font-weight: 900;
+  }
+}
+
+.logoS{
+  align-items: center;
+  >img{
+    width: 4rem;
+  }
+  h1{
+    font-size: 1.2rem;
+    font-weight: 900;
+  }
+}
+
+.logoL{
+  align-items: center;
+  >img{
+      width: 10rem;
+  }
+  h1{
+      font-size: 2.5rem;
+      font-weight: 900;
+  }
+}
+
+
+.logoL{
+  align-items: center;
+  >img{
+      width: 10rem;
+  }
+  h1{
+      font-size: 2.5rem;
+      font-weight: 900;
+  }
+}
+
+
+.efjm-light{
+  align-items: center;
+  border-radius: 3rem;
+  padding: 0.2rem;
+  width: 3rem;
+  color: white;
+  font-weight: 900;
+  >img{
+      display: flex;
+      object-fit: contain;
+      width: 100%;
+  }
+  .whity{
+      width: 90%;
+      border: 1px solid white;
+      border-radius: 3rem;
+  }
+}
+
+.efjm-dark{
+  align-items: center;
+  border-radius: 3rem;
+  padding: 0.2rem;
+  width: 3rem;
+  color: white;
+  font-weight: 900;
+  >img{
+      display: flex;
+      object-fit: contain;
+      width: 100%;
+  }
+  .whity{
+      width: 90%;
+      border: 1px solid white;
+      border-radius: 3rem;
+  }
+}

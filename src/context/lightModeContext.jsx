@@ -4,6 +4,7 @@ const LightModeContext = createContext(undefined);
 
 function LightModeProvider(props) {
   const lightModeContext = useState(LightModeContext);
+  const [lightMode, setLightMode] = useState(true);
   return (
     <LightModeContext.Provider value={lightModeContext}>
       {props.children}

@@ -18,6 +18,9 @@ import Main from "./components/pages/Main.jsx";
 
 function App() {
   const [lightMode, setLightMode] = useContext(LightModeContext);
+  const body = document.querySelector("body");
+  body.classList.add(!lightMode ? `body-dark` : `body-light`);
+
   const [count, setCount] = useState(0);
   return (
     <div className={!lightMode ? `App-dark` : `App-light`}>

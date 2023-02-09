@@ -14,7 +14,7 @@ import LightModeContext from "../context/lightModeContext.jsx";
 const BurgerMenuTalent = ({ setShowMenu, showMenu }) => {
   const navigate = useNavigate();
   const [user, setUser] = useContext(UserContext);
-  const [lightMode, setLightMode] = useState(lightMode._currentValue);
+  const [lightMode, setLightMode] = useContext(LightModeContext);
 
   const toggleLightMode = () => {
     setLightMode(!lightMode);

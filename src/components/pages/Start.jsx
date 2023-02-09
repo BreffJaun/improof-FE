@@ -13,17 +13,8 @@ import Footer from "../elements/Footer.jsx";
 
 // CONTEXT
 import UserContext from "../../context/userContext.jsx";
-// import LightModeContext from "../../context/lightModeContext.jsx";
 
 const Start = () => {
-  // const [lightMode, setLightMode] = useContext(LightModeContext);
-
-  // const body = document.querySelector("body");
-  // console.log("body", body);
-  // {
-  //   body.classList.add(`${lightMode}`);
-  // }
-
   const [user, setUser] = useContext(UserContext);
   return (
     <>
