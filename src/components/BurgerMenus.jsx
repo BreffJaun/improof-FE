@@ -5,7 +5,9 @@ import { useContext } from "react";
 import '../styles/burgermenu.scss'
 
 // ICONS
+import { RxHamburgerMenu } from "react-icons/rx"
 import { IoIosLogOut } from "react-icons/io"
+import { MdOutlinePerson } from "react-icons/md"
 
 // CONTEXT
 import UserContext from "../context/userContext";
@@ -25,7 +27,7 @@ const BurgerMenuTalent = ({setShowMenu, showMenu}) => {
           lightmode/darkmode
         </div>
         <div onClick={() => setShowMenu(!showMenu)} className="mb15 col central">
-          <button className="mb05" onClick={() => { navigate(`/userdetails/${user._id}`)}}>my profile</button>
+          <button className="mb05" onClick={() => { navigate(`/userdetails/${user._id}`)}}>< MdOutlinePerson /> my profile</button>
           <button className="mb05" onClick={ ()=> navigate("/createproject")}>new project</button>
           <button className="mb05" onClick={ ()=> navigate("/myprojects")}>my projects</button>
           <button className="mb05" onClick={ ()=> navigate("/starprojects")}>star projects</button>
@@ -52,7 +54,7 @@ const BurgerMenuRecruiter = ({setShowMenu, showMenu}) => {
           lightmode/darkmode
         </div>
         <div onClick={() => setShowMenu(!showMenu)} className="mb15 col central">
-          <button className="mb05" onClick={ ()=> navigate(`/userDetails/${user._id}`)}>my profile</button>
+          <button className="mb05" onClick={ ()=> navigate(`/userDetails/${user._id}`)}><MdOutlinePerson/> my profile</button>
           <button className="mb05" onClick={ ()=> navigate("/community")}>find talents</button>
           <button className="mb05" onClick={() => navigate("/starprojects")}>find projects</button>
           <button className="mb05" onClick={ ()=> navigate("/newsearch")}>new search</button>
