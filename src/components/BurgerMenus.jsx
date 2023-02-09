@@ -25,14 +25,14 @@ const BurgerMenuTalent = ({setShowMenu, showMenu}) => {
           lightmode/darkmode
         </div>
         <div onClick={() => setShowMenu(!showMenu)} className="mb15 col central">
-          <p className="mb05" onClick={() => { navigate(`/userdetails/${user._id}`)}}>my profile</p>
-          <p className="mb05" onClick={ ()=> navigate("/createproject")}>new project</p>
-          <p className="mb05" onClick={ ()=> navigate("/myprojects")}>my projects</p>
-          <p className="mb05" onClick={ ()=> navigate("/starprojects")}>star projects</p>
-          <p className="mb05" onClick={ ()=> navigate("/community")}>community</p>
+          <button className="mb05" onClick={() => { navigate(`/userdetails/${user._id}`)}}>my profile</button>
+          <button className="mb05" onClick={ ()=> navigate("/createproject")}>new project</button>
+          <button className="mb05" onClick={ ()=> navigate("/myprojects")}>my projects</button>
+          <button className="mb05" onClick={ ()=> navigate("/starprojects")}>star projects</button>
+          <button className="mb05" onClick={ ()=> navigate("/community")}>community</button>
         </div>
         <div onClick={()=> setShowMenu(!showMenu)} className="central mb05">
-          <p onClick={ ()=> navigate("/login")}><IoIosLogOut /></p>
+          <button onClick={ ()=> navigate("/login")}><IoIosLogOut /> logout</button>
         </div>
       </div>
     </div>
@@ -53,10 +53,10 @@ const BurgerMenuRecruiter = ({setShowMenu, showMenu}) => {
         </div>
         <div onClick={() => setShowMenu(!showMenu)} className="mb15 col central">
           <p className="mb05" onClick={ ()=> navigate(`/userDetails/${user._id}`)}>my profile</p>
-          <p className="mb05" onClick={ ()=> navigate("/community")}>find talents</p>
-          <p className="mb05" onClick={() => navigate("/starprojects")}>find projects</p>
-          <p className="mb05" onClick={ ()=> navigate("/newsearch")}>new search</p>
-          <p className="mb05" onClick={ ()=> navigate("/searchhistory")}>search history</p>
+          <button className="mb05" onClick={ ()=> navigate("/community")}>find talents</button>
+          <button className="mb05" onClick={() => navigate("/starprojects")}>find projects</button>
+          <button className="mb05" onClick={ ()=> navigate("/newsearch")}>new search</button>
+          <button className="mb05" onClick={ ()=> navigate("/searchhistory")}>search history</button>
         </div>
         <div onClick={()=> setShowMenu(!showMenu)} className="central mb05" >
           <p className="mb05" onClick={ ()=> navigate("/login")}><IoIosLogOut /></p>

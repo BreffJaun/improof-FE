@@ -23,7 +23,7 @@ const TalentCard = ({talent, user}) => {
       <div className="card talent" >
         <div className="flex central">
           <div className="circle50 bg-FAV central" onClick={()=> navigate(`/userDetails/${talent._id}`)}>
-            { talent?.profile?.avatar ? 
+            { talent?.profile?.avatar? 
               <img src={talent.profile.avatar} width="50" /> : 
               <p className="initials">{talent.profile?.initials}</p> }
           </div>

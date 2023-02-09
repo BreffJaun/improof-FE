@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 
+
 const RecruiterMenu = () => {
   const navigate = useNavigate()
 
@@ -8,7 +9,7 @@ const RecruiterMenu = () => {
     <div className="mt2 mb2">
       <div className="col">
         <button 
-          className="bg-FAV" 
+          className="bg-FAV btn" 
           onClick={ ()=> navigate("/community")}>find talents
         </button>
         <button 
