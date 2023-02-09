@@ -1,4 +1,5 @@
 button{
+    cursor: pointer;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     padding-left: 0.8rem;
@@ -9,7 +10,11 @@ button{
     margin: auto;
     width: 150px;
     margin-bottom: 0.5rem;
-    background-color: gray;
+    background-image: linear-gradient(135deg, var(--O1), var(--O2));
+    &:hover{
+        background-image: linear-gradient(135deg, var(--O1), var(--O3));
+        font-weight: 600;   
+    }
 }
 
 .editBtn{
@@ -23,7 +28,6 @@ button{
         font-size: 1.3rem;
     }
 }
-
 
 .circle15{
     width: 15px;

@@ -23,7 +23,7 @@ const TalentCard = ({talent, user}) => {
       <div className="card talent" >
         <div className="flex central">
           <div className="circle50 bg-FAV central" onClick={()=> navigate(`/userDetails/${talent._id}`)}>
-            { talent?.profile?.avatar ? 
+            { talent?.profile?.avatar? 
               <img src={talent.profile.avatar} width="50" /> : 
               <p className="initials">{talent.profile?.initials}</p> }
           </div>
@@ -35,7 +35,6 @@ const TalentCard = ({talent, user}) => {
         </div>
 
         <div className="flex">
-          <button className="circle30"><FiSend /></button>
           <SendMessageBtn talent={talent} user={user} />
           {user.follows.find(follow => follow._id === talent._id) ? <FollowBtn talent={talent} user={user}/> : <FollowBtn talent={talent} user={user}/>}
         </div>
@@ -44,6 +43,4 @@ const TalentCard = ({talent, user}) => {
     </>
   );
 };
-
-
 export {TalentCard};
