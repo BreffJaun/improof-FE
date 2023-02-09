@@ -11,7 +11,7 @@ const Notifications = () => {
 
   return (
     <>
-      <div className="central col">
+      <div className="central col burger-container">
         <h1 className="c-FAV mt2 mb2">notifications</h1>
         <div className="col">
           {user.notifications.map(notification => {     
@@ -24,7 +24,6 @@ const Notifications = () => {
             </div>}).reverse()}          
         </div>
       </div>
-      <Footer/>
     </>
   );
 };

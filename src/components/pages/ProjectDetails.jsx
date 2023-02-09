@@ -40,10 +40,9 @@ const ProjectDetails = () => {
         });
     }
     fetchProject()
-  },[])
+  },[trigger])
 
   useEffect(()=> {
-
     const getUser = async () => {
       await fetch(`${host}/users/checklogin`,{
         credentials:"include"

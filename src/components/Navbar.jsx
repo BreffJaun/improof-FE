@@ -17,16 +17,19 @@ import { RiHomeLine as Home} from "react-icons/ri"
 
 // CONTEXT
 import UserContext from "../context/userContext.jsx";
+import Notifications from "./pages/Notifications.jsx";
 
 
 
 const Navbar = () => {
   const [user, setUser] = useContext(UserContext)
   const [showMenu, setShowMenu] = useState(false)
-  const [showSearch, setshowSearch] = useState()
+  const [showSearch, setshowSearch] = useState(false)
+  const [showNotifications, setShowNotifications] = useState(false)
+  
 
   const navigate = useNavigate()
-  console.log(user);
+
   const unreadNots = user?.notifications?.filter(not => !not.isRead)
   const unreadMsgs = user?.conversations?.message?.filter(msg => !msg.isRead)
 
@@ -47,11 +50,10 @@ const Navbar = () => {
   return (
     <>
       <div className="navbar mt2">
-        <div onClick={() => {
-          navigate("/notifications")
+        <div onClick={() => {      
           handleReadNotification()
           }} className="rel" >
-          <Bell />
+          <Bell onClick={()=>setShowNotifications(!showNotifications)}/>
           {unreadNots?.length > 0  && 
             <div className="signal circle15 bg-FAV central abs" >
               <div className="c-A100">{unreadNots.length}</div>
@@ -76,8 +78,12 @@ const Navbar = () => {
       </div>
 
       <div>
-        { showMenu && user?.profile?.isTalent && <BurgerMenuTalent setShowMenu={setShowMenu} showMenu={showMenu}/>}
+        { showMenu && user?.profile?.isTalent && 
+        <BurgerMenuTalent setShowMenu={setShowMenu} showMenu={showMenu}/>}
         { showMenu && user?.profile?.isRecruiter && <BurgerMenuRecruiter setShowMenu={setShowMenu} showMenu={showMenu}/>}
+      </div>
+      <div>
+        { showNotifications && <Notifications/> }        
       </div>
     </>
   );

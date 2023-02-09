@@ -30,8 +30,12 @@ const BurgerMenuTalent = ({setShowMenu, showMenu}) => {
         <div onClick={()=> setShowMenu(!showMenu)} className="mb2">
           lightmode/darkmode
         </div>
-        <div onClick={() => setShowMenu(!showMenu)} className="mb15 col central">
-          <button className="mb05" onClick={() => { navigate(`/userdetails/${user._id}`)}}>< MdOutlinePerson /> my profile</button>
+        <div onClick={() =>{
+          console.log(event.target);
+          setShowMenu(!showMenu)
+        }
+        }  className="mb15 col central">
+          <button className="mb05" onClick={() => navigate(`/userdetails/${user._id}`)}>< MdOutlinePerson /> my profile</button>
           <button className="mb05" onClick={ ()=> navigate("/createproject")}><NewProject/>new project</button>
           <button className="mb05" onClick={ ()=> navigate("/myprojects")}><Projects/> my projects</button>
           <button className="mb05" onClick={ ()=> navigate("/starprojects")}><Star/>star projects</button>
