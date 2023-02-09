@@ -1,6 +1,5 @@
 import { useNavigate, Route, Routes } from "react-router"
 import { useEffect, useState, useContext } from "react";
-
 import { host } from "../../api/host.jsx";
 
 // NAVBAR-COMPONENTEN
@@ -13,7 +12,7 @@ import Start from "./Start.jsx";
 import {LogoL, LogoS} from "../Logo.jsx"
 import CreateProject from "./CreateProject.jsx";
 import MyProjects from "./MyProjects.jsx";
-import StarProjects from "./StarProjects.jsx";
+import Projects from "./Projects.jsx";
 import Community from "./Community.jsx";
 import SearchHistory from "./SearchHistory.jsx";
 import NewSearch from "./NewSearch.jsx";
@@ -70,7 +69,7 @@ const Main = () =>{
                 {/* ROUTES PROJECTS */}
                 <Route path="/createproject" element={<CreateProject />} />
                 <Route path="/myprojects" element={<MyProjects />} />
-                <Route path="/starprojects" element={<StarProjects/>} />
+                <Route path="/projects" element={<Projects/>} />
                 <Route path="/projectdetails/:id" element={<ProjectDetails/>} />
 
                 {/* ROUTES RECRUITER */}
@@ -80,7 +79,7 @@ const Main = () =>{
                 {/* ROUTES NAVBAR */}
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/messages" element={<Messages />} />
-            </Routes>
+            </Routes>            
         </>
     )
 }

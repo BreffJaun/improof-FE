@@ -21,6 +21,7 @@ import Notifications from "./pages/Notifications.jsx";
 
 
 
+
 const Navbar = () => {
   const [user, setUser] = useContext(UserContext)
   const [showMenu, setShowMenu] = useState(false)
@@ -46,15 +47,20 @@ const Navbar = () => {
       .then((response) => response.json())
       .then((json) => console.log(json));
   }
+  // const handleMenu = (event)=>{
+  //   console.log(event.target.closest("div").className)
+  //   event.target.closest("div").name === "bell" && 
+  //   setShowNotifications(!showNotifications) && 
+  //   setShowMenu(false)
+
+  // }
 
   return (
     <>
       <div className="navbar mt2">
-        <div onClick={() => {      
-          handleReadNotification()
-          }} className="rel" >
-          <Bell onClick={()=>setShowNotifications(!showNotifications)}/>
-          {unreadNots?.length > 0  && 
+        <div onClick={() => handleReadNotification()} className="rel bell">
+              <Bell onClick={()=> setShowNotifications(!showNotifications)} />
+            {unreadNots?.length > 0  && 
             <div className="signal circle15 bg-FAV central abs" >
               <div className="c-A100">{unreadNots.length}</div>
             </div>

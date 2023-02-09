@@ -75,7 +75,7 @@ const ProjectAdd = () => {
 
 const MyProjectCard = ({project, user}) => {
   const navigate = useNavigate()
-  return (
+  return ( project && user &&
     <div className="project card col">
       <div className="project-banner bg-FAV" onClick={() => navigate(`/projectdetails/${project._id}`)}></div>
       <div className="project-body">
@@ -89,12 +89,10 @@ const MyProjectCard = ({project, user}) => {
             <>
               <p className="c-FAV">contributors:</p>
               <div className="col mt05">
-                {project?.team?.length && project?.team?.map(member =>{ 
-                  // console.log("membID",member._id) 
-                  // console.log("USERID",user._id) 
-                  console.log(user._id !== member._id) 
-                   if(member._id !== user._id){
-                     return <TalentCard key={member._id} talent={member} user={user}/>                     
+                {project?.team?.length && project.team.map((member, i) =>{ 
+                  console.log(member)    
+                   if(member?._id !== user?._id){
+                     return <TalentCard key={i} talent={member} user={user} />                     
                   }
                 })}
               </div>
