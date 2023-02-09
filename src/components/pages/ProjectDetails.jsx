@@ -1,5 +1,5 @@
 import "../../styles/project-details.scss"
-
+import React from "react";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -22,7 +22,8 @@ const ProjectDetails = () => {
   const [trigger, setTrigger] = useContext(TriggerContext)
   const [project, setProject] = useState({})
   const [isPending, setPending] = useState(true)
-  // const icons = useRef(null)
+  // const icons = !isPending && user && document.querySelector("#icons")
+  const icons2 = useRef(null)
 
   useEffect(() => {
     setPending(true)
@@ -58,29 +59,12 @@ const ProjectDetails = () => {
     }
     getUser();
   },[trigger])
-  
-  console.log(project)
-  const items = !isPending && project.stones.map(stone => {
-   return {
-    title: stone.date, 
-    cardTitle:stone.title, 
-    cardSubtitle:stone.description,
-    timelineContent:
-    <div className="timeline-content stone-card">
-      {stone?.team?.map(member =>
-      <div className="circle50 bg-gDB">
-        {member.profile.avatar ? <img src={member.profile.avatar}/> : <p>{member.profile.initials}</p>}
-      </div>
-       )}
-    </div>
-  }
-  })  
 
   return !isPending && user &&( 
     <div className="componente">
 
       <div>
-        {/* <img src="https://www.downloadclipart.net/thumb/9394-stone-1-vector-thumb.png" alt="Thumbnail" /> */}
+        <img src="https://www.downloadclipart.net/thumb/9394-stone-1-vector-thumb.png" alt="Thumbnail" />
         <h1>{project.name}</h1>
         <p>{project.description}</p>
       </div>
@@ -90,11 +74,8 @@ const ProjectDetails = () => {
 
         {
         !isPending && project.stones.map(stone =>{
-          // const icons = document.querySelector(".chrono-icons")
-          // stone.kind === "stepstone" && icon.append(<img src={Stepstone}/>)
-
           return (
-            <>
+     
               <div>
                 {stone.media && <img src="" alt="" />}
                 <h1>{stone.title}</h1>
@@ -108,11 +89,12 @@ const ProjectDetails = () => {
                     )}
                 </div>
               </div>     
-            </>
+       
           )
         })        
         }                
-        <div className="chrono-icons">
+        <div className="chrono-icons" id="icons" ref={icons2}>
+          
         </div>
 
     
