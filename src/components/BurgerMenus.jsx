@@ -5,13 +5,13 @@ import { useContext } from "react";
 import '../styles/burgermenu.scss'
 
 // ICONS
-import { RxHamburgerMenu } from "react-icons/rx"
 import { IoIosLogOut } from "react-icons/io"
 import { MdOutlinePerson } from "react-icons/md"
 import { MdPeopleOutline as Community } from "react-icons/md"
 import { AiOutlineAppstoreAdd as Projects } from "react-icons/ai"
 import { AiOutlinePlusSquare as NewProject } from "react-icons/ai"
 import { AiOutlineStar as Star } from "react-icons/ai"
+import { MdOutlineClose as X} from "react-icons/md"
 
 // CONTEXT
 import UserContext from "../context/userContext";
@@ -44,6 +44,11 @@ const BurgerMenuTalent = ({setShowMenu, showMenu}) => {
         <div onClick={()=> setShowMenu(!showMenu)} className="central mb05">
           <button onClick={ ()=> navigate("/login")}><IoIosLogOut /> logout</button>
         </div>
+        <div className="central" onClick={()=> setShowMenu(!showMenu)}>
+          <button className="circle40 bg-FAV central BrgClsBtn" title="close">
+            <h1><X /></h1>
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -70,6 +75,12 @@ const BurgerMenuRecruiter = ({setShowMenu, showMenu}) => {
         </div>
         <div onClick={()=> setShowMenu(!showMenu)} className="central mb05" >
           <button className="mb05" onClick={ ()=> navigate("/login")}><IoIosLogOut /> logout</button>
+        </div>
+
+        <div className="central" onClick={()=> setShowMenu(!showMenu)}>
+          <button className="circle40 bg-FAV central BrgClsBtn" title="close">
+            <h1><X /></h1>
+          </button>
         </div>
       </div>
     </div>

@@ -53,7 +53,7 @@ const Navbar = () => {
         <div onClick={() => {      
           handleReadNotification()
           }} className="rel" >
-          <Bell onClick={()=>setShowNotifications(!showNotifications)}/>
+          <Bell onClick={() => setShowNotifications(!showNotifications)} />
           {unreadNots?.length > 0  && 
             <div className="signal circle15 bg-FAV central abs" >
               <div className="c-A100">{unreadNots.length}</div>
@@ -83,7 +83,7 @@ const Navbar = () => {
         { showMenu && user?.profile?.isRecruiter && <BurgerMenuRecruiter setShowMenu={setShowMenu} showMenu={showMenu}/>}
       </div>
       <div>
-        { showNotifications && <Notifications/> }        
+        { showNotifications && <Notifications showNotifications={showNotifications} setShowNotifications={setShowNotifications} /> }        
       </div>
     </>
   );

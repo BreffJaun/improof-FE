@@ -1,17 +1,25 @@
 .burger-container{
     display: flex;
     position: relative;
-    text-align: left;
     >*{
         display:flex;
         flex-direction: column;
         position: absolute;
         z-index: 10;
-        width: 15rem;
-        padding: 1rem;
+        width: 20rem;
+        margin-top: 1rem; 
+        padding: 2rem;
         right: 0;
         background-color: white;
+        border: 1px solid var(--A60);
         box-shadow: 0.3rem 0.3rem 0.6rem rgba(0, 0, 0, 0.2);
         border-radius: 8px;
     }
+}
+
+.BrgClsBtn{
+    cursor: pointer;
+    display: flex;
+    position: absolute;
+    bottom: -27px;
 }
