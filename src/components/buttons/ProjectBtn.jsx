@@ -9,7 +9,7 @@ import { useContext } from "react";
 import TriggerContext from "../../context/triggerContext.jsx";
 import UserContext from "../../context/userContext.jsx";
 
-const handleAddFollow = async (project, user, setUser) => {
+const handleAddFollow = async (project, user, setUser, setTrigger, trigger) => {
   await fetch(`${host}/projects/follow/add`, {
     credentials: "include",
     method: "PATCH",
@@ -26,13 +26,15 @@ const handleAddFollow = async (project, user, setUser) => {
       if (json.status) {
         setUser(json.data);
         toast.info(`you added the ${project.name} to you favorites`);
+        setTrigger(!trigger)
       } else {
         toast.info(`something went wrong`);
       }
     });
 };
 
-const handleDeleteFollow = async (project, user, setUser) => {
+const handleDeleteFollow = async (project, user, setUser, setTrigger, trigger) => {
+
   await fetch(`${host}/projects/follow/delete`, {
     credentials: "include",
     method: "DELETE",
@@ -49,6 +51,7 @@ const handleDeleteFollow = async (project, user, setUser) => {
       if (json.status) {
         setUser(json.data);
         toast.info(`you deleted the ${project.name} from you favorites`);
+        setTrigger(!trigger)
       } else {
         toast.info(`something went wrong`);
       }
@@ -56,21 +59,26 @@ const handleDeleteFollow = async (project, user, setUser) => {
 };
 const ProjectBtn = ({ project }) => {
   const [user, setUser] = useContext(UserContext);
+  const [trigger, setTrigger] = useContext(TriggerContext)
 
   return user.starProjects.find((projekt) => projekt._id === project._id) ? (
-    <button
-      className="action"
-      onClick={() => handleDeleteFollow(project, user, setUser)}
-    >
-      <RxCross2 />
-    </button>
+    <div>
+      <button
+        className="action"
+        onClick={() => handleDeleteFollow(project, user, setUser, setTrigger, trigger)}
+      >
+        <RxCross2 />
+      </button>
+    </div>
   ) : (
-    <button
-      className="action"
-      onClick={() => handleAddFollow(project, user, setUser)}
-    >
-      <HiPlus />
-    </button>
+    <div>
+      <button
+        className="action"
+        onClick={() => handleAddFollow(project, user, setUser, setTrigger, trigger)}
+      >
+        <HiPlus />
+      </button>
+    </div>
   );
 };
 

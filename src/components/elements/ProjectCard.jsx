@@ -107,9 +107,9 @@ const MyProjectCard = ({project, user}) => {
                 <div className="col mt05">
                   {project?.team?.length &&
                     project?.team?.map((member) => {
-                      // console.log("membID",member._id)
-                      // console.log("USERID",user._id)
-                      console.log(user._id !== member._id);
+                      // console.log("member", member)
+                      // console.log("USERID", user._id)
+                      // console.log(user._id !== member._id);
                       if (member._id !== user._id) {
                         return (
                           <TalentCard
@@ -131,10 +131,7 @@ const MyProjectCard = ({project, user}) => {
         </div>
 
         <div className="col">
-          <button className="action">
-            <RxCross2 />
-          </button>
-          <p>delete</p>
+          <ProjectBtn project={project} user={user} />
         </div>
       </div>
     </div>
@@ -142,9 +139,10 @@ const MyProjectCard = ({project, user}) => {
 };
 
 const ProjectCardNewsFeed = ({ project, user }) => {
+  const navigate = useNavigate()
   return (
     <div className="project card col">
-      <div className="project-banner bg-FAV"></div>
+      <div className="project-banner bg-FAV" onClick={() => navigate(`/projectdetails/${project._id}`)}></div>
       <div className="project-body">
         <div>
           <div>

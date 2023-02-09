@@ -27,6 +27,7 @@ import EFJM from "./EFJM";
 
 //CONTEXT
 import UserContext from "../../context/userContext.jsx";
+import { ToastContainer } from "react-toastify";
 
 
 
@@ -79,7 +80,8 @@ const Main = () =>{
                 {/* ROUTES NAVBAR */}
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/messages" element={<Messages />} />
-            </Routes>            
+            </Routes> 
+            <ToastContainer/>           
         </>
     )
 }

@@ -15,9 +15,11 @@ import { FiSend } from "react-icons/fi"
 
 
 
+
 const TalentCard = ({talent, user}) => {
   
   const navigate = useNavigate()
+  // console.log(talent)
   return (
     <>
       <div className="card talent" >

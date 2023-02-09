@@ -1,4 +1,4 @@
-import { MyProjectCard } from "../elements/ProjectCard.jsx";
+import { MyProjectCard, ProjectCardNewsFeed } from "../elements/ProjectCard.jsx";
 import { useContext, useEffect } from "react";
 import { host } from "../../api/host.jsx";
 import Footer from "../elements/Footer.jsx";
@@ -25,7 +25,7 @@ const MyProjects = () => {
   return (
     <div className="mb2 mt2">
       <h1 className="central c-FAV mb2">my projects</h1>
-      {user?.myProjects?.map((project)=> <MyProjectCard project={project} user={user} />)}
+      {user?.myProjects?.map((project)=> <ProjectCardNewsFeed project={project} user={user} />)}
       <Footer/>
     </div>
   );
