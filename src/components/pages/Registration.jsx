@@ -13,7 +13,7 @@ import { LogoL } from "../../components/Logo"
 
 const Registration = () => {
 
-    const navigate = useNavigate();
+    const navigate = useNavigate();    
 
     const toastOptions = {
         position: "bottom-right",
