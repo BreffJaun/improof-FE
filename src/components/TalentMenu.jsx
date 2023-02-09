@@ -16,7 +16,7 @@ const TalentMenu = () => {
           onClick={ ()=> navigate("/myprojects")}>my projects
         </button>
         <button
-          onClick={ ()=> navigate("/starprojects")}>star projects
+          onClick={ ()=> navigate("/projects")}>projects
         </button>
         <button
           onClick={ ()=> navigate("/community")}>community

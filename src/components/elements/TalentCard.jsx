@@ -15,22 +15,24 @@ import { FiSend } from "react-icons/fi"
 
 
 
+
 const TalentCard = ({talent, user}) => {
   
   const navigate = useNavigate()
+  // console.log(talent)
   return (
     <>
       <div className="card talent" >
         <div className="flex central">
           <div className="circle50 bg-FAV central" onClick={()=> navigate(`/userDetails/${talent._id}`)}>
             { talent?.profile?.avatar? 
-              <img src={talent.profile.avatar} width="50" /> : 
+              <img src={talent.profile?.avatar} width="50" /> : 
               <p className="initials">{talent.profile?.initials}</p> }
           </div>
           <div className="ml1 col">
-            <p onClick={()=> navigate(`/userDetails/${talent._id}`)}>{talent.profile.firstName} {talent.profile.lastName}</p>
-            <p className="c-A80">{talent.profile.position}</p>
-            <p className="c-A80">{talent.profile.toolsAndSkills}</p>
+            <p onClick={()=> navigate(`/userDetails/${talent._id}`)}>{talent.profile?.firstName} {talent.profile?.lastName}</p>
+            <p className="c-A80">{talent.profile?.position}</p>
+            <p className="c-A80">{talent.profile?.toolsAndSkills}</p>
           </div>
         </div>
 
