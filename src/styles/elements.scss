@@ -226,3 +226,21 @@ input[type=radio]:checked::before {
     align-items: center;
     flex-direction: column;
 }
+
+.thumbnailS{
+    display: flex;
+    position: relative;
+    height:250px;
+    background-color: var(--A60);
+    width: 750px;
+    border-radius: 8px;
+    *{
+        display: flex;
+        position: absolute;
+        bottom: 0.5rem;
+        right: 0.5rem;
+        cursor:pointer;
+        font-size: 2rem;
+        color: var(--A100);
+    }
+}

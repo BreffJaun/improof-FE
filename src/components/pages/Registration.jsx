@@ -1,18 +1,16 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { host } from "../../api/host.jsx"
-
-
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../elements/Footer.jsx";
 
-// componenten
+
+// COMPONENTS
 import { LogoL } from "../../components/Logo"
 
 
 const Registration = () => {
-
     const navigate = useNavigate();    
 
     const toastOptions = {
