@@ -8,22 +8,28 @@ import { BurgerMenuRecruiter, BurgerMenuTalent } from "./BurgerMenus.jsx";
 import '../styles/navbar.scss'
 
 // ICONS
-import { BiMessageAlt } from 'react-icons/bi'
+import { BiMessageAlt as Message} from 'react-icons/bi'
 import { AiOutlineBell as Bell } from "react-icons/ai"
 import { RxHamburgerMenu } from "react-icons/rx"
 import { RxMagnifyingGlass as Lupe } from "react-icons/rx"
-import { RiHomeLine as Home} from "react-icons/ri"
+import { RiHome2Line as Home} from "react-icons/ri"
+
 
 // CONTEXT
 import UserContext from "../context/userContext.jsx";
 import Notifications from "./pages/Notifications.jsx";
+import Conversations from "./pages/Conversations.jsx";
+
+
+
 
 const Navbar = () => {
   const [user, setUser] = useContext(UserContext)
   const [showMenu, setShowMenu] = useState(false)
   const [showSearch, setshowSearch] = useState(false)
   const [showNotifications, setShowNotifications] = useState(false)
-  
+  const [showConversations, setShowConversations] = useState(false)
+
   const navigate = useNavigate()
 
   const unreadNots = user?.notifications?.filter(not => !not.isRead)
@@ -79,14 +85,16 @@ const Navbar = () => {
             </div>
           }
         </div>
-        <div onClick={() => navigate("/messages")} className="rel">
-          <BiMessageAlt />
-          {unreadMsgs?.length && 
-            <div className="signal circle15 bg-FAV central abs">
-              <div className="c-A100">{unreadMsgs?.length}</div>
-            </div>
-          }
-        </div>        
+
+        <div className="rel">
+          <Message onClick={() => setShowConversations(!showConversations)}/> 
+            {unreadMsgs?.length && 
+              <div className="signal circle15 bg-FAV central abs">
+                <div className="c-A100">{unreadMsgs?.length}</div>
+              </div>
+            }
+        </div>
+        
         <div>
           {showSearch && <input type="text" /> }
           <Lupe onClick={() =>{ 
@@ -107,17 +115,22 @@ const Navbar = () => {
         { showMenu && user?.profile?.isTalent && 
         <BurgerMenuTalent
           setShowMenu={setShowMenu} 
-          showMenu={showMenu} 
-          setShowNotifications={setShowNotifications} 
+          showMenu={showMenu}
+           
 />}
 
         { showMenu && user?.profile?.isRecruiter && 
         <BurgerMenuRecruiter  
           setShowMenu={setShowMenu} showMenu={showMenu} setShowNotifications={setShowNotifications} />}
       </div>
+
       <div>
         { showNotifications && 
         <Notifications showNotifications={showNotifications} setShowNotifications={setShowNotifications} /> }        
+      </div>
+
+      <div>
+        { showConversations && <Conversations showConversations={showConversations} setShowConversations={setShowConversations} /> }        
       </div>
     </>
   );
