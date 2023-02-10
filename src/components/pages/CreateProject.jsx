@@ -40,11 +40,12 @@ const CreateProject = () => {
 
   const handleSubmit = async (event) => {
     console.log(newProject);
+    newProject.team=[user._id]
     event.preventDefault();
     const sendProjectData = async () => {
       await fetch(`${host}/projects/add`, {
         method: 'POST',
-        body: JSON.stringify({newProject}),
+        body: JSON.stringify(newProject),
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         },
