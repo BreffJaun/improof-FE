@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { host } from "../../api/host.jsx";
 
 const handleMessage = async (navigate, talent, user) => {
-
-  console.log(talent._id, user._id)
-  fetch(`${host}/conversations/`, {
+  await fetch(`${host}/conversations/`, {
   credentials:"include",
   method: 'POST',
   body: JSON.stringify({

@@ -35,8 +35,6 @@ const Navbar = () => {
   const unreadNots = user?.notifications?.filter(not => !not.isRead)
   const unreadMsgs = user?.conversations?.message?.filter(msg => !msg.isRead)
 
-  console.log(showNotifications)
-
   useEffect(()=> {
     const handleReadNotification = async () => {
       await fetch(`${host}/notifications/read`, {
@@ -49,7 +47,7 @@ const Navbar = () => {
         },
       })
         .then((response) => response.json())
-        .then((json) => console.log(json));
+        .then((json) => null);
     }
 
     const getUser = async () => {
