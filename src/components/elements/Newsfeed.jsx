@@ -57,7 +57,13 @@ const Newsfeed = () => {
     <div className="mt2">
       <p className="sl c-FAV">newsFeed</p>
       {projects.slice(0, 10).map((project) => {
-        return <ProjectCardNewsFeed project={project} user={user} />;
+        return (
+          <ProjectCardNewsFeed
+            key={project._id}
+            project={project}
+            user={user}
+          />
+        );
       })}
     </div>
   );
