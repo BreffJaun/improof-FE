@@ -1,8 +1,5 @@
 import { useContext } from "react";
 
-//ELEMENTS
-import Footer from "../elements/Footer.jsx";
-
 // ICONS
 import { MdOutlineClose as X} from "react-icons/md"
 

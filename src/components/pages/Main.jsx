@@ -19,6 +19,7 @@ import NewSearch from "./NewSearch.jsx";
 import ProjectDetails from "./ProjectDetails.jsx";
 import UserDetails from "./UserDetails.jsx";
 import UserEdit from "./UserEdit.jsx";
+import Conversations from "./Conversations.jsx";
 
 
 // FOOTER-COMPONENTEN
@@ -80,6 +81,8 @@ const Main = () =>{
                 {/* ROUTES NAVBAR */}
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/messages" element={<Messages />} />
+                <Route path="/conversations" element={<Conversations />} />
+            
             </Routes> 
             <ToastContainer/>           
         </>
