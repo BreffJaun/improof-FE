@@ -78,6 +78,7 @@ const Navbar = () => {
               <Bell onClick={()=> {
                 setShowNotifications(!showNotifications)
                 setShowMenu(false)
+                setShowConversations(false)
                 }} />
             {unreadNots?.length > 0  && 
             <div className="signal circle15 bg-FAV central abs" >
@@ -87,7 +88,11 @@ const Navbar = () => {
         </div>
 
         <div className="rel">
-          <Message onClick={() => setShowConversations(!showConversations)}/> 
+          <Message onClick={() => {
+            setShowConversations(!showConversations)
+            setShowNotifications(false)
+            setShowMenu(false)
+            }}/> 
             {unreadMsgs?.length && 
               <div className="signal circle15 bg-FAV central abs">
                 <div className="c-A100">{unreadMsgs?.length}</div>
@@ -100,6 +105,7 @@ const Navbar = () => {
           <Lupe onClick={() =>{ 
             setshowSearch(!showSearch)
             setShowNotifications(false)
+            setShowConversations(false)
             setShowMenu(false)
             }}/> 
         </div> 
@@ -108,6 +114,7 @@ const Navbar = () => {
         <div onClick={ ()=> {
           setShowMenu(!showMenu)
           setShowNotifications(false)
+          setShowConversations(false)
           }} ><RxHamburgerMenu /></div>
       </div>
 
@@ -130,7 +137,7 @@ const Navbar = () => {
       </div>
 
       <div>
-        { showConversations && <Conversations showConversations={showConversations} setShowConversations={setShowConversations} /> }        
+        { showConversations && <Conversations onClick={()=>setShowConversations(false)} showConversations={showConversations} setShowConversations={setShowConversations} /> }        
       </div>
     </>
   );
