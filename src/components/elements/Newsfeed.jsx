@@ -1,8 +1,17 @@
 import { host } from "../../api/host.jsx";
 import { useContext, useEffect, useSate, useState } from "react";
+import {
+  CarouselProvider,
+  Slider,
+  Slide,
+  ButtonBack,
+  ButtonNext,
+} from "pure-react-carousel";
+import "pure-react-carousel/dist/react-carousel.es.css";
 
 // ELEMENTE
 import { ProjectCardNewsFeed } from "./ProjectCard.jsx";
+import CategoriesFilter from "./CategoriesFilter.jsx";
 
 // CONTEXT
 import TriggerContext from "../../context/triggerContext.jsx";
@@ -50,21 +59,42 @@ const Newsfeed = () => {
       new Date(a.createdAt ?? a.updatedAt)
     );
   });
-
+  const counterSlide = 0;
   // Sort will change the initial array
 
   return (
     <div className="mt2">
       <p className="sl c-FAV">newsFeed</p>
-      {projects.slice(0, 10).map((project) => {
-        return (
-          <ProjectCardNewsFeed
-            key={project._id}
-            project={project}
-            user={user}
-          />
-        );
-      })}
+      <CarouselProvider
+        isPlaying={true}
+        interval={3000}
+        naturalSlideWidth={100}
+        naturalSlideHeight={25}
+        totalSlides={10}
+        infinite={false}
+        lockOnWindowScroll={true}
+        playDirection={"backward"}
+      >
+        <Slider>
+          {projects.slice(0, 10).map((project) => {
+            return (
+              <Slide index={counterSlide}>
+                <ProjectCardNewsFeed
+                  key={project._id}
+                  project={project}
+                  user={user}
+                />
+              </Slide>
+            );
+          })}
+        </Slider>
+        <ButtonBack>Back</ButtonBack>
+        <ButtonNext>Next</ButtonNext>
+      </CarouselProvider>
+      <div className="central col">
+        <h1 className="c-FAV mb1">filter your interest</h1>
+        <CategoriesFilter />
+      </div>
     </div>
   );
 };
