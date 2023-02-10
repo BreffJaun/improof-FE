@@ -81,7 +81,7 @@ const Main = () => {
 
           {/* ROUTES NAVBAR */}
           <Route path="/notifications" element={<Notifications />} />
-          <Route path="/messages" element={<Messages />} />
+          <Route path="/messages/:id" element={<Messages />} />
           <Route path="/conversations" element={<Conversations />} />
         </Routes>
         <ToastContainer />
