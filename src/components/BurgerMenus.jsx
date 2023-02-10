@@ -41,7 +41,7 @@ const BurgerMenuTalent = ({setShowMenu, showMenu}) => {
           <button className="mb05" onClick={() => navigate(`/userdetails/${user._id}`)}>< MdOutlinePerson /> my profile</button>
           <button className="mb05" onClick={ ()=> navigate("/createproject")}><NewProject/>new project</button>
           <button className="mb05" onClick={ ()=> navigate("/myprojects")}><Projects/> my projects</button>
-          <button className="mb05" onClick={ ()=> navigate("/starprojects")}><Star/>star projects</button>
+          <button className="mb05" onClick={ ()=> navigate("/projects")}><Star/>projects</button>
           <button className="mb05" onClick={ ()=> navigate("/community")}><Community/> community</button>
         </div>
         <div onClick={()=> setShowMenu(!showMenu)} className="central mb05">
@@ -76,9 +76,9 @@ const BurgerMenuRecruiter = ({setShowMenu, showMenu, setShowNotifications}) => {
         </div>
         <div onClick={() => setShowMenu(!showMenu)} className="mb15 col central">
           <button className="mb05" onClick={ ()=> navigate(`/userDetails/${user._id}`)}><MdOutlinePerson/> my profile</button>
-          <button className="mb05" onClick={ ()=> navigate("/community")}>find talents</button>
-          <button className="mb05" onClick={() => navigate("/starprojects")}>find projects</button>
-          <button className="mb05" onClick={ ()=> navigate("/newsearch")}>new search</button>
+          <button className="mb05" onClick={ ()=> navigate("/community")}>talents</button>
+          <button className="mb05" onClick={() => navigate("/projects")}>projects</button>
+          <button className="mb05" onClick={ ()=> navigate("/newsearch")}>search talents</button>
           {/* <button className="mb05" onClick={ ()=> navigate("/searchhistory")}>search history</button> */}
         </div>
         <div onClick={()=> setShowMenu(!showMenu)} className="central mb05" >
