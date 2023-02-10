@@ -1,7 +1,7 @@
-const RadioPrivacy = () => {
+const RadioPrivacy = ({setPrivacy}) => {
 
   const handlePrivacy = (event) => {
-    console.log(event.target.value)
+    setPrivacy(event.target.value)
   }
 
   return (

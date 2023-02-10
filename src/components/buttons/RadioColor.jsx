@@ -50,49 +50,49 @@ const RadioTalentColor = () => {
 
 
 
-const RadioProjectColor = () => {
+const RadioProjectColor = ({setProjectColor}) => {
   const handleProjectColor = (event) => {
-    console.log(event.target.value)
+    setProjectColor(event.target.value)
   }
   return (
     <div className="flex central mt05 mb05 colorCard">
       <div className="circle20 bg-gDB">
         <input
           type="radio"
-          name="ProCol"
-          value="className='........deepblue'"
+          name="color"
+          value="deepblue"
           onChange={handleProjectColor}>
         </input>
       </div>
       <div className="circle20 bg-gLB">
         <input
           type="radio"
-          name="ProCol"
-          value="className='........lightblue'"
+          name="color"
+          value="lightblue"
           onChange={handleProjectColor}>
         </input>
       </div>
       <div className="circle20 bg-gO">
         <input
           type="radio"
-          name="ProCol"
-          value="className='........orange'"
+          name="color"
+          value="orange"
           onChange={handleProjectColor}>
         </input>
       </div>
       <div className="circle20 bg-gPI">
         <input
           type="radio"
-          name="ProCol"
-          value="className='........pink'"
+          name="color"
+          value="pink"
           onChange={handleProjectColor}>
         </input>
       </div>
       <div className="circle20 bg-gPU">
         <input
           type="radio"
-          name="ProCol"
-          value="className='........purple'"
+          name="color"
+          value="purple"
           onChange={handleProjectColor}>
         </input>
       </div>

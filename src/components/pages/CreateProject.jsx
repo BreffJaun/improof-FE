@@ -6,26 +6,28 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserContext from "../../context/userContext.jsx";
 
-
 // COMPONENTS
 import CategoriesFilter from "../elements/CategoriesFilter.jsx";
 import RadioPrivacy from "../buttons/RadioPrivacy"
 import Footer from "../elements/Footer.jsx";
 import { RadioProjectColor } from "../buttons/RadioColor.jsx";
-
+import { TalentCard } from "../elements/TalentCard.jsx";
 
 // ICONS
 import { AiOutlineCamera as Camera} from "react-icons/ai"
-
-
 
 const CreateProject = () => {
   const navigate = useNavigate();
   const { id } = useParams("id");
   const [user, setUser] = useContext(UserContext)
+  const initial = {userId: user._id}
   const [thumbnail, setThumbnail] = useState(undefined)
+  const [projectColor, setProjectColor] = useState("orange")
   const [category, setCategory] = useState(undefined)
-
+  const [privacy, setPrivacy] = useState(false)
+  const [newProject, setNewProject] = useState(initial)
+  const [talents, setTalents] = useState([])
+  const [isPending, setPending] = useState(false)
 
   const toastOptions = {
     position: "bottom-right",
@@ -33,12 +35,19 @@ const CreateProject = () => {
     theme: "dark",
   };
 
-  const initial = {userId: user._id}
-  const [newProject, setNewProject] = useState(initial)
-
-  useEffect(() => {
-    fetch(`${host}/users`)
-  })
+  useEffect( () => {
+    setPending(true)
+    const getUsers = async () => {
+      fetch(`${host}/users`)
+        .then((response) => response.json())
+        .then((json) => {        
+          const onlyTalents = json.filter(user => user.profile.isTalent)
+          setTalents(onlyTalents)
+          setPending(false)
+        });
+    }
+    getUsers()
+  },[])
 
   const handleInput = (event) => {
     setNewProject({ ...newProject, [event.target.name]: event.target.value });
@@ -47,15 +56,23 @@ const CreateProject = () => {
   const handleFile = (event) => {
     setThumbnail(event.target.files[0])
   }
+
   useEffect(() => {
-    console.log(category);
+    setNewProject({ ...newProject, color: projectColor });
+  }, [projectColor])
+
+
+  useEffect(() => {
     setNewProject({ ...newProject, category: category });
   }, [category])
+
+  useEffect(() => {
+    setNewProject({ ...newProject, private: privacy });
+  }, [privacy])
 
 
   const handleSubmit = async (event) => {
     console.log(newProject);
-    console.log(user);
     newProject.team=[user._id]
     event.preventDefault();
 
@@ -85,7 +102,6 @@ const CreateProject = () => {
     };
     sendProjectData();
   }
-
 
     return (
       <>
@@ -129,48 +145,7 @@ const CreateProject = () => {
 
             <div className="col">
               <p>colorize your project</p>
-              <div className="flex central mt05 mb05 colorCard">
-                <div className="circle20 bg-gDB">
-                  <input
-                    type="radio"
-                    name="color"
-                    value="darkblue"
-                    onChange={handleInput}>
-                  </input>
-                </div>
-                <div className="circle20 bg-gLB">
-                  <input
-                    type="radio"
-                    name="color"
-                    value="lightblue"
-                    onChange={handleInput}>
-                  </input>
-                </div>
-                <div className="circle20 bg-gO">
-                  <input
-                    type="radio"
-                    name="color"
-                    value="orange"
-                    onChange={handleInput}>
-                  </input>
-                </div>
-                <div className="circle20 bg-gPI">
-                  <input
-                    type="radio"
-                    name="color"
-                    value="pink"
-                    onChange={handleInput}>
-                  </input>
-                </div>
-                <div className="circle20 bg-gPU">
-                  <input
-                    type="radio"
-                    name="color"
-                    value="purple"
-                    onChange={handleInput}>
-                  </input>
-                </div>
-              </div>
+              <RadioProjectColor setProjectColor={setProjectColor} />
             </div>
 
             <div className="col">
@@ -181,13 +156,25 @@ const CreateProject = () => {
 
           <div className="bo-DARK"></div>
           <h1 className="central c-FAV mb2">create your team</h1>
+          <h1>i know these talents</h1>
           <button className="circle30 bg-FAV c-A100 w700">+</button>
+          {user.follows.map((talent) => {
+            return (
+              <TalentCard talent={talent} user={user} key={talent._id} />
+            )
+          })}
 
           <div className="bo-DARK"></div>
-          <h1 className="central c-FAV mb2">invite others</h1>
+          <h1>i want these talents</h1>
 
           <div className="bo-DARK"></div>
-          {/* <RadioPrivacy /> */}
+          <RadioPrivacy setPrivacy={setPrivacy} />
+          <button className="circle30 bg-FAV c-A100 w700">+</button>
+          {/* {talents.filter((talent)=> talent._id !== user.follows._id).map((talent) => {
+            return (
+              <TalentCard talent={talent} user={user} key={talent._id} />
+            )
+          })} */}
 
 
           <div className="col">
