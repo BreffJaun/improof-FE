@@ -27,11 +27,14 @@ const BurgerMenuTalent = ({setShowMenu, showMenu}) => {
         <div >
           <p className="c-A80">talent menu</p>
         </div>
-        <div onClick={()=> setShowMenu(!showMenu)} className="mb2">
+        <div onClick={()=> {
+          setShowMenu(!showMenu)
+
+          }} className="mb2">
           lightmode/darkmode
         </div>
         <div onClick={() =>{
-          console.log(event.target);
+
           setShowMenu(!showMenu)
         }
         }  className="mb15 col central">
@@ -44,7 +47,9 @@ const BurgerMenuTalent = ({setShowMenu, showMenu}) => {
         <div onClick={()=> setShowMenu(!showMenu)} className="central mb05">
           <button onClick={ ()=> navigate("/login")}><IoIosLogOut /> logout</button>
         </div>
-        <div className="central" onClick={()=> setShowMenu(!showMenu)}>
+        <div className="central" onClick={()=> {
+          setShowMenu(!showMenu)
+          }}>
           <button className="circle40 bg-FAV central BrgClsBtn" title="close">
             <h1><X /></h1>
           </button>
@@ -54,7 +59,7 @@ const BurgerMenuTalent = ({setShowMenu, showMenu}) => {
   );
 };
 
-const BurgerMenuRecruiter = ({setShowMenu, showMenu}) => {
+const BurgerMenuRecruiter = ({setShowMenu, showMenu, setShowNotifications}) => {
   const navigate = useNavigate()
   const [user, setUser] = useContext(UserContext)
   return (
@@ -63,7 +68,10 @@ const BurgerMenuRecruiter = ({setShowMenu, showMenu}) => {
         <div >
           <p className="c-A80">recruiter menu</p>
         </div>
-        <div onClick={()=> setShowMenu(!showMenu)} className="mb2">
+        <div onClick={()=> {
+          setShowMenu(!showMenu)
+
+          }} className="mb2">
           lightmode/darkmode
         </div>
         <div onClick={() => setShowMenu(!showMenu)} className="mb15 col central">
@@ -74,10 +82,16 @@ const BurgerMenuRecruiter = ({setShowMenu, showMenu}) => {
           {/* <button className="mb05" onClick={ ()=> navigate("/searchhistory")}>search history</button> */}
         </div>
         <div onClick={()=> setShowMenu(!showMenu)} className="central mb05" >
-          <button className="mb05" onClick={ ()=> navigate("/login")}><IoIosLogOut /> logout</button>
+          <button className="mb05" onClick={ ()=> {
+            navigate("/login")
+
+            }}><IoIosLogOut /> logout</button>
         </div>
 
-        <div className="central" onClick={()=> setShowMenu(!showMenu)}>
+        <div className="central" onClick={()=> {
+          setShowMenu(!showMenu)
+
+          }}>
           <button className="circle40 bg-FAV central BrgClsBtn" title="close">
             <h1><X /></h1>
           </button>

@@ -21,7 +21,7 @@ const Notifications = ({setShowNotifications, showNotifications}) => {
             return <div className="mb1" key ={notification._id}>
               <p className={notification.isRead ? "c-FAV": "bg-gGR1"}>{notification.notText}</p>
               <p>{date + "   " +  time}</p></div>}).reverse()}
-          <div className="central" onClick={()=>setShowNotifications(!showNotifications)}>
+          <div className="central" onClick={()=>setShowNotifications(false)}>
             <button className="circle40 bg-FAV central BrgClsBtn" title="close">
               <h1><X /></h1>
             </button>
