@@ -1,6 +1,6 @@
 import Footer from "../elements/Footer.jsx";
 import { Message, Sender } from "../elements/MessageCard.jsx"
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { host } from "../../api/host.jsx";
 
@@ -14,8 +14,9 @@ const Messages = () => {
   const [sender, setSender] = useState({})
   const [participant, setParticipant] = useState({})
   const [msg, setMsg] = useState("")
+  const [trigger, setTrigger] = useState(false)
 
-  const navigate = useNavigate()
+
   
   useEffect(() => {
     const getConversation = async () => {
@@ -31,7 +32,7 @@ const Messages = () => {
         });
     }
     getConversation()
-  },[])
+  },[trigger])
 
   useEffect(()=>{
     const getUser = async ()=>{
@@ -49,7 +50,7 @@ const Messages = () => {
   },[conversation])
 
   const handleMsg = (event)=>{
-    setMsg(event.target.value)
+    setMsg(event.target.value)    
   }
 
   const handleSendMsg = async () => {
@@ -66,7 +67,10 @@ const Messages = () => {
         },
       })
         .then((response) => response.json())
-        .then((json) => console.log(json));
+        .then((json) => {
+          setTrigger(!trigger)
+          setMsg("")
+        });
   }
 
   return ( conversation && sender &&
@@ -82,7 +86,7 @@ const Messages = () => {
             return <Message key={msg._id} user={user} msg={msg}/>
           })}
           <div>
-            <input type="text" onChange={handleMsg}/>
+            <input type="text" value={msg} onChange={handleMsg}/>
             <button onClick={handleSendMsg}>send</button>
           </div>
 
