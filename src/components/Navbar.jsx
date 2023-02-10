@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { host } from "../api/host.jsx";
 
 import { BurgerMenuRecruiter, BurgerMenuTalent } from "./BurgerMenus.jsx";
@@ -14,13 +14,9 @@ import { RxHamburgerMenu } from "react-icons/rx"
 import { RxMagnifyingGlass as Lupe } from "react-icons/rx"
 import { RiHomeLine as Home} from "react-icons/ri"
 
-
 // CONTEXT
 import UserContext from "../context/userContext.jsx";
 import Notifications from "./pages/Notifications.jsx";
-
-
-
 
 const Navbar = () => {
   const [user, setUser] = useContext(UserContext)
@@ -28,38 +24,55 @@ const Navbar = () => {
   const [showSearch, setshowSearch] = useState(false)
   const [showNotifications, setShowNotifications] = useState(false)
   
-
   const navigate = useNavigate()
 
   const unreadNots = user?.notifications?.filter(not => !not.isRead)
   const unreadMsgs = user?.conversations?.message?.filter(msg => !msg.isRead)
 
-  const handleReadNotification = async () => {
-    await fetch(`${host}/notifications/read`, {
-      method: 'PATCH',
-      body: JSON.stringify({
-        userId: user._id,
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json));
-  }
-  // const handleMenu = (event)=>{
-  //   console.log(event.target.closest("div").className)
-  //   event.target.closest("div").name === "bell" && 
-  //   setShowNotifications(!showNotifications) && 
-  //   setShowMenu(false)
+  console.log(showNotifications)
 
-  // }
+  useEffect(()=> {
+    const handleReadNotification = async () => {
+      await fetch(`${host}/notifications/read`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          userId: user._id,
+        }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+    }
+
+    const getUser = async () => {
+      !showNotifications && 
+      await fetch(`${host}/users/checklogin`,{
+        credentials:"include"
+        })
+        .then((response) => response.json())
+        .then((json) => {
+          if(json.status){
+            setUser(json.user)
+          }else{
+            navigate("/login")
+          }      
+      })
+    }
+    getUser();
+
+    handleReadNotification()
+  },[showNotifications])
 
   return (
     <>
       <div className="navbar mt2">
-        <div onClick={() => handleReadNotification()} className="rel bell">
-              <Bell onClick={()=> setShowNotifications(!showNotifications)} />
+        <div className="rel bell">
+              <Bell onClick={()=> {
+                setShowNotifications(!showNotifications)
+                setShowMenu(false)
+                }} />
             {unreadNots?.length > 0  && 
             <div className="signal circle15 bg-FAV central abs" >
               <div className="c-A100">{unreadNots.length}</div>
@@ -76,20 +89,35 @@ const Navbar = () => {
         </div>        
         <div>
           {showSearch && <input type="text" /> }
-          <Lupe onClick={() => setshowSearch(!showSearch)}/> 
+          <Lupe onClick={() =>{ 
+            setshowSearch(!showSearch)
+            setShowNotifications(false)
+            setShowMenu(false)
+            }}/> 
         </div> 
 
         <div onClick={() => navigate("/")} className="rel"><Home /></div>
-        <div onClick={ ()=> setShowMenu(!showMenu)} ><RxHamburgerMenu /></div>
+        <div onClick={ ()=> {
+          setShowMenu(!showMenu)
+          setShowNotifications(false)
+          }} ><RxHamburgerMenu /></div>
       </div>
 
       <div>
         { showMenu && user?.profile?.isTalent && 
-        <BurgerMenuTalent setShowMenu={setShowMenu} showMenu={showMenu}/>}
-        { showMenu && user?.profile?.isRecruiter && <BurgerMenuRecruiter setShowMenu={setShowMenu} showMenu={showMenu}/>}
+        <BurgerMenuTalent
+          setShowMenu={setShowMenu} 
+          showMenu={showMenu} 
+          setShowNotifications={setShowNotifications} 
+/>}
+
+        { showMenu && user?.profile?.isRecruiter && 
+        <BurgerMenuRecruiter  
+          setShowMenu={setShowMenu} showMenu={showMenu} setShowNotifications={setShowNotifications} />}
       </div>
       <div>
-        { showNotifications && <Notifications showNotifications={showNotifications} setShowNotifications={setShowNotifications} /> }        
+        { showNotifications && 
+        <Notifications showNotifications={showNotifications} setShowNotifications={setShowNotifications} /> }        
       </div>
     </>
   );
