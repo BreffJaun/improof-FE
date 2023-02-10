@@ -86,61 +86,74 @@ const ProjectAdd = () => {
   );
 };
 
-const MyProjectCard = ({project, user}) => {
-  const navigate = useNavigate()
-  return ( project && user &&
-    <div className="project card col">
-      {project.thumbnail && <div className="project-banner bg-FAV" onClick={() => navigate(`/projectdetails/${project._id}`)}></div>}
-      <div className="project-body">
-        <div>
+const MyProjectCard = ({ project, user }) => {
+  const navigate = useNavigate();
+  return (
+    project &&
+    user && (
+      <div className="project card col">
+        {project.thumbnail && (
+          <div
+            className="project-banner bg-FAV"
+            onClick={() => navigate(`/projectdetails/${project._id}`)}
+          ></div>
+        )}
+        <div className="project-body">
           <div>
-            <p className="c-FAV">{project?.name}</p>
-            <p className="c-A20 mt05">{project?.description}</p>
+            <div>
+              <p className="c-FAV">{project?.name}</p>
+              <p className="c-A20 mt05">{project?.description}</p>
+            </div>
+            <div className="mt15">
+              {project?.team?.length && (
+                <>
+                  <p className="c-FAV">contributors:</p>
+                  <div className="col mt05">
+                    {project?.team?.length &&
+                      project?.team?.map((member) => {
+                        // console.log("member", member)
+                        // console.log("USERID", user._id)
+                        // console.log(user._id !== member._id);
+                        if (member._id !== user._id) {
+                          return (
+                            <TalentCard
+                              key={member._id}
+                              talent={member}
+                              user={user}
+                            />
+                          );
+                        }
+                      })}
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="mt15">
+              <p className="c-FAV">status:</p>
+              <p className="c-A20 mt">{project?.private ? "closed" : "open"}</p>
+            </div>
           </div>
-          <div className="mt15">
-            {project?.team?.length && (
-              <>
-                <p className="c-FAV">contributors:</p>
-                <div className="col mt05">
-                  {project?.team?.length &&
-                    project?.team?.map((member) => {
-                      // console.log("member", member)
-                      // console.log("USERID", user._id)
-                      // console.log(user._id !== member._id);
-                      if (member._id !== user._id) {
-                        return (
-                          <TalentCard
-                            key={member._id}
-                            talent={member}
-                            user={user}
-                          />
-                        );
-                      }
-                    })}
-                </div>
-              </>
-            )}
-          </div>
-          <div className="mt15">
-            <p className="c-FAV">status:</p>
-            <p className="c-A20 mt">{project?.private ? "closed" : "open"}</p>
-          </div>
-        </div>
 
-        <div className="col">
-          <ProjectBtn project={project} user={user} />
+          <div className="col">
+            <ProjectBtn project={project} user={user} />
+          </div>
         </div>
       </div>
-    </div>
+    )
   );
 };
 
 const ProjectCardNewsFeed = ({ project, user }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div className="project card col">
-      {project.thumbnail && <div className="project-banner bg-FAV" onClick={() => navigate(`/projectdetails/${project._id}`)}></div>}
-      <div className="project-body" >
+      {project.thumbnail && (
+        <div
+          className="project-banner bg-FAV"
+          onClick={() => navigate(`/projectdetails/${project._id}`)}
+        ></div>
+      )}
+      <div className="project-body">
         <div>
           <div onClick={() => navigate(`/projectdetails/${project._id}`)}>
             <p className="c-FAV">{project?.name}</p>
@@ -155,6 +168,7 @@ const ProjectCardNewsFeed = ({ project, user }) => {
                     {project?.team?.length &&
                       project?.team?.map((member) => (
                         <div
+                          key={member._id}
                           className="circle50 bg-FAV central"
                           onClick={() => navigate(`/userDetails/${member._id}`)}
                         >
