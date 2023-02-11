@@ -23,7 +23,7 @@
         transition: 200ms;
         transition-timing-function: ease-in-out;
         box-shadow: 0.4rem 0.4rem 1rem rgba(25,29,41, 0.15);
-        transition: 200ms;
+        transition: 150ms;
     }
     >*{
         display: flex;
@@ -54,11 +54,11 @@
         background-image: linear-gradient(135deg, var(--A70), var(--A100));
         border-radius: 3rem;
         >*>*{
+            transition: 150ms;
+            transition-timing-function: ease-in-out;
             box-shadow: 0rem 0rem 0.5rem rgba(25,29,41, 0.5);
         }
         :hover{
-            transition: 200ms;
-            transition-timing-function: ease-in-out;
             box-shadow: 0rem 0rem 0.5rem rgba(25,29,41, 0.0);
         }
     }
