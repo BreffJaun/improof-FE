@@ -1,5 +1,6 @@
 import "../../styles/cards.scss"
 import "../../styles/colors.scss"
+import "../../styles/talentcard.scss"
 
 import { useNavigate } from "react-router-dom"
 
@@ -22,23 +23,28 @@ const TalentCard = ({talent, user}) => {
   // console.log(talent)
   return (
     <>
-      <div className="card talent" >
-        <div className="flex central">
-          <div className="circle50 bg-FAV central" onClick={()=> navigate(`/userDetails/${talent._id}`)}>
+      <div className="t-card" >
+        <div className="t-avatar">
+          <div className="circle60 bg-FAV central t-pic" onClick={()=> navigate(`/userDetails/${talent._id}`)}>
             { talent?.profile?.avatar? 
-              <img src={talent.profile?.avatar} width="50" /> : 
+              <img src={talent.profile?.avatar} /> : 
               <p className="initials">{talent.profile?.initials}</p> }
           </div>
-          <div className="ml1 col">
-            <p onClick={()=> navigate(`/userDetails/${talent._id}`)}>{talent.profile?.firstName} {talent.profile?.lastName}</p>
-            <p className="c-A80">{talent.profile?.position}</p>
-            <p className="c-A80">{talent.profile?.toolsAndSkills}</p>
-          </div>
+        </div>
+        <div className="t-info">
+            <p className="fw500 c-FAV" onClick={()=> navigate(`/userDetails/${talent._id}`)}>{talent.profile?.firstName} {talent.profile?.lastName}</p>
+            <p>{talent.profile?.position}</p>
+            <p>{talent.profile?.toolsAndSkills}</p>
         </div>
 
-        <div className="flex">
-          <SendMessageBtn talent={talent} user={user} />
-          {user.follows.find(follow => follow._id === talent._id) ? <FollowBtn talent={talent} user={user}/> : <FollowBtn talent={talent} user={user}/>}
+        <div className="t-community">
+          <div title="send message">
+            <SendMessageBtn talent={talent} user={user} />
+          </div>
+          <div>
+            {user.follows.find(follow => follow._id === talent._id) ? <FollowBtn talent={talent} user={user}/> : <FollowBtn  talent={talent} user={user}/>}
+          </div>
+
         </div>
       </div>
       <ToastContainer/>
