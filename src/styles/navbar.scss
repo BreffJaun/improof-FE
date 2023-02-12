@@ -1,9 +1,33 @@
-.navbar{
+.navbar-container{
     display: flex;
-    justify-content: flex-end;
-    gap: 3rem;
-    >*{
+    position: sticky;
+    justify-content: space-between;
+    top: 0;
+    background-color: var(--A100);
+    border-bottom: 1px solid var(--A60);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-bottom: 4rem;
+    z-index:10;
+    .navbar-left{
+        display: flex;
         font-size: 1.5rem;
+    }
+    .navbar-right{
+        display: flex;
+        position: relative;
+        font-size: 1.5rem;
+        gap: 3rem;
     }
 }
 
+.signal{
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    right: -10px;
+    >*{
+        font-size: 0.7rem;
+        font-weight: 700;
+    }
+}

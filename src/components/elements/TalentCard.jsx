@@ -1,31 +1,26 @@
+import { useNavigate } from "react-router-dom"
+
+// STYLES
 import "../../styles/cards.scss"
 import "../../styles/colors.scss"
 import "../../styles/talentcard.scss"
 
-import { useNavigate } from "react-router-dom"
-
 // ICONS
 import { ToastContainer } from "react-toastify"
 
-// ELEMENTE
+// ELEMENTS
 import { FollowBtn } from "../buttons/FollowBtn.jsx"
 import { SendMessageBtn } from "../buttons/MessageBtn.jsx"
-
-import { FiSend } from "react-icons/fi"
-
-
 
 
 
 const TalentCard = ({talent, user}) => {
-  
   const navigate = useNavigate()
-  // console.log(talent)
   return (
     <>
       <div className="t-card" >
         <div className="t-avatar">
-          <div className="circle60 bg-FAV central t-pic" onClick={()=> navigate(`/userDetails/${talent._id}`)}>
+          <div className="tile80 bg-FAV central t-pic" onClick={()=> navigate(`/userDetails/${talent._id}`)}>
             { talent?.profile?.avatar? 
               <img src={talent.profile?.avatar} /> : 
               <p className="initials">{talent.profile?.initials}</p> }
@@ -44,7 +39,6 @@ const TalentCard = ({talent, user}) => {
           <div>
             {user.follows.find(follow => follow._id === talent._id) ? <FollowBtn talent={talent} user={user}/> : <FollowBtn  talent={talent} user={user}/>}
           </div>
-
         </div>
       </div>
       <ToastContainer/>

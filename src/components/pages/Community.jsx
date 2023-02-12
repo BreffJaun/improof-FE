@@ -52,13 +52,15 @@ useEffect(() => {
 
   return(
     <>
-      <h1 className="central c-FAV mt1 mb2">community</h1>
+      <div className="mt4 mb3">
+        <h1 className="central c-FAV">community</h1>
+        <h4 className="central c-FAV mt05">talents you know</h4>
+      </div>
       <div className="central">
         <CategoriesFilter setCategory={setCategory}/>
       </div>
         
       <div className="mb1 mt3 central">
-        <p className="sl c-FAV">i follow</p>
       </div>
       <div className="talent-container">
         {user.follows.length === 0 && !category ?
@@ -83,7 +85,7 @@ useEffect(() => {
         </div>
 
       <div className="mb1 mt3 central">
-        <p className="sl c-FAV">discover new talents</p>
+        <h4 className="central c-FAV mt05">discover new talents</h4>
       </div>
       <div className="talent-container">
       {talents && talents.map((talent) =>

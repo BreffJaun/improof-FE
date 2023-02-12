@@ -28,6 +28,22 @@
     }
 }
 
+.logoNav{
+    display: flex;
+    position: relative;
+    >img{
+        position: absolute;
+        width: 2.5rem;
+        top: -0.8rem;
+    }
+    h1{
+        padding-left: 3rem;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+}
+
+
 
 .efjm{
     align-items: center;
@@ -46,5 +62,4 @@
         border: 1px solid white;
         border-radius: 3rem;
     }
-
 }

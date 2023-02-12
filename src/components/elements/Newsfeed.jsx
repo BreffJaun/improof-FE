@@ -55,7 +55,6 @@ const Newsfeed = () => {
 
   return (
     <div className="mt2">
-      <p className="sl c-FAV">newsFeed</p>
       {projects.slice(0, 10).map((project) => {
         return (
           <ProjectCardNewsFeed

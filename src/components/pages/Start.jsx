@@ -20,10 +20,11 @@ const Start = () => {
   const [user, setUser] = useContext(UserContext)
   return (
     <>
-      <div className="mt2 mb2">
-        <h1 className="central c-FAV">What´s new on improof?</h1>
-        < Newsfeed />
+      <div className="mt4 mb4">
+        <h1 className="central c-FAV">Newsfeed</h1>
+        <h4 className="central c-FAV mt05">What´s new on improof?</h4>
       </div>
+              < Newsfeed />
       <div className="central col">
         <h1 className="c-FAV mb1">filter your interest</h1>
         < CategoriesFilter />
