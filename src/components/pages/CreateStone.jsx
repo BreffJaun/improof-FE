@@ -21,6 +21,7 @@ const CreateStone = ({}) => {
   const [project, setProject] = useState({});
   const [isPending, setPending] = useState(true);
   const { projectId } = useParams("projectId");
+  const [contributor, setContributor] = useState(false);
 
   useEffect(() => {
     setPending(true);
@@ -46,9 +47,14 @@ const CreateStone = ({}) => {
     autoClose: 8000,
     theme: "dark",
   };
-  const handleInput = () => {};
+  const handleInput = (e) => {
+    setNewStone({ ...newStone, [e.target.name]: e.target.value });
+  };
   const handleSubmit = () => {};
   const handleMedia = () => {};
+  const handleToggle = () => {
+    setContributor(!contributor);
+  };
   return (
     <>
       <h1 className="central c-FAV mt1 mb2">new stone</h1>
@@ -79,15 +85,25 @@ const CreateStone = ({}) => {
           <div>
             <input
               type="radio"
-              name="stoneType"
+              name="kind"
               value="stepstone"
               onChange={handleInput}
             />
-            <label htmlFor="stoneType">stepstone</label>
-            <input type="radio" name="stoneType" value="milestone" />
-            <label htmlFor="stoneType">milestone</label>
-            <input type="radio" name="stoneType" value="endstone" />
-            <label htmlFor="stoneType">endstone</label>
+            <label>stepstone</label>
+            <input
+              type="radio"
+              name="kind"
+              value="milestone"
+              onChange={handleInput}
+            />
+            <label>milestone</label>
+            <input
+              type="radio"
+              name="kind"
+              value="endstone"
+              onChange={handleInput}
+            />
+            <label>endstone</label>
           </div>
           <div>
             <hr width="500rem" />
@@ -116,19 +132,47 @@ const CreateStone = ({}) => {
           </div>
           <div className="col">
             <p>contributors</p>
-            {project.team?.length ? (
-              project.team.map((talent) => {
-                return (
-                  <>
-                    <div className="project card col">
-                      <TalentCard talent={talent} user={user} />
-                    </div>
-                  </>
-                );
-              })
-            ) : (
-              <p>no contributors</p>
-            )}
+            <div className=" card col">
+              {project.team?.length ? (
+                project.team.map((talent) => {
+                  return (
+                    <>
+                      <div className="t-avatar">
+                        <div
+                          className="bg-FAV central t-pic"
+                          onClick={() => navigate(`/userDetails/${talent._id}`)}
+                        >
+                          {talent?.profile?.avatar ? (
+                            <img src={talent.profile?.avatar} />
+                          ) : (
+                            <p className="initials">
+                              {talent.profile?.initials}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                      <div className="t-info">
+                        <p
+                          className="fw500 c-FAV"
+                          onClick={() => navigate(`/userDetails/${talent._id}`)}
+                        >
+                          {talent.profile?.firstName} {talent.profile?.lastName}
+                        </p>
+                        <p>{talent.profile?.position}</p>
+                        <p>{talent.profile?.toolsAndSkills}</p>
+                      </div>
+
+                      <label class="switch">
+                        <input type="checkbox" />
+                        <span class="slider round"></span>
+                      </label>
+                    </>
+                  );
+                })
+              ) : (
+                <p>no contributors</p>
+              )}
+            </div>
           </div>
         </div>
       </form>
