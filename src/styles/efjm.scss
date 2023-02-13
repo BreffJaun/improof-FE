@@ -4,12 +4,26 @@
     gap: 0.5rem;
 }
 
+.efjm-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    >*{
+        display: flex;
+        width: 49%;
+    }
+}
+
+.efjm-card{
+    margin-top: 4rem;
+}
+
 .efjm-avatar-container{
     position: absolute;
-    width: 70px;
-    height: 70px;
-    border-radius: 70px;
-    top: -35px;
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    top: -40px;
     h1{
         font-weight: 900;
         font-size: 1.5rem;
@@ -17,6 +31,3 @@
     }
 }
 
-.efjm-card{
-    margin-top: 4rem;
-}

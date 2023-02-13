@@ -59,11 +59,6 @@ button{
     height: 60px;
     border-radius: 60px;
 }
-.circle50{
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-}
 .circle70{
     width: 70px;
     height: 70px;
@@ -85,6 +80,19 @@ button{
     border-radius: 50px;
 }
 
+
+
+
+.tile60{
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+}
+.tile80{
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+}
 
 
 // TEXT EMAIL PASSWORD
@@ -157,14 +165,7 @@ input[type=radio]:checked::before {
     background-color: white;
 }
 
-.signal{
-    bottom: 0;
-    right: -10px;
-    >*{
-        font-size: 0.7rem;
-        font-weight: 700;
-    }
-}
+
 
 .colorCard{
     border: 1px solid var(--A60);

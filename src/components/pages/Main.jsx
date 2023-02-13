@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import { host } from "../../api/host.jsx";
 
 // NAVBAR-COMPONENTEN
-import Navbar from "../Navbar.jsx";
+import Navbar from "../elements/Navbar.jsx";
 import Notifications from "./Notifications.jsx";
 import Messages from "./Messages";
 
@@ -59,7 +59,7 @@ const Main = () => {
     !isPending && (
       <>
         <Navbar />
-        <LogoS />
+        {/* <LogoS /> */}
         <Routes>
           <Route path="/" element={<Start />} />
           <Route path="/efjm" element={<EFJM />} />

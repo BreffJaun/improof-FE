@@ -7,7 +7,7 @@ const RadioTalentColor = () => {
       <div className="circle20 bg-gDB">
         <input
           type="radio"
-          name="TalProCol"
+          name="TalCol"
           value="className='........deepblue'"
           onChange={handleTalentColor}>
         </input>
@@ -15,7 +15,7 @@ const RadioTalentColor = () => {
       <div className="circle20 bg-gLB">
         <input
           type="radio"
-          name="TalProCol"
+          name="TalCol"
           value="className='........lightblue'"
           onChange={handleTalentColor}>
         </input>
@@ -23,7 +23,7 @@ const RadioTalentColor = () => {
       <div className="circle20 bg-gO">
         <input
           type="radio"
-          name="TalProCol"
+          name="TalCol"
           value="className='........orange'"
           onChange={handleTalentColor}>
         </input>
@@ -31,7 +31,7 @@ const RadioTalentColor = () => {
       <div className="circle20 bg-gPI">
         <input
           type="radio"
-          name="TalProCol"
+          name="TalCol"
           value="className='........pink'"
           onChange={handleTalentColor}>
         </input>
@@ -39,7 +39,7 @@ const RadioTalentColor = () => {
       <div className="circle20 bg-gPU">
         <input
           type="radio"
-          name="TalProCol"
+          name="TalCol"
           value="className='........purple'"
           onChange={handleTalentColor}>
         </input>
@@ -50,49 +50,49 @@ const RadioTalentColor = () => {
 
 
 
-const RadioProjectColor = () => {
+const RadioProjectColor = ({setProjectColor}) => {
   const handleProjectColor = (event) => {
-    console.log(event.target.value)
+    setProjectColor(event.target.value)
   }
   return (
     <div className="flex central mt05 mb05 colorCard">
       <div className="circle20 bg-gDB">
         <input
           type="radio"
-          name="TalProCol"
-          value="className='........deepblue'"
+          name="color"
+          value="deepblue"
           onChange={handleProjectColor}>
         </input>
       </div>
       <div className="circle20 bg-gLB">
         <input
           type="radio"
-          name="TalProCol"
-          value="className='........lightblue'"
+          name="color"
+          value="lightblue"
           onChange={handleProjectColor}>
         </input>
       </div>
       <div className="circle20 bg-gO">
         <input
           type="radio"
-          name="TalProCol"
-          value="className='........orange'"
+          name="color"
+          value="orange"
           onChange={handleProjectColor}>
         </input>
       </div>
       <div className="circle20 bg-gPI">
         <input
           type="radio"
-          name="TalProCol"
-          value="className='........pink'"
+          name="color"
+          value="pink"
           onChange={handleProjectColor}>
         </input>
       </div>
       <div className="circle20 bg-gPU">
         <input
           type="radio"
-          name="TalProCol"
-          value="className='........purple'"
+          name="color"
+          value="purple"
           onChange={handleProjectColor}>
         </input>
       </div>
@@ -111,7 +111,7 @@ const RadioRecruiterColor = () => {
       <div className="circle20 bg-gGR1">
         <input
           type="radio"
-          name="TalProCol"
+          name="RecCol"
           value="className='........lightgreen'"
           onChange={handleRecruiterColor}>
         </input>
@@ -119,7 +119,7 @@ const RadioRecruiterColor = () => {
       <div className="circle20 bg-gGR3">
         <input
           type="radio"
-          name="TalProCol"
+          name="RecCol"
           value="className='........green'"
           onChange={handleRecruiterColor}>
         </input>
@@ -127,7 +127,7 @@ const RadioRecruiterColor = () => {
       <div className="circle20 bg-gGR5">
         <input
           type="radio"
-          name="TalProCol"
+          name="RecCol"
           value="className='........darkgreen'"
           onChange={handleRecruiterColor}>
         </input>
