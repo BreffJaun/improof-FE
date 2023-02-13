@@ -25,15 +25,16 @@ import Conversations from "./pages/Conversations.jsx";
 
 const Navbar = () => {
   const [user, setUser] = useContext(UserContext)
+  const [currUser, setCurrUser] = useState({})
   const [showMenu, setShowMenu] = useState(false)
   const [showSearch, setshowSearch] = useState(false)
-  const [showNotifications, setShowNotifications] = useState(false)
-  const [showConversations, setShowConversations] = useState(false)
+  const [showNotifications, setShowNotifications] = useState(undefined)
+  const [showConversations, setShowConversations] = useState(undefined)
 
   const navigate = useNavigate()
 
   const unreadNots = user?.notifications?.filter(not => !not.isRead)
-  const unreadMsgs = user?.conversations?.message?.filter(msg => !msg.isRead)
+  const unreadMsgs = user?.conversations?.map(con => con.message.filter(msg => !msg.isRead && msg.from !== user._id)).length
 
   useEffect(()=> {
     const handleReadNotification = async () => {
@@ -46,12 +47,9 @@ const Navbar = () => {
           'Content-type': 'application/json; charset=UTF-8',
         },
       })
-        .then((response) => response.json())
-        .then((json) => null);
-    }
-
+      }
+    
     const getUser = async () => {
-      !showNotifications && 
       await fetch(`${host}/users/checklogin`,{
         credentials:"include"
         })
@@ -64,10 +62,15 @@ const Navbar = () => {
           }      
       })
     }
-    getUser();
+    !showNotifications&& !showConversations && getUser();
+    showNotifications !== undefined && handleReadNotification()
 
-    handleReadNotification()
-  },[showNotifications])
+  },[showNotifications, showConversations])
+
+  useEffect(()=>{
+
+  })
+
 
   return (
     <>
@@ -88,12 +91,12 @@ const Navbar = () => {
         <div className="rel">
           <Message onClick={() => {
             setShowConversations(!showConversations)
-            setShowNotifications(false)
+            setShowNotifications(undefined)
             setShowMenu(false)
             }}/> 
-            {unreadMsgs?.length && 
+            {unreadMsgs && 
               <div className="signal circle15 bg-FAV central abs">
-                <div className="c-A100">{unreadMsgs?.length}</div>
+                <div className="c-A100">{unreadMsgs}</div>
               </div>
             }
         </div>
@@ -102,8 +105,8 @@ const Navbar = () => {
           {showSearch && <input type="text" /> }
           <Lupe onClick={() =>{ 
             setshowSearch(!showSearch)
-            setShowNotifications(false)
-            setShowConversations(false)
+            setShowNotifications(undefined)
+            setShowConversations(undefined)
             setShowMenu(false)
             }}/> 
         </div> 
@@ -111,8 +114,8 @@ const Navbar = () => {
         <div onClick={() => navigate("/")} className="rel"><Home /></div>
         <div onClick={ ()=> {
           setShowMenu(!showMenu)
-          setShowNotifications(false)
-          setShowConversations(false)
+          setShowNotifications(undefined)
+          setShowConversations(undefined)
           }} ><RxHamburgerMenu /></div>
       </div>
 
@@ -135,7 +138,8 @@ const Navbar = () => {
       </div>
 
       <div>
-        { showConversations && <Conversations onClick={()=>setShowConversations(false)} showConversations={showConversations} setShowConversations={setShowConversations} /> }        
+        { showConversations && 
+        <Conversations onClick={()=>setShowConversations(false)} showConversations={showConversations} setShowConversations={setShowConversations} user={user} /> }        
       </div>
     </>
   );
