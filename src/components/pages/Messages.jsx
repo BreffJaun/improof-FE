@@ -15,8 +15,11 @@ const Messages = () => {
   const [participant, setParticipant] = useState(undefined)
   const [msg, setMsg] = useState("")
   const [trigger, setTrigger] = useState(false)
+  const [reload, setReload] = useState(false)
 
-
+  setTimeout(()=> {
+    setReload(!reload)
+  }, "3000")
   
   useEffect(() => {
     const getConversation = async () => {
@@ -25,14 +28,13 @@ const Messages = () => {
         .then((json) => {
           if(json.status){
             setConversation(json.data)
-            console.log("DATA",json.data)
             const other = json.data.participants.find(part => part._id !== user._id)
             setParticipant(other)
           }
         });
     }
     getConversation()
-  },[trigger])
+  },[trigger, id, reload])
 
   useEffect(()=>{
     const getUser = async ()=>{
@@ -43,7 +45,6 @@ const Messages = () => {
       .then((json) => {
         if(json.status){
           setSender(json.userData)
-          console.log("sender",json.userData)
         }
       })};
       participant && getUser()

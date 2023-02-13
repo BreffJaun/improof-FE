@@ -36,22 +36,18 @@ const Navbar = () => {
   const navigate = useNavigate()
 
   const unreadNots = user?.notifications?.filter(not => !not.isRead)
-  const unreadMsgsSTEPONE = user?.conversations?.map(con => con.message.filter(msg => !msg.isRead && msg.from.toString() != user._id))
-  const unreadMsgs = unreadMsgsSTEPONE.map(arr => arr.length).reduce((a,b) => a+b,0)
+  const unreadMsgsSTEPONE = user?.conversations?.map(con => con.message.filter(msg => !msg.isRead && msg?.from != user._id))
+  const unreadMsgs = unreadMsgsSTEPONE.map(arr => arr.length).reduce((a, b) => a + b, 0)
 
   useEffect(()=> {
     const handleReadNotification = async () => {
       await fetch(`${host}/notifications/read`, {
         method: 'PATCH',
-        body: JSON.stringify({
-          userId: user._id,
-        }),
+        body: JSON.stringify({userId: user._id}),
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         },
       })
-        .then((response) => response.json())
-        .then((json) => null);
     }
 
     const getUser = async () => {
@@ -142,7 +138,7 @@ const Navbar = () => {
           <Notifications showNotifications={showNotifications} setShowNotifications={setShowNotifications} /> }        
         </div>
         <div>
-          { showConversations && <Conversations onClick={()=>setShowConversations(false)} showConversations={showConversations} setShowConversations={setShowConversations} user={user}/> }
+          { showConversations && <Conversations onClick={()=>setShowConversations(false)} showConversations={showConversations} setShowConversations={setShowConversations} user={user} unreadMsgs={unreadMsgsSTEPONE}/> }
         </div>
       </div>
     </div>

@@ -22,7 +22,6 @@ const Message = ({msg, user}) => {
 
 const Sender = ({sender}) => {
     const navigate = useNavigate()
-    console.log(sender)
     return (
         <div className="mb2" onClick={()=> navigate(`/userdetails/${sender._id}`)}>
             <div className="flex central">
