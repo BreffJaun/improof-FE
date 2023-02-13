@@ -22,6 +22,7 @@ const Newsfeed = () => {
   const [user, setUser] = useContext(UserContext);
   const [trigger, setTrigger] = useState(true);
   const [isPending, setPending] = useState(true);
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
     const getProjects = async () => {
@@ -59,8 +60,6 @@ const Newsfeed = () => {
       new Date(a.createdAt ?? a.updatedAt)
     );
   });
-  const counterSlide = 0;
-  // Sort will change the initial array
 
   return (
     <div className="mt2">
@@ -71,29 +70,41 @@ const Newsfeed = () => {
         naturalSlideWidth={100}
         naturalSlideHeight={25}
         totalSlides={10}
-        infinite={false}
+        infinite={true}
         lockOnWindowScroll={true}
-        playDirection={"backward"}
       >
         <Slider>
-          {projects.slice(0, 10).map((project) => {
-            return (
-              <Slide index={counterSlide}>
-                <ProjectCardNewsFeed
-                  key={project._id}
-                  project={project}
-                  user={user}
-                />
-              </Slide>
-            );
-          })}
+          {category === undefined ||
+          category === "others" ||
+          category === "All categories"
+            ? projects.map((project) => {
+                <Slide index={0}>
+                  <ProjectCardNewsFeed
+                    key={project._id}
+                    user={user}
+                    project={project}
+                  />
+                </Slide>;
+              })
+            : projects.map(
+                (project) =>
+                  project.category === category && (
+                    <Slide index={0}>
+                      <ProjectCardNewsFeed
+                        key={project._id}
+                        user={user}
+                        project={project}
+                      />
+                    </Slide>
+                  )
+              )}
         </Slider>
         <ButtonBack>Back</ButtonBack>
         <ButtonNext>Next</ButtonNext>
       </CarouselProvider>
       <div className="central col">
         <h1 className="c-FAV mb1">filter your interest</h1>
-        <CategoriesFilter />
+        <CategoriesFilter setCategory={setCategory} />
       </div>
     </div>
   );

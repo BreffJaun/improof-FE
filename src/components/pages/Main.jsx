@@ -20,6 +20,7 @@ import ProjectDetails from "./ProjectDetails.jsx";
 import UserDetails from "./UserDetails.jsx";
 import UserEdit from "./UserEdit.jsx";
 import Conversations from "./Conversations.jsx";
+import Congrats from "../elements/Congrats.jsx";
 
 // FOOTER-COMPONENTEN
 import EFJM from "./EFJM";
@@ -83,6 +84,7 @@ const Main = () => {
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="/conversations" element={<Conversations />} />
+          <Route path="/congrats" element={<Congrats />} />
         </Routes>
         <ToastContainer />
       </>
