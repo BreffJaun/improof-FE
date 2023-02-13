@@ -25,7 +25,6 @@ import Conversations from "./pages/Conversations.jsx";
 
 const Navbar = () => {
   const [user, setUser] = useContext(UserContext)
-  const [currUser, setCurrUser] = useState({})
   const [showMenu, setShowMenu] = useState(false)
   const [showSearch, setshowSearch] = useState(false)
   const [showNotifications, setShowNotifications] = useState(undefined)
@@ -35,6 +34,8 @@ const Navbar = () => {
 
   const unreadNots = user?.notifications?.filter(not => !not.isRead)
   const unreadMsgs = user?.conversations?.map(con => con.message.filter(msg => !msg.isRead && msg.from !== user._id)).length
+
+  console.log("NAVBAR",user);
 
   useEffect(()=> {
     const handleReadNotification = async () => {

@@ -37,6 +37,8 @@ const Navbar = () => {
   const unreadNots = user?.notifications?.filter(not => !not.isRead)
   const unreadMsgs = user?.conversations?.message?.filter(msg => !msg.isRead)
 
+  console.log("NAVBAR", user);
+
   useEffect(()=> {
     const handleReadNotification = async () => {
       await fetch(`${host}/notifications/read`, {
@@ -140,7 +142,7 @@ const Navbar = () => {
           <Notifications showNotifications={showNotifications} setShowNotifications={setShowNotifications} /> }        
         </div>
         <div>
-          { showConversations && <Conversations onClick={()=>setShowConversations(false)} showConversations={showConversations} setShowConversations={setShowConversations} /> }
+          { showConversations && <Conversations onClick={()=>setShowConversations(false)} showConversations={showConversations} setShowConversations={setShowConversations} user={user}/> }
         </div>
       </div>
     </div>
