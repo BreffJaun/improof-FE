@@ -12,7 +12,7 @@ const Messages = () => {
   const [conversation, setConversation] = useState({})
   const [user, setUser] = useContext(UserContext) 
   const [sender, setSender] = useState({})
-  const [participant, setParticipant] = useState({})
+  const [participant, setParticipant] = useState(undefined)
   const [msg, setMsg] = useState("")
   const [trigger, setTrigger] = useState(false)
 
@@ -46,7 +46,7 @@ const Messages = () => {
           console.log("sender",json.userData)
         }
       })};
-      getUser()
+      participant && getUser()
   },[conversation])
 
   const handleMsg = (event)=>{

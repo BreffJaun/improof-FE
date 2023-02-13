@@ -44,6 +44,7 @@ const Main = () => {
         if (json.status) {
           setUser(json.user);
           setPending(false);
+          console.log("HALLO IN MAIN");
 
           if (json.user.meta.loginCount === 1) {
             navigate("/congrats");
