@@ -27,15 +27,17 @@ import Conversations from "../pages/Conversations.jsx";
 
 const Navbar = () => {
   const [user, setUser] = useContext(UserContext)
+  const [currUser, setCurrUser] = useState({})
   const [showMenu, setShowMenu] = useState(false)
   const [showSearch, setshowSearch] = useState(false)
-  const [showNotifications, setShowNotifications] = useState(false)
-  const [showConversations, setShowConversations] = useState(false)
+  const [showNotifications, setShowNotifications] = useState(undefined)
+  const [showConversations, setShowConversations] = useState(undefined)
 
   const navigate = useNavigate()
 
   const unreadNots = user?.notifications?.filter(not => !not.isRead)
-  const unreadMsgs = user?.conversations?.message?.filter(msg => !msg.isRead)
+  const unreadMsgsSTEPONE = user?.conversations?.map(con => con.message.filter(msg => !msg.isRead && msg.from.toString() != user._id))
+  const unreadMsgs = unreadMsgsSTEPONE.map(arr => arr.length).reduce((a,b) => a+b,0)
 
   useEffect(()=> {
     const handleReadNotification = async () => {
@@ -66,10 +68,10 @@ const Navbar = () => {
           }      
       })
     }
-    getUser();
+    !showNotifications&& !showConversations && getUser();
+    showNotifications !== undefined && handleReadNotification()
 
-    handleReadNotification()
-  },[showNotifications])
+  },[showNotifications, showConversations])
 
   return (
     <div className="navbar-container">
@@ -86,7 +88,7 @@ const Navbar = () => {
                 <Bell onClick={()=> {
                   setShowNotifications(!showNotifications)
                   setShowMenu(false)
-                  setShowConversations(false)
+                  setShowConversations(undefined)
                   }} />
               {unreadNots?.length > 0  && 
               <div className="signal circle15 bg-FAV central" >
@@ -94,15 +96,15 @@ const Navbar = () => {
               </div>
             }
           </div>
-          <div>
+          <div >
             <Message onClick={() => {
               setShowConversations(!showConversations)
-              setShowNotifications(false)
+              setShowNotifications(undefined)
               setShowMenu(false)
               }}/> 
-              {unreadMsgs?.length && 
+              {unreadMsgs > 0 && 
                 <div className="signal circle15 bg-FAV central">
-                <div className="c-A100">{unreadMsgs?.length}</div>
+                  <div className="c-A100">{unreadMsgs}</div>
                 </div>
               }
           </div>
@@ -110,16 +112,16 @@ const Navbar = () => {
             {showSearch && <input type="text" /> }
             <Lupe onClick={() =>{ 
               setshowSearch(!showSearch)
-              setShowNotifications(false)
-              setShowConversations(false)
+              setShowNotifications(undefined)
+              setShowConversations(undefined)
               setShowMenu(false)
               }}/> 
           </div>
           <div onClick={() => navigate("/")} className="rel"><Home /></div>
           <div onClick={ ()=> {
             setShowMenu(!showMenu)
-            setShowNotifications(false)
-            setShowConversations(false)
+            setShowNotifications(undefined)
+            setShowConversations(undefined)
             }} ><RxHamburgerMenu />
           </div>
         </div>
@@ -140,7 +142,7 @@ const Navbar = () => {
           <Notifications showNotifications={showNotifications} setShowNotifications={setShowNotifications} /> }        
         </div>
         <div>
-          { showConversations && <Conversations onClick={()=>setShowConversations(false)} showConversations={showConversations} setShowConversations={setShowConversations} /> }
+          { showConversations && <Conversations onClick={()=>setShowConversations(false)} showConversations={showConversations} setShowConversations={setShowConversations} user={user}/> }
         </div>
       </div>
     </div>

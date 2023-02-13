@@ -20,6 +20,7 @@ import ProjectDetails from "./ProjectDetails.jsx";
 import UserDetails from "./UserDetails.jsx";
 import UserEdit from "./UserEdit.jsx";
 import Conversations from "./Conversations.jsx";
+import CreateStone from "./CreateStone.jsx";
 
 // FOOTER-COMPONENTEN
 import EFJM from "./EFJM";
@@ -44,7 +45,7 @@ const Main = () => {
         if (json.status) {
           setUser(json.user);
           setPending(false);
-          console.log("HALLO IN MAIN");
+          console.log("HALLO IN MAIN", user);
 
           if (json.user.meta.loginCount === 1) {
             navigate("/congrats");
@@ -58,7 +59,7 @@ const Main = () => {
   return (
     !isPending && (
       <>
-        <Navbar />
+        <Navbar user={user}/>
         {/* <LogoS /> */}
         <Routes>
           <Route path="/" element={<Start />} />
@@ -84,6 +85,7 @@ const Main = () => {
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/messages/:id" element={<Messages />} />
           <Route path="/conversations" element={<Conversations />} />
+          <Route path="/createStone" element={<CreateStone />} />
         </Routes>
         <ToastContainer />
       </>
