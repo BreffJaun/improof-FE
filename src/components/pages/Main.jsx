@@ -59,7 +59,7 @@ const Main = () => {
   return (
     !isPending && (
       <>
-        <Navbar user={user}/>
+        <Navbar user={user} />
         {/* <LogoS /> */}
         <Routes>
           <Route path="/" element={<Start />} />

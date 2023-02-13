@@ -12,11 +12,15 @@ import { RxCross2 } from "react-icons/rx";
 // CONTEXT
 import UserContext from "../../context/userContext.jsx";
 
+// ELEMENTS
+import { TalentCard } from "../elements/TalentCard.jsx";
+
 const CreateStone = ({}) => {
   const [user, setUser] = useContext(UserContext);
   const [newStone, setNewStone] = useState({});
   const [project, setProject] = useState({});
   const [isPending, setPending] = useState(true);
+  const { projectId } = useParams("projectId");
 
   useEffect(() => {
     setPending(true);
@@ -35,8 +39,7 @@ const CreateStone = ({}) => {
     fetchProject();
   }, []);
 
-  const contributors = project.team;
-  console.log(contributors);
+  // console.log("project", project, "and contr:", project.team);
 
   const toastOptions = {
     position: "bottom-right",
@@ -113,6 +116,19 @@ const CreateStone = ({}) => {
           </div>
           <div className="col">
             <p>contributors</p>
+            {project.team?.length ? (
+              project.team.map((talent) => {
+                return (
+                  <>
+                    <div className="project card col">
+                      <TalentCard talent={talent} user={user} />
+                    </div>
+                  </>
+                );
+              })
+            ) : (
+              <p>no contributors</p>
+            )}
           </div>
         </div>
       </form>
