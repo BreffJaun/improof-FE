@@ -31,22 +31,25 @@ import Footer from "../elements/Footer.jsx";
 const UserEdit = () => {
 
   const {id} = useParams("id")
+  const [avatar, setAvatar] = useState(undefined);
   const [user, setUser] = useContext(UserContext)
   const initialUserData = {...user}
   delete initialUserData.profile.password
   const [userData, setUserData] = useState(initialUserData)
-  console.log("userdata",userData)
-  console.log("user",user);
+  // console.log("userdata",userData)
+  // console.log("user",user);
 
   const [talent, setTalent] = useState(undefined)
   const [isPending, setIsPending] = useState(true)
+  const [uploadPending, setUploadPending] = useState(false);
   const [showContact, setShowContact] = useState(false)
   const [showInfos, setShowInfos] = useState(false)
+  const [userAvatar, setUserAvatar] = useState(undefined)
 
   const navigate = useNavigate()
 
   useEffect(() => {
-    const getUser = ()=>{
+      const getUser = ()=>{
       fetch(`${host}/users/${id}`,{
       credentials:"include"
       })
@@ -59,73 +62,116 @@ const UserEdit = () => {
       })};
     getUser()
   }, [id])
+
+  useEffect(() => {
+    // FETCH CURR USER AVATAR FROM DATABASE (GRID FS)
+    const getUserAvatar = ()=>{
+      fetch(`${host}/media/${user.profile.avatar}`,{
+      credentials:"include"
+      })
+      .then((response) => {
+      if(response) {
+          // console.log('response: ', response)
+          setUserAvatar(response.url)
+          console.log('DID WORK!')
+        } else {
+          // console.log('response: ', response)
+          console.log('DID NOT WORK!')
+        }
+      })};
+    getUserAvatar();
+  }, [avatar])
   
 
+  const avatarUploadHandler = (e) => {
+    // RESTRICT HERE FILE TYPE
+    // console.log('avatar: ', avatar)
+    setAvatar(e.target.files[0])
+  }
 
   const handleInputProfile = (event) => {
-    setUserData({ ...userData, profile:{...userData.profile, [event.target.name]: event.target.value }});
+    setUserData({...userData, profile:{...userData.profile, [event.target.name]: event.target.value }});
   }
 
   const handleInputLocation = (event) => {
-    setUserData({ ...userData, location:{...userData.location, [event.target.name]: event.target.value }});
+    setUserData({...userData, location:{...userData.location, [event.target.name]: event.target.value }});
   }
 
   const handleInputContact = (event) => {
-    setUserData({ ...userData, contact:{...userData.contact, [event.target.name]: event.target.value }});
+    setUserData({...userData, contact:{...userData.contact, [event.target.name]: event.target.value }});
   }
 
   const handleCategoryProfile = (event) => {
-    setUserData({ ...userData, profile:{...userData.profile, [event.target.name]: event.target.value }})
+    setUserData({...userData, profile:{...userData.profile, [event.target.name]: event.target.value }})
   }
-
-
+  
+  
   const handleSubmit = (event) => {
     event.preventDefault();
+    const formData = new FormData();
+    formData.append('avatar', avatar);
+    formData.append('data', JSON.stringify(userData));
     const updateUserData = async () => {
+      setUploadPending(true)
       await fetch(`${host}/users/${user._id}`,
         {
           credentials: "include",
           method: "PATCH",
-          body: JSON.stringify(userData),
-          headers: { "Content-type": "application/json; charset=UTF-8", },
+          body: formData,
+          // headers: {"Content-type": "multipart/form-data"},
         })
         .then((json) => json.json())
         .then((data) => {
           if(data.status){
-            console.log(data)
-            toast.info(data.message)
+            // toast.info(data.message)
+            setAvatar(undefined);
+            setUploadPending(false);
+            if(!uploadPending) {
+              location.reload()
+            }
           }
           if (data.error) {
             data.error.map((err) => {
               toast.error(err.msg, toastOptions);
           });
           }
-          console.log(data)
       });
     };
     updateUserData()
   }
 
 
-  return !isPending && user.profile.isTalent ?
+  return uploadPending ? <div>Loading...</div> :
+  
+  !isPending && user.profile.isTalent ?
   <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form">
       <div className="central col mt3">
         <div className="circle90 bg-FAV central rel">
-          {talent.profile.avatar ? <img src="" alt="" /> :
-            <div className="initials"><p>{talent.profile.initials}</p></div>
+          {userAvatar ? 
+          <img 
+          src={userAvatar} 
+          className="circle90 bg-FAV central rel"
+          alt="avatar" /> 
+          :
+          <div className="initials"><p>{talent.profile.initials}</p></div>
         }
         <div
           title="upload image"
           className="circle40 bg-FAV central editBtn">
-        <p className="c-A100"><AiOutlineCamera/>
-        </p>
+          {/* <p className="c-A100">image</p> */}
+          <input 
+          onChange={avatarUploadHandler} 
+          name="avatar" 
+          type="file"
+          accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
+          />
       </div>
       </div>
         <h1 className="central c-FAV mt05">Hi, {talent.profile.firstName}!</h1>
         <p className="central c-FAV">Let´s spice up your profile!</p>
       </div>
-    
+
       <div className="col mt2 mb1">
         <p>first name<span className="c-FAV fw900">*</span></p>
         <input onChange={handleInputProfile} name="firstName" type="text" defaultValue={user.profile.firstName} />
@@ -230,13 +276,12 @@ const UserEdit = () => {
         className="bg-FAV"><RxCross2 />
       </button>
     </div>
-
     <Footer />
     <ToastContainer/>
     </form>
   </>
 
-    : user.profile.isRecruiter && !isPending ? 
+    : !isPending && user.profile.isRecruiter ? 
     <>
     <form onSubmit={handleSubmit}>
         <div className="central col mt3">
@@ -254,7 +299,6 @@ const UserEdit = () => {
           <h1 className="central c-FAV mt05">Hi, {user.profile.firstName}!</h1>
           <p className="central c-FAV">Time to find some talents!</p>
         </div>
-      
         <div className="col mt2 mb1">
           <p>first name<span className="c-FAV fw900">*</span></p>
           <input onChange={handleInputProfile} name="firstName" type="text" defaultValue={user.profile.firstName} />
