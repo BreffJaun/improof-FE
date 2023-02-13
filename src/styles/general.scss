@@ -7,10 +7,21 @@
     display: flex;
     position: absolute;
 }
+.b0{
+    bottom: 0rem;
+}
+
+
+
 
 .col{
     display: flex;
     flex-direction: column;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
 }
 
 
