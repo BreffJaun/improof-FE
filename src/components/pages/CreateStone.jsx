@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { host } from "../../api/host.jsx";
 import { toast, ToastContainer } from "react-toastify";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import Footer from "../elements/Footer.jsx";
 
 // ICONS
@@ -9,8 +9,34 @@ import { BiCheck } from "react-icons/bi";
 import { SlTrash } from "react-icons/sl";
 import { RxCross2 } from "react-icons/rx";
 
-const CreateStone = () => {
+// CONTEXT
+import UserContext from "../../context/userContext.jsx";
+
+const CreateStone = ({}) => {
+  const [user, setUser] = useContext(UserContext);
   const [newStone, setNewStone] = useState({});
+  const [project, setProject] = useState({});
+  const [isPending, setPending] = useState(true);
+
+  useEffect(() => {
+    setPending(true);
+    const fetchProject = async () => {
+      fetch(`${host}/projects/63e6044cb86f5f75a82e8de3`, {
+        credentials: "include",
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          if (json.status) {
+            setProject(json.data);
+            setPending(false);
+          }
+        });
+    };
+    fetchProject();
+  }, []);
+
+  const contributors = project.team;
+  console.log(contributors);
 
   const toastOptions = {
     position: "bottom-right",
@@ -19,6 +45,7 @@ const CreateStone = () => {
   };
   const handleInput = () => {};
   const handleSubmit = () => {};
+  const handleMedia = () => {};
   return (
     <>
       <h1 className="central c-FAV mt1 mb2">new stone</h1>
@@ -27,7 +54,6 @@ const CreateStone = () => {
         <div className="central col pa1 mb2">
           <div className="col">
             <p>
-              {" "}
               title <span className="c-FAV">*</span>
             </p>
             <input
@@ -38,7 +64,6 @@ const CreateStone = () => {
               onChange={handleInput}
             />
           </div>
-
           <div className="col">
             <p>description</p>
             <input
@@ -48,7 +73,6 @@ const CreateStone = () => {
               onChange={handleInput}
             />
           </div>
-
           <div>
             <input
               type="radio"
@@ -56,18 +80,39 @@ const CreateStone = () => {
               value="stepstone"
               onChange={handleInput}
             />
-            <label for="stoneType">stepstone</label>
+            <label htmlFor="stoneType">stepstone</label>
             <input type="radio" name="stoneType" value="milestone" />
-            <label for="stoneType">milestone</label>
+            <label htmlFor="stoneType">milestone</label>
             <input type="radio" name="stoneType" value="endstone" />
-            <label for="stoneType">endstone</label>
+            <label htmlFor="stoneType">endstone</label>
           </div>
-          <hr />
+          <div>
+            <hr width="500rem" />
+          </div>{" "}
           <div>
             <div className="col">
               <p> add media</p>
-              <input type="text" />
+              <label htmlFor="media-pic">add photos</label>
+              <input
+                type="file"
+                multiple
+                id="media-pic"
+                onchange={handleMedia}
+              />
+              <label htmlFor="media-vid">add videos</label>
+              <input
+                type="file"
+                multiple
+                id="media-vid"
+                onchange={handleMedia}
+              />
             </div>
+          </div>
+          <div>
+            <hr width="500rem" />
+          </div>
+          <div className="col">
+            <p>contributors</p>
           </div>
         </div>
       </form>
