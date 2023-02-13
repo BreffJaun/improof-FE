@@ -48,7 +48,6 @@ const Newsfeed = () => {
     <div className="mt2">
       <p className="sl c-FAV">newsFeed</p>
       <CarouselProvider
-        isPlaying={true}
         interval={3000}
         naturalSlideWidth={100}
         naturalSlideHeight={25}
@@ -87,7 +86,7 @@ const Newsfeed = () => {
       </CarouselProvider>
       <div className="central col">
         <h1 className="c-FAV mb1">filter your interest</h1>
-        <CategoriesFilter setCategory={setCategory} />
+        <CategoriesFilter category={category} setCategory={setCategory} />
       </div>
     </div>
   );
