@@ -38,11 +38,11 @@ const TalentToProjectCard = ({talent, user, team, setTeam}) => {
         { !checkTeam ? 
           <div className="w100 abs b0">
             <button onClick={addToTeam}
-            >add to project</button>
+            >add</button>
           </div> :
           <div className="w100 abs b0">
             <button onClick={deleteFromTeam}
-            >delete from project</button>
+            >delete</button>
           </div>
         }
       </div>
