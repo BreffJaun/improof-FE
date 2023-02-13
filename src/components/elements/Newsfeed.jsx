@@ -1,8 +1,17 @@
 import { host } from "../../api/host.jsx";
 import { useContext, useEffect, useSate, useState } from "react";
+import {
+  CarouselProvider,
+  Slider,
+  Slide,
+  ButtonBack,
+  ButtonNext,
+} from "pure-react-carousel";
+import "pure-react-carousel/dist/react-carousel.es.css";
 
 // ELEMENTE
 import { ProjectCardNewsFeed } from "./ProjectCard.jsx";
+import CategoriesFilter from "./CategoriesFilter.jsx";
 
 // CONTEXT
 import TriggerContext from "../../context/triggerContext.jsx";
@@ -13,6 +22,7 @@ const Newsfeed = () => {
   const [user, setUser] = useContext(UserContext);
   const [trigger, setTrigger] = useState(true);
   const [isPending, setPending] = useState(true);
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
     const getProjects = async () => {
@@ -51,19 +61,51 @@ const Newsfeed = () => {
     );
   });
 
-  // Sort will change the initial array
-
   return (
     <div className="mt2">
-      {projects.slice(0, 10).map((project) => {
-        return (
-          <ProjectCardNewsFeed
-            key={project._id}
-            project={project}
-            user={user}
-          />
-        );
-      })}
+      <p className="sl c-FAV">newsFeed</p>
+      <CarouselProvider
+        isPlaying={true}
+        interval={3000}
+        naturalSlideWidth={100}
+        naturalSlideHeight={25}
+        totalSlides={10}
+        infinite={true}
+        lockOnWindowScroll={true}
+      >
+        <Slider>
+          {category === undefined ||
+          category === "others" ||
+          category === "All categories"
+            ? projects.map((project) => {
+                <Slide index={0}>
+                  <ProjectCardNewsFeed
+                    key={project._id}
+                    user={user}
+                    project={project}
+                  />
+                </Slide>;
+              })
+            : projects.map(
+                (project) =>
+                  project.category === category && (
+                    <Slide index={0}>
+                      <ProjectCardNewsFeed
+                        key={project._id}
+                        user={user}
+                        project={project}
+                      />
+                    </Slide>
+                  )
+              )}
+        </Slider>
+        <ButtonBack>Back</ButtonBack>
+        <ButtonNext>Next</ButtonNext>
+      </CarouselProvider>
+      <div className="central col">
+        <h1 className="c-FAV mb1">filter your interest</h1>
+        <CategoriesFilter setCategory={setCategory} />
+      </div>
     </div>
   );
 };
