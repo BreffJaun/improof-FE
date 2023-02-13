@@ -45,7 +45,7 @@ const Main = () => {
         if (json.status) {
           setUser(json.user);
           setPending(false);
-          console.log("HALLO IN MAIN");
+          console.log("HALLO IN MAIN", user);
 
           if (json.user.meta.loginCount === 1) {
             navigate("/congrats");
@@ -59,7 +59,7 @@ const Main = () => {
   return (
     !isPending && (
       <>
-        <Navbar />
+        <Navbar user={user}/>
         {/* <LogoS /> */}
         <Routes>
           <Route path="/" element={<Start />} />

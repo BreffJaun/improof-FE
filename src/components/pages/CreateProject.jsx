@@ -11,10 +11,11 @@ import CategoriesFilter from "../elements/CategoriesFilter.jsx";
 import RadioPrivacy from "../buttons/RadioPrivacy"
 import Footer from "../elements/Footer.jsx";
 import { RadioProjectColor } from "../buttons/RadioColor.jsx";
-import { TalentCard } from "../elements/TalentCard.jsx";
+import { TalentToProjectCard } from "../elements/TalentToProjectCard.jsx";
 
 // ICONS
 import { AiOutlineCamera as Camera} from "react-icons/ai"
+
 
 const CreateProject = () => {
   const navigate = useNavigate();
@@ -28,6 +29,20 @@ const CreateProject = () => {
   const [newProject, setNewProject] = useState(initial)
   const [talents, setTalents] = useState([])
   const [isPending, setPending] = useState(false)
+  const [team, setTeam] = useState([])
+  const follows = user.follows;
+
+  const noFollowsFilter = (arr1, arr2) => {
+    let clean = [];
+    clean = arr1.filter(el => {
+      return !arr2.some(element => {
+          return element._id === el._id;
+      });
+    });
+    return clean;
+  }
+  const noFollows = noFollowsFilter(talents, follows)
+
 
   const toastOptions = {
     position: "bottom-right",
@@ -52,15 +67,15 @@ const CreateProject = () => {
   const handleInput = (event) => {
     setNewProject({ ...newProject, [event.target.name]: event.target.value });
   }
-
   const handleFile = (event) => {
     setThumbnail(event.target.files[0])
   }
 
+
+
   useEffect(() => {
     setNewProject({ ...newProject, color: projectColor });
   }, [projectColor])
-
 
   useEffect(() => {
     setNewProject({ ...newProject, category: category });
@@ -70,25 +85,19 @@ const CreateProject = () => {
     setNewProject({ ...newProject, private: privacy });
   }, [privacy])
 
-
   const handleSubmit = async (event) => {
     console.log(newProject);
     newProject.team=[user._id]
     event.preventDefault();
 
-    // appenden das thumbnail ans newProject
     const formData = new FormData()
     formData.append("thumbnail", thumbnail)
     formData.append("data", JSON.stringify(newProject))
 
-    // senden das Paket thumbnail+newProject
     const sendProjectData = async () => {
       await fetch(`${host}/projects/add`, {
         method: 'POST',
         body: JSON.stringify(formData),
-        // headers: {
-        //   'Content-type': 'application/json; charset=UTF-8',
-        // },
       })
         .then((response) => response.json())
         .then((json) => {
@@ -103,90 +112,104 @@ const CreateProject = () => {
     sendProjectData();
   }
 
-    return (
-      <>
-        <h1 className="central c-FAV mt1 mb2">new project</h1>
+  console.log("team:", team);
 
-        <form onSubmit={handleSubmit}>
-          <div className="central col pa1 mb2">
-            <div className="col">
-              <p>project name<span className="c-FAV">*</span></p>
-              <input
-                type="text"
-                name="name"
-                placeholder="Give your project a catchy name!"
-                required
-                onChange={handleInput}
-              />
-            </div>
+  return (
+    <>
+      <div className="mt4 mb2">
+        <h1 className="central c-FAV">new project</h1>
+        <h4 className="central c-FAV mt05">It is time to amaze the world!</h4>
+      </div>
 
-            <div className="col">
-              <p>description<span className="c-FAV">*</span></p>
-              <input
-                type="text"
-                name="description"
-                placeholder="what is your project about?"
-                required
-                onChange={handleInput}
-              />
-            </div>
-
-            <div className="col">
-              <p >thumbnail</p>
-              <div className="thumbnailS">
-                <div title="upload"><Camera /></div>
-              </div>
-              <input
-                type="file"
-                name="thumbnail"
-                onChange={handleFile}
-              />
-            </div>
-
-            <div className="col">
-              <p>colorize your project</p>
-              <RadioProjectColor setProjectColor={setProjectColor} />
-            </div>
-
-            <div className="col">
-              <p>What is the topic?<span className="c-FAV">*</span></p>
-              <CategoriesFilter setCategory={setCategory}/>
-            </div>
+      <form onSubmit={handleSubmit}>
+        <div className="central col pa1 mb2">
+          <div className="col">
+            <p>project name<span className="c-FAV">*</span></p>
+            <input
+              type="text"
+              name="name"
+              placeholder="Give your project a catchy name!"
+              required
+              onChange={handleInput}
+            />
           </div>
-
-          <div className="bo-DARK"></div>
-          <h1 className="central c-FAV mb2">create your team</h1>
-          <h1>i know these talents</h1>
-          <button className="circle30 bg-FAV c-A100 w700">+</button>
-          {user.follows.map((talent) => {
-            return (
-              <TalentCard talent={talent} user={user} key={talent._id} />
-            )
-          })}
-
-          <div className="bo-DARK"></div>
-          <h1>i want these talents</h1>
-
-          <div className="bo-DARK"></div>
-          <RadioPrivacy setPrivacy={setPrivacy} />
-          <button className="circle30 bg-FAV c-A100 w700">+</button>
-          {/* {talents.filter((talent)=> talent._id !== user.follows._id).map((talent) => {
-            return (
-              <TalentCard talent={talent} user={user} key={talent._id} />
-            )
-          })} */}
-
 
           <div className="col">
-            <div className="bo-DARK col"></div>
-            <button type="submit" className="bg-FAV">create your project!</button>
+            <p>description<span className="c-FAV">*</span></p>
+            <input
+              type="text"
+              name="description"
+              placeholder="what is your project about?"
+              required
+              onChange={handleInput}
+            />
           </div>
 
-        </form>
-        <ToastContainer />
-        <Footer />
-      </>
-    );
-  };
+          <div className="col">
+            <p>thumbnail</p>
+            <div className="thumbnailS">
+              <div title="upload"><Camera /></div>
+            </div>
+            <input
+              type="file"
+              name="thumbnail"
+              onChange={handleFile}
+            />
+          </div>
+          <div className="col">
+            <p>What is the topic?<span className="c-FAV">*</span></p>
+            <CategoriesFilter setCategory={setCategory}/>
+          </div>
+          <div className="col">
+            <p>colorize your project</p>
+            <RadioProjectColor setProjectColor={setProjectColor} />
+          </div>
+        </div>
+
+    {/*  - - - - - FOLLOWING COMMUNITY - - - - - */}
+    <div className="bo-DARK"></div>
+    <h4 className="central c-FAV mt4 mb4">setup your team</h4>
+    <div className="talent-container">
+      {user.follows.length === 0 ?
+      <p>get inspired by the community</p> : 
+      user.follows.map(talent => 
+        talent._id !== user._id &&
+        <TalentToProjectCard team={team} setTeam={setTeam}
+        key={talent._id}
+        talent={talent}
+        user={user} 
+        />
+      )}
+    </div>
+
+
+    {/*  - - - - - COMMUNITY - - - - - */}
+    <div className="mb1 mt3 central">
+        <h4 className="central c-FAV mt05">add new talents</h4>
+      </div>
+      <div className="talent-container">
+          {noFollows && noFollows.map((talent) =>
+          talent._id !== user._id &&
+          <TalentToProjectCard team={team} setTeam={setTeam}
+          key={talent._id}
+          talent={talent}
+          user={user} 
+        />
+      )}
+
+      </div>
+
+        <div className="bo-DARK"></div>
+        <div className="col">
+          <RadioPrivacy setPrivacy={setPrivacy}/>
+          <button type="submit" className="mt2 bg-FAV">create your project!</button>
+        </div>
+
+      </form>
+      <ToastContainer />
+      <Footer />
+    </>
+  );
+};
 
 export default CreateProject;

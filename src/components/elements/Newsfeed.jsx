@@ -23,6 +23,7 @@ const Newsfeed = () => {
   const [trigger, setTrigger] = useState(true);
   const [isPending, setPending] = useState(true);
   const [category, setCategory] = useState("");
+  const [numberSlides, setNumberSlides] = useState(undefined)
 
   useEffect(() => {
     const getProjects = async () => {
@@ -60,7 +61,7 @@ const Newsfeed = () => {
           category === "others" ||
           category === "All categories"
             ? projects.map((project) => {
-                <Slide index={0}>
+                <Slide index={0} key={project._id}>
                   <ProjectCardNewsFeed
                     key={project._id}
                     user={user}
@@ -69,9 +70,9 @@ const Newsfeed = () => {
                 </Slide>;
               })
             : projects.map(
-                (project) =>
+                (project) =>                
                   project.category === category && (
-                    <Slide index={0}>
+                    <Slide index={0} key={project._id}>
                       <ProjectCardNewsFeed
                         key={project._id}
                         user={user}

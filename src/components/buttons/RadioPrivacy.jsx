@@ -10,18 +10,19 @@ const RadioPrivacy = ({setPrivacy}) => {
         <div className="mb05 g05">
           <label className="ml05">privat</label>
             <input
-                type="radio"
-                name="privacy"
-            value="true"
-            onChange={handlePrivacy}
+              type="radio"
+              name="privacy"
+              value="true"
+              onChange={handlePrivacy}
             />
         </div>
         <div className="mb05 g05">
             <input
-                type="radio"
-                name="privacy"
-            value="false"
-            onChange={handlePrivacy}
+              type="radio"
+              name="privacy"
+              value="false"
+              checked="checked"
+              onChange={handlePrivacy}
             />
             <label className="ml05">public</label>
         </div>
