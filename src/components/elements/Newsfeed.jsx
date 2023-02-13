@@ -37,23 +37,6 @@ const Newsfeed = () => {
     getProjects();
   }, []);
 
-  useEffect(() => {
-    setPending(true);
-    const getUser = async () => {
-      fetch(`${host}/users/checklogin`, {
-        credentials: "include",
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          if (json.status) {
-            setUser(json.user);
-            setPending(false);
-          } else {
-            navigate("/login");
-          }
-        });
-    };
-  }, [user]);
   const sortedProjects = projects.sort(function (a, b) {
     return (
       new Date(b.createdAt ?? b.updatedAt) -
