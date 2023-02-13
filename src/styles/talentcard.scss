@@ -16,12 +16,19 @@
     height: 300px;
     padding: 1rem;
     border-radius: 8px;
-    box-shadow: 0.4rem 0.4rem 1rem rgba(25,29,41, 0.3);
+    box-shadow: 0.4rem 0.4rem 1rem var(--A80);
     &:hover{
-        transition: 200ms;
+        transition: 100ms;
         transition-timing-function: ease-in-out;
-        box-shadow: 0.4rem 0.4rem 1rem rgba(25,29,41, 0.15);
-        transition: 150ms;
+        scale: 1.025;
+        .t-avatar{
+            .t-pic{
+                scale: 1.1;
+                transition: 250ms;
+                top: -0.75rem;
+                transition-timing-function: ease-in-out;
+            }
+        }
     }
     >*{
         display: flex;
