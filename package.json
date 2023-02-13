@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "dotenv": "^16.0.3",
+    "multer-gridfs-storage": "^5.0.2",
     "pigeon-maps": "^0.21.3",
     "react": "^18.2.0",
     "react-chrono": "^1.20.0",
