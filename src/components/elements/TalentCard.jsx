@@ -20,7 +20,7 @@ const TalentCard = ({talent, user}) => {
     <>
       <div className="t-card" >
         <div className="t-avatar">
-          <div className="tile80 bg-FAV central t-pic" onClick={()=> navigate(`/userDetails/${talent._id}`)}>
+          <div className="bg-FAV central t-pic" onClick={()=> navigate(`/userDetails/${talent._id}`)}>
             { talent?.profile?.avatar? 
               <img src={talent.profile?.avatar} /> : 
               <p className="initials">{talent.profile?.initials}</p> }
