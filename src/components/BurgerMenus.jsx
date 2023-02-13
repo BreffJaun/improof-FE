@@ -37,15 +37,33 @@ const BurgerMenuTalent = ({setShowMenu, showMenu}) => {
 
           setShowMenu(!showMenu)
         }
-        }  className="mb15 col central">
-          <button className="mb05" onClick={() => navigate(`/userdetails/${user._id}`)}>< MdOutlinePerson /> my profile</button>
-          <button className="mb05" onClick={ ()=> navigate("/createproject")}><NewProject/>new project</button>
-          <button className="mb05" onClick={ ()=> navigate("/myprojects")}><Projects/> my projects</button>
-          <button className="mb05" onClick={ ()=> navigate("/projects")}><Star/>projects</button>
-          <button className="mb05" onClick={ ()=> navigate("/community")}><Community/> community</button>
+        }  className="mb15 col">
+          <button className="mb05 rel" onClick={() => navigate(`/userdetails/${user._id}`)}>
+            < MdOutlinePerson className="burger-icon"/>
+            <p className="ml2">my profile</p>
+          </button>
+          <button className="mb05 rel" onClick={() => navigate("/createproject")}>
+            <NewProject className="burger-icon"/>
+            <p className="ml2">new project</p>
+          </button>
+          <button className="mb05 rel" onClick={() => navigate("/myprojects")}>
+            <Projects className="burger-icon"/> 
+            <p className="ml2">my projects</p>
+          </button>
+          <button className="mb05 rel" onClick={() => navigate("/projects")}>
+            <Star className="burger-icon"/>
+            <p className="ml2">projects</p>
+          </button>
+          <button className="mb05 rel" onClick={() => navigate("/community")}>
+            <Community className="burger-icon"/> 
+            <p className="ml2">community</p>
+          </button>
         </div>
-        <div onClick={()=> setShowMenu(!showMenu)} className="central mb05">
-          <button onClick={ ()=> navigate("/login")}><IoIosLogOut /> logout</button>
+        <div onClick={()=> setShowMenu(!showMenu)} className="mb05">
+          <button className="mb05 rel" onClick={() => navigate("/login")}>
+            <IoIosLogOut className="burger-icon"/>
+            <p className="ml2">logout</p>
+          </button>
         </div>
         <div className="central" onClick={()=> {
           setShowMenu(!showMenu)

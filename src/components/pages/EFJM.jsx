@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import "../../styles/efjm.scss"
-import Eleni from "../elements/EFJM-eleni";
+import Eleni from "../elements/EFJM-eleni.jsx";
+import Martin from "../elements/EFJM-martin.jsx"
+import Florian from "../elements/EFJM-florian.jsx";
+import Jeff from "../elements/EFJM-jeff.jsx"
 
 
 // ICONS
@@ -21,13 +24,13 @@ const EFJM = () => {
                     <Eleni />
                 </div>
                 <div className="efjm-card">
-                    <Eleni />
+                    <Florian />
                 </div>
                 <div className="efjm-card">
-                    <Eleni />
+                    <Jeff />
                 </div>
                 <div className="efjm-card">
-                    <Eleni />
+                    <Martin />
                 </div>
             </div>
             <div className="logoContainer central">
