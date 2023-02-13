@@ -18,6 +18,7 @@ import { AiOutlineCamera as Camera} from "react-icons/ai"
 
 
 const CreateProject = () => {
+  const [eMailFields, setEmailFields] = useState([1]);
   const navigate = useNavigate();
   const { id } = useParams("id");
   const [user, setUser] = useContext(UserContext)
@@ -42,6 +43,8 @@ const CreateProject = () => {
     return clean;
   }
   const noFollows = noFollowsFilter(talents, follows)
+
+  console.log(typeof eMailFields);
 
 
   const toastOptions = {
@@ -70,7 +73,10 @@ const CreateProject = () => {
   const handleFile = (event) => {
     setThumbnail(event.target.files[0])
   }
-
+  const handleEmails = (event) => {
+    setEmailFields([...eMailFields, 1])
+    console.log("eMailFields: ", eMailFields);
+  }
 
 
   useEffect(() => {
@@ -196,9 +202,22 @@ const CreateProject = () => {
           user={user} 
         />
       )}
-
       </div>
+        
 
+      {/*  - - - - - INVITATION - - - - - */}
+      <div className="bo-DARK"></div>
+      <div className="mb1 mt3 central">
+        <h4 className="central c-FAV mt05">invite to improof</h4>
+        </div>
+        <div className="col">
+          {eMailFields.map( el => <input type="text"/> )  } 
+          
+          <button onClick={handleEmails}>+ email</button>
+        </div>
+
+
+        
         <div className="bo-DARK"></div>
         <div className="col">
           <RadioPrivacy setPrivacy={setPrivacy}/>
