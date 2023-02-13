@@ -27,6 +27,7 @@ const TalentDetails = () => {
 
   const {id} = useParams("id")
   const [user, setUser] = useContext(UserContext)
+  const [userAvatar, setUserAvatar] = useState(undefined)
   const [trigger, setTrigger] = useContext(TriggerContext)
   const [talent, setTalent] = useState(undefined)
   const [isPending, setIsPending] = useState(true)
@@ -70,6 +71,23 @@ const TalentDetails = () => {
     getUser();
   },[trigger])
 
+  useEffect(() => {
+    // FETCH CURR USER AVATAR FROM DATABASE (GRID FS)
+    const getUserAvatar = ()=>{
+      fetch(`${host}/media/${user.profile.avatar}`,{
+      credentials:"include"
+      })
+      .then((response) => {
+      if(response) {
+          setUserAvatar(response.url)
+          // console.log('DID WORK!')
+        } else {
+          // console.log('DID NOT WORK!')
+        }
+      })};
+    getUserAvatar();
+  }, [])
+
 
   return talent &&( 
     <>
@@ -77,7 +95,13 @@ const TalentDetails = () => {
 
       <div className="rel">
         <div className="circle90 bg-FAV central">
-          {talent.profile.avatar ? <img src="" alt="" /> :
+          {userAvatar ? 
+          <img 
+          src={userAvatar} 
+          className="circle90 bg-FAV central rel"
+          alt="avatar" 
+          /> 
+          :
             <div className="initials"><p>{talent.profile.initials}</p></div>
           }
         </div>

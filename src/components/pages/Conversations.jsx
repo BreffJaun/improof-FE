@@ -7,7 +7,7 @@ import { host } from "../../api/host.jsx";
 // ICONS
 import { MdOutlineClose as X} from "react-icons/md"
 
-const Conversations = ({setShowConversations, showConversations, user}) => {
+const Conversations = ({setShowConversations, showConversations, user, unreadMsgs}) => {
   const setMsgRead = (id) => {
     fetch(`${host}/messages`, {
       method: 'PATCH',
@@ -23,7 +23,7 @@ const Conversations = ({setShowConversations, showConversations, user}) => {
       .then((json) => console.log("FETCH IN CONVERSATION",json));
   }
   const navigate = useNavigate()
-  console.log("CONVERSATION",user);
+
   return (
     <>
       <div className="burger-container rel">
@@ -31,11 +31,12 @@ const Conversations = ({setShowConversations, showConversations, user}) => {
           <h1>these are your conversations</h1>
 
           {user?.conversations?.map(con => { 
+            const unread = con.message.find(msg => !msg.isRead && msg.from !== user._id)
             const date1 = con.message[0].createdAt.toString().split("T")
             const date = date1[0].split("-").reverse().join(".")
             const time = date1[1].slice(0,5)            
             const participant = con.participants.find(part => part._id !== user._id)
-            return <div className="mb1" key ={con._id} onClick={()=>{
+            return <div className={unread && "bg-FAV"} key ={con._id} onClick={()=>{
               navigate(`/messages/${con._id}`)
               setShowConversations(!showConversations)
               setMsgRead(con._id)
