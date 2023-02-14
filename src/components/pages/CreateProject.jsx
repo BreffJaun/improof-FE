@@ -30,8 +30,11 @@ const CreateProject = () => {
   const [newProject, setNewProject] = useState(initial)
   const [talents, setTalents] = useState([])
   const [isPending, setPending] = useState(false)
+  const [createProjectPending, setCreateProjectPending] = useState(false);
   const [team, setTeam] = useState([])
+  const [inviteEmail, setInviteEmail] = useState([]);
   const follows = user.follows;
+  const [addUserToTeamTrigger, setAddUserToTeamTrigger] = useState(false);
 
   const noFollowsFilter = (arr1, arr2) => {
     let clean = [];
@@ -43,9 +46,6 @@ const CreateProject = () => {
     return clean;
   }
   const noFollows = noFollowsFilter(talents, follows)
-
-  console.log(typeof eMailFields);
-
 
   const toastOptions = {
     position: "bottom-right",
@@ -67,58 +67,99 @@ const CreateProject = () => {
     getUsers()
   },[])
 
+  // INPUT HANDLER START //
   const handleInput = (event) => {
     setNewProject({ ...newProject, [event.target.name]: event.target.value });
   }
+
   const handleFile = (event) => {
     setThumbnail(event.target.files[0])
   }
-  const handleEmails = (event) => {
+
+  // HANDLE THE AMOUNTS OF INVITE INPUT FIELDS START //
+  const addEmailFields = (event) => {
+    event.preventDefault();
     setEmailFields([...eMailFields, 1])
-    console.log("eMailFields: ", eMailFields);
   }
 
+  const subEmailFields = (event) => {
+    event.preventDefault();
+    setEmailFields([...eMailFields.slice(0,-1)])
+  }
+  // HANDLE THE AMOUNTS OF INVITE INPUT FIELDS START //
 
+  const inviteInputHandler = (event) => {
+    setInviteEmail({...inviteEmail, [event.target.name]: event.target.value})
+  }
+  // INPUT HANDLER END //
+
+  // USE EFFECTS START //
   useEffect(() => {
-    setNewProject({ ...newProject, color: projectColor });
+    setNewProject({...newProject, color: projectColor});
   }, [projectColor])
 
   useEffect(() => {
-    setNewProject({ ...newProject, category: category });
+    setNewProject({...newProject, category: category});
   }, [category])
 
   useEffect(() => {
-    setNewProject({ ...newProject, private: privacy });
+    setNewProject({...newProject, team: team});
+  }, [team])
+
+  useEffect(() => {
+    setTeam([...team, user._id])
+    setNewProject({...newProject, team: team});
+  }, [addUserToTeamTrigger])
+
+  // NOT WORKING
+  useEffect(() => {
+    setNewProject({...newProject, inviteOthers: Object.values(inviteEmail)});
+  }, [inviteEmail])
+
+  useEffect(() => {
+    setNewProject({...newProject, private: privacy});
   }, [privacy])
 
+  // USE EFFECTS END //
+
   const handleSubmit = async (event) => {
-    console.log(newProject);
-    newProject.team=[user._id]
     event.preventDefault();
+    setAddUserToTeamTrigger(true);
+
+    // Add your own userId to the team, because your a member of the project too.
+    console.log('Z 122, newProject: ', newProject)
 
     const formData = new FormData()
-    formData.append("thumbnail", thumbnail)
-    formData.append("data", JSON.stringify(newProject))
+    formData.append('thumbnail', thumbnail)
+    formData.append('data', JSON.stringify(newProject))
+
 
     const sendProjectData = async () => {
-      await fetch(`${host}/projects/add`, {
+      setCreateProjectPending(true)
+      await fetch(`${host}/projects/add`, 
+      {
+        credentials: "include",
         method: 'POST',
-        body: JSON.stringify(formData),
+        body: formData,
+        // body: JSON.stringify(newProject),
       })
-        .then((response) => response.json())
-        .then((json) => {
-          console.log(json)
-          if (!json.status) {
-            toast.error(json.error, toastOptions);
-          } else {
+        .then((json) => json.json())
+        .then((data) => {
+          if (data.status) {
             toast.info("Your project is save!", toastOptions);
+            setAddUserToTeamTrigger(false);
+            setCreateProjectPending(false);
+            if(!createProjectPending) {
+              navigate(`/projectdetails/${data.data._id}`)
+            }
+          } 
+          if (data.error) {
+            toast.error(data.error, toastOptions);            
           }
         });
     };
     sendProjectData();
   }
-
-  console.log("team:", team);
 
   return (
     <>
@@ -154,12 +195,21 @@ const CreateProject = () => {
           <div className="col">
             <p>thumbnail</p>
             <div className="thumbnailS">
+              {thumbnail ?
+                <img 
+                  src={thumbnail} 
+                  alt="thumbnail"                 
+                />
+                : 
+                <div className="central">PLATZHALTER</div>              
+              }
               <div title="upload"><Camera /></div>
             </div>
             <input
               type="file"
               name="thumbnail"
               onChange={handleFile}
+              accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
             />
           </div>
           <div className="col">
@@ -180,10 +230,12 @@ const CreateProject = () => {
       <p>get inspired by the community</p> : 
       user.follows.map(talent => 
         talent._id !== user._id &&
-        <TalentToProjectCard team={team} setTeam={setTeam}
-        key={talent._id}
-        talent={talent}
-        user={user} 
+        <TalentToProjectCard 
+          team={team} 
+          setTeam={setTeam}
+          key={talent._id}
+          talent={talent}
+          user={user} 
         />
       )}
     </div>
@@ -196,10 +248,12 @@ const CreateProject = () => {
       <div className="talent-container">
           {noFollows && noFollows.map((talent) =>
           talent._id !== user._id &&
-          <TalentToProjectCard team={team} setTeam={setTeam}
-          key={talent._id}
-          talent={talent}
-          user={user} 
+          <TalentToProjectCard 
+            team={team} 
+            setTeam={setTeam}
+            key={talent._id}
+            talent={talent}
+            user={user} 
         />
       )}
       </div>
@@ -211,13 +265,27 @@ const CreateProject = () => {
         <h4 className="central c-FAV mt05">invite to improof</h4>
         </div>
         <div className="col">
-          {eMailFields.map( el => <input type="text"/> )  } 
+          {eMailFields.map((el, i) => 
+          <input 
+            type="email" 
+            name={`inviteOthers${i}`}
+            onChange={inviteInputHandler}
+            key={i}
+          />           
+          )} 
           
-          <button onClick={handleEmails}>+ email</button>
+          <button 
+            onClick={addEmailFields}
+            disabled={eMailFields.length === 5}
+            >{eMailFields.length === 5 ? "you can invite more people later in the project" :"+ email"}
+          </button>
+          <button 
+            onClick={subEmailFields}
+            disabled={eMailFields.length === 1}
+            >- email
+          </button>
         </div>
 
-
-        
         <div className="bo-DARK"></div>
         <div className="col">
           <RadioPrivacy setPrivacy={setPrivacy}/>
