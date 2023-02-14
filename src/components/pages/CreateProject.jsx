@@ -78,7 +78,6 @@ const CreateProject = () => {
   // HANDLE THE AMOUNTS OF INVITE INPUT FIELDS START //
   const addEmailFields = (event) => {
     event.preventDefault();
-    console.log("eMailFields: ", eMailFields)
     setEmailFields([...eMailFields, 1])
   }
 
