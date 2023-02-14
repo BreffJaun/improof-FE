@@ -30,9 +30,11 @@ const CreateProject = () => {
   const [newProject, setNewProject] = useState(initial)
   const [talents, setTalents] = useState([])
   const [isPending, setPending] = useState(false)
+  const [createProjectPending, setCreateProjectPending] = useState(false);
   const [team, setTeam] = useState([])
   const [inviteEmail, setInviteEmail] = useState([]);
   const follows = user.follows;
+  const [addUserToTeamTrigger, setAddUserToTeamTrigger] = useState(false);
 
   const noFollowsFilter = (arr1, arr2) => {
     let clean = [];
@@ -71,7 +73,6 @@ const CreateProject = () => {
   }
 
   const handleFile = (event) => {
-    event.preventDefault();
     setThumbnail(event.target.files[0])
   }
 
@@ -105,6 +106,11 @@ const CreateProject = () => {
     setNewProject({...newProject, team: team});
   }, [team])
 
+  useEffect(() => {
+    setTeam([...team, user._id])
+    setNewProject({...newProject, team: team});
+  }, [addUserToTeamTrigger])
+
   // NOT WORKING
   useEffect(() => {
     setNewProject({...newProject, inviteOthers: Object.values(inviteEmail)});
@@ -118,28 +124,37 @@ const CreateProject = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setAddUserToTeamTrigger(true);
+
     // Add your own userId to the team, because your a member of the project too.
-    setNewProject({...newProject, team: team.push(user._id)});
-    console.log('Z 121, newProject: ', newProject)
+    console.log('Z 122, newProject: ', newProject)
 
     const formData = new FormData()
     formData.append('thumbnail', thumbnail)
     formData.append('data', JSON.stringify(newProject))
-    console.log('Z 125, formData: ', formData)
+
 
     const sendProjectData = async () => {
-      await fetch(`${host}/projects/add`, {
+      setCreateProjectPending(true)
+      await fetch(`${host}/projects/add`, 
+      {
         credentials: "include",
         method: 'POST',
         body: formData,
+        // body: JSON.stringify(newProject),
       })
-        .then((response) => response.json())
-        .then((json) => {
-          console.log('Z 135 json: ', json)
-          if (!json.status) {
-            toast.error(json.error, toastOptions);
-          } else {
+        .then((json) => json.json())
+        .then((data) => {
+          if (data.status) {
             toast.info("Your project is save!", toastOptions);
+            setAddUserToTeamTrigger(false);
+            setCreateProjectPending(false);
+            if(!createProjectPending) {
+              navigate(`/projectdetails/${data.data._id}`)
+            }
+          } 
+          if (data.error) {
+            toast.error(data.error, toastOptions);            
           }
         });
     };
@@ -180,12 +195,21 @@ const CreateProject = () => {
           <div className="col">
             <p>thumbnail</p>
             <div className="thumbnailS">
+              {thumbnail ?
+                <img 
+                  src={thumbnail} 
+                  alt="thumbnail"                 
+                />
+                : 
+                <div className="central">PLATZHALTER</div>              
+              }
               <div title="upload"><Camera /></div>
             </div>
             <input
               type="file"
               name="thumbnail"
               onChange={handleFile}
+              accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
             />
           </div>
           <div className="col">
@@ -253,7 +277,7 @@ const CreateProject = () => {
           <button 
             onClick={addEmailFields}
             disabled={eMailFields.length === 5}
-            >{eMailFields.length === 5 ? "you can invite later more people" :"+ email"}
+            >{eMailFields.length === 5 ? "you can invite more people later in the project" :"+ email"}
           </button>
           <button 
             onClick={subEmailFields}
