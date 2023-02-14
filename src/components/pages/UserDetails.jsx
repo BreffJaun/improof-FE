@@ -14,7 +14,7 @@ import { SendMessageBtn } from "../buttons/MessageBtn.jsx";
 import { AiFillEdit } from "react-icons/ai"
 
 //ELEMENTS
-import { MyProjectCard } from "../elements/ProjectCard.jsx";
+import { MyProjectCard, ProjectCard } from "../elements/ProjectCard.jsx";
 import { TalentCard } from "../elements/TalentCard.jsx";
 import Up from "../elements/Up.jsx";
 import Footer from "../elements/Footer.jsx";
@@ -162,16 +162,18 @@ const TalentDetails = () => {
       </div>
 
       <div className="bo-DARK"></div>
-      <div className="central col">
+      <div className="mt4 central col">
         <h1 className="c-FAV">projects</h1>
         <p className="c-FAV mb2">({talent.myProjects.length})</p>
+        <div className="project-container g1">
           {talent.myProjects.length ? 
-          talent.myProjects.map(project => <MyProjectCard key={project._id} project={project} user={user} />) : 
+          talent.myProjects.map(project => <ProjectCard key={project._id} project={project} user={user} />) : 
           <p>It is time for your first project.</p>}
+        </div>
       </div>
       
       <div className="bo-DARK"></div>
-      <div>
+      <div className="mt4 central col">
         <h1 className="central c-FAV">following</h1>
         <p className="central c-FAV mb2">({talent.follows.length})</p>
         {talent.follows.length ? 
