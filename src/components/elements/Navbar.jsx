@@ -120,6 +120,7 @@ const Navbar = () => {
               onClick={() => {
                 setShowConversations(!showConversations);
                 setShowNotifications(undefined);
+                setshowSearch(false)
                 setShowMenu(false);
               }}
             />

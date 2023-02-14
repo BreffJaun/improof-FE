@@ -40,7 +40,7 @@ const ProjectDetails = () => {
         });
     }
     fetchProject()
-  },[])
+  },[id])
 
   useEffect(()=> {
     const getUser = async () => {
