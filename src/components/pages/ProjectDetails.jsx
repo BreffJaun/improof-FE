@@ -28,6 +28,8 @@ const ProjectDetails = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0; 
     setPending(true)
     const fetchProject = async () => {
       fetch(`${host}/projects/${id}`,{

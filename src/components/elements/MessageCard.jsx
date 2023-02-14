@@ -11,10 +11,13 @@ const ReceiveMessage = () => {
 
 
 const Message = ({msg, user}) => {
+    const date1 = msg.createdAt.toString().split("T")
+    const date = date1[0].split("-").reverse().join(".")
+    const time = date1[1].slice(0,5)          
     return (
         <div className={msg.from === user._id ? "mb1 right" : "mb1 left"}>
             <p className="c-FAV">{msg.text}</p>
-            <p>{msg.createdAt}</p>
+            <p>{date} {time}</p>
         </div>
     );
 };

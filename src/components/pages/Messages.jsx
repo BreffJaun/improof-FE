@@ -22,6 +22,8 @@ const Messages = () => {
   }, "3000")
   
   useEffect(() => {
+    document.body.scrollTop = -100000;              // Safari
+    document.documentElement.scrollTop = -1000000;
     const getConversation = async () => {
       await fetch(`${host}/conversations/${id}`)
         .then((response) => response.json())
@@ -87,8 +89,10 @@ const Messages = () => {
             return <Message key={msg._id} user={user} msg={msg}/>
           })}
           <div>
-            <input type="text" value={msg} onChange={handleMsg}/>
-            <button onClick={handleSendMsg}>send</button>
+            <form onSubmit={handleSendMsg}>
+              <input type="text" value={msg} onChange={handleMsg}/>
+              <button type="submit">send</button>
+            </form>
           </div>
 
         </div>
