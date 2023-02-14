@@ -33,8 +33,6 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
-  console.log(showSearch);
-
   const unreadNots = user?.notifications?.filter(not => !not.isRead)
   const unreadMsgsSTEPONE = user?.conversations?.map(con => con.message.filter(msg => !msg.isRead && msg?.from != user._id))
   const unreadMsgs = unreadMsgsSTEPONE.map(arr => arr.length).reduce((a, b) => a + b, 0)

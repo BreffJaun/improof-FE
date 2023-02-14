@@ -114,8 +114,9 @@ const ProjectDetails = () => {
      {
       project.team.map((member) =>  <TalentCard key={member._id} talent={member} user={user}/>)
      }
-     <div>
+     <div>{project.team.find(member => member._id === user._id) && 
       <button onClick={()=> navigate(`/createStone/${project._id}`)}>create stone</button>
+     }
      </div>
      <Footer/>
     </div>
