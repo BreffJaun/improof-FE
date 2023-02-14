@@ -35,6 +35,8 @@ const TalentDetails = () => {
   const [showInfos, setShowInfos] = useState(false)
 
   useEffect(() => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0; 
     setIsPending(true)
     const getUser = async ()=>{
       await fetch(`${host}/users/${id}`,{
