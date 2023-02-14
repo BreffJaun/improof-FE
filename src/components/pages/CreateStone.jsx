@@ -72,6 +72,7 @@ const CreateStone = () => {
           toast.info("You just added a new stone", toastOptions);
         }
       });
+    navigate(`/projectdetails/${projectId}`);
   };
   const handleMedia = () => {};
   const handleContributor = (contributor) => {

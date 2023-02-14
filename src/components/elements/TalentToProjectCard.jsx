@@ -12,10 +12,12 @@ import { ToastContainer } from "react-toastify"
 
 const TalentToProjectCard = ({talent, user, team, setTeam}) => {
   const navigate = useNavigate()
-  const addToTeam = () =>{
+  const addToTeam = (event) =>{
+    event.preventDefault();
     setTeam([...team, talent._id])
   }
-  const deleteFromTeam = () => {
+  const deleteFromTeam = (event) => {
+    event.preventDefault();
     setTeam(team.filter((member) => member !== talent._id ));
   }
 

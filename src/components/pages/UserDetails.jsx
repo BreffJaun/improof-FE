@@ -38,8 +38,8 @@ const TalentDetails = () => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0; 
     setIsPending(true)
-    const getUser = ()=>{
-      fetch(`${host}/users/${id}`,{
+    const getUser = async ()=>{
+      await fetch(`${host}/users/${id}`,{
       credentials:"include"
       })
       .then((response) => response.json())
@@ -71,23 +71,26 @@ const TalentDetails = () => {
     }
     getUser();
   },[trigger])
-
+  console.log('talent: ', talent?.profile?.avatar)
   useEffect(() => {
     // FETCH CURR USER AVATAR FROM DATABASE (GRID FS)
-    const getUserAvatar = ()=>{
-      fetch(`${host}/media/${user.profile.avatar}`,{
+    const getUserAvatar = async ()=>{
+      await fetch(`${host}/media/${talent.profile.avatar}`,{
       credentials:"include"
       })
-      .then((response) => {
-      if(response) {
-          setUserAvatar(response.url)
+      // .then((response) => console.log(response.json()))
+      .then((json) => {
+      console.log('json: ', json)
+      if(json) {
+          setUserAvatar(json.url)
           // console.log('DID WORK!')
         } else {
           // console.log('DID NOT WORK!')
         }
       })};
-    getUserAvatar();
-  }, [])
+      talent?.profile?.avatar && getUserAvatar();
+  }, [id, talent])
+  console.log('userAvatar: ', userAvatar)
 
 
   return talent &&( 

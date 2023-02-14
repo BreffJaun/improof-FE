@@ -84,8 +84,6 @@ const UserEdit = () => {
   
 
   const avatarUploadHandler = (e) => {
-    // RESTRICT HERE FILE TYPE
-    // console.log('avatar: ', avatar)
     setAvatar(e.target.files[0])
   }
 
@@ -108,9 +106,11 @@ const UserEdit = () => {
   
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const formData = new FormData();
     formData.append('avatar', avatar);
     formData.append('data', JSON.stringify(userData));
+    
     const updateUserData = async () => {
       setUploadPending(true)
       await fetch(`${host}/users/${user._id}`,
