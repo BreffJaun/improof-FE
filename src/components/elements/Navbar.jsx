@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { host } from "../../api/host.jsx";
 
 import { BurgerMenuRecruiter, BurgerMenuTalent } from "../BurgerMenus.jsx";
+import MasterSearch from "./MasterSearch.jsx";
 
 // STYLE
 import "../../styles/navbar.scss";
@@ -23,6 +24,8 @@ import Conversations from "../pages/Conversations.jsx";
 const Navbar = () => {
   const [user, setUser] = useContext(UserContext);
   const [search, setSearch] = useState("");
+  const [searchResult, setSearchResult] = useState({})
+  // const [showResult, setShowResult] = useState(false)
   const [showMenu, setShowMenu] = useState(false);
   const [showSearch, setshowSearch] = useState(false);
   const [showNotifications, setShowNotifications] = useState(undefined);
@@ -34,6 +37,8 @@ const Navbar = () => {
   const unreadMsgsSTEPONE = user?.conversations?.map(con => con.message.filter(msg => !msg.isRead && msg?.from != user._id))
   const unreadMsgs = unreadMsgsSTEPONE.map(arr => arr.length).reduce((a, b) => a + b, 0)
 
+  console.log("SEARCHRESULT.PROJECT NAVBAR", searchResult.project);
+  console.log("SEARCHRESULT.TALENT NAVBAR", searchResult.talent);
 
   useEffect(()=>{
     const getSearch = async () => {
@@ -45,7 +50,13 @@ const Navbar = () => {
         },
       })
         .then((response) => response.json())
-        .then((json) => console.log(json));
+        .then((json) => {
+          if(json.status){
+            console.log(json)
+            // setShowResult(!showResult)
+            setSearchResult({talent:json.talentSearch, project:json.projectSearch})
+          }
+        });
     }
     search && getSearch()
   },[search])
@@ -126,6 +137,7 @@ const Navbar = () => {
                 setShowNotifications(undefined);
                 setShowConversations(undefined);
                 setShowMenu(false);
+                setSearchResult({})
               }}
             />
           </div>
@@ -172,6 +184,12 @@ const Navbar = () => {
               user={user}
             />
           )}
+        </div>
+        <div>
+          { Object.keys(searchResult).length > 0 && showSearch && 
+          <MasterSearch 
+          projects={searchResult.project} 
+          talents={searchResult.talent}/>}
         </div>
       </div>
     </div>
