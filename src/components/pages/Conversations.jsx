@@ -44,7 +44,7 @@ const Conversations = ({setShowConversations, showConversations, user, unreadMsg
                       <p className="c-FAV">{participant.profile.firstName} {participant.profile.lastName}</p>
                       <p> {time} {date} </p>
                   </div>
-                })
+                }).reverse()
             }        
 
             
