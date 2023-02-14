@@ -22,7 +22,7 @@ import Conversations from "../pages/Conversations.jsx";
 
 const Navbar = () => {
   const [user, setUser] = useContext(UserContext);
-  const [currUser, setCurrUser] = useState({});
+  const [search, setSearch] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [showSearch, setshowSearch] = useState(false);
   const [showNotifications, setShowNotifications] = useState(undefined);
@@ -33,6 +33,22 @@ const Navbar = () => {
   const unreadNots = user?.notifications?.filter(not => !not.isRead)
   const unreadMsgsSTEPONE = user?.conversations?.map(con => con.message.filter(msg => !msg.isRead && msg?.from != user._id))
   const unreadMsgs = unreadMsgsSTEPONE.map(arr => arr.length).reduce((a, b) => a + b, 0)
+
+
+  useEffect(()=>{
+    const getSearch = async () => {
+      await fetch(`${host}/search`, {
+        method: 'POST',
+        body: JSON.stringify({searchInput:search}),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+    }
+    search && getSearch()
+  },[search])
 
   useEffect(() => {
     const handleReadNotification = async () => {
@@ -103,7 +119,7 @@ const Navbar = () => {
             )}
           </div>
           <div>
-            {showSearch && <input type="text" />}
+            {showSearch && <input type="text" onChange={(event)=> setSearch(event.target.value)}/>}
             <Lupe
               onClick={() => {
                 setshowSearch(!showSearch);
