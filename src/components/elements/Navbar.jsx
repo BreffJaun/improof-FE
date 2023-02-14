@@ -74,7 +74,7 @@ const Navbar = () => {
 
       <div>
         <div className="navbar-right">
-          <div className="bell">
+          <div className="bell rel">
             <Bell
               onClick={() => {
                 setShowNotifications(!showNotifications);
@@ -88,7 +88,7 @@ const Navbar = () => {
               </div>
             )}
           </div>
-          <div>
+          <div className="rel">
             <Message
               onClick={() => {
                 setShowConversations(!showConversations);
