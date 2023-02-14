@@ -145,7 +145,7 @@ const MyProjectCard = ({ project, user }) => {
 
 const ProjectCardNewsFeed = ({ project, user }) => {
   const navigate = useNavigate();
-  return (
+  return ( Object.keys(project).length > 0 &&
     <div className="project card col">
       {project.thumbnail && (
         <div

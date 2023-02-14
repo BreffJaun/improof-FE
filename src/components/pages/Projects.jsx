@@ -44,19 +44,20 @@ const StarProjects = () => {
   return ( !pending &&
     <>
       <h1 className="central c-FAV mt1 mb2">projects</h1>
-      <div>
+      <div className="central">
         <CategoriesFilter setCategory={setCategory}/>
       </div>
       <div>
-        <h2>STARPROJECTS</h2>
+        <h3 className="center c-FAV mt2 mb2">star projects</h3>
         { category ? 
-        user?.starProjects.map(project => project.category === category && <ProjectCardNewsFeed key={project._id} user={user} project={project}/>) 
+        user?.starProjects.map(project => project.category === category &&
+          <ProjectCardNewsFeed key={project._id} user={user} project={project} />) 
         :
         user?.starProjects.map(project => <ProjectCardNewsFeed key={project._id} user={user} project={project}/>)
         }
       </div>
       <div>
-        <h2>ALL PROJECTS</h2>
+        <h3 className="center c-FAV mt2 mb2">all the other projects</h3>
         {category ? 
         projects.map(project => project.category === category && <ProjectCardNewsFeed key={project._id} user={user} project={project}/>)
         :

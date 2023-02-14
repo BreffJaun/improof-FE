@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { host } from "../../api/host.jsx";
 
 import { BurgerMenuRecruiter, BurgerMenuTalent } from "../BurgerMenus.jsx";
+import MasterSearch from "./MasterSearch.jsx";
 
 // STYLE
 import "../../styles/navbar.scss";
@@ -22,36 +23,51 @@ import Conversations from "../pages/Conversations.jsx";
 
 const Navbar = () => {
   const [user, setUser] = useContext(UserContext);
-  const [currUser, setCurrUser] = useState({});
+  const [search, setSearch] = useState("");
+  const [searchResult, setSearchResult] = useState({})
+  // const [showResult, setShowResult] = useState(false)
   const [showMenu, setShowMenu] = useState(false);
-  const [showSearch, setshowSearch] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const [showNotifications, setShowNotifications] = useState(undefined);
   const [showConversations, setShowConversations] = useState(undefined);
 
   const navigate = useNavigate();
 
-  const unreadNots = user?.notifications?.filter((not) => !not.isRead);
-  const unreadMsgsSTEPONE = user?.conversations?.map((con) =>
-    con.message.filter((msg) => !msg.isRead && msg.from.toString() != user._id)
-  );
-  const unreadMsgs = unreadMsgsSTEPONE
-    .map((arr) => arr.length)
-    .reduce((a, b) => a + b, 0);
+  console.log(showSearch);
+
+  const unreadNots = user?.notifications?.filter(not => !not.isRead)
+  const unreadMsgsSTEPONE = user?.conversations?.map(con => con.message.filter(msg => !msg.isRead && msg?.from != user._id))
+  const unreadMsgs = unreadMsgsSTEPONE.map(arr => arr.length).reduce((a, b) => a + b, 0)
+
+  useEffect(()=>{
+    const getSearch = async () => {
+      await fetch(`${host}/search`, {
+        method: 'POST',
+        body: JSON.stringify({searchInput:search}),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          if(json.status){
+            setSearchResult({talent:json.talentSearch, project:json.projectSearch})
+          }
+        });
+    }
+    search && getSearch()
+  },[search])
 
   useEffect(() => {
     const handleReadNotification = async () => {
       await fetch(`${host}/notifications/read`, {
-        method: "PATCH",
-        body: JSON.stringify({
-          userId: user._id,
-        }),
+        method: 'PATCH',
+        body: JSON.stringify({userId: user._id}),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
       })
-        .then((response) => response.json())
-        .then((json) => null);
-    };
+    }
 
     const getUser = async () => {
       !showNotifications &&
@@ -82,11 +98,12 @@ const Navbar = () => {
 
       <div>
         <div className="navbar-right">
-          <div className="bell">
+          <div className="bell rel">
             <Bell
               onClick={() => {
                 setShowNotifications(!showNotifications);
                 setShowMenu(false);
+                setShowSearch(false)
                 setShowConversations(undefined);
               }}
             />
@@ -96,11 +113,12 @@ const Navbar = () => {
               </div>
             )}
           </div>
-          <div>
+          <div className="rel">
             <Message
               onClick={() => {
                 setShowConversations(!showConversations);
                 setShowNotifications(undefined);
+                setShowSearch(false)
                 setShowMenu(false);
               }}
             />
@@ -111,13 +129,14 @@ const Navbar = () => {
             )}
           </div>
           <div>
-            {showSearch && <input type="text" />}
+            {showSearch && <input type="text" onChange={(event)=> setSearch(event.target.value)}/>}
             <Lupe
               onClick={() => {
-                setshowSearch(!showSearch);
+                setShowSearch(!showSearch);
                 setShowNotifications(undefined);
                 setShowConversations(undefined);
                 setShowMenu(false);
+                setSearchResult({})
               }}
             />
           </div>
@@ -129,6 +148,7 @@ const Navbar = () => {
               setShowMenu(!showMenu);
               setShowNotifications(undefined);
               setShowConversations(undefined);
+              setShowSearch(false)
             }}
           >
             <RxHamburgerMenu />
@@ -164,6 +184,14 @@ const Navbar = () => {
               user={user}
             />
           )}
+        </div>
+        <div>
+          { Object.keys(searchResult).length > 0 && showSearch && 
+          <MasterSearch 
+          projects={searchResult.project} 
+          talents={searchResult.talent}
+          setShowSearch={setShowSearch}
+          />}
         </div>
       </div>
     </div>

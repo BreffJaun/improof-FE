@@ -52,19 +52,20 @@ useEffect(() => {
 
   return(
     <>
-      <div className="mt4 mb3">
+      <div className="mt2 mb2">
         <h1 className="central c-FAV">community</h1>
-        <h4 className="central c-FAV mt05">talents you know</h4>
       </div>
-      <div className="central">
+      <div className="mt2 mb2 central">
         <CategoriesFilter setCategory={setCategory}/>
       </div>
-        
-      <div className="mb1 mt3 central">
+      <div className="mt4 mb2 central">
+        <h4 className="central c-FAV mt05">talents you know</h4>
       </div>
-      <div className="talent-container">
+
+      <div className="mt4 mb2 talent-container central">
         {user.follows.length === 0 && !category ?
-        <p>Time to get some friends you creep</p> : 
+        <p></p> 
+        : 
         user.follows.map(talent => 
           talent.profile.category && talent.profile.category === category && talent._id !== user._id &&
           <TalentCard

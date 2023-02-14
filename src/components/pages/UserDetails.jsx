@@ -5,7 +5,6 @@ import { ToastContainer } from "react-toastify";
 
 import { host } from "../../api/host.jsx";
 
-
 import UserContext from "../../context/userContext.jsx";
 import TriggerContext from "../../context/triggerContext.jsx";
 
@@ -144,13 +143,15 @@ const TalentDetails = () => {
             {/* ----------------------------------------------- */}
           </div> : ""
         }
-        <button className="bg-FAV" onClick={() => setShowInfos(!showInfos)}>{showInfos ? "close" : "read more"}</button>
-        <div className="flex">
-          <div>
+        <div className="y mt1 central">
+          <div className="z">
+            <button className="x bg-FAV" onClick={() => setShowInfos(!showInfos)}>{showInfos ? "close" : "read more"}</button>
+          </div>
+          <div className="x">
             {user?._id !== talent._id && <FollowBtn talent={talent} user={user} /> } 
           </div>
-          <div>
-            {user._id !== talent._id && <SendMessageBtn talent={talent} user={user} /> }
+          <div className="x">
+            {user._id !== talent._id && <SendMessageBtn talent={talent} user={user} />}
           </div>
         </div>
       </div>

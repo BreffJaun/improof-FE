@@ -4,7 +4,7 @@ import "../../styles/chrono.scss"
 
 import React from "react";
 import { useContext, useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Chrono } from "react-chrono";
 import { host } from "../../api/host.jsx"
 
@@ -25,6 +25,8 @@ const ProjectDetails = () => {
   // const icons = !isPending && user && document.querySelector("#icons")
   const icons2 = useRef(null)
 
+  const navigate = useNavigate()
+
   useEffect(() => {
     setPending(true)
     const fetchProject = async () => {
@@ -40,7 +42,7 @@ const ProjectDetails = () => {
         });
     }
     fetchProject()
-  },[])
+  },[id])
 
   useEffect(()=> {
     const getUser = async () => {
@@ -112,6 +114,9 @@ const ProjectDetails = () => {
      {
       project.team.map((member) =>  <TalentCard key={member._id} talent={member} user={user}/>)
      }
+     <div>
+      <button onClick={()=> navigate(`/createStone/${project._id}`)}>create stone</button>
+     </div>
      <Footer/>
     </div>
   );

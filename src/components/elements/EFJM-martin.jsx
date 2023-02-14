@@ -4,23 +4,23 @@ import { AiFillGithub as GitHub } from "react-icons/ai"
 import { TbWorld as Website} from "react-icons/tb"
 
 
-const Eleni = () => {
+const Martin = () => {
     return (
         <>
             <div className="card efjm-card rel col">
                 <div className="central mb2">
                     <div className="efjm-avatar-container bg-FAV central">
-                        <h1>EO</h1>
+                        <h1>MG</h1>
                     </div>
                     <div className="mt5 col">
-                        <h3 className="c-FAV center mb05">Eleni Orfanou</h3>
-                        <p className="c-A60">"Life is not static but extatic!"</p>
+                        <h3 className="c-FAV center mb05">Martin Groß</h3>
+                        <p className="c-A60">"Everything is design!"</p>
                     </div>
                 </div>
                 <div>
                     <div className="col mb1">
                         <p className="c-FAV">Mein Bereich:</p>
-                        <p>React, Frontend, Backend</p>
+                        <p>UI-Designer, loves UX, knows HTML, CSS, Sass, React, Id, Ps, Ai</p>
                     </div>
                     <div className="col mb1">
                         <p className="c-FAV">Meine Stärken</p>
@@ -48,4 +48,4 @@ const Eleni = () => {
     )
 }
 
-export default Eleni;
+export default Martin;
