@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.8",
     "dotenv": "^16.0.3",
     "multer-gridfs-storage": "^5.0.2",
     "pigeon-maps": "^0.21.3",
@@ -19,6 +22,7 @@
     "react-geocode": "^0.2.3",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.8.0",
+    "react-switch": "^7.0.0",
     "react-toastify": "^9.1.1",
     "sass": "^1.57.1"
   },
