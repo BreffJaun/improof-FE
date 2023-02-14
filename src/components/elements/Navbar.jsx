@@ -27,18 +27,17 @@ const Navbar = () => {
   const [searchResult, setSearchResult] = useState({})
   // const [showResult, setShowResult] = useState(false)
   const [showMenu, setShowMenu] = useState(false);
-  const [showSearch, setshowSearch] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const [showNotifications, setShowNotifications] = useState(undefined);
   const [showConversations, setShowConversations] = useState(undefined);
 
   const navigate = useNavigate();
 
+  console.log(showSearch);
+
   const unreadNots = user?.notifications?.filter(not => !not.isRead)
   const unreadMsgsSTEPONE = user?.conversations?.map(con => con.message.filter(msg => !msg.isRead && msg?.from != user._id))
   const unreadMsgs = unreadMsgsSTEPONE.map(arr => arr.length).reduce((a, b) => a + b, 0)
-
-  console.log("SEARCHRESULT.PROJECT NAVBAR", searchResult.project);
-  console.log("SEARCHRESULT.TALENT NAVBAR", searchResult.talent);
 
   useEffect(()=>{
     const getSearch = async () => {
@@ -52,8 +51,6 @@ const Navbar = () => {
         .then((response) => response.json())
         .then((json) => {
           if(json.status){
-            console.log(json)
-            // setShowResult(!showResult)
             setSearchResult({talent:json.talentSearch, project:json.projectSearch})
           }
         });
@@ -106,6 +103,7 @@ const Navbar = () => {
               onClick={() => {
                 setShowNotifications(!showNotifications);
                 setShowMenu(false);
+                setShowSearch(false)
                 setShowConversations(undefined);
               }}
             />
@@ -120,7 +118,7 @@ const Navbar = () => {
               onClick={() => {
                 setShowConversations(!showConversations);
                 setShowNotifications(undefined);
-                setshowSearch(false)
+                setShowSearch(false)
                 setShowMenu(false);
               }}
             />
@@ -134,7 +132,7 @@ const Navbar = () => {
             {showSearch && <input type="text" onChange={(event)=> setSearch(event.target.value)}/>}
             <Lupe
               onClick={() => {
-                setshowSearch(!showSearch);
+                setShowSearch(!showSearch);
                 setShowNotifications(undefined);
                 setShowConversations(undefined);
                 setShowMenu(false);
@@ -150,6 +148,7 @@ const Navbar = () => {
               setShowMenu(!showMenu);
               setShowNotifications(undefined);
               setShowConversations(undefined);
+              setShowSearch(false)
             }}
           >
             <RxHamburgerMenu />
@@ -190,7 +189,9 @@ const Navbar = () => {
           { Object.keys(searchResult).length > 0 && showSearch && 
           <MasterSearch 
           projects={searchResult.project} 
-          talents={searchResult.talent}/>}
+          talents={searchResult.talent}
+          setShowSearch={setShowSearch}
+          />}
         </div>
       </div>
     </div>
