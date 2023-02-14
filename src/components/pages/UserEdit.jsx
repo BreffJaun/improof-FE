@@ -84,8 +84,6 @@ const UserEdit = () => {
   
 
   const avatarUploadHandler = (e) => {
-    // RESTRICT HERE FILE TYPE
-    // console.log('avatar: ', avatar)
     setAvatar(e.target.files[0])
   }
 
