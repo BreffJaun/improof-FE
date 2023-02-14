@@ -1,0 +1,9 @@
+.projects-container{
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width:700px) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}

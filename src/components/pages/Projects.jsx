@@ -1,10 +1,13 @@
 import Newsfeed from "../elements/Newsfeed.jsx";
 import CategoriesFilter from "../elements/CategoriesFilter.jsx";
-import { MyProjectCard, ProjectCardNewsFeed } from "../elements/ProjectCard.jsx";
+import { MyProjectCard, ProjectCardNewsFeed, ProjectCard } from "../elements/ProjectCard.jsx";
 import Footer from "../elements/Footer.jsx";
 
 import { host } from "../../api/host.jsx";
 import { useContext, useState, useEffect } from "react";
+
+// STYLES
+import "../../styles/projects.scss"
 
 // CONTEXT 
 import UserContext from "../../context/userContext.jsx";
@@ -47,31 +50,30 @@ const StarProjects = () => {
       <div className="central">
         <CategoriesFilter setCategory={setCategory}/>
       </div>
-      <div>
-        <h3 className="center c-FAV mt2 mb2">star projects</h3>
+
+      <h3 className="x center c-FAV mt2 mb2">star projects</h3>
+      <div className="y projects-container">
         { category ? 
         user?.starProjects.map(project => project.category === category &&
-          <ProjectCardNewsFeed key={project._id} user={user} project={project} />) 
+          <ProjectCard key={project._id} user={user} project={project} />) 
         :
-        user?.starProjects.map(project => <ProjectCardNewsFeed key={project._id} user={user} project={project}/>)
+        user?.starProjects.map(project => <ProjectCard key={project._id} user={user} project={project}/>)
         }
-      </div>
-      <div>
-        <h3 className="center c-FAV mt2 mb2">all the other projects</h3>
+    </div>
+    
+      <h3 className="x center c-FAV mt2 mb2">all the other projects</h3>
+      <div  className="y projects-container">
         {category ? 
-        projects.map(project => project.category === category && <ProjectCardNewsFeed key={project._id} user={user} project={project}/>)
+        projects.map(project => project.category === category && <ProjectCard key={project._id} user={user} project={project}/>)
         :
         projects &&projects.map((project)=> {
            const alreadyFollowing = user.starProjects.find(starProject => starProject._id === project._id)           
-           return !alreadyFollowing && <ProjectCardNewsFeed key={project._id} user={user} project={project}/>         
+           return !alreadyFollowing && <ProjectCard key={project._id} user={user} project={project}/>         
 
         })
         }
          
       </div>
-
-      
-
       <Footer/>
     </>
   );

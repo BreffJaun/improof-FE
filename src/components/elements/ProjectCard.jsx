@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import { HiPlus } from "react-icons/hi";
 import ProjectBtn from "../buttons/ProjectBtn.jsx";
+import logoW from "../../images/improof_A100.png";
+import { AiOutlineCamera as Camera} from "react-icons/ai"
 
 // ELEMENTS
 import { TalentCard } from "./TalentCard.jsx";
@@ -15,7 +17,7 @@ import { TalentCard } from "./TalentCard.jsx";
 const ProjectCardFollow = () => {
   return (
     <div className="project card col">
-      <div className="project-banner bg-FAV"></div>
+      <div className="project-banner"></div>
       <div className="project-body">
         <div>
           <p className="c-FAV">project name</p>
@@ -86,6 +88,7 @@ const ProjectAdd = () => {
   );
 };
 
+
 const MyProjectCard = ({ project, user }) => {
   const navigate = useNavigate();
   return (
@@ -143,6 +146,7 @@ const MyProjectCard = ({ project, user }) => {
   );
 };
 
+
 const ProjectCardNewsFeed = ({ project, user }) => {
   const navigate = useNavigate();
   return ( Object.keys(project).length > 0 &&
@@ -187,7 +191,6 @@ const ProjectCardNewsFeed = ({ project, user }) => {
             )}
           </div>
         </div>
-
         <div className="col">
           <ProjectBtn project={project} user={user} />
         </div>
@@ -196,7 +199,76 @@ const ProjectCardNewsFeed = ({ project, user }) => {
   );
 };
 
+
+
+
+const ProjectCard = ({ project, user }) => {
+  const navigate = useNavigate();
+  return ( Object.keys(project).length > 0 &&
+    <div className="x project card col">
+      {!project.thumbnail && (
+        <div
+          className="project-banner bg-gA central col"
+          onClick={() => navigate(`/projectdetails/${project._id}`)}>
+          <h1><Camera /></h1>
+          {/* <img src={logoW} /> */}
+          <p>A picture says more than 1000 words.</p>
+        </div>
+      )}
+      {project.thumbnail && (
+        <div
+          className="project-banner bg-FAV"
+          onClick={() => navigate(`/projectdetails/${project._id}`)}
+        ></div>
+      )}
+      <div className="project-body">
+        <div>
+          <div onClick={() => navigate(`/projectdetails/${project._id}`)}>
+            <p className="info">project</p>
+            <h2 className="fw900">{project?.name}</h2>
+            <p className="mt05 c-A20">{project?.description}</p>
+          </div>
+          <div className="mt15">
+            {project?.team?.length && (
+              <>
+                <p className="info">contributors</p>
+                <div className="col mt05 ">
+                  <div className="talent flex">
+                    {project?.team?.length &&
+                      project?.team?.map((member) => (
+                        <div
+                          key={member._id}
+                          className="mr05 circle50 bg-FAV central"
+                          onClick={() => navigate(`/userDetails/${member._id}`)}
+                        >
+                          {member?.profile?.avatar ? (
+                            <img src={member.profile.avatar} width="50" />
+                          ) : (
+                            <p className="initials">
+                              {member.profile?.initials}
+                            </p>
+                          )}
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+        <div className="col">
+          <ProjectBtn project={project} user={user} />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
+
+
 export {
+  ProjectCard,
   ProjectCardFollow,
   ProjectCardAdd,
   ProjectFollow,

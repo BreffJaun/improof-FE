@@ -1,18 +1,15 @@
 .card{
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding-left: 1rem;
     padding-right: 1rem;
-    width: 100%;
+    width: 320px;
     background-color: white;
     box-shadow: 
     0.3rem 0.3rem 0.6rem rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     margin-bottom: 1rem;
 }
-
-
 
 
 .project{
@@ -22,9 +19,12 @@
     padding: 0;
     .project-banner{
         width: 100%;
-        height: 150px;
+        height: 200px;
         margin: 0;
-        border-radius: 8px;
+        border-radius: 8px 8px 0 0;
+        >img{
+            height: 150px;
+        }
     };
     .project-body{
         display: flex;
