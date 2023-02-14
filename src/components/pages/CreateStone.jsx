@@ -14,19 +14,21 @@ import UserContext from "../../context/userContext.jsx";
 
 // ELEMENTS
 import { TalentCard } from "../elements/TalentCard.jsx";
+import Switch from "react-switch";
 
-const CreateStone = ({}) => {
+const CreateStone = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useContext(UserContext);
   const [newStone, setNewStone] = useState({});
   const [project, setProject] = useState({});
   const [isPending, setPending] = useState(true);
   const { projectId } = useParams("projectId");
-  const [contributor, setContributor] = useState(false);
+  const [contributors, setContributors] = useState([]);
 
   useEffect(() => {
     setPending(true);
     const fetchProject = async () => {
-      fetch(`${host}/projects/63e6044cb86f5f75a82e8de3`, {
+      fetch(`${host}/projects/${projectId}`, {
         credentials: "include",
       })
         .then((response) => response.json())
@@ -38,9 +40,7 @@ const CreateStone = ({}) => {
         });
     };
     fetchProject();
-  }, []);
-
-  // console.log("project", project, "and contr:", project.team);
+  }, [contributors]);
 
   const toastOptions = {
     position: "bottom-right",
@@ -50,11 +50,40 @@ const CreateStone = ({}) => {
   const handleInput = (e) => {
     setNewStone({ ...newStone, [e.target.name]: e.target.value });
   };
-  const handleSubmit = () => {};
-  const handleMedia = () => {};
-  const handleToggle = () => {
-    setContributor(!contributor);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await fetch(`${host}/stones`, {
+      method: "POST",
+      body: JSON.stringify({
+        ...newStone,
+        userId: user._id,
+        projectId: projectId,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        if (!json.status) {
+          toast.error(json.error, toastOptions);
+        } else {
+          toast.info("You just added a new stone", toastOptions);
+        }
+      });
+    navigate(`/projectdetails/${projectId}`);
   };
+  const handleMedia = () => {};
+  const handleContributor = (contributor) => {
+    if (contributors.includes(contributor)) {
+      const newContributors = contributors.filter((con) => con !== contributor);
+      setContributors(newContributors);
+    } else {
+      setContributors([...contributors, contributor]);
+    }
+  };
+
   return (
     <>
       <h1 className="central c-FAV mt1 mb2">new stone</h1>
@@ -102,6 +131,7 @@ const CreateStone = ({}) => {
               name="kind"
               value="endstone"
               onChange={handleInput}
+              talent
             />
             <label>endstone</label>
           </div>
@@ -133,7 +163,7 @@ const CreateStone = ({}) => {
           <div className="col">
             <p>contributors</p>
             <div className=" card col">
-              {project.team?.length ? (
+              {project.team?.length &&
                 project.team.map((talent) => {
                   return (
                     <>
@@ -160,21 +190,31 @@ const CreateStone = ({}) => {
                         </p>
                         <p>{talent.profile?.position}</p>
                         <p>{talent.profile?.toolsAndSkills}</p>
+                        <Switch
+                          checked={contributors.includes(talent._id)}
+                          onChange={() => handleContributor(talent._id)}
+                          onColor="#86d3ff"
+                          onHandleColor="#2693e6"
+                          handleDiameter={30}
+                          uncheckedIcon={false}
+                          checkedIcon={false}
+                          boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+                          activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+                          height={20}
+                          width={48}
+                          className="react-switch"
+                          id="material-switch"
+                        />
                       </div>
-
-                      <label class="switch">
-                        <input type="checkbox" />
-                        <span class="slider round"></span>
-                      </label>
                     </>
                   );
-                })
-              ) : (
-                <p>no contributors</p>
-              )}
+                })}
             </div>
           </div>
         </div>
+        <button type="submit" onClick={() => handleSubmit}>
+          add stone
+        </button>
       </form>
       <ToastContainer />
       <Footer />

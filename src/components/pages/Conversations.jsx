@@ -19,8 +19,6 @@ const Conversations = ({setShowConversations, showConversations, user, unreadMsg
         'Content-type': 'application/json; charset=UTF-8',
       },
     })
-      .then((response) => response.json())
-      .then((json) => console.log("FETCH IN CONVERSATION",json));
   }
   const navigate = useNavigate()
 
@@ -32,7 +30,7 @@ const Conversations = ({setShowConversations, showConversations, user, unreadMsg
 
           {user?.conversations?.map(con => { 
             const unread = con.message.find(msg => !msg.isRead && msg.from !== user._id)
-            const date1 = con.message[0].createdAt.toString().split("T")
+            const date1 = con.message[0].createdAt?.toString().split("T")
             const date = date1[0].split("-").reverse().join(".")
             const time = date1[1].slice(0,5)            
             const participant = con.participants.find(part => part._id !== user._id)

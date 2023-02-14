@@ -83,7 +83,7 @@ const Main = () => {
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/messages/:id" element={<Messages />} />
           <Route path="/conversations" element={<Conversations />} />
-          <Route path="/createStone" element={<CreateStone />} />
+          <Route path="/createStone/:projectId" element={<CreateStone />} />
         </Routes>
         <ToastContainer />
       </>
