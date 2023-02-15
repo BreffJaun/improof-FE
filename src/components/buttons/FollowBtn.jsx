@@ -1,15 +1,18 @@
-import {RxCross2} from "react-icons/rx"
-import {HiPlus} from "react-icons/hi"
 import { host } from "../../api/host.jsx";
 import { toast } from "react-toastify";
-
 import { useContext } from "react";
 
 //CONTEXT
 import TriggerContext from "../../context/triggerContext.jsx";
 
+// ICONS
+import {RxCross2} from "react-icons/rx"
+import {HiPlus} from "react-icons/hi"
+import { AiOutlineStar as OLstar } from "react-icons/ai"
+import { AiFillStar as FIstar } from "react-icons/ai"
 
-//FOLLOW ADDEN
+
+
 const handleAddFollow = async (talent, user, trigger, setTrigger) => {
   await fetch(`${host}/users/follow/add`, {
   credentials:"include",
@@ -60,8 +63,8 @@ const handleDeleteFollow = async (talent, user, trigger, setTrigger) => {
 const FollowBtn = ({talent, user}) => {
   const [trigger, setTrigger] = useContext(TriggerContext)
   return ( user.follows.find(follow => follow._id === talent._id) ? 
-    <button className="action" onClick={() => handleDeleteFollow(talent, user, trigger, setTrigger)}><RxCross2 /></button> : 
-    <button className="action" onClick={() => handleAddFollow(talent, user, trigger, setTrigger)}><HiPlus /></button>
+    <button title="click to unfollow" className="action" onClick={() => handleDeleteFollow(talent, user, trigger, setTrigger)}><FIstar /></button> : 
+    <button title="click to follow" className="action" onClick={() => handleAddFollow(talent, user, trigger, setTrigger)}><OLstar /></button>
   )
 }
 

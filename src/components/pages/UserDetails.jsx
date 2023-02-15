@@ -144,7 +144,7 @@ const TalentDetails = () => {
       <div className="mt4 central col">
         <h1 className="c-FAV">projects</h1>
         <p className="c-FAV mb2">({talent.myProjects.length})</p>
-        <div className="project-container g1">
+        <div className="projects-container g1">
           {talent.myProjects.length ? 
           talent.myProjects.map(project => <ProjectCard key={project._id} project={project} user={user} />) : 
           <p>It is time for your first project.</p>}
@@ -155,7 +155,7 @@ const TalentDetails = () => {
       <div className="mt4 central col">
         <h1 className="central c-FAV">following</h1>
         <p className="central c-FAV mb2">({talent.follows.length})</p>
-        <div className="project-container g1">
+        <div className="projects-container g1">
           {talent.follows.length ? 
           talent.follows.map(follow => follow._id !== user._id && <TalentCard key={follow._id} talent={follow} user={user}/> ):
           <p>{talent.profile.firstName} {talent.profile.lastName} is not following anybody!</p>
