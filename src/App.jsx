@@ -10,6 +10,7 @@ import "./styles/fonts.scss"
 import "./styles/elements.scss"
 import "./styles/buttons.scss"
 import "./styles/scrolling.scss"
+import "./styles/projects.scss"
 
 
 // COMPONENTEN

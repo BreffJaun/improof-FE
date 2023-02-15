@@ -23,11 +23,6 @@ const Start = () => {
         <h4 className="central c-FAV mt05">What´s new on improof?</h4>
       </div>
       <Newsfeed />
-      {/* <div className="central col">
-        <h1 className="c-FAV mb1">filter your interest</h1>
-        < CategoriesFilter />
-      </div> */}
-
       <div className="bo-DARK"></div>
       {user?.profile?.isTalent && <TalentMenu />}
       {user?.profile?.isRecruiter && <RecruiterMenu />}
