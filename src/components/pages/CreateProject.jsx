@@ -86,7 +86,7 @@ const CreateProject = () => {
     event.preventDefault();
     setEmailFields([...eMailFields.slice(0,-1)])
   }
-  // HANDLE THE AMOUNTS OF INVITE INPUT FIELDS START //
+  // HANDLE THE AMOUNTS OF INVITE INPUT FIELDS END //
 
   const inviteInputHandler = (event) => {
     setInviteEmail({...inviteEmail, [event.target.name]: event.target.value})
@@ -111,7 +111,6 @@ const CreateProject = () => {
     setNewProject({...newProject, team: team});
   }, [addUserToTeamTrigger])
 
-  // NOT WORKING
   useEffect(() => {
     setNewProject({...newProject, inviteOthers: Object.values(inviteEmail)});
   }, [inviteEmail])

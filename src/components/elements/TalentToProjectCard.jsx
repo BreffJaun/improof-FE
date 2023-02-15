@@ -10,7 +10,7 @@ import { ToastContainer } from "react-toastify"
 
 
 
-const TalentToProjectCard = ({talent, user, team, setTeam}) => {
+const TalentToProjectCard = ({talent, user, team, setTeam, projectEdit}) => {
   const navigate = useNavigate()
   const addToTeam = (event) =>{
     event.preventDefault();
@@ -22,6 +22,10 @@ const TalentToProjectCard = ({talent, user, team, setTeam}) => {
   }
 
   const checkTeam = team?.includes(talent._id)
+  
+  console.log("team: ", team)
+  console.log("talent._id: ", talent._id)
+  console.log("checkTeam: ", checkTeam)
 
   return (
     <>
@@ -37,7 +41,7 @@ const TalentToProjectCard = ({talent, user, team, setTeam}) => {
           <p className="fw500 c-FAV" onClick={()=> navigate(`/userDetails/${talent._id}`)}>{talent.profile?.firstName} {talent.profile?.lastName}</p>
           <p>{talent.profile?.toolsAndSkills}</p>
         </div>
-        { !checkTeam ? 
+        {!checkTeam ? 
           <div className="w100 abs b0">
             <button onClick={addToTeam}
             >add</button>
