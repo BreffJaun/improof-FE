@@ -56,9 +56,6 @@ const Newsfeed = () => {
 
   return (
     <div className="mt2">
-      <div className="central col">
-        <CategoriesFilter category={category} setCategory={setCategory} />
-      </div>
       <CarouselProvider
         interval={3000}
         naturalSlideWidth={100}
@@ -94,7 +91,11 @@ const Newsfeed = () => {
               )}
         </Slider>
         <div className="central">
-          <ButtonBack><h3><Back/></h3></ButtonBack>
+          <ButtonBack><h3><Back /></h3></ButtonBack>
+          <div className="central col">
+            <p className="mb1">choose your topic</p>
+            <CategoriesFilter category={category} setCategory={setCategory} />
+          </div>
           <ButtonNext><h3><Forward/></h3></ButtonNext>
         </div>
       </CarouselProvider>
