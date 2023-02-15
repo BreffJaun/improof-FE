@@ -23,6 +23,7 @@ const UserEdit = () => {
 
   const {id} = useParams("id")
   const [avatar, setAvatar] = useState(undefined);
+  const [avatarUrl, setAvatarUrl] = useState("");
   const [user, setUser] = useContext(UserContext)
   const initialUserData = {...user}
   delete initialUserData.profile.password
@@ -52,29 +53,10 @@ const UserEdit = () => {
     getUser()
   }, [id])
 
-  useEffect(() => {
-    // FETCH CURR USER AVATAR FROM DATABASE (GRID FS)
-    const getUserAvatar = ()=>{
-      fetch(`${host}/media/${user.profile.avatar}`,{
-      credentials:"include"
-      })
-      .then((response) => {
-      if(response) {
-          // console.log('response: ', response)
-          setUserAvatar(response.url)
-          console.log('DID WORK!')
-        } else {
-          // console.log('response: ', response)
-          console.log('DID NOT WORK!')
-        }
-      })};
-    getUserAvatar();
-  }, [avatar])
-  
-  console.log(favColor);
-
   const avatarUploadHandler = (e) => {
     setAvatar(e.target.files[0])
+    const image = URL.createObjectURL(e.target.files[0])
+    setAvatarUrl(image);
   }
 
   const handleInputProfile = (event) => {
@@ -92,8 +74,7 @@ const UserEdit = () => {
   const handleCategoryProfile = (event) => {
     setUserData({...userData, profile:{...userData.profile, [event.target.name]: event.target.value }})
   }
-  
-  
+    
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -138,7 +119,15 @@ const UserEdit = () => {
       <form onSubmit={handleSubmit} encType="multipart/form">
       <div className="central col mt3">
         <div className="circle90 bg-FAV central rel">
-          {user.profile.avatar ? 
+          {avatarUrl 
+          ?
+          <img 
+          src={avatarUrl} 
+          className="circle90 bg-FAV central rel"
+          alt="avatar" /> 
+          :          
+          user.profile.avatar 
+          ? 
           <img 
           src={user.profile.avatar} 
           className="circle90 bg-FAV central rel"

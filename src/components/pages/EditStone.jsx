@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { host } from "../../api/host.jsx";
-import { toast, ToastContainer } from "react-toastify";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../elements/Footer.jsx";
 
 // CONTEXT
@@ -11,22 +11,39 @@ import UserContext from "../../context/userContext.jsx";
 import { TalentCard } from "../elements/TalentCard.jsx";
 import Switch from "react-switch";
 
-const CreateStone = () => {
+const EditStone = () => {
   const navigate = useNavigate();
   const [user, setUser] = useContext(UserContext);
-  const [newStone, setNewStone] = useState({});
-  const [project, setProject] = useState({});
+  const [editedStone, setEditedStone] = useState({});
+  const [stone, setStone] = useState({});
   const [isPending, setPending] = useState(true);
-  const { projectId } = useParams("projectId");
+  const { stoneId } = useParams("stoneId");
   const [contributors, setContributors] = useState([]);
+  const { projectId } = useParams("projectId");
+  const [project, setProject] = useState({});
 
   useEffect(() => {
     setPending(true);
-    const fetchProject = async () => {
-      fetch(`${host}/projects/${projectId}`, {
+    const fetchStone = async () => {
+      fetch(`${host}/stones/${stoneId}`, {
         credentials: "include",
       })
         .then((response) => response.json())
+        .then((json) => {
+          console.log(json);
+          if (json.status) {
+            setStone(json.data);
+            const newCon = json.data.team.map((con) => con._id);
+            setContributors(newCon);
+            setPending(false);
+          }
+        });
+    };
+    const fetchProject = () => {
+      fetch(`${host}/projects/${projectId}`, {
+        credentials: "include",
+      })
+        .then((res) => res.json())
         .then((json) => {
           if (json.status) {
             setProject(json.data);
@@ -34,25 +51,25 @@ const CreateStone = () => {
           }
         });
     };
+    fetchStone();
     fetchProject();
-  }, [contributors]);
+  }, [editedStone]);
 
+  console.log(stone);
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
     theme: "dark",
   };
-  
   const handleInput = (e) => {
-    setNewStone({ ...newStone, [e.target.name]: e.target.value });
+    setEditedStone({ ...editedStone, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch(`${host}/stones`, {
-      method: "POST",
+    await fetch(`${host}/stones/${stoneId}`, {
+      method: "PATCH",
       body: JSON.stringify({
-        ...newStone,
+        ...editedStone,
         userId: user._id,
         projectId: projectId,
         team: contributors,
@@ -67,7 +84,7 @@ const CreateStone = () => {
         if (!json.status) {
           toast.error(json.error, toastOptions);
         } else {
-          toast.info("You just added a new stone", toastOptions);
+          toast.info("You just edited a stone", toastOptions);
         }
       });
     navigate(`/projectdetails/${projectId}`);
@@ -84,7 +101,7 @@ const CreateStone = () => {
 
   return (
     <>
-      <h1 className="central c-FAV mt1 mb2">new stone</h1>
+      <h1 className="central c-FAV mt1 mb2">edit stone</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="central col pa1 mb2">
@@ -95,7 +112,7 @@ const CreateStone = () => {
             <input
               type="text"
               name="title"
-              placeholder="stone's title"
+              defaultValue={stone.title}
               required
               onChange={handleInput}
             />
@@ -105,7 +122,7 @@ const CreateStone = () => {
             <input
               type="text"
               name="description"
-              placeholder="stone description"
+              defaultValue={stone.description}
               onChange={handleInput}
             />
           </div>
@@ -114,6 +131,7 @@ const CreateStone = () => {
               type="radio"
               name="kind"
               value="stepstone"
+              defaultChecked={stone.kind === "stepstone" ? "on" : null}
               onChange={handleInput}
             />
             <label>stepstone</label>
@@ -121,6 +139,7 @@ const CreateStone = () => {
               type="radio"
               name="kind"
               value="milestone"
+              defaultChecked={stone.kind === "milestone" ? "on" : null}
               onChange={handleInput}
             />
             <label>milestone</label>
@@ -128,14 +147,14 @@ const CreateStone = () => {
               type="radio"
               name="kind"
               value="endstone"
+              defaultChecked={stone.kind === "endstone" ? "on" : null}
               onChange={handleInput}
-              talent
             />
             <label>endstone</label>
           </div>
           <div>
             <hr width="500rem" />
-          </div>{" "}
+          </div>
           <div>
             <div className="col">
               <p> add media</p>
@@ -211,7 +230,7 @@ const CreateStone = () => {
           </div>
         </div>
         <button type="submit" onClick={() => handleSubmit}>
-          add stone
+          edit stone
         </button>
       </form>
       <ToastContainer />
@@ -220,4 +239,4 @@ const CreateStone = () => {
   );
 };
 
-export default CreateStone;
+export default EditStone;
