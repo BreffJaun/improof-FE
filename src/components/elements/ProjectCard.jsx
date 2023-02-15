@@ -169,7 +169,7 @@ const ProjectCard = ({ project, user }) => {
                         onClick={() => navigate(`/userDetails/${member._id}`)}
                       >
                         {member?.profile?.avatar ? (
-                          <img src={member.profile.avatar} width="50" />
+                          <img src={member.profile.avatar}/>
                         ) : (
                           <p className="initials">
                             {member.profile?.initials}

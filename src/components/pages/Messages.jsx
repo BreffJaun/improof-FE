@@ -22,8 +22,8 @@ const Messages = () => {
   }, "3000")
   
   useEffect(() => {
-    document.body.scrollTop = -100000;              
-    document.documentElement.scrollTop = -1000000;
+    // document.body.scrollTop = 0;    
+    // document.documentElement.scrollTop = 0;
     const getConversation = async () => {
       await fetch(`${host}/conversations/${id}`)
         .then((response) => response.json())

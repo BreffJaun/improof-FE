@@ -28,7 +28,7 @@ const CategoriesFilter = ({ setCategory, category }) => {
 
   return (
     <>
-      <select onChange={handleCategory} name="newsfeed-filter">
+      <select onChange={handleCategory} name="newsfeed-filter" default={category}>
         <option value="">All categories</option>
         <option value="Web-Development">Web-Development</option>
         <option value="Software-Development">Software-Development</option>
