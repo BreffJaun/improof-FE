@@ -9,13 +9,16 @@ import {
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 
+
 // ELEMENTE
-import { ProjectCardNewsFeed } from "./ProjectCard.jsx";
+import NewsCard from "./NewsCard"
 import CategoriesFilter from "./CategoriesFilter.jsx";
+
 
 // CONTEXT
 import TriggerContext from "../../context/triggerContext.jsx";
 import UserContext from "../../context/userContext.jsx";
+
 
 const Newsfeed = () => {
   const [projects, setProjects] = useState([]);
@@ -47,7 +50,9 @@ const Newsfeed = () => {
 
   return (
     <div className="mt2">
-      <p className="sl c-FAV">newsFeed</p>
+      <div className="central col">
+        <CategoriesFilter category={category} setCategory={setCategory} />
+      </div>
       <CarouselProvider
         interval={3000}
         naturalSlideWidth={100}
@@ -62,7 +67,7 @@ const Newsfeed = () => {
           category === "All categories"
             ? projects.map((project) => {
                 <Slide index={0} key={project._id}>
-                  <ProjectCardNewsFeed
+                  <NewsCard
                     key={project._id}
                     user={user}
                     project={project}
@@ -73,7 +78,7 @@ const Newsfeed = () => {
                 (project) =>                
                   project.category === category && (
                     <Slide index={0} key={project._id}>
-                      <ProjectCardNewsFeed
+                      <NewsCard
                         key={project._id}
                         user={user}
                         project={project}
@@ -82,13 +87,11 @@ const Newsfeed = () => {
                   )
               )}
         </Slider>
-        <ButtonBack>Back</ButtonBack>
-        <ButtonNext>Next</ButtonNext>
+        <div className="central">
+          <ButtonBack>Back</ButtonBack>
+          <ButtonNext>Next</ButtonNext>
+        </div>
       </CarouselProvider>
-      <div className="central col">
-        <h1 className="c-FAV mb1">filter your interest</h1>
-        <CategoriesFilter category={category} setCategory={setCategory} />
-      </div>
     </div>
   );
 };
