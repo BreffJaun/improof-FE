@@ -20,6 +20,10 @@ import TriggerContext from "../../context/triggerContext.jsx";
 import UserContext from "../../context/userContext.jsx";
 
 
+import { IoIosArrowBack as Back } from "react-icons/io"
+import {IoIosArrowForward as Forward} from "react-icons/io"
+
+
 const Newsfeed = () => {
   const [projects, setProjects] = useState([]);
   const [user, setUser] = useContext(UserContext);
@@ -56,7 +60,7 @@ const Newsfeed = () => {
       <CarouselProvider
         interval={3000}
         naturalSlideWidth={100}
-        naturalSlideHeight={25}
+        naturalSlideHeight={40}
         totalSlides={10}
         infinite={true}
         lockOnWindowScroll={true}
@@ -88,8 +92,8 @@ const Newsfeed = () => {
               )}
         </Slider>
         <div className="central">
-          <ButtonBack>Back</ButtonBack>
-          <ButtonNext>Next</ButtonNext>
+          <ButtonBack><h3><Back/></h3></ButtonBack>
+          <ButtonNext><h3><Forward/></h3></ButtonNext>
         </div>
       </CarouselProvider>
     </div>

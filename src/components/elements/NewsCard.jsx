@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 // ELEMENTS
 import ProjectBtn from "../buttons/ProjectBtn.jsx";
+// import { AiOutlineCamera as Camera } from "react-icons/ai"
+import { FiCameraOff as Camera} from "react-icons/fi"
 
 
 
@@ -14,13 +16,19 @@ const News = ({ project, user }) => {
   const navigate = useNavigate();
   return ( Object.keys(project).length > 0 &&
     <div className="news">
+      {!project.thumbnail && (
+        <div
+          className="news-banner bg-gA central col"
+          onClick={() => navigate(`/projectdetails/${project._id}`)}>
+          <h1><Camera /></h1>
+          <p>i have no photo for you today!</p>
+        </div>
+      )}
       {project.thumbnail && (
         <div
-          className="news-banner bg-FAV"
+          className="news-banner bg-gA"
           onClick={() => navigate(`/projectdetails/${project._id}`)}
-        >
-          <img src={project.thumbnail} alt="thumbnail" />
-        </div>
+        ></div>
       )}
       <div className="news-body">
         <div>
