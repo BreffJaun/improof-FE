@@ -23,6 +23,7 @@ import UserEdit from "./UserEdit.jsx";
 import Conversations from "./Conversations.jsx";
 import CreateStone from "./CreateStone.jsx";
 import EditStone from "./EditStone.jsx";
+import Congrats from "../elements/Congrats.jsx";
 
 // FOOTER-COMPONENTEN
 import EFJM from "./EFJM";
@@ -77,6 +78,11 @@ const Main = () => {
           <Route path="/projects" element={<Projects />} />
           <Route path="/projectdetails/:id" element={<ProjectDetails />} />
           <Route path="/projectedit/:id" element={<ProjectEdit />} />
+          <Route path="/createStone/:projectId" element={<CreateStone />} />
+          <Route
+            path="/editStone/:projectId/:stoneId"
+            element={<EditStone />}
+          />
 
           {/* ROUTES RECRUITER */}
           <Route path="/newsearch" element={<NewSearch />} />
@@ -86,11 +92,7 @@ const Main = () => {
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/messages/:id" element={<Messages />} />
           <Route path="/conversations" element={<Conversations />} />
-          <Route path="/createStone/:projectId" element={<CreateStone />} />
-          <Route
-            path="/editStone/:projectId/:stoneId"
-            element={<EditStone />}
-          />
+          <Route path="/congrats" element={<Congrats />} />
         </Routes>
         <ToastContainer />
       </>
