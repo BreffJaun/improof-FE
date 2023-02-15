@@ -53,6 +53,26 @@ const UserEdit = () => {
     getUser()
   }, [id])
 
+  useEffect(() => {
+    // FETCH CURR USER AVATAR FROM DATABASE (GRID FS)
+    const getUserAvatar = ()=>{
+      fetch(`${host}/media/${user.profile.avatar}`,{
+      credentials:"include"
+      })
+      .then((response) => {
+      if(response) {
+          // console.log('response: ', response)
+          setUserAvatar(response.url)
+          console.log('DID WORK!')
+        } else {
+          // console.log('response: ', response)
+          console.log('DID NOT WORK!')
+        }
+      })};
+    getUserAvatar();
+  }, [avatar])
+  
+
   const avatarUploadHandler = (e) => {
     setAvatar(e.target.files[0])
     const image = URL.createObjectURL(e.target.files[0])
@@ -76,11 +96,14 @@ const UserEdit = () => {
   }
     
   const handleSubmit = (event) => {
+    const newUser = favColor && {...userData, meta:{...userData.meta, colorTheme:favColor} }
+    console.log("NEW USER",newUser);
+     setUserData(newUser)
     event.preventDefault();
 
     const formData = new FormData();
     formData.append('avatar', avatar);
-    formData.append('data', JSON.stringify(userData));
+    formData.append('data', JSON.stringify(newUser));
     
     const updateUserData = async () => {
       setUploadPending(true)
@@ -88,7 +111,7 @@ const UserEdit = () => {
         {
           credentials: "include",
           method: "PATCH",
-          body: favColor ? {...formData, meta:{colorTheme:favColor} } : formData,
+          body: formData,
           // headers: {"Content-type": "multipart/form-data"},
         })
         .then((json) => json.json())
