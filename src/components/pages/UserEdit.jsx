@@ -52,24 +52,24 @@ const UserEdit = () => {
     getUser()
   }, [id])
 
-  useEffect(() => {
-    // FETCH CURR USER AVATAR FROM DATABASE (GRID FS)
-    const getUserAvatar = ()=>{
-      fetch(`${host}/media/${user.profile.avatar}`,{
-      credentials:"include"
-      })
-      .then((response) => {
-      if(response) {
-          // console.log('response: ', response)
-          setUserAvatar(response.url)
-          console.log('DID WORK!')
-        } else {
-          // console.log('response: ', response)
-          console.log('DID NOT WORK!')
-        }
-      })};
-    getUserAvatar();
-  }, [avatar])
+  // useEffect(() => {
+  //   // FETCH CURR USER AVATAR FROM DATABASE (GRID FS)
+  //   const getUserAvatar = ()=>{
+  //     fetch(`${host}/media/${user.profile.avatar}`,{
+  //     credentials:"include"
+  //     })
+  //     .then((response) => {
+  //     if(response) {
+  //         // console.log('response: ', response)
+  //         setUserAvatar(response.url)
+  //         console.log('DID WORK!')
+  //       } else {
+  //         // console.log('response: ', response)
+  //         console.log('DID NOT WORK!')
+  //       }
+  //     })};
+  //   getUserAvatar();
+  // }, [avatar])
   
 
   const avatarUploadHandler = (e) => {
@@ -95,9 +95,8 @@ const UserEdit = () => {
   }
     
   const handleSubmit = (event) => {
-    const newUser = favColor && {...userData, meta:{...userData.meta, colorTheme:favColor} }
-    console.log("NEW USER",newUser);
-     setUserData(newUser)
+    const newUser = favColor ? {...userData, meta:{...userData.meta, colorTheme:favColor}} : userData
+    setUserData(newUser)
     event.preventDefault();
 
     const formData = new FormData();
@@ -157,7 +156,7 @@ const UserEdit = () => {
           :
           <div className="initials"><p>{talent.profile.initials}</p></div>
         }
-        <div><RadioColor user={talent} setFavColor={setFavColor}/></div>
+       
         <div
           title="upload image"
           className="circle40 bg-FAV central editBtn">
@@ -173,6 +172,7 @@ const UserEdit = () => {
         <h1 className="central c-FAV mt05">Hi, {talent.profile.firstName}!</h1>
         <p className="central c-FAV">Let´s spice up your profile!</p>
       </div>
+      <div><RadioColor user={talent} setFavColor={setFavColor}/></div>
 
       <div className="col mt2 mb1">
         <p>first name<span className="c-FAV fw900">*</span></p>
