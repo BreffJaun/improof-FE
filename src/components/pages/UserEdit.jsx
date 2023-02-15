@@ -148,7 +148,7 @@ const UserEdit = () => {
       <form onSubmit={handleSubmit} encType="multipart/form">
       <div className="central col mt3">
         <div className="circle90 bg-FAV central rel">
-          {userAvatar ? 
+          {user.profile.avatar ? 
           <img 
           src={userAvatar} 
           className="circle90 bg-FAV central rel"

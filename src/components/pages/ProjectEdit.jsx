@@ -29,8 +29,6 @@ const ProjectDetails = () => {
 
   // FETCH CURR PROJECT
   useEffect(() => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0; 
     setPending(true)
     const fetchProject = async () => {
       fetch(`${host}/projects/${id}`,{
@@ -72,9 +70,6 @@ const ProjectDetails = () => {
         <h1>{project.name}</h1>
         <p>{project.description}</p>
       </div>
-      {project.team.find(member => member._id === user._id) && 
-        <button onClick={()=> navigate(`/projectedit/${project._id}`)}>edit project</button>
-    }
 
     <Chrono>
 
