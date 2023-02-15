@@ -37,7 +37,7 @@ const News = ({ project, user }) => {
         <div className="news-body">
           <div>
             <div onClick={() => navigate(`/projectdetails/${project._id}`)}>
-              <h2>{project?.name}</h2>
+              <h3>{project?.name}</h3>
               <p className="mt05 c-A60">{project?.description}</p>
             </div>
             <div>
