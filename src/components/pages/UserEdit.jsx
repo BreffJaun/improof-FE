@@ -20,7 +20,6 @@ import Footer from "../elements/Footer.jsx";
 
 
 const UserEdit = () => {
-
   const {id} = useParams("id")
   const [avatar, setAvatar] = useState(undefined);
   const [avatarUrl, setAvatarUrl] = useState("");
