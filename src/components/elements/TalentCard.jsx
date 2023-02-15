@@ -12,8 +12,6 @@ import { ToastContainer } from "react-toastify"
 import { FollowBtn } from "../buttons/FollowBtn.jsx"
 import { SendMessageBtn } from "../buttons/MessageBtn.jsx"
 
-
-
 const TalentCard = ({talent, user}) => {
   const navigate = useNavigate()
   return (

@@ -14,7 +14,7 @@ import { SendMessageBtn } from "../buttons/MessageBtn.jsx";
 import { AiFillEdit } from "react-icons/ai"
 
 //ELEMENTS
-import { MyProjectCard } from "../elements/ProjectCard.jsx";
+import { MyProjectCard, ProjectCard } from "../elements/ProjectCard.jsx";
 import { TalentCard } from "../elements/TalentCard.jsx";
 import Up from "../elements/Up.jsx";
 import Footer from "../elements/Footer.jsx";
@@ -26,7 +26,6 @@ const TalentDetails = () => {
 
   const {id} = useParams("id")
   const [user, setUser] = useContext(UserContext)
-  const [userAvatar, setUserAvatar] = useState(undefined)
   const [trigger, setTrigger] = useContext(TriggerContext)
   const [talent, setTalent] = useState(undefined)
   const [isPending, setIsPending] = useState(true)
@@ -35,6 +34,8 @@ const TalentDetails = () => {
   const [showInfos, setShowInfos] = useState(false)
 
   useEffect(() => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0; 
     setIsPending(true)
     const getUser = async ()=>{
       await fetch(`${host}/users/${id}`,{
@@ -69,26 +70,6 @@ const TalentDetails = () => {
     }
     getUser();
   },[trigger])
-  console.log('talent: ', talent?.profile?.avatar)
-  useEffect(() => {
-    // FETCH CURR USER AVATAR FROM DATABASE (GRID FS)
-    const getUserAvatar = async ()=>{
-      await fetch(`${host}/media/${talent.profile.avatar}`,{
-      credentials:"include"
-      })
-      // .then((response) => console.log(response.json()))
-      .then((json) => {
-      console.log('json: ', json)
-      if(json) {
-          setUserAvatar(json.url)
-          // console.log('DID WORK!')
-        } else {
-          // console.log('DID NOT WORK!')
-        }
-      })};
-      talent?.profile?.avatar && getUserAvatar();
-  }, [id, talent])
-  console.log('userAvatar: ', userAvatar)
 
 
   return talent &&( 
@@ -97,9 +78,9 @@ const TalentDetails = () => {
 
       <div className="rel">
         <div className="circle90 bg-FAV central">
-          {userAvatar ? 
+          {user.profile.avatar ? 
           <img 
-          src={userAvatar} 
+          src={user.profile.avatar} 
           className="circle90 bg-FAV central rel"
           alt="avatar" 
           /> 
@@ -160,16 +141,18 @@ const TalentDetails = () => {
       </div>
 
       <div className="bo-DARK"></div>
-      <div className="central col">
+      <div className="mt4 central col">
         <h1 className="c-FAV">projects</h1>
         <p className="c-FAV mb2">({talent.myProjects.length})</p>
+        <div className="project-container g1">
           {talent.myProjects.length ? 
-          talent.myProjects.map(project => <MyProjectCard key={project._id} project={project} user={user} />) : 
+          talent.myProjects.map(project => <ProjectCard key={project._id} project={project} user={user} />) : 
           <p>It is time for your first project.</p>}
+        </div>
       </div>
       
       <div className="bo-DARK"></div>
-      <div>
+      <div className="mt4 central col">
         <h1 className="central c-FAV">following</h1>
         <p className="central c-FAV mb2">({talent.follows.length})</p>
         {talent.follows.length ? 

@@ -1,13 +1,17 @@
-import { RxCross2 } from "react-icons/rx";
-import { HiPlus } from "react-icons/hi";
 import { host } from "../../api/host.jsx";
 import { toast } from "react-toastify";
-
 import { useContext } from "react";
 
-//CONTEXT
+// CONTEXT
 import TriggerContext from "../../context/triggerContext.jsx";
 import UserContext from "../../context/userContext.jsx";
+
+// ICONS
+import { RxCross2 } from "react-icons/rx";
+import { HiPlus } from "react-icons/hi";
+import { AiOutlineStar as OLstar } from "react-icons/ai"
+import { AiFillStar as FIstar } from "react-icons/ai"
+
 
 const handleAddFollow = async (project, user, setUser, setTrigger, trigger) => {
   await fetch(`${host}/projects/follow/add`, {
@@ -62,21 +66,21 @@ const ProjectBtn = ({ project }) => {
   const [trigger, setTrigger] = useContext(TriggerContext)
 
   return user.starProjects.find((projekt) => projekt._id === project._id) ? (
-    <div>
+    <div title="delete ">
       <button
         className="action"
         onClick={() => handleDeleteFollow(project, user, setUser, setTrigger, trigger)}
       >
-        <RxCross2 />
+        <FIstar />
       </button>
     </div>
   ) : (
-    <div>
-      <button
+    <div title="add to favourites">
+        <button
         className="action"
         onClick={() => handleAddFollow(project, user, setUser, setTrigger, trigger)}
       >
-        <HiPlus />
+        <OLstar />
       </button>
     </div>
   );
