@@ -32,6 +32,8 @@ const Newsfeed = () => {
   const [category, setCategory] = useState("");
   const [numberSlides, setNumberSlides] = useState(undefined)
 
+  const color = user.meta.colorTheme[0]
+
   useEffect(() => {
     const getProjects = async () => {
       fetch(`${host}/projects`, {

@@ -31,7 +31,9 @@ const MyProjectCard = ({ project, user }) => {
           <div
             className="project-banner bg-FAV"
             onClick={() => navigate(`/projectdetails/${project._id}`)}
-          ></div>
+          >
+            <img src={project.thumbnail} alt="" />
+          </div>
         )}
         <div className="project-body">
           <div>
@@ -147,10 +149,7 @@ const ProjectCard = ({ project, user }) => {
           </div>
         )}
         {project.thumbnail && (
-          <div
-            className="project-banner bg-FAV"
-            onClick={() => navigate(`/projectdetails/${project._id}`)}
-          ></div>
+            <img className="project-banner bg-FAV" src={project.thumbnail} alt="" onClick={() => navigate(`/projectdetails/${project._id}`)}/>
         )}
         <div>
           {project?.team?.length && (

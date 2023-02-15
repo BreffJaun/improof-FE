@@ -1,4 +1,3 @@
-import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { host } from "../../api/host.jsx";
 
@@ -8,6 +7,8 @@ import { host } from "../../api/host.jsx";
 import { MdOutlineClose as X} from "react-icons/md"
 
 const Conversations = ({setShowConversations, showConversations, user, unreadMsgs}) => {
+  const color = user.meta.colorTheme[0]
+
   const setMsgRead = (id) => {
     fetch(`${host}/messages`, {
       method: 'PATCH',
@@ -39,7 +40,7 @@ const Conversations = ({setShowConversations, showConversations, user, unreadMsg
               setShowConversations(!showConversations)
               setMsgRead(con._id)
               }}>
-                      <p className="c-FAV">{participant.profile.firstName} {participant.profile.lastName}</p>
+                      <p className={color}>{participant.profile.firstName} {participant.profile.lastName}</p>
                       <p> {time} {date} </p>
                   </div>
                 }).reverse()
