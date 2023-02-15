@@ -7,24 +7,15 @@ import { toast, ToastContainer } from "react-toastify";
 import UserContext from "../../context/userContext.jsx";
 import "../../styles/colors.scss"
 
+import { RadioColor } from "../buttons/RadioColor.jsx";
 
 //ICONS
 import { AiOutlineCamera } from "react-icons/ai";
 import { BiCheck } from "react-icons/bi";
-import { SlTrash } from "react-icons/sl";
 import {RxCross2} from "react-icons/rx"
 
-
-//BUTTONS
-import { FollowBtn } from "../buttons/FollowBtn.jsx"
-import { SendMessageBtn } from "../buttons/MessageBtn.jsx";
-
-
 //ELEMENTS
-import { MyProjectCard } from "../elements/ProjectCard.jsx";
-import { TalentCard } from "../elements/TalentCard.jsx";
-import Up from "../elements/Up.jsx";
-import CategoriesFilter from "../elements/CategoriesFilter.jsx";
+
 import Footer from "../elements/Footer.jsx";
 
 
@@ -32,19 +23,18 @@ const UserEdit = () => {
 
   const {id} = useParams("id")
   const [avatar, setAvatar] = useState(undefined);
+  const [avatarUrl, setAvatarUrl] = useState("");
   const [user, setUser] = useContext(UserContext)
   const initialUserData = {...user}
   delete initialUserData.profile.password
   const [userData, setUserData] = useState(initialUserData)
-  // console.log("userdata",userData)
-  // console.log("user",user);
 
   const [talent, setTalent] = useState(undefined)
   const [isPending, setIsPending] = useState(true)
   const [uploadPending, setUploadPending] = useState(false);
-  const [showContact, setShowContact] = useState(false)
-  const [showInfos, setShowInfos] = useState(false)
   const [userAvatar, setUserAvatar] = useState(undefined)
+
+  const [favColor, setFavColor] = useState("")
 
   const navigate = useNavigate()
 
@@ -85,6 +75,8 @@ const UserEdit = () => {
 
   const avatarUploadHandler = (e) => {
     setAvatar(e.target.files[0])
+    const image = URL.createObjectURL(e.target.files[0])
+    setAvatarUrl(image);
   }
 
   const handleInputProfile = (event) => {
@@ -102,14 +94,16 @@ const UserEdit = () => {
   const handleCategoryProfile = (event) => {
     setUserData({...userData, profile:{...userData.profile, [event.target.name]: event.target.value }})
   }
-  
-  
+    
   const handleSubmit = (event) => {
+    const newUser = favColor && {...userData, meta:{...userData.meta, colorTheme:favColor} }
+    console.log("NEW USER",newUser);
+     setUserData(newUser)
     event.preventDefault();
 
     const formData = new FormData();
     formData.append('avatar', avatar);
-    formData.append('data', JSON.stringify(userData));
+    formData.append('data', JSON.stringify(newUser));
     
     const updateUserData = async () => {
       setUploadPending(true)
@@ -148,7 +142,15 @@ const UserEdit = () => {
       <form onSubmit={handleSubmit} encType="multipart/form">
       <div className="central col mt3">
         <div className="circle90 bg-FAV central rel">
-          {user.profile.avatar ? 
+          {avatarUrl 
+          ?
+          <img 
+          src={avatarUrl} 
+          className="circle90 bg-FAV central rel"
+          alt="avatar" /> 
+          :          
+          user.profile.avatar 
+          ? 
           <img 
           src={user.profile.avatar} 
           className="circle90 bg-FAV central rel"
@@ -156,6 +158,7 @@ const UserEdit = () => {
           :
           <div className="initials"><p>{talent.profile.initials}</p></div>
         }
+        <div><RadioColor user={talent} setFavColor={setFavColor}/></div>
         <div
           title="upload image"
           className="circle40 bg-FAV central editBtn">
