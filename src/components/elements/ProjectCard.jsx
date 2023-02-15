@@ -2,8 +2,8 @@ import "../../styles/cards.scss";
 import "../../styles/colors.scss";
 import "../../styles/banner.scss";
 
-import { useNavigate } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
 
 
 // ICONS
@@ -134,63 +134,6 @@ const ProjectCardNewsFeed = ({ project, user }) => {
 };
 
 
-const News = ({ project, user }) => {
-  const navigate = useNavigate();
-  return ( Object.keys(project).length > 0 &&
-    <div className="project card col">
-      {project.thumbnail && (
-        <div
-          className="project-banner bg-FAV"
-          onClick={() => navigate(`/projectdetails/${project._id}`)}
-        >
-          <img src={project.thumbnail} alt="thumbnail" />
-        </div>
-      )}
-      <div className="project-body">
-        <div>
-          <div onClick={() => navigate(`/projectdetails/${project._id}`)}>
-            <p className="c-FAV">{project?.name}</p>
-            <p className="mt05 c-A20">{project?.description}</p>
-          </div>
-          <div className="mt15">
-            {project?.team?.length && (
-              <>
-                <p className="c-FAV">contributors:</p>
-                <div className="col mt05">
-                  <div className="card talent flex">
-                    {project?.team?.length &&
-                      project?.team?.map((member) => (
-                        <div
-                          key={member._id}
-                          className="circle50 bg-FAV central"
-                          onClick={() => navigate(`/userDetails/${member._id}`)}
-                        >
-                          {member?.profile?.avatar ? (
-                            <img src={member.profile.avatar} width="50" />
-                          ) : (
-                            <p className="initials">
-                              {member.profile?.initials}
-                            </p>
-                          )}
-                        </div>
-                      ))}
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-        <div className="col">
-          <ProjectBtn project={project} user={user} />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-
-
-
 
 const ProjectCard = ({ project, user }) => {
   const navigate = useNavigate();
@@ -208,7 +151,6 @@ const ProjectCard = ({ project, user }) => {
         {project.thumbnail && (
             <img className="project-banner bg-FAV" src={project.thumbnail} alt="" onClick={() => navigate(`/projectdetails/${project._id}`)}/>
         )}
-
         <div>
           {project?.team?.length && (
             <div className="contributors-container col rel">
@@ -257,5 +199,4 @@ export {
   MyProjectCard,
   ProjectCardNewsFeed,
   ProjectCard,
-  News
 };
