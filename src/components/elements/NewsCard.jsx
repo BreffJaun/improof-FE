@@ -13,7 +13,7 @@ import ProjectBtn from "../buttons/ProjectBtn.jsx";
 const News = ({ project, user }) => {
   const navigate = useNavigate();
   return ( Object.keys(project).length > 0 &&
-    <div className="news card col">
+    <div className="news">
       {project.thumbnail && (
         <div
           className="news-banner bg-FAV"

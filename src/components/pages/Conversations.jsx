@@ -34,7 +34,7 @@ const Conversations = ({setShowConversations, showConversations, user, unreadMsg
             const date = date1[0].split("-").reverse().join(".")
             const time = date1[1].slice(0,5)            
             const participant = con.participants.find(part => part._id !== user._id)
-            return <div className={unread && "bg-FAV"} key ={con._id} onClick={()=>{
+            return participant && <div className={unread && "bg-FAV"} key ={con._id} onClick={()=>{
               navigate(`/messages/${con._id}`)
               setShowConversations(!showConversations)
               setMsgRead(con._id)
