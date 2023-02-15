@@ -52,21 +52,26 @@
     justify-content: flex-end;
     width: 300px;
     .contributors{
-        border: 1px solid red;
+        border: 1px solid rgb(0, 255, 195);
         display: flex;
         position: absolute;
         right: 0.3rem;
         bottom: -1.2rem;
         >*{
             cursor: pointer;
-            .contributor-image{
+            display: flex;
+            padding: -1rem;
+            .contributor-image-container{
                 border: 1px solid red;
+                display: flex;
+                overflow: hidden;
                 height: 40px;
                 width: 40px;
                 border-radius: 40px;
-                border: 2px solid white;
-                object-fit: contain;
-                display: flex;
+                outline: 3px solid white;
+                >img{
+                    object-fit: cover;
+                }
             }
         }
     }

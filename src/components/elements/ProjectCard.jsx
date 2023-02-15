@@ -16,63 +16,8 @@ import logoW from "../../images/improof_A100.png";
 
 // ELEMENTS
 import { TalentCard } from "./TalentCard.jsx";
+import ProjectBtn from "../buttons/ProjectBtn.jsx";
 
-const ProjectCardFollow = () => {
-
-  return (
-    <div className="project card col">
-      <div className="project-banner"></div>
-      <div className="project-body">
-        <div>
-          <p className="c-FAV">project name</p>
-          <p className="c-A20">
-            description Lorem ipsum dolor sit amet consectetur{" "}
-          </p>
-        </div>
-        <button className="action">
-          <RxCross2 />
-        </button>
-      </div>
-    </div>
-  );
-};
-
-const ProjectFollow = () => {
-  return (
-    <div className="project card col">
-      <div className="project-body">
-        <div>
-          <p className="c-FAV">project name</p>
-          <p className="c-A20">
-            description Lorem ipsum dolor sit amet consectetur{" "}
-          </p>
-        </div>
-        <button className="action">
-          <RxCross2 />
-        </button>
-      </div>
-    </div>
-  );
-};
-
-const ProjectCardAdd = () => {
-  return (
-    <div className="project card col">
-      <div className="project-banner bg-FAV"></div>
-      <div className="project-body">
-        <div>
-          <p className="c-FAV">project name</p>
-          <p className="c-A20">
-            description Lorem ipsum dolor sit amet consectetur{" "}
-          </p>
-        </div>
-        <button className="action">
-          <HiPlus />
-        </button>
-      </div>
-    </div>
-  );
-};
 
 
 
@@ -214,13 +159,13 @@ const ProjectCard = ({ project, user }) => {
         <div>
           {project?.team?.length && (
             <div className="contributors-container col rel">
-              <div className="contributors flex">
+              <div className="contributors">
                 <div className="flex">
                   {project?.team?.length &&
                     project?.team?.map((member) => (
                       <div
                         key={member._id}
-                        className="contributor-image bg-FAV central"
+                        className="contributor-image-container bg-FAV central"
                         onClick={() => navigate(`/userDetails/${member._id}`)}
                       >
                         {member?.profile?.avatar ? (
@@ -256,7 +201,7 @@ const ProjectCard = ({ project, user }) => {
 
 
 export {
-  ProjectCard,
   MyProjectCard,
   ProjectCardNewsFeed,
+  ProjectCard,
 };

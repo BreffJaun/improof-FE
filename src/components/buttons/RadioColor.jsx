@@ -8,7 +8,7 @@ const RadioTalentColor = () => {
         <input
           type="radio"
           name="TalCol"
-          value="className='........deepblue'"
+          value="deepblue"
           onChange={handleTalentColor}>
         </input>
       </div>
@@ -16,7 +16,7 @@ const RadioTalentColor = () => {
         <input
           type="radio"
           name="TalCol"
-          value="className='........lightblue'"
+          value="lightblue"
           onChange={handleTalentColor}>
         </input>
       </div>
@@ -24,7 +24,7 @@ const RadioTalentColor = () => {
         <input
           type="radio"
           name="TalCol"
-          value="className='........orange'"
+          value="orange"
           onChange={handleTalentColor}>
         </input>
       </div>
@@ -32,7 +32,7 @@ const RadioTalentColor = () => {
         <input
           type="radio"
           name="TalCol"
-          value="className='........pink'"
+          value="pink"
           onChange={handleTalentColor}>
         </input>
       </div>
@@ -40,7 +40,7 @@ const RadioTalentColor = () => {
         <input
           type="radio"
           name="TalCol"
-          value="className='........purple'"
+          value="purple"
           onChange={handleTalentColor}>
         </input>
       </div>
@@ -112,7 +112,7 @@ const RadioRecruiterColor = () => {
         <input
           type="radio"
           name="RecCol"
-          value="className='........lightgreen'"
+          value="lightgreen'"
           onChange={handleRecruiterColor}>
         </input>
       </div>
@@ -120,7 +120,7 @@ const RadioRecruiterColor = () => {
         <input
           type="radio"
           name="RecCol"
-          value="className='........green'"
+          value="green"
           onChange={handleRecruiterColor}>
         </input>
       </div>
@@ -128,7 +128,7 @@ const RadioRecruiterColor = () => {
         <input
           type="radio"
           name="RecCol"
-          value="className='........darkgreen'"
+          value="darkgreen"
           onChange={handleRecruiterColor}>
         </input>
       </div>
@@ -138,4 +138,67 @@ const RadioRecruiterColor = () => {
 
 
 
-export {RadioTalentColor, RadioProjectColor, RadioRecruiterColor};
+export { RadioTalentColor, RadioProjectColor, RadioRecruiterColor };
+
+
+/*
+
+=================================
+
+RadioTalentColor,
+RadioProjectColor
+
+- - - - - - - - - - - - - - - - -
+
+"DEEPBLUE"
+fontcolor = .c-DB2
+background-gradient = .bg-gDB
+
+- - - - - - - - - - - - - - - - -
+
+"LIGHTBLUE"
+fontcolor = .c-LB2
+background-gradient = .bg-gLB
+
+- - - - - - - - - - - - - - - - -
+
+"ORANGE"
+fontcolor = .c-O2
+background-gradient = .bg-gO
+
+- - - - - - - - - - - - - - - - -
+
+"PINK"
+fontcolor = .c-PI1
+background-gradient = .bg-gPI
+
+- - - - - - - - - - - - - - - - -
+
+"PURPLE"
+fontcolor = .c-PU1
+background-gradient = .bg-gPU
+
+=================================
+
+RadioRecruiterColor
+
+- - - - - - - - - - - - - - - - -
+
+"LIGHTGREEN"
+fontcolor = c-GR1
+background-gradient = bg-gGR1
+
+- - - - - - - - - - - - - - - - -
+
+"GREEN"
+fontcolor = c-GR3
+background-gradient = bg-gGr3
+
+- - - - - - - - - - - - - - - - -
+
+"DARKGREEN"
+fontcolor = c-GR5
+background-gradient = bg-gGr5
+
+=================================
+*/
