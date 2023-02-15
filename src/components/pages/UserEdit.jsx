@@ -301,7 +301,8 @@ const UserEdit = () => {
         </div>
           <h1 className={`central ${color} mt05`}>Hi, {user.profile.firstName}!</h1>
           <p className={`central ${color}`}>Time to find some talents!</p>
-        </div>
+            </div>
+            <div><RadioColor user={talent} setFavColor={setFavColor}/></div>
         <div className="col mt2 mb1">
           <p>first name<span className={`${color} fw900`}>*</span></p>
           <input onChange={handleInputProfile} name="firstName" type="text" defaultValue={user.profile.firstName} />
