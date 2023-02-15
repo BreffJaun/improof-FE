@@ -17,6 +17,7 @@ import Community from "./Community.jsx";
 import SearchHistory from "./SearchHistory.jsx";
 import NewSearch from "./NewSearch.jsx";
 import ProjectDetails from "./ProjectDetails.jsx";
+import ProjectEdit from "./ProjectEdit.jsx";
 import UserDetails from "./UserDetails.jsx";
 import UserEdit from "./UserEdit.jsx";
 import Conversations from "./Conversations.jsx";
@@ -74,6 +75,7 @@ const Main = () => {
           <Route path="/myprojects" element={<MyProjects />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projectdetails/:id" element={<ProjectDetails />} />
+          <Route path="/projectedit/:id" element={<ProjectEdit />} />
 
           {/* ROUTES RECRUITER */}
           <Route path="/newsearch" element={<NewSearch />} />
