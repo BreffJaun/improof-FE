@@ -211,12 +211,9 @@
 }
 
 
-
-
 .bgG{
     background-color: var(--A60);
 }
-
 
 
 .bo-DARK{
@@ -224,6 +221,18 @@
     border-bottom: 1px solid var(--A60);
     margin-bottom: 3rem;
 }
+
+
+.out1-FAV{
+    outline: 1px solid var(--FAV);
+}
+.out2-FAV{
+    outline: 2px solid var(--FAV);
+}
+.out3-FAV{
+    outline: 3px solid var(--FAV);
+}
+
 
 
 
