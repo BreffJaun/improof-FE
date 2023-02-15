@@ -13,6 +13,7 @@ import ProjectBtn from "../buttons/ProjectBtn.jsx";
 import { TalentCard } from "./TalentCard.jsx";
 
 const ProjectCardFollow = () => {
+
   return (
     <div className="project card col">
       <div className="project-banner bg-FAV"></div>
@@ -151,7 +152,9 @@ const ProjectCardNewsFeed = ({ project, user }) => {
         <div
           className="project-banner bg-FAV"
           onClick={() => navigate(`/projectdetails/${project._id}`)}
-        ></div>
+        >
+          <img src={project.thumbnail} alt="thumbnail" />
+        </div>
       )}
       <div className="project-body">
         <div>

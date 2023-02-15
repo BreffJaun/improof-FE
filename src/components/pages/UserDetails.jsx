@@ -26,7 +26,6 @@ const TalentDetails = () => {
 
   const {id} = useParams("id")
   const [user, setUser] = useContext(UserContext)
-  const [userAvatar, setUserAvatar] = useState(undefined)
   const [trigger, setTrigger] = useContext(TriggerContext)
   const [talent, setTalent] = useState(undefined)
   const [isPending, setIsPending] = useState(true)
@@ -69,26 +68,6 @@ const TalentDetails = () => {
     }
     getUser();
   },[trigger])
-  console.log('talent: ', talent?.profile?.avatar)
-  useEffect(() => {
-    // FETCH CURR USER AVATAR FROM DATABASE (GRID FS)
-    const getUserAvatar = async ()=>{
-      await fetch(`${host}/media/${talent.profile.avatar}`,{
-      credentials:"include"
-      })
-      // .then((response) => console.log(response.json()))
-      .then((json) => {
-      console.log('json: ', json)
-      if(json) {
-          setUserAvatar(json.url)
-          // console.log('DID WORK!')
-        } else {
-          // console.log('DID NOT WORK!')
-        }
-      })};
-      talent?.profile?.avatar && getUserAvatar();
-  }, [id, talent])
-  console.log('userAvatar: ', userAvatar)
 
 
   return talent &&( 
@@ -97,9 +76,9 @@ const TalentDetails = () => {
 
       <div className="rel">
         <div className="circle90 bg-FAV central">
-          {userAvatar ? 
+          {user.profile.avatar ? 
           <img 
-          src={userAvatar} 
+          src={user.profile.avatar} 
           className="circle90 bg-FAV central rel"
           alt="avatar" 
           /> 
