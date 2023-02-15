@@ -4,11 +4,6 @@ import { toast, ToastContainer } from "react-toastify";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import Footer from "../elements/Footer.jsx";
 
-// ICONS
-import { BiCheck } from "react-icons/bi";
-import { SlTrash } from "react-icons/sl";
-import { RxCross2 } from "react-icons/rx";
-
 // CONTEXT
 import UserContext from "../../context/userContext.jsx";
 
