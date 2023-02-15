@@ -7,24 +7,15 @@ import { toast, ToastContainer } from "react-toastify";
 import UserContext from "../../context/userContext.jsx";
 import "../../styles/colors.scss"
 
+import { RadioColor } from "../buttons/RadioColor.jsx";
 
 //ICONS
 import { AiOutlineCamera } from "react-icons/ai";
 import { BiCheck } from "react-icons/bi";
-import { SlTrash } from "react-icons/sl";
 import {RxCross2} from "react-icons/rx"
 
-
-//BUTTONS
-import { FollowBtn } from "../buttons/FollowBtn.jsx"
-import { SendMessageBtn } from "../buttons/MessageBtn.jsx";
-
-
 //ELEMENTS
-import { MyProjectCard } from "../elements/ProjectCard.jsx";
-import { TalentCard } from "../elements/TalentCard.jsx";
-import Up from "../elements/Up.jsx";
-import CategoriesFilter from "../elements/CategoriesFilter.jsx";
+
 import Footer from "../elements/Footer.jsx";
 
 
@@ -36,15 +27,13 @@ const UserEdit = () => {
   const initialUserData = {...user}
   delete initialUserData.profile.password
   const [userData, setUserData] = useState(initialUserData)
-  // console.log("userdata",userData)
-  // console.log("user",user);
 
   const [talent, setTalent] = useState(undefined)
   const [isPending, setIsPending] = useState(true)
   const [uploadPending, setUploadPending] = useState(false);
-  const [showContact, setShowContact] = useState(false)
-  const [showInfos, setShowInfos] = useState(false)
   const [userAvatar, setUserAvatar] = useState(undefined)
+
+  const [favColor, setFavColor] = useState("")
 
   const navigate = useNavigate()
 
@@ -82,6 +71,7 @@ const UserEdit = () => {
     getUserAvatar();
   }, [avatar])
   
+  console.log(favColor);
 
   const avatarUploadHandler = (e) => {
     setAvatar(e.target.files[0])
@@ -117,7 +107,7 @@ const UserEdit = () => {
         {
           credentials: "include",
           method: "PATCH",
-          body: formData,
+          body: favColor ? {...formData, meta:{colorTheme:favColor} } : formData,
           // headers: {"Content-type": "multipart/form-data"},
         })
         .then((json) => json.json())
@@ -156,6 +146,7 @@ const UserEdit = () => {
           :
           <div className="initials"><p>{talent.profile.initials}</p></div>
         }
+        <div><RadioColor user={talent} setFavColor={setFavColor}/></div>
         <div
           title="upload image"
           className="circle40 bg-FAV central editBtn">

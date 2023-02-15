@@ -42,9 +42,11 @@ const CreateStone = () => {
     autoClose: 8000,
     theme: "dark",
   };
+  
   const handleInput = (e) => {
     setNewStone({ ...newStone, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await fetch(`${host}/stones`, {
