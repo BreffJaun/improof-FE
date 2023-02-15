@@ -157,11 +157,20 @@
 }
 
 
-.central{
+.central {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+
+// .cent{
+//     display: flex;
+//     >*{
+//         display: flex;
+//         justify-content: center;
+//     }
+// }
 
 
 .w10{

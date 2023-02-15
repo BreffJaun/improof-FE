@@ -1,0 +1,28 @@
+.scroll-container{
+    height: 450px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar{
+    width: 8px;
+}
+
+/* track */
+::-webkit-scrollbar-track{
+    background: none;
+}
+::-webkit-scrollbar-track-piece{
+    background-image: linear-gradient(90deg, rgba(0,0,0,0)40%, var(--A60)50%,  rgba(0,0,0,0)60%);
+}
+
+/* thumb */
+::-webkit-scrollbar-thumb{
+    background-color: var(--A60);
+    border-radius: 50px;
+}
+
+
+.bg-gGR5{
+
+}
