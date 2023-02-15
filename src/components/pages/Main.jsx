@@ -22,6 +22,7 @@ import UserDetails from "./UserDetails.jsx";
 import UserEdit from "./UserEdit.jsx";
 import Conversations from "./Conversations.jsx";
 import CreateStone from "./CreateStone.jsx";
+import EditStone from "./EditStone.jsx";
 
 // FOOTER-COMPONENTEN
 import EFJM from "./EFJM";
@@ -86,6 +87,10 @@ const Main = () => {
           <Route path="/messages/:id" element={<Messages />} />
           <Route path="/conversations" element={<Conversations />} />
           <Route path="/createStone/:projectId" element={<CreateStone />} />
+          <Route
+            path="/editStone/:projectId/:stoneId"
+            element={<EditStone />}
+          />
         </Routes>
         <ToastContainer />
       </>
