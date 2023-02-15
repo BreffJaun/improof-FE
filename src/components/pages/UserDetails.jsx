@@ -78,9 +78,9 @@ const TalentDetails = () => {
 
       <div className="rel">
         <div className="circle90 bg-FAV central">
-          {user.profile.avatar ? 
+          {talent.profile.avatar ? 
           <img 
-          src={user.profile.avatar} 
+          src={user._id === talent._id ? user.profile.avatar : talent.profile.avatar} 
           className="circle90 bg-FAV central rel"
           alt="avatar" 
           /> 

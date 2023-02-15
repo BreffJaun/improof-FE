@@ -22,7 +22,7 @@ const Messages = () => {
   }, "3000")
   
   useEffect(() => {
-    document.body.scrollTop = -100000;              // Safari
+    document.body.scrollTop = -100000;              
     document.documentElement.scrollTop = -1000000;
     const getConversation = async () => {
       await fetch(`${host}/conversations/${id}`)
