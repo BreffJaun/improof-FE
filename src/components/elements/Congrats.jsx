@@ -6,11 +6,11 @@ import { useNavigate } from "react-router-dom";
 const Congrats = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setTimeout(() => {
-      navigate("/");
-    }, 3500);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     navigate("/");
+  //   }, 3500);
+  // }, []);
 
   return (
     <>

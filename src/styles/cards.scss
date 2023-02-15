@@ -4,8 +4,7 @@
     padding-left: 1rem;
     padding-right: 1rem;
     background-color: white;
-    box-shadow: 
-    0.3rem 0.3rem 0.6rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0.4rem 0.4rem 1rem var(--A80);
     border-radius: 8px;
     margin-bottom: 1rem;
 }
@@ -52,7 +51,6 @@
     justify-content: flex-end;
     width: 300px;
     .contributors{
-        border: 1px solid rgb(0, 255, 195);
         display: flex;
         position: absolute;
         right: 0.3rem;
@@ -62,7 +60,6 @@
             display: flex;
             padding: -1rem;
             .contributor-image-container{
-                border: 1px solid red;
                 display: flex;
                 overflow: hidden;
                 height: 40px;
@@ -71,20 +68,11 @@
                 outline: 3px solid white;
                 >img{
                     object-fit: cover;
+                    width: 110%;
+                    height: 110%;
                 }
             }
         }
-    }
-}
-
-
-
-
-.central{
-    display: flex;
-    >*{
-        display: flex;
-        justify-content: center;
     }
 }
 

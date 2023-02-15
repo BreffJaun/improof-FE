@@ -77,7 +77,7 @@ const TalentDetails = () => {
     <div className="central col mt3">
 
       <div className="rel">
-        <div className="circle90 bg-FAV central">
+        <div className="circle90 central">
           {talent.profile.avatar ? 
           <img 
           src={user._id === talent._id ? user.profile.avatar : talent.profile.avatar} 
@@ -155,10 +155,12 @@ const TalentDetails = () => {
       <div className="mt4 central col">
         <h1 className="central c-FAV">following</h1>
         <p className="central c-FAV mb2">({talent.follows.length})</p>
-        {talent.follows.length ? 
-        talent.follows.map(follow => follow._id !== user._id && <TalentCard key={follow._id} talent={follow} user={user}/> ):
-        <p>{talent.profile.firstName} {talent.profile.lastName} is not following anybody!</p>
-        }
+        <div className="project-container g1">
+          {talent.follows.length ? 
+          talent.follows.map(follow => follow._id !== user._id && <TalentCard key={follow._id} talent={follow} user={user}/> ):
+          <p>{talent.profile.firstName} {talent.profile.lastName} is not following anybody!</p>
+            }
+        </div>
       </div>
       <div className="bo-DARK"></div>
       <div className="central col">
