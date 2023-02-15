@@ -4,20 +4,89 @@ import "../../styles/banner.scss";
 
 import { useNavigate } from "react-router-dom";
 
-
-
 // ICONS
 import { RxCross2 } from "react-icons/rx";
 import { HiPlus } from "react-icons/hi";
+import ProjectBtn from "../buttons/ProjectBtn.jsx";
+
 import { AiOutlineCamera as Camera} from "react-icons/ai"
-import logoW from "../../images/improof_A100.png";
-
-
 
 // ELEMENTS
 import { TalentCard } from "./TalentCard.jsx";
-import ProjectBtn from "../buttons/ProjectBtn.jsx";
 
+const ProjectCardFollow = () => {
+  return (
+    <div className="project card col">
+      <div className="project-banner"></div>
+      <div className="project-body">
+        <div>
+          <p className="c-FAV">project name</p>
+          <p className="c-A20">
+            description Lorem ipsum dolor sit amet consectetur{" "}
+          </p>
+        </div>
+        <button className="action">
+          <RxCross2 />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const ProjectFollow = () => {
+  return (
+    <div className="project card col">
+      <div className="project-body">
+        <div>
+          <p className="c-FAV">project name</p>
+          <p className="c-A20">
+            description Lorem ipsum dolor sit amet consectetur{" "}
+          </p>
+        </div>
+        <button className="action">
+          <RxCross2 />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const ProjectCardAdd = () => {
+  return (
+    <div className="project card col">
+      <div className="project-banner bg-FAV"></div>
+      <div className="project-body">
+        <div>
+          <p className="c-FAV">project name</p>
+          <p className="c-A20">
+            description Lorem ipsum dolor sit amet consectetur{" "}
+          </p>
+        </div>
+        <button className="action">
+          <HiPlus />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const ProjectAdd = () => {
+  return (
+    <div className="project card col">
+      <div className="project-body">
+        <div>
+          <p className="c-FAV">project name</p>
+          <p className="c-A20">
+            description Lorem ipsum dolor sit amet consectetur{" "}
+          </p>
+        </div>
+        <button className="action">
+          <HiPlus />
+        </button>
+      </div>
+    </div>
+  );
+};
 
 
 const MyProjectCard = ({ project, user }) => {
@@ -78,7 +147,6 @@ const MyProjectCard = ({ project, user }) => {
 };
 
 
-
 const ProjectCardNewsFeed = ({ project, user }) => {
   const navigate = useNavigate();
   return ( Object.keys(project).length > 0 &&
@@ -133,6 +201,7 @@ const ProjectCardNewsFeed = ({ project, user }) => {
 
 
 
+
 const ProjectCard = ({ project, user }) => {
   const navigate = useNavigate();
   return (Object.keys(project).length > 0 &&
@@ -156,7 +225,7 @@ const ProjectCard = ({ project, user }) => {
         <div>
           {project?.team?.length && (
             <div className="contributors-container col rel">
-              <div className="contributors flex">
+              <div className="contributors">
                 <div className="flex">
                   {project?.team?.length &&
                     project?.team?.map((member) => (
@@ -197,8 +266,13 @@ const ProjectCard = ({ project, user }) => {
 
 
 
+
 export {
   ProjectCard,
+  ProjectCardFollow,
+  ProjectCardAdd,
+  ProjectFollow,
+  ProjectAdd,
   MyProjectCard,
   ProjectCardNewsFeed,
 };

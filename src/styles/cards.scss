@@ -52,19 +52,21 @@
     justify-content: flex-end;
     width: 300px;
     .contributors{
+        border: 1px solid red;
         display: flex;
         position: absolute;
         right: 0.3rem;
         bottom: -1.2rem;
         >*{
             cursor: pointer;
-            gap: 0.25rem;
             .contributor-image{
-                
+                border: 1px solid red;
                 height: 40px;
                 width: 40px;
                 border-radius: 40px;
                 border: 2px solid white;
+                object-fit: contain;
+                display: flex;
             }
         }
     }
