@@ -7,7 +7,7 @@ import { MdOutlineClose as X} from "react-icons/md"
 import UserContext from "../../context/userContext.jsx";
 
 
-const Notifications = ({setShowNotifications, showNotifications}) => {
+const Notifications = ({setShowNotifications}) => {
   const [user, setUser] = useContext(UserContext)
 
   return (
