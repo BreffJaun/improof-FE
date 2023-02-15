@@ -38,6 +38,7 @@ const CreateProject = () => {
   const [inviteEmail, setInviteEmail] = useState([]);
   const follows = user.follows;
   const [addUserToTeamTrigger, setAddUserToTeamTrigger] = useState(false);
+  const color = user.meta.colorTheme[0]
 
   const noFollowsFilter = (arr1, arr2) => {
     let clean = [];
@@ -177,14 +178,14 @@ const CreateProject = () => {
   project && (
     <>
       <div className="mt4 mb2">
-        <h1 className="central c-FAV">new project</h1>
-        <h4 className="central c-FAV mt05">It is time to amaze the world!</h4>
+        <h1 className={`central ${color}`}>new project</h1>
+        <h4 className={`central ${color} mt05`}>It is time to amaze the world!</h4>
       </div>
 
       <form onSubmit={handleSubmit}>
         <div className="central col pa1 mb2">
           <div className="col">
-            <p>project name<span className="c-FAV">*</span></p>
+            <p>project name<span className={color}>*</span></p>
             <input
               type="text"
               name="name"
@@ -195,7 +196,7 @@ const CreateProject = () => {
           </div>
 
           <div className="col">
-            <p>description<span className="c-FAV">*</span></p>
+            <p>description<span className={color}>*</span></p>
             <input
               type="text"
               name="description"
@@ -233,7 +234,7 @@ const CreateProject = () => {
             />
           </div>
           <div className="col">
-            <p>Current category:<span className="c-FAV">*</span></p>
+            <p>Current category:<span className={color}>*</span></p>
             <p>{project.category}</p>
           </div>
           <div className="col">
@@ -252,7 +253,7 @@ const CreateProject = () => {
 
     {/*  - - - - - FOLLOWING COMMUNITY - - - - - */}
     <div className="bo-DARK"></div>
-    <h4 className="central c-FAV mt4 mb4">setup your team</h4>
+    <h4 className={`central ${color} mt4 mb4`}>setup your team</h4>
     <div className="talent-container">
       {user.follows.length === 0 ?
       <p>get inspired by the community</p> : 
@@ -271,7 +272,7 @@ const CreateProject = () => {
 
     {/*  - - - - - COMMUNITY - - - - - */}
     <div className="mb1 mt3 central">
-        <h4 className="central c-FAV mt05">add new talents</h4>
+        <h4 className={`central ${color} mt05`}>add new talents</h4>
       </div>
       <div className="talent-container">
           {noFollows && noFollows.map((talent) =>
@@ -290,7 +291,7 @@ const CreateProject = () => {
       {/*  - - - - - INVITATION - - - - - */}
       <div className="bo-DARK"></div>
       <div className="mb1 mt3 central">
-        <h4 className="central c-FAV mt05">invite to improof</h4>
+        <h4 className={`central ${color} mt05`}>invite to improof</h4>
         </div>
         <div className="col">
           {eMailFields.map((el, i) => 

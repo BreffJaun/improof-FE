@@ -16,6 +16,7 @@ const Messages = () => {
   const [msg, setMsg] = useState("")
   const [trigger, setTrigger] = useState(false)
   const [reload, setReload] = useState(false)
+  const color = user.meta.colorTheme[0]
 
   setTimeout(()=> {
     setReload(!reload)
@@ -79,7 +80,7 @@ const Messages = () => {
   return ( conversation && sender &&
     <>
       <div className="center">
-        <h1 className="c-FAV mt1 mb2">messages</h1>
+        <h1 className={`${color} mt1 mb2`}>messages</h1>
 
         <div className="wide col">
 

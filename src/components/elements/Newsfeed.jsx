@@ -25,6 +25,8 @@ const Newsfeed = () => {
   const [category, setCategory] = useState("");
   const [numberSlides, setNumberSlides] = useState(undefined)
 
+  const color = user.meta.colorTheme[0]
+
   useEffect(() => {
     const getProjects = async () => {
       fetch(`${host}/projects`, {
@@ -47,7 +49,7 @@ const Newsfeed = () => {
 
   return (
     <div className="mt2">
-      <p className="sl c-FAV">newsFeed</p>
+      <p className={`sl ${color}`}>newsFeed</p>
       <CarouselProvider
         interval={3000}
         naturalSlideWidth={100}
@@ -86,7 +88,7 @@ const Newsfeed = () => {
         <ButtonNext>Next</ButtonNext>
       </CarouselProvider>
       <div className="central col">
-        <h1 className="c-FAV mb1">filter your interest</h1>
+        <h1 className={`${color} mb1`}>filter your interest</h1>
         <CategoriesFilter category={category} setCategory={setCategory} />
       </div>
     </div>
