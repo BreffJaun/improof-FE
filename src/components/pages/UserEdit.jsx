@@ -150,7 +150,7 @@ const UserEdit = () => {
         <div className="circle90 bg-FAV central rel">
           {user.profile.avatar ? 
           <img 
-          src={userAvatar} 
+          src={user.profile.avatar} 
           className="circle90 bg-FAV central rel"
           alt="avatar" /> 
           :
