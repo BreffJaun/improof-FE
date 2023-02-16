@@ -25,12 +25,98 @@ const CategoriesFilter = ({ setCategory, category }) => {
         }
       });
   }, [setCategory]);
-
+  // console.log(category === "Web-Development")
+  
   return (
     <>
-      <select onChange={handleCategory} name="newsfeed-filter" default={category}>
+      <select 
+      onChange={handleCategory} name="newsfeed-filter">
         <option value="">All categories</option>
+        {category === "Web-Development" 
+        ? 
+        <option value="Web-Development" selected>Web-Development</option>
+        : 
         <option value="Web-Development">Web-Development</option>
+        }
+        {category === "Software-Development" 
+        ? 
+        <option value="Software-Development" selected>Software-Development</option>
+        : 
+        <option value="Software-Development">Software-Development</option>
+        }
+        {category === "Online-Marketing" 
+        ? 
+        <option value="Online-Marketing" selected>Online-Marketing</option>
+        : 
+        <option value="Online-Marketing">Online-Marketing</option>
+        }
+        {category === "Social-Media-Management" 
+        ? 
+        <option value="Social-Media-Management" selected>Social-Media-Management</option>
+        : 
+        <option value="Social-Media-Management">Social-Media-Management</option>
+        }
+        {category === "UX-UI" 
+        ? 
+        <option value="UX-UI" selected>UX-UI</option>
+        : 
+        <option value="UX-UI">UX-UI</option>
+        }
+        {category === "Electrical Engineering" 
+        ? 
+        <option value="Electrical Engineering" selected>Electrical Engineering</option>
+        : 
+        <option value="Electrical Engineering">Electrical Engineering</option>
+        }
+        {category === "Metalworking" 
+        ? 
+        <option value="Metalworking" selected>Metalworking</option>
+        : 
+        <option value="Metalworking">Metalworking</option>
+        }
+        {category === "Woodworking" 
+        ? 
+        <option value="Woodworking" selected>Woodworking</option>
+        : 
+        <option value="Woodworking">Woodworking</option>
+        }
+        {category === "Handworking" 
+        ? 
+        <option value="Handworking" selected>Handworking</option>
+        : 
+        <option value="Handworking">Handworking</option>
+        }
+        {category === "Gardening" 
+        ? 
+        <option value="Gardening" selected>Gardening</option>
+        : 
+        <option value="Gardening">Gardening</option>
+        }
+        {category === "Gastronomy/Cooking" 
+        ? 
+        <option value="Gastronomy/Cooking" selected>Gastronomy/Cooking</option>
+        : 
+        <option value="Gastronomy/Cooking">Gastronomy/Cooking</option>
+        }
+        {category === "Pedagogy" 
+        ? 
+        <option value="Pedagogy" selected>Pedagogy</option>
+        : 
+        <option value="Pedagogy">Pedagogy</option>
+        }
+        {category === "Science" 
+        ? 
+        <option value="Science" selected>Science</option>
+        : 
+        <option value="Science">Science</option>
+        }
+        {category === "others" 
+        ? 
+        <option value="others" selected>others</option>
+        : 
+        <option value="others">others</option>
+        }
+        {/* <option value="Web-Development">Web-Development</option>
         <option value="Software-Development">Software-Development</option>
         <option value="Online-Marketing">Online-Marketing</option>
         <option value="Social-Media-Management">Social-Media-Management</option>
@@ -43,7 +129,7 @@ const CategoriesFilter = ({ setCategory, category }) => {
         <option value="Gastronomy/Cooking">Gastronomy/Cooking</option>
         <option value="Pedagogy">Pedagogy</option>
         <option value="Science">Science</option>
-        <option value="others">others</option>
+        <option value="others">others</option> */}
       </select>
     </>
   );

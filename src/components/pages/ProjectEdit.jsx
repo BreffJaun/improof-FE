@@ -10,7 +10,7 @@ import UserContext from "../../context/userContext.jsx";
 import CategoriesFilter from "../elements/CategoriesFilter.jsx";
 import RadioPrivacy from "../buttons/RadioPrivacy"
 import Footer from "../elements/Footer.jsx";
-// import { RadioProjectColor } from "../buttons/RadioColor.jsx";
+import { RadioColor } from "../buttons/RadioColor.jsx";
 import { TalentToProjectCard } from "../elements/TalentToProjectCard.jsx";
 
 // ICONS
@@ -31,31 +31,34 @@ const CreateProject = () => {
   const [privacy, setPrivacy] = useState(false)
   const [newProject, setNewProject] = useState(project)
   const [talents, setTalents] = useState([])
+  const [favColor, setFavColor] = useState("")
   const [isPending, setPending] = useState(false)
   const [uploadPending, setUploadPending] = useState(false);
   const [createProjectPending, setCreateProjectPending] = useState(false);
   const [team, setTeam] = useState([])
   const [inviteEmail, setInviteEmail] = useState([]);
   const follows = user.follows;
-  const [addUserToTeamTrigger, setAddUserToTeamTrigger] = useState(false);
-  const color = user.meta.colorTheme[0]
-
-  const noFollowsFilter = (arr1, arr2) => {
-    let clean = [];
-    clean = arr1.filter(el => {
-      return !arr2.some(element => {
-          return element._id === el._id;
-      });
-    });
-    return clean;
-  }
-  const noFollows = noFollowsFilter(talents, follows)
+  const [addUserIdToProjectTrigger, setAddUserIdToProjectTrigger] = useState(false);
 
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
     theme: "dark",
   };
+
+  useEffect( () => {
+    setPending(true)
+    const getUsers = async () => {
+      fetch(`${host}/users`)
+        .then((response) => response.json())
+        .then((json) => {        
+          const onlyTalents = json.filter(user => user.profile.isTalent)
+          setTalents(onlyTalents)
+          setPending(false)
+        });
+    }
+    getUsers()
+  },[])
 
   // FETCH CURR PROJECT
   useEffect(() => {
@@ -71,11 +74,42 @@ const CreateProject = () => {
           if(json.status){
             setProject(json.data)
             setPending(false)
+            setCategory(json.data.category)
+            setTeam(json.data.team.map((member) => member._id))
+            setThumbnail(json.data.thumbnail)
           }
         });
     }
     fetchProject()
   },[id])
+
+  // Follows which are not in team // You filter teammembers out of the follows
+  const noTeamFollowsFilter = (arr1, arr2) => {
+    let clean = [];
+    clean = arr1.filter(el => {
+      return !arr2.some(element => {
+          return element._id === el._id;
+      });
+    });
+    return clean;
+  }
+  const noTeamFollows = project && noTeamFollowsFilter(follows, project.team);
+  
+  // console.log("team: ", team)
+  // console.log("follows: ", follows)
+  // console.log("noTeamFollows: ", noTeamFollows)
+  
+  // Community without team members and follows // You filter noTeamFollows out of the community
+  const noFollowsFilter = (arr1, arr2) => {
+    let clean = [];
+    clean = arr1.filter(el => {
+      return !arr2.some(element => {
+          return element._id === el._id;
+      });
+    });
+    return clean;
+  }
+  const noFollows =  project && noFollowsFilter(noTeamFollows, follows)
 
   // INPUT HANDLER START //
   const handleInput = (event) => {
@@ -98,7 +132,7 @@ const CreateProject = () => {
     event.preventDefault();
     setEmailFields([...eMailFields.slice(0,-1)])
   }
-  // HANDLE THE AMOUNTS OF INVITE INPUT FIELDS START //
+  // HANDLE THE AMOUNTS OF INVITE INPUT FIELDS END //
 
   const inviteInputHandler = (event) => {
     setInviteEmail({...inviteEmail, [event.target.name]: event.target.value})
@@ -107,8 +141,8 @@ const CreateProject = () => {
 
   // USE EFFECTS START //
   useEffect(() => {
-    setNewProject({...newProject, color: projectColor});
-  }, [projectColor])
+    setNewProject({...newProject, color: favColor});
+  }, [favColor])
 
   useEffect(() => {
     setNewProject({...newProject, category: category});
@@ -119,11 +153,10 @@ const CreateProject = () => {
   }, [team])
 
   useEffect(() => {
-    setTeam([...team, user._id])
-    setNewProject({...newProject, team: team});
-  }, [addUserToTeamTrigger])
+    setNewProject({...newProject, userId: user._id});
+    // console.log('ICH WURDE AUSGEFÜHRT')
+  }, [project])
 
-  // NOT WORKING
   useEffect(() => {
     setNewProject({...newProject, inviteOthers: Object.values(inviteEmail)});
   }, [inviteEmail])
@@ -134,24 +167,23 @@ const CreateProject = () => {
 
   // USE EFFECTS END //
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    setAddUserToTeamTrigger(true);
 
-    // Add your own userId to the team, because your a member of the project too.
-    console.log('Z 122, newProject: ', newProject)
+    // Add your own userId to the project, because we need to check if you should could change something in the project.
+
+    console.log('Z 169, newProject: ', newProject)
 
     const formData = new FormData()
     formData.append('thumbnail', thumbnail)
     formData.append('data', JSON.stringify(newProject))
 
-
     const sendProjectData = async () => {
       setUploadPending(true)
-      await fetch(`${host}/projects/add`, 
+      await fetch(`${host}/projects/${id}`, 
       {
         credentials: "include",
-        method: 'POST',
+        method: 'PATCH',
         body: formData,
         // body: JSON.stringify(newProject),
       })
@@ -159,22 +191,23 @@ const CreateProject = () => {
         .then((data) => {
           if (data.status) {
             toast.info("Your project is save!", toastOptions);
-            setAddUserToTeamTrigger(false);
+            // setAddUserIdToProjectTrigger(false);
             setUploadPending(false);
             if(!createProjectPending) {
-              location.reload()
+              navigate(`/projectdetails/${data.data._id}`)
             }
           } 
           if (data.error) {
+            // setUploadPending(false);
             toast.error(data.error, toastOptions);            
           }
         });
     };
     sendProjectData();
   }
-
-  return uploadPending ? <div>Loading...</div> :
+  // project && console.log(project.team)
   
+  return uploadPending ? <div>Loading...</div> :  
   project && (
     <>
       <div className="mt4 mb2">
@@ -190,7 +223,6 @@ const CreateProject = () => {
               type="text"
               name="name"
               placeholder={project.name}
-              required
               onChange={handleInput}
             />
           </div>
@@ -201,7 +233,6 @@ const CreateProject = () => {
               type="text"
               name="description"
               placeholder={project.description}
-              required
               onChange={handleInput}
             />
           </div>
@@ -243,21 +274,32 @@ const CreateProject = () => {
           </div>
           <div className="col">
             <p>change your project color:</p>
-            {/* <RadioProjectColor setProjectColor={setProjectColor} /> */}
+            <RadioColor user={user} setFavColor={setFavColor} /> 
           </div>
         </div>
+        
+    {/*  - - - - - TEAM - - - - - */}
+    <div className="bo-DARK"></div>
+    <h4 className="central c-FAV mt4 mb4">your team</h4>
+    <div className="talent-container">
+      {project.team.map(talent => 
+        <TalentToProjectCard 
+          team={team} 
+          setTeam={setTeam}
+          key={talent._id}
+          talent={talent}
+          user={user}
+          // projectEdit={true}
+        />
+      )}
+    </div>
 
-        <div className="col">
-            TIMELINE & STONES 
-        </div>
-
-    {/*  - - - - - FOLLOWING COMMUNITY - - - - - */}
+    {/*  - - - - - NO TEAM FOLLOWING COMMUNITY - - - - - */}
     <div className="bo-DARK"></div>
     <h4 className={`central ${color} mt4 mb4`}>setup your team</h4>
     <div className="talent-container">
-      {user.follows.length === 0 ?
-      <p>get inspired by the community</p> : 
-      user.follows.map(talent => 
+      { 
+      noTeamFollows.map(talent => 
         talent._id !== user._id &&
         <TalentToProjectCard 
           team={team} 
@@ -265,12 +307,14 @@ const CreateProject = () => {
           key={talent._id}
           talent={talent}
           user={user} 
+          // projectEdit={true}
         />
       )}
     </div>
 
 
-    {/*  - - - - - COMMUNITY - - - - - */}
+    {/*  - - - - - REST COMMUNITY - - - - - */}
+    <div className="bo-DARK"></div>
     <div className="mb1 mt3 central">
         <h4 className={`central ${color} mt05`}>add new talents</h4>
       </div>
@@ -283,6 +327,7 @@ const CreateProject = () => {
             key={talent._id}
             talent={talent}
             user={user} 
+            // projectEdit={true}
         />
       )}
       </div>
@@ -318,7 +363,7 @@ const CreateProject = () => {
         <div className="bo-DARK"></div>
         <div className="col">
           <RadioPrivacy setPrivacy={setPrivacy}/>
-          <button type="submit" className="mt2 bg-FAV">create your project!</button>
+          <button type="submit" className="mt2 bg-FAV">edit project!</button>
         </div>
 
       </form>
