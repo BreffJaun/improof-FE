@@ -7,6 +7,9 @@ import Footer from "../elements/Footer.jsx";
 // CONTEXT
 import UserContext from "../../context/userContext.jsx";
 
+// ICONS
+import { AiOutlineCamera as Camera} from "react-icons/ai"
+
 // ELEMENTS
 import { TalentCard } from "../elements/TalentCard.jsx";
 import Switch from "react-switch";
@@ -19,6 +22,9 @@ const CreateStone = () => {
   const [isPending, setPending] = useState(true);
   const { projectId } = useParams("projectId");
   const [contributors, setContributors] = useState([]);
+  const [media, setMedia] = useState(undefined)
+  const [mediaUrl, setMediaUrl] = useState("");
+  const [createStonePending, setCreateStonePending] = useState(false);
   const color = user.meta.colorTheme[0]
 
   useEffect(() => {
@@ -48,6 +54,13 @@ const CreateStone = () => {
     setNewStone({ ...newStone, [e.target.name]: e.target.value });
   };
 
+  const handleMedia = (event) => {
+    setMedia(event.target.files[0])
+    const media = URL.createObjectURL(event.target.files[0])
+    setMediaUrl(media);
+  };
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await fetch(`${host}/stones`, {
@@ -73,7 +86,7 @@ const CreateStone = () => {
       });
     navigate(`/projectdetails/${projectId}`);
   };
-  const handleMedia = () => {};
+
   const handleContributor = (contributor) => {
     if (contributors.includes(contributor)) {
       const newContributors = contributors.filter((con) => con !== contributor);
@@ -140,19 +153,33 @@ const CreateStone = () => {
           <div>
             <div className="col">
               <p> add media</p>
-              <label htmlFor="media-pic">add photos</label>
+              <div className="thumbnailS">
+                {
+                  mediaUrl
+                  ?
+                  <img 
+                    src={mediaUrl} 
+                    alt="media"                 
+                  />
+                  : 
+                  <div title="upload"><Camera /></div>
+                }
+              </div>
+              <label htmlFor="media-pic">photos</label>
               <input
                 type="file"
                 multiple
                 id="media-pic"
                 onChange={handleMedia}
+                accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
               />
-              <label htmlFor="media-vid">add videos</label>
+              <label htmlFor="media-vid">videos</label>
               <input
                 type="file"
                 multiple
                 id="media-vid"
                 onChange={handleMedia}
+                accept=".mp4, .mov, .wmv, .avi, .mkv, .flv"
               />
             </div>
           </div>
