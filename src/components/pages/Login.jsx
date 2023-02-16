@@ -12,9 +12,7 @@ import { LogoL } from "../Logo.jsx";
 
 const Login = () => {
 
-  const navigate = useNavigate();
-  const bg = user.meta.colorTheme[1]
-  
+  const navigate = useNavigate(); 
 
   const [loginData, setLoginData] = useState({});
 
@@ -80,7 +78,7 @@ const Login = () => {
             />
           </div>
 
-          <button className={`${bg} mb2`} type="submit">login</button>
+          <button className={`bg-FAV mb2`} type="submit">login</button>
           <div className="col central">
             <p>Not registered yet?</p>
             <p><NavLink to="/registration">click here</NavLink></p> 
