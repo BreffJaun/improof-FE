@@ -19,7 +19,12 @@ import { MdLightbulbOutline as Light } from "react-icons/md";
 import UserContext from "../context/userContext";
 import TriggerContext from "../context/triggerContext.jsx";
 
-const BurgerMenuTalent = ({ setShowMenu, showMenu, setModeTrigger, modeTrigger }) => {
+const BurgerMenuTalent = ({
+  setShowMenu,
+  showMenu,
+  setModeTrigger,
+  modeTrigger,
+}) => {
   const navigate = useNavigate();
   const [user, setUser] = useContext(UserContext);
   // const [trigger,setTrigger] = useContext(TriggerContext)
@@ -40,7 +45,7 @@ const BurgerMenuTalent = ({ setShowMenu, showMenu, setModeTrigger, modeTrigger }
     })
       .then((response) => response.json())
       .then((json) => {
-        setModeTrigger(!modeTrigger)
+        setModeTrigger(!modeTrigger);
         // const body = document.querySelector("body");
         // mode && body.classList.add(`bgG`);
       });
@@ -53,6 +58,7 @@ const BurgerMenuTalent = ({ setShowMenu, showMenu, setModeTrigger, modeTrigger }
           setShowMenu(!showMenu);
         }}
         className="mb15 col"
+        id={mode && "bgG"}
       >
         <div>
           <div className="col">
@@ -134,7 +140,8 @@ const BurgerMenuRecruiter = ({
   setShowMenu,
   showMenu,
   setShowNotifications,
-  setModeTrigger, modeTrigger
+  setModeTrigger,
+  modeTrigger,
 }) => {
   const navigate = useNavigate();
   const [user, setUser] = useContext(UserContext);
@@ -164,6 +171,7 @@ const BurgerMenuRecruiter = ({
           setShowMenu(!showMenu);
         }}
         className="mb15 col"
+        id={mode && "bgG"}
       >
         <div>
           <div className="mt05 col">
