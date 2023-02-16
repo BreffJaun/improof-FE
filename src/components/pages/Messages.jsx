@@ -93,7 +93,7 @@ const Messages = () => {
           })}
           <div>
             <form onSubmit={handleSendMsg}>
-              <input type="text" value={msg} onChange={handleMsg}/>
+              <input type="text" value={msg} onChange={handleMsg} autoFocus/>
               <button className={bg} type="submit">send</button>
             </form>
           </div>
