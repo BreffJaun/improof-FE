@@ -22,8 +22,8 @@ const ProjectDetails = () => {
   const [trigger, setTrigger] = useContext(TriggerContext)
   const [project, setProject] = useState({})
   const [isPending, setPending] = useState(true)
-  // const icons = !isPending && user && document.querySelector("#icons")
-  const icons2 = useRef(null)
+  const color = user.meta.colorTheme[0]
+  const bg = user.meta.colorTheme[1]
 
   const navigate = useNavigate()
 
@@ -73,7 +73,7 @@ const ProjectDetails = () => {
         <p>{project.description}</p>
       </div>
       {project.team.find(member => member._id === user._id) && 
-        <button onClick={()=> navigate(`/projectedit/${project._id}`)}>edit project</button>
+        <button className={bg} onClick={()=> navigate(`/projectedit/${project._id}`)}>edit project</button>
     }
 
     <Chrono>
@@ -120,7 +120,7 @@ const ProjectDetails = () => {
     project.team.map((member) =>  <TalentCard key={member._id} talent={member} user={user}/>)
     }
     <div>{project.team.find(member => member._id === user._id) && 
-    <button onClick={()=> navigate(`/createStone/${project._id}`)}>create stone</button>
+    <button className={bg} onClick={()=> navigate(`/createStone/${project._id}`)}>create stone</button>
     }
     </div>
     <Footer/>

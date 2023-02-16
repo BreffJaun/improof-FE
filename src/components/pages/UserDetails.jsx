@@ -34,6 +34,7 @@ const TalentDetails = () => {
   const [showInfos, setShowInfos] = useState(false)
 
   const color = user.meta.colorTheme[0]
+  const bg = user.meta.colorTheme[1]
 
   useEffect(() => {
     document.body.scrollTop = 0;
@@ -131,7 +132,7 @@ const TalentDetails = () => {
         }
         <div className="y mt1 central">
           <div className="z">
-            <button className="x bg-FAV" onClick={() => setShowInfos(!showInfos)}>{showInfos ? "close" : "read more"}</button>
+            <button className={`x ${bg}`} onClick={() => setShowInfos(!showInfos)}>{showInfos ? "close" : "read more"}</button>
           </div>
           <div className="x">
             {user?._id !== talent._id && <FollowBtn talent={talent} user={user} /> } 
@@ -207,7 +208,7 @@ const TalentDetails = () => {
             {/* ----------------------------------------------- */}
           </div> : ""
         }
-        <button className="bg-FAV" onClick={() => setShowContact(!showContact)}>{showContact ? "close" : "show me"}</button>
+        <button className={bg} onClick={() => setShowContact(!showContact)}>{showContact ? "close" : "show me"}</button>
       </div>
     <Footer />
     <ToastContainer/>

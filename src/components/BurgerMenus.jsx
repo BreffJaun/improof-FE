@@ -18,6 +18,11 @@ import { MdLightbulbOutline as Light } from "react-icons/md";
 // CONTEXT
 import UserContext from "../context/userContext";
 
+const BurgerMenuTalent = ({ setShowMenu, showMenu }) => {
+  const navigate = useNavigate();
+  const [user, setUser] = useContext(UserContext);
+  const bg = user.meta.colorTheme[1];
+  const mode = user.meta.darkMode;
 
   const handleMode = async () => {
     await fetch(`${host}/users/darkMode`, {
@@ -34,11 +39,6 @@ import UserContext from "../context/userContext";
       .then((response) => response.json())
       .then((json) => console.log(json));
   };
-const BurgerMenuTalent = ({ setShowMenu, showMenu }) => {
-  const navigate = useNavigate();
-  const [user, setUser] = useContext(UserContext);
-  const bg = user.meta.colorTheme[1];
-  const mode = user.meta.darkMode;
 
   return (
     <div className="burger-container">
@@ -135,7 +135,24 @@ const BurgerMenuTalent = ({ setShowMenu, showMenu }) => {
 const BurgerMenuRecruiter = ({setShowMenu,showMenu,setShowNotifications}) => {
   const navigate = useNavigate();
   const [user, setUser] = useContext(UserContext);
-    const bg = user.meta.colorTheme[1];
+  const bg = user.meta.colorTheme[1];
+  const mode = user.meta.darkMode;
+
+  const handleMode = async () => {
+    await fetch(`${host}/users/darkMode`, {
+      credentials: "include",
+      method: "PATCH",
+      body: JSON.stringify({
+        darkMode: !mode,
+        userId: user._id,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+  };
   return (
     <div className="burger-container">
       <div
