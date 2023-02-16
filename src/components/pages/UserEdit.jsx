@@ -7,7 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import UserContext from "../../context/userContext.jsx";
 import "../../styles/colors.scss"
 
-import { RadioColor } from "../buttons/RadioColor.jsx";
+
 
 //ICONS
 import { AiOutlineCamera } from "react-icons/ai";
@@ -17,6 +17,7 @@ import {RxCross2} from "react-icons/rx"
 //ELEMENTS
 
 import Footer from "../elements/Footer.jsx";
+import { RadioColor } from "../buttons/RadioColor.jsx";
 
 
 const UserEdit = () => {
@@ -31,7 +32,6 @@ const UserEdit = () => {
   const [talent, setTalent] = useState(undefined)
   const [isPending, setIsPending] = useState(true)
   const [uploadPending, setUploadPending] = useState(false);
-  const [userAvatar, setUserAvatar] = useState(undefined)
 
   const [favColor, setFavColor] = useState("")
   const color = favColor[0]
@@ -53,25 +53,6 @@ const UserEdit = () => {
     getUser()
   }, [id, favColor])
 
-  // useEffect(() => {
-  //   // FETCH CURR USER AVATAR FROM DATABASE (GRID FS)
-  //   const getUserAvatar = ()=>{
-  //     fetch(`${host}/media/${user.profile.avatar}`,{
-  //     credentials:"include"
-  //     })
-  //     .then((response) => {
-  //     if(response) {
-  //         // console.log('response: ', response)
-  //         setUserAvatar(response.url)
-  //         console.log('DID WORK!')
-  //       } else {
-  //         // console.log('response: ', response)
-  //         console.log('DID NOT WORK!')
-  //       }
-  //     })};
-  //   getUserAvatar();
-  // }, [avatar])
-  
 
   const avatarUploadHandler = (e) => {
     setAvatar(e.target.files[0])
@@ -94,6 +75,10 @@ const UserEdit = () => {
   const handleCategoryProfile = (event) => {
     setUserData({...userData, profile:{...userData.profile, [event.target.name]: event.target.value }})
   }
+
+  useEffect(() => {
+    setUserData({...userData, meta: {...userData.meta, colorTheme: favColor}});
+  }, [favColor])
     
   const handleSubmit = (event) => {
     const newUser = favColor ? {...userData, meta:{...userData.meta, colorTheme:favColor}} : userData
@@ -125,6 +110,7 @@ const UserEdit = () => {
           }
           if (data.error) {
             data.error.map((err) => {
+              // setUploadPending(false);
               toast.error(err.msg, toastOptions);
           });
           }

@@ -10,7 +10,7 @@ import UserContext from "../../context/userContext.jsx";
 import CategoriesFilter from "../elements/CategoriesFilter.jsx";
 import RadioPrivacy from "../buttons/RadioPrivacy"
 import Footer from "../elements/Footer.jsx";
-// import { RadioProjectColor } from "../buttons/RadioColor.jsx";
+import { RadioColor } from "../buttons/RadioColor.jsx";
 import { TalentToProjectCard } from "../elements/TalentToProjectCard.jsx";
 
 // ICONS
@@ -24,11 +24,13 @@ const CreateProject = () => {
   const [user, setUser] = useContext(UserContext)
   const initial = {userId: user._id}
   const [thumbnail, setThumbnail] = useState(undefined)
+  const [thumbnailUrl, setThumbnailUrl] = useState("");
   const [projectColor, setProjectColor] = useState("orange")
   const [category, setCategory] = useState(undefined)
   const [privacy, setPrivacy] = useState(false)
   const [newProject, setNewProject] = useState(initial)
   const [talents, setTalents] = useState([])
+  const [favColor, setFavColor] = useState("")
   const [isPending, setPending] = useState(false)
   const [createProjectPending, setCreateProjectPending] = useState(false);
   const [team, setTeam] = useState([])
@@ -76,6 +78,8 @@ const CreateProject = () => {
 
   const handleFile = (event) => {
     setThumbnail(event.target.files[0])
+    const image = URL.createObjectURL(event.target.files[0])
+    setThumbnailUrl(image);
   }
 
   // HANDLE THE AMOUNTS OF INVITE INPUT FIELDS START //
@@ -88,7 +92,7 @@ const CreateProject = () => {
     event.preventDefault();
     setEmailFields([...eMailFields.slice(0,-1)])
   }
-  // HANDLE THE AMOUNTS OF INVITE INPUT FIELDS START //
+  // HANDLE THE AMOUNTS OF INVITE INPUT FIELDS END //
 
   const inviteInputHandler = (event) => {
     setInviteEmail({...inviteEmail, [event.target.name]: event.target.value})
@@ -97,8 +101,8 @@ const CreateProject = () => {
 
   // USE EFFECTS START //
   useEffect(() => {
-    setNewProject({...newProject, color: projectColor});
-  }, [projectColor])
+    setNewProject({...newProject, color: favColor});
+  }, [favColor])
 
   useEffect(() => {
     setNewProject({...newProject, category: category});
@@ -113,7 +117,6 @@ const CreateProject = () => {
     setNewProject({...newProject, team: team});
   }, [addUserToTeamTrigger])
 
-  // NOT WORKING
   useEffect(() => {
     setNewProject({...newProject, inviteOthers: Object.values(inviteEmail)});
   }, [inviteEmail])
@@ -156,6 +159,7 @@ const CreateProject = () => {
             }
           } 
           if (data.error) {
+            setCreateProjectPending(false);
             toast.error(data.error, toastOptions);            
           }
         });
@@ -197,13 +201,13 @@ const CreateProject = () => {
           <div className="col">
             <p>thumbnail</p>
             <div className="thumbnailS">
-              {thumbnail ?
+              {thumbnailUrl ?
                 <img 
-                  src={thumbnail} 
+                  src={thumbnailUrl} 
                   alt="thumbnail"                 
                 />
                 : 
-                <div className="central">PLATZHALTER</div>              
+                null           
               }
               <div title="upload"><Camera /></div>
             </div>
@@ -220,7 +224,7 @@ const CreateProject = () => {
           </div>
           <div className="col">
             <p>colorize your project</p>
-            {/* <RadioProjectColor setProjectColor={setProjectColor} /> */}
+            <RadioColor user={user} setFavColor={setFavColor} /> 
           </div>
         </div>
 
