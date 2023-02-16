@@ -20,7 +20,7 @@ const Message = ({msg, user}) => {
      
 
     return (
-        <div className={msg.from === user._id ? "mb1 right" : "mb1 left"}>
+        <div className={msg.from === user._id ? "mb1 mgright" : "mb1 mgleft"}>
             <p className={color}>{msg.text}</p>
             <p>{date} {time}</p>
         </div>
