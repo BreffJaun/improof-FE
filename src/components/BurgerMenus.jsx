@@ -68,7 +68,7 @@ const BurgerMenuTalent = ({setShowMenu, showMenu}) => {
           </div>
 
           <div>
-            <p className="info center">close menu</p>
+            <p className="info center">close</p>
             <div className="central" onClick={()=> { setShowMenu(!showMenu) }}>
               <button className="circle40 bg-FAV BrgClsBtn central" title="close">
                   <X/>
