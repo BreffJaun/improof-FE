@@ -15,6 +15,7 @@ const Message = ({msg, user}) => {
     const date = date1[0].split("-").reverse().join(".")
     const time = date1[1].slice(0,5) 
     const color = user.meta.colorTheme[0]
+    const bg = user.meta.colorTheme[1]
 
      
 
@@ -29,11 +30,12 @@ const Message = ({msg, user}) => {
 
 const Sender = ({sender}) => {
     const navigate = useNavigate()
-    // const bg = sender.meta.colorTheme[1]
+    const bg = sender?.meta?.colorTheme[1]
     return (
         <div className="mb2" onClick={()=> navigate(`/userdetails/${sender._id}`)}>
             <div className="flex central">
-                <div className={`circle50 bg-FAV central`}></div>
+            {sender.profile?.avatar ? <img className={`circle70 ${bg} central`} src={sender.profile?.avatar} alt="" />:<div className={`circle50 ${bg} central`}></div>}
+                
                 <div className="ml1 col">
                     <p>{sender.profile?.firstName}</p>
                     <p className="c-A80">{sender.profile?.isRecruiter ? "recruiter" : "talent"}</p>
