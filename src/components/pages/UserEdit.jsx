@@ -7,7 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import UserContext from "../../context/userContext.jsx";
 import "../../styles/colors.scss"
 
-import { RadioColor } from "../buttons/RadioColor.jsx";
+
 
 //ICONS
 import { AiOutlineCamera } from "react-icons/ai";
@@ -154,7 +154,6 @@ const UserEdit = () => {
           type="file"
           accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
           />
-      <RadioColor user={talent} setFavColor={setFavColor} /> 
       </div>
       </div>
         <h1 className={`central ${color} mt05`}>Hi, {talent.profile.firstName}!</h1>
