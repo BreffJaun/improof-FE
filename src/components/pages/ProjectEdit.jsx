@@ -37,31 +37,7 @@ const CreateProject = () => {
   const [team, setTeam] = useState([])
   const [inviteEmail, setInviteEmail] = useState([]);
   const follows = user.follows;
-  const [addUserToTeamTrigger, setAddUserToTeamTrigger] = useState(false);
-
-  // Follows which are not in team // You filter teammembers out of the follows
-  const noTeamFollowsFilter = (arr1, arr2) => {
-    let clean = [];
-    clean = arr1.filter(el => {
-      return !arr2.some(element => {
-          return element._id === el._id;
-      });
-    });
-    return clean;
-  }
-  const noTeamFollows = noTeamFollowsFilter(follows, team);
-  
-  // Community without team members and follows // You filter noTeamFollows out of the community
-  const noFollowsFilter = (arr1, arr2) => {
-    let clean = [];
-    clean = arr1.filter(el => {
-      return !arr2.some(element => {
-          return element._id === el._id;
-      });
-    });
-    return clean;
-  }
-  const noFollows = noFollowsFilter(noTeamFollows, follows)
+  const [addUserIdToProjectTrigger, setAddUserIdToProjectTrigger] = useState(false);
 
   const toastOptions = {
     position: "bottom-right",
@@ -106,6 +82,34 @@ const CreateProject = () => {
     fetchProject()
   },[id])
 
+  // Follows which are not in team // You filter teammembers out of the follows
+  const noTeamFollowsFilter = (arr1, arr2) => {
+    let clean = [];
+    clean = arr1.filter(el => {
+      return !arr2.some(element => {
+          return element._id === el._id;
+      });
+    });
+    return clean;
+  }
+  const noTeamFollows = project && noTeamFollowsFilter(follows, project.team);
+  
+  console.log("team: ", team)
+  console.log("follows: ", follows)
+  console.log("noTeamFollows: ", noTeamFollows)
+  
+  // Community without team members and follows // You filter noTeamFollows out of the community
+  const noFollowsFilter = (arr1, arr2) => {
+    let clean = [];
+    clean = arr1.filter(el => {
+      return !arr2.some(element => {
+          return element._id === el._id;
+      });
+    });
+    return clean;
+  }
+  const noFollows =  project && noFollowsFilter(noTeamFollows, follows)
+
   // INPUT HANDLER START //
   const handleInput = (event) => {
     setNewProject({ ...newProject, [event.target.name]: event.target.value });
@@ -148,9 +152,9 @@ const CreateProject = () => {
   }, [team])
 
   useEffect(() => {
-    // setTeam([...team, user._id])
-    setNewProject({...newProject, team: team});
-  }, [addUserToTeamTrigger])
+    setNewProject({...newProject, userId: user._id});
+    console.log('ICH WURDE AUSGEFÜHRT')
+  }, [project])
 
   useEffect(() => {
     setNewProject({...newProject, inviteOthers: Object.values(inviteEmail)});
@@ -162,12 +166,12 @@ const CreateProject = () => {
 
   // USE EFFECTS END //
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    // setAddUserToTeamTrigger(true);
 
-    // Add your own userId to the team, because your a member of the project too.
-    console.log('Z 122, newProject: ', newProject)
+    // Add your own userId to the project, because we need to check if you should could change something in the project.
+
+    console.log('Z 169, newProject: ', newProject)
 
     const formData = new FormData()
     formData.append('thumbnail', thumbnail)
@@ -175,10 +179,10 @@ const CreateProject = () => {
 
     const sendProjectData = async () => {
       setUploadPending(true)
-      await fetch(`${host}/projects/add`, 
+      await fetch(`${host}/projects/${id}`, 
       {
         credentials: "include",
-        method: 'POST',
+        method: 'PATCH',
         body: formData,
         // body: JSON.stringify(newProject),
       })
@@ -186,13 +190,14 @@ const CreateProject = () => {
         .then((data) => {
           if (data.status) {
             toast.info("Your project is save!", toastOptions);
-            // setAddUserToTeamTrigger(false);
+            // setAddUserIdToProjectTrigger(false);
             setUploadPending(false);
             if(!createProjectPending) {
               navigate(`/projectdetails/${data.data._id}`)
             }
           } 
           if (data.error) {
+            // setUploadPending(false);
             toast.error(data.error, toastOptions);            
           }
         });
@@ -216,7 +221,6 @@ const CreateProject = () => {
               type="text"
               name="name"
               placeholder={project.name}
-              required
               onChange={handleInput}
             />
           </div>
@@ -227,7 +231,6 @@ const CreateProject = () => {
               type="text"
               name="description"
               placeholder={project.description}
-              required
               onChange={handleInput}
             />
           </div>

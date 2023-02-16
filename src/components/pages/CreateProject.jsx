@@ -24,6 +24,7 @@ const CreateProject = () => {
   const [user, setUser] = useContext(UserContext)
   const initial = {userId: user._id}
   const [thumbnail, setThumbnail] = useState(undefined)
+  const [thumbnailUrl, setThumbnailUrl] = useState("");
   const [projectColor, setProjectColor] = useState("orange")
   const [category, setCategory] = useState(undefined)
   const [privacy, setPrivacy] = useState(false)
@@ -74,6 +75,8 @@ const CreateProject = () => {
 
   const handleFile = (event) => {
     setThumbnail(event.target.files[0])
+    const image = URL.createObjectURL(event.target.files[0])
+    setThumbnailUrl(image);
   }
 
   // HANDLE THE AMOUNTS OF INVITE INPUT FIELDS START //
@@ -153,6 +156,7 @@ const CreateProject = () => {
             }
           } 
           if (data.error) {
+            setCreateProjectPending(false);
             toast.error(data.error, toastOptions);            
           }
         });
@@ -194,13 +198,13 @@ const CreateProject = () => {
           <div className="col">
             <p>thumbnail</p>
             <div className="thumbnailS">
-              {thumbnail ?
+              {thumbnailUrl ?
                 <img 
-                  src={thumbnail} 
+                  src={thumbnailUrl} 
                   alt="thumbnail"                 
                 />
                 : 
-                <div className="central">PLATZHALTER</div>              
+                null           
               }
               <div title="upload"><Camera /></div>
             </div>

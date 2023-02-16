@@ -114,6 +114,7 @@ const UserEdit = () => {
           }
           if (data.error) {
             data.error.map((err) => {
+              // setUploadPending(false);
               toast.error(err.msg, toastOptions);
           });
           }
