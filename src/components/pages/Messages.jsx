@@ -82,22 +82,24 @@ const Messages = () => {
   return ( conversation && sender &&
     <>
       <div className="center">
-        <h1 className={`${color} mt1 mb2`}>messages</h1>
+        <h1 className={`${color} mb2`}>messages</h1>
+        <Sender user={user} sender={sender} />
 
-        <div className="wide col">
-
-          <Sender user={user} sender={sender} />
-
-          {conversation?.message?.map((msg)=> {
-            return <Message key={msg._id} user={user} msg={msg}/>
-          })}
-          <div>
-            <form onSubmit={handleSendMsg}>
-              <input type="text" value={msg} onChange={handleMsg} autoFocus/>
-              <button className={bg} type="submit">send</button>
-            </form>
+        <div className="wide col mb2">
+          <div className="scroll-container">
+            <div className="col mr2">
+              {conversation?.message?.map((msg)=> {
+                return <Message key={msg._id} user={user} msg={msg}/>
+              })}
+            </div>
           </div>
+        </div>
 
+        <div>
+          <form onSubmit={handleSendMsg}>
+            <input type="text" value={msg} onChange={handleMsg} autoFocus/>
+            <button className={bg} type="submit">send</button>
+          </form>
         </div>
       </div>
       <Footer />

@@ -45,7 +45,7 @@ const Conversations = ({setShowConversations, showConversations, user, unreadMsg
                   setMsgRead(con._id)
                   }}>
                   <div className="flex ai mb1">
-                      <div className="circle60 bg-FAV central conversation-icon">
+                    <div className="circle60 bg-FAV central conversation-icon">
                         { participant?.profile?.avatar? 
                         <img src={participant.profile?.avatar} /> : 
                         <p className="initials">{participant.profile?.initials}</p> }
