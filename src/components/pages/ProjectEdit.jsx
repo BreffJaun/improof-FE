@@ -10,7 +10,7 @@ import UserContext from "../../context/userContext.jsx";
 import CategoriesFilter from "../elements/CategoriesFilter.jsx";
 import RadioPrivacy from "../buttons/RadioPrivacy"
 import Footer from "../elements/Footer.jsx";
-import { RadioProjectColor } from "../buttons/RadioColor.jsx";
+import { RadioColor } from "../buttons/RadioColor.jsx";
 import { TalentToProjectCard } from "../elements/TalentToProjectCard.jsx";
 
 // ICONS
@@ -31,6 +31,7 @@ const CreateProject = () => {
   const [privacy, setPrivacy] = useState(false)
   const [newProject, setNewProject] = useState(project)
   const [talents, setTalents] = useState([])
+  const [favColor, setFavColor] = useState("")
   const [isPending, setPending] = useState(false)
   const [uploadPending, setUploadPending] = useState(false);
   const [createProjectPending, setCreateProjectPending] = useState(false);
@@ -94,9 +95,9 @@ const CreateProject = () => {
   }
   const noTeamFollows = project && noTeamFollowsFilter(follows, project.team);
   
-  console.log("team: ", team)
-  console.log("follows: ", follows)
-  console.log("noTeamFollows: ", noTeamFollows)
+  // console.log("team: ", team)
+  // console.log("follows: ", follows)
+  // console.log("noTeamFollows: ", noTeamFollows)
   
   // Community without team members and follows // You filter noTeamFollows out of the community
   const noFollowsFilter = (arr1, arr2) => {
@@ -140,8 +141,8 @@ const CreateProject = () => {
 
   // USE EFFECTS START //
   useEffect(() => {
-    setNewProject({...newProject, color: projectColor});
-  }, [projectColor])
+    setNewProject({...newProject, color: favColor});
+  }, [favColor])
 
   useEffect(() => {
     setNewProject({...newProject, category: category});
@@ -153,7 +154,7 @@ const CreateProject = () => {
 
   useEffect(() => {
     setNewProject({...newProject, userId: user._id});
-    console.log('ICH WURDE AUSGEFÜHRT')
+    // console.log('ICH WURDE AUSGEFÜHRT')
   }, [project])
 
   useEffect(() => {
@@ -268,7 +269,7 @@ const CreateProject = () => {
           </div>
           <div className="col">
             <p>change your project color:</p>
-            <RadioProjectColor setProjectColor={setProjectColor} />
+            <RadioColor user={user} setFavColor={setFavColor} /> 
           </div>
         </div>
         

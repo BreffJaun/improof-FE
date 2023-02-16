@@ -26,6 +26,7 @@ import { TalentCard } from "../elements/TalentCard.jsx";
 import Up from "../elements/Up.jsx";
 import CategoriesFilter from "../elements/CategoriesFilter.jsx";
 import Footer from "../elements/Footer.jsx";
+import { RadioColor } from "../buttons/RadioColor.jsx";
 
 
 const UserEdit = () => {
@@ -37,15 +38,14 @@ const UserEdit = () => {
   const initialUserData = {...user}
   delete initialUserData.profile.password
   const [userData, setUserData] = useState(initialUserData)
-  // console.log("userdata",userData)
-  // console.log("user",user);
 
   const [talent, setTalent] = useState(undefined)
+  const [favColor, setFavColor] = useState("")
   const [isPending, setIsPending] = useState(true)
   const [uploadPending, setUploadPending] = useState(false);
   const [showContact, setShowContact] = useState(false)
   const [showInfos, setShowInfos] = useState(false)
-  // const [userAvatar, setUserAvatar] = useState(undefined)
+
 
   const navigate = useNavigate()
 
@@ -85,6 +85,10 @@ const UserEdit = () => {
   const handleCategoryProfile = (event) => {
     setUserData({...userData, profile:{...userData.profile, [event.target.name]: event.target.value }})
   }
+
+  useEffect(() => {
+    setUserData({...userData, meta: {...userData.meta, colorTheme: favColor}});
+  }, [favColor])
     
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -157,6 +161,7 @@ const UserEdit = () => {
           type="file"
           accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
           />
+      <RadioColor user={talent} setFavColor={setFavColor} /> 
       </div>
       </div>
         <h1 className="central c-FAV mt05">Hi, {talent.profile.firstName}!</h1>

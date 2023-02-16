@@ -10,7 +10,7 @@ import UserContext from "../../context/userContext.jsx";
 import CategoriesFilter from "../elements/CategoriesFilter.jsx";
 import RadioPrivacy from "../buttons/RadioPrivacy"
 import Footer from "../elements/Footer.jsx";
-import { RadioProjectColor } from "../buttons/RadioColor.jsx";
+import { RadioColor } from "../buttons/RadioColor.jsx";
 import { TalentToProjectCard } from "../elements/TalentToProjectCard.jsx";
 
 // ICONS
@@ -30,6 +30,7 @@ const CreateProject = () => {
   const [privacy, setPrivacy] = useState(false)
   const [newProject, setNewProject] = useState(initial)
   const [talents, setTalents] = useState([])
+  const [favColor, setFavColor] = useState("")
   const [isPending, setPending] = useState(false)
   const [createProjectPending, setCreateProjectPending] = useState(false);
   const [team, setTeam] = useState([])
@@ -98,8 +99,8 @@ const CreateProject = () => {
 
   // USE EFFECTS START //
   useEffect(() => {
-    setNewProject({...newProject, color: projectColor});
-  }, [projectColor])
+    setNewProject({...newProject, color: favColor});
+  }, [favColor])
 
   useEffect(() => {
     setNewProject({...newProject, category: category});
@@ -221,7 +222,7 @@ const CreateProject = () => {
           </div>
           <div className="col">
             <p>colorize your project</p>
-            <RadioProjectColor setProjectColor={setProjectColor} />
+            <RadioColor user={user} setFavColor={setFavColor} /> 
           </div>
         </div>
 

@@ -1,47 +1,52 @@
-const RadioTalentColor = () => {
-  const handleTalentColor = (event) => {
+const RadioTalentColor = ({setFavColor}) => {
+
+  const handleColor = (event) => {
+    const favCol = event.target.value.split(",") 
+    setFavColor(favCol)
+    console.log(favCol);
     console.log(event.target.value)
-  }
+  }  
+  
   return (
     <div className="flex central mt05 mb05 colorCard">
       <div className="circle20 bg-gDB">
         <input
           type="radio"
           name="TalCol"
-          value="deepblue"
-          onChange={handleTalentColor}>
+          value="c-DB2,bg-gDB"
+          onChange={handleColor}>
         </input>
       </div>
       <div className="circle20 bg-gLB">
         <input
           type="radio"
           name="TalCol"
-          value="lightblue"
-          onChange={handleTalentColor}>
+          value="c-LB2,bg-gLB"
+          onChange={handleColor}>
         </input>
       </div>
       <div className="circle20 bg-gO">
         <input
           type="radio"
           name="TalCol"
-          value="orange"
-          onChange={handleTalentColor}>
+          value="c-O2,bg-gO"
+          onChange={handleColor}>
         </input>
       </div>
       <div className="circle20 bg-gPI">
         <input
           type="radio"
           name="TalCol"
-          value="pink"
-          onChange={handleTalentColor}>
+          value="c-PI1,bg-gPI"
+          onChange={handleColor}>
         </input>
       </div>
       <div className="circle20 bg-gPU">
         <input
           type="radio"
           name="TalCol"
-          value="purple"
-          onChange={handleTalentColor}>
+          value="c-PU1,bg-gPU"
+          onChange={handleColor}>
         </input>
       </div>
     </div>
@@ -50,50 +55,55 @@ const RadioTalentColor = () => {
 
 
 
-const RadioProjectColor = ({setProjectColor}) => {
-  const handleProjectColor = (event) => {
-    setProjectColor(event.target.value)
+const RadioProjectColor = ({setFavColor}) => {
+
+  const handleColor = (event) => {
+    const favCol = event.target.value.split(",") 
+    setFavColor(favCol)
+    console.log(favCol);
+    console.log(event.target.value)
   }
+
   return (
     <div className="flex central mt05 mb05 colorCard">
       <div className="circle20 bg-gDB">
         <input
           type="radio"
           name="color"
-          value="deepblue"
-          onChange={handleProjectColor}>
+          value="c-DB2,bg-gDB"
+          onChange={handleColor}>
         </input>
       </div>
       <div className="circle20 bg-gLB">
         <input
           type="radio"
           name="color"
-          value="lightblue"
-          onChange={handleProjectColor}>
+          value="c-LB2,bg-gLB"
+          onChange={handleColor}>
         </input>
       </div>
       <div className="circle20 bg-gO">
         <input
           type="radio"
           name="color"
-          value="orange"
-          onChange={handleProjectColor}>
+          value="c-O2,bg-gO"
+          onChange={handleColor}>
         </input>
       </div>
       <div className="circle20 bg-gPI">
         <input
           type="radio"
           name="color"
-          value="pink"
-          onChange={handleProjectColor}>
+          value="c-PI1,bg-gPI"
+          onChange={handleColor}>
         </input>
       </div>
       <div className="circle20 bg-gPU">
         <input
           type="radio"
           name="color"
-          value="purple"
-          onChange={handleProjectColor}>
+          value="c-PU1,bg-gPU"
+          onChange={handleColor}>
         </input>
       </div>
     </div>
@@ -102,34 +112,39 @@ const RadioProjectColor = ({setProjectColor}) => {
 
 
 
-const RadioRecruiterColor = () => {
-  const handleRecruiterColor = (event) => {
+const RadioRecruiterColor = ({setFavColor}) => {
+
+  const handleColor = (event) => {
+    const favCol = event.target.value.split(",") 
+    setFavColor(favCol)
+    console.log(favCol);
     console.log(event.target.value)
   }
+
   return (
     <div className="flex central mt05 mb05 colorCard">
       <div className="circle20 bg-gGR1">
         <input
           type="radio"
           name="RecCol"
-          value="lightgreen'"
-          onChange={handleRecruiterColor}>
+          value="c-GR1,bg-gGR1"
+          onChange={handleColor}>
         </input>
       </div>
       <div className="circle20 bg-gGR3">
         <input
           type="radio"
           name="RecCol"
-          value="green"
-          onChange={handleRecruiterColor}>
+          value="c-GR3,bg-gGr3"
+          onChange={handleColor}>
         </input>
       </div>
       <div className="circle20 bg-gGR5">
         <input
           type="radio"
           name="RecCol"
-          value="darkgreen"
-          onChange={handleRecruiterColor}>
+          value="c-GR5,bg-gGr5"
+          onChange={handleColor}>
         </input>
       </div>
     </div>
@@ -137,8 +152,70 @@ const RadioRecruiterColor = () => {
 };
 
 
+/* 
+          HOW TO USE IT? 
+          const [favColor, setFavColor] = useState("")
+          <RadioColor user={talent} setFavColor={setFavColor} /> 
+*/
+const RadioColor = ({setFavColor, user}) => {
 
-export { RadioTalentColor, RadioProjectColor, RadioRecruiterColor };
+  const isTalent = user.profile.isTalent
+
+  const handleColor = (event) => {
+    const favCol = event.target.value.split(",") 
+    setFavColor(favCol)
+    console.log(favCol);
+    console.log(event.target.value)
+  }  
+  
+  return (
+    <div className="flex central mt05 mb05 colorCard">
+      <div className={isTalent ? "circle20 bg-gDB" : "circle20 bg-gGR1"}>
+        <input
+          type="radio"
+          value={isTalent ? "c-DB2,bg-gDB" : "c-GR1,bg-gGR1"}
+          onChange={handleColor}>
+        </input>
+      </div>
+      <div className={isTalent ? "circle20 bg-gLB" : "circle20 bg-gGR3"}>
+        <input
+          type="radio"
+          value={isTalent ? "c-LB2,bg-gLB" : "c-GR3,bg-gGr3"}
+          onChange={handleColor}>
+        </input>
+      </div>
+      <div className={isTalent ? "circle20 bg-gO" : "circle20 bg-gGR5"}>
+        <input
+          type="radio"
+          value={isTalent ? "c-O2,bg-gO" : "c-GR5,bg-gGr5"}
+          onChange={handleColor}>
+        </input>
+      </div>
+      {isTalent && 
+      <>
+      <div className="circle20 bg-gPI">
+        <input
+          type="radio"
+          value="c-PI1,bg-gPI"
+          onChange={handleColor}>
+        </input>
+      </div>
+      <div className="circle20 bg-gPU">
+        <input
+          type="radio"
+          value="c-PU1,bg-gPU"
+          onChange={handleColor}>
+        </input>
+      </div>      
+      </>
+      }
+    </div>
+  );
+};
+
+
+
+export { RadioTalentColor, RadioProjectColor, RadioRecruiterColor, RadioColor };
 
 
 /*
