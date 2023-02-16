@@ -24,14 +24,14 @@ const RadioColor = ({setFavColor, user}) => {
       <div className={isTalent ? "circle20 bg-gLB" : "circle20 bg-gGR3"}>
         <input
           type="radio"
-          value={isTalent ? "c-LB2,bg-gLB" : "c-GR3,bg-gGr3"}
+          value={isTalent ? "c-LB2,bg-gLB" : "c-GR3,bg-gGR3"}
           onChange={handleColor}>
         </input>
       </div>
       <div className={isTalent ? "circle20 bg-gO" : "circle20 bg-gGR5"}>
         <input
           type="radio"
-          value={isTalent ? "c-O2,bg-gO" : "c-GR5,bg-gGr5"}
+          value={isTalent ? "c-O2,bg-gO" : "c-GR5,bg-gGR5"}
           onChange={handleColor}>
         </input>
       </div>
