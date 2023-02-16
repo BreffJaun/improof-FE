@@ -70,7 +70,7 @@ const BurgerMenuTalent = ({setShowMenu, showMenu}) => {
           <div>
             <p className="info center">close</p>
             <div className="central" onClick={()=> { setShowMenu(!showMenu) }}>
-              <button className="circle40 bg-FAV BrgClsBtn central" title="close">
+              <button className="circle40 BrgClsBtn central" title="close">
                   <X/>
               </button>
             </div>
@@ -118,7 +118,7 @@ const BurgerMenuRecruiter = ({setShowMenu, showMenu, setShowNotifications}) => {
           setShowMenu(!showMenu)
           }}>
           <div className="central" onClick={()=> { setShowMenu(!showMenu) }}>
-            <button className="circle40 bg-FAV BrgClsBtn central" title="close">
+            <button className="circle40 BrgClsBtn central" title="close">
                 <X/>
             </button>
           </div>

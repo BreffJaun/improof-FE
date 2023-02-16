@@ -20,7 +20,6 @@ const RecruiterMenu = () => {
         {/* <button 
           onClick={ ()=> navigate("/searchhistory")}>search history
         </button> */}
-
       </div>
     </div>
   );
