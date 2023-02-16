@@ -87,7 +87,10 @@ const ProjectDetails = () => {
                 <div className="mt1 flex g05">
                     {stone?.team?.map(member =>
                       <div key={member._id}className="circle50 bg-FAV central">
-                        {member.profile.avatar ? <img width="80" src={member.profile.avatar}/> : <p className="c-A100">{member.profile.initials}</p>}
+                        {member.profile.avatar ? 
+                        <img width="80" src={member.profile.avatar}/> 
+                        : 
+                        <p className="c-A100">{member.profile.initials}</p>}
                       </div>
                     )}
                 </div>
