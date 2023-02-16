@@ -68,7 +68,7 @@ const ProjectDetails = () => {
     <div className="componente">
 
       <div>
-        {project.thumbnail &&  <img src={project.thumbnail} alt="Thumbnail" />}
+        {project.thumbnail &&  <img src={project.thumbnail} alt="Thumbnail" width="350"/>}
         <h1>{project.name}</h1>
         <p>{project.description}</p>
       </div>
@@ -80,7 +80,7 @@ const ProjectDetails = () => {
     {!isPending && project.stones.map(stone =>{
           return (     
               <div key={stone._id}>
-                {stone.media && <img src="" alt="" />}
+                {stone.media && <img className="cirle50 central" alt="" width="150" />}
                 <h1>{stone.title}</h1>
                 <p>{stone.kind}</p>
                 <p>{stone.description}</p>
@@ -88,7 +88,7 @@ const ProjectDetails = () => {
                     {stone?.team?.map(member =>
                       <div key={member._id}className="circle50 bg-FAV central">
                         {member.profile.avatar ? 
-                        <img width="80" src={member.profile.avatar}/> 
+                        <img className="cirle50 central" width="80" src={member.profile.avatar}/> 
                         : 
                         <p className="c-A100">{member.profile.initials}</p>}
                       </div>

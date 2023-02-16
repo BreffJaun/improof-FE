@@ -11,6 +11,8 @@ import { ToastContainer } from "react-toastify"
 
 
 const TalentToProjectCard = ({talent, user, team, setTeam, projectEdit}) => {
+
+  const bg = talent.meta.colorTheme[1]
   const navigate = useNavigate()
   const addToTeam = (event) =>{
     event.preventDefault();
