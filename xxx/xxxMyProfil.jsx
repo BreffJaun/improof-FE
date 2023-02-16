@@ -1,14 +1,14 @@
-import AvatarL from "../elements/Avatar.jsx";
+import AvatarL from "../src/components/elements/Avatar.jsx";
 import { ColorCardRecruiter, ColorCardTalent } from "../elements/ColorCard.jsx";
-import { MyProjectCard } from "../elements/ProjectCard.jsx";
-import { TalentCard } from "../elements/TalentCard.jsx";
+import { MyProjectCard } from "../src/components/elements/ProjectCard.jsx";
+import { TalentCard } from "../src/components/elements/TalentCard.jsx";
 
 import { useContext } from "react";
 
-import Footer from "../elements/Footer.jsx";
+import Footer from "../src/components/elements/Footer.jsx";
 
 // CONTEXT
-import UserContext from "../../context/userContext.jsx";
+import UserContext from "../src/context/userContext.jsx";
 
 
 

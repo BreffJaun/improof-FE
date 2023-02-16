@@ -35,6 +35,7 @@ const NewSearch = () => {
   const [searchTrigger, setSearchTrigger] = useState(false);
   const [redMarker, setRedMarker] = useState(false);
   const color = user.meta.colorTheme[0]
+  const bg = user.meta.colorTheme[1]
 
   const toastOptions = {
       position: "bottom-right",
@@ -285,7 +286,7 @@ console.log('redMarker: ', redMarker)
                     <button 
                       style={{cursor:'pointer'}}
                       type="submit" 
-                      className="bg-FAV"
+                      className={bg}
                       disabled={searchTrigger}
                     >get result</button>
                 </div> 
@@ -293,7 +294,7 @@ console.log('redMarker: ', redMarker)
                     <button 
                       style={{cursor:'pointer'}}
                       type="reset" 
-                      className="bg-FAV"
+                      className={bg}
                       disabled={!searchTrigger}
                       onClick={resetHandler}
                     >reset search</button>
