@@ -25,6 +25,8 @@ const CreateStone = () => {
   const [media, setMedia] = useState(undefined)
   const [mediaUrl, setMediaUrl] = useState("");
   const [createStonePending, setCreateStonePending] = useState(false);
+  const [imageTrigger, setImageTrigger] = useState (false)
+  const [videoTrigger, setVideoTrigger] = useState (false)
   const color = user.meta.colorTheme[0]
 
   useEffect(() => {
@@ -54,11 +56,46 @@ const CreateStone = () => {
     setNewStone({ ...newStone, [e.target.name]: e.target.value });
   };
 
-  const handleMedia = (event) => {
+  const handleImages = (event) => {
+    if(event.target.files[0]?.size > 8000000) {
+      document.getElementById('media-pic').value=''
+      toast.error("Upload failed! Max file size for images is 8MB", toastOptions);
+    }
+    setImageTrigger(true)
     setMedia(event.target.files[0])
     const media = URL.createObjectURL(event.target.files[0])
     setMediaUrl(media);
   };
+
+  const resetImageHandler = (event)=> {
+    event.preventDefault();
+    document.getElementById('media-pic').value=''
+    setMedia(undefined)
+    setMediaUrl(undefined)
+    setImageTrigger(false)
+  } 
+
+  const handleVideos = (event) => {
+    // ca. 3min Video length => should be enough!
+    if(event.target.files[0]?.size > 10000000) {
+      document.getElementById('media-vid').value=''
+      toast.error("Upload failed! Max file size for videos is 10MB", toastOptions);
+    } else {
+      setVideoTrigger(true)
+      setMedia(event.target.files[0])
+      const media = URL.createObjectURL(event.target.files[0])
+      setMediaUrl(media);
+    }
+  };
+
+  const resetVideoHandler = (event)=> {
+    event.preventDefault();
+    document.getElementById('media-vid').value=''
+    setMedia(undefined)
+    setMediaUrl(undefined)
+    setVideoTrigger(false)
+  } 
+
   
 
   const handleSubmit = async (e) => {
@@ -165,22 +202,31 @@ const CreateStone = () => {
                   <div title="upload"><Camera /></div>
                 }
               </div>
-              <label htmlFor="media-pic">photos</label>
-              <input
-                type="file"
-                multiple
-                id="media-pic"
-                onChange={handleMedia}
-                accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
-              />
-              <label htmlFor="media-vid">videos</label>
-              <input
-                type="file"
-                multiple
-                id="media-vid"
-                onChange={handleMedia}
-                accept=".mp4, .mov, .wmv, .avi, .mkv, .flv"
-              />
+              <div className="col">
+                <label htmlFor="media-pic">photos</label>
+                <input
+                  type="file"
+                  multiple
+                  id="media-pic"
+                  onChange={handleImages}
+                  accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
+                  disabled={videoTrigger}
+                />
+                {imageTrigger && <button type="button" onClick={resetImageHandler}>reset image selection</button>}                
+              </div>
+              <div className="col">
+                <label htmlFor="media-vid">videos</label>
+                <input
+                  type="file"
+                  multiple
+                  id="media-vid"
+                  onChange={handleVideos}
+                  accept=".mp4, .mov, .wmv, .avi, .mkv, .flv"
+                  disabled={imageTrigger}
+                />
+                {videoTrigger && <button type="button" onClick={resetVideoHandler}>reset video selection</button>}
+                
+              </div>
             </div>
           </div>
           <div>
