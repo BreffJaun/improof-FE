@@ -112,7 +112,6 @@ const CreateProject = () => {
     setNewProject({...newProject, team: team});
   }, [addUserToTeamTrigger])
 
-  // NOT WORKING
   useEffect(() => {
     setNewProject({...newProject, inviteOthers: Object.values(inviteEmail)});
   }, [inviteEmail])

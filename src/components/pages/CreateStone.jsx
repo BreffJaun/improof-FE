@@ -19,10 +19,11 @@ import { TalentCard } from "../elements/TalentCard.jsx";
 const CreateStone = () => {
   const navigate = useNavigate();
   const [user, setUser] = useContext(UserContext);
-  const [newStone, setNewStone] = useState({});
   const [project, setProject] = useState({});
   const [isPending, setPending] = useState(true);
   const { projectId } = useParams("projectId");
+  const initial = {userId: user._id, projectId: projectId}
+  const [newStone, setNewStone] = useState(initial);
   const [contributors, setContributors] = useState([]);
   const [media, setMedia] = useState(undefined)
   const [mediaUrl, setMediaUrl] = useState("");
@@ -58,6 +59,7 @@ const CreateStone = () => {
     setNewStone({ ...newStone, [e.target.name]: e.target.value });
   };
 
+  // HANDLING MEDIA FILES START //
   const handleImages = (event) => {
     if(event.target.files[0]?.size > 8000000) {
       document.getElementById('media-pic').value=''
@@ -89,7 +91,8 @@ const CreateStone = () => {
       setMediaUrl(media);
     }
   };
-
+  // HANDLING MEDIA FILES END //
+  
   const resetVideoHandler = (event)=> {
     event.preventDefault();
     document.getElementById('media-vid').value=''
@@ -97,35 +100,7 @@ const CreateStone = () => {
     setMediaUrl(undefined)
     setVideoTrigger(false)
   } 
-
   
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await fetch(`${host}/stones`, {
-      method: "POST",
-      body: JSON.stringify({
-        ...newStone,
-        userId: user._id,
-        projectId: projectId,
-        team: contributors,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        if (!json.status) {
-          toast.error(json.error, toastOptions);
-        } else {
-          toast.info("You just added a new stone", toastOptions);
-        }
-      });
-    navigate(`/projectdetails/${projectId}`);
-  };
-
   const handleContributor = (contributor) => {
     if (contributors.includes(contributor)) {
       const newContributors = contributors.filter((con) => con !== contributor);
@@ -133,9 +108,42 @@ const CreateStone = () => {
     } else {
       setContributors([...contributors, contributor]);
     }
+  };  
+  
+  useEffect (() => {
+    setNewStone({ ...newStone, team: contributors })
+  }, [contributors])
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("newStone: ", newStone)
+
+    const formData = new FormData()
+    formData.append('media', media)
+    formData.append('data', JSON.stringify(newStone))
+
+    setCreateStonePending(true)
+    await fetch(`${host}/stones`, 
+    {
+      credentials: "include",
+      method: "POST",
+      body: formData
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (!json.status) {
+          toast.error(json.error, toastOptions);
+          setCreateStonePending(false)
+        } else {
+          // toast.info("You just added a new stone", toastOptions);
+          navigate(`/projectdetails/${projectId}`);
+        }
+      });
   };
 
-  return (
+  
+
+  return createStonePending ?  <div>Loading...</div> : (
     <>
       <h1 className={`central ${color} mt1 mb2`}>new stone</h1>
 
@@ -182,7 +190,7 @@ const CreateStone = () => {
               name="kind"
               value="endstone"
               onChange={handleInput}
-              talent
+              // talent
             />
             <label>endstone</label>
           </div>
@@ -256,8 +264,8 @@ const CreateStone = () => {
               {project.team?.length &&
                 project.team.map((talent) => {
                   return (
-                    <>
-                      <div className="t-avatar">
+                    <div key={talent._id}>
+                      <div className="t-avatar" >
                         <div
                           className="bg-FAV central t-pic"
                           onClick={() => navigate(`/userDetails/${talent._id}`)}
@@ -296,7 +304,7 @@ const CreateStone = () => {
                           id="material-switch"
                         />
                       </div>
-                    </>
+                    </div>
                   );
                 })}
             </div>
