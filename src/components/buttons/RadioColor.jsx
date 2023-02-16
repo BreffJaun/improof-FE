@@ -10,8 +10,6 @@ const RadioColor = ({setFavColor, user}) => {
   const handleColor = (event) => {
     const favCol = event.target.value.split(",") 
     setFavColor(favCol)
-    console.log(favCol);
-    console.log(event.target.value)
   }  
   
   return (
@@ -59,4 +57,4 @@ const RadioColor = ({setFavColor, user}) => {
   );
 };
 
-export { RadioTalentColor, RadioProjectColor, RadioRecruiterColor, RadioColor };
+export { RadioColor };

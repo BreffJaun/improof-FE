@@ -63,9 +63,9 @@ const handleDeleteFollow = async (project, user, setUser, setTrigger, trigger) =
 };
 const ProjectBtn = ({ project }) => {
   const [user, setUser] = useContext(UserContext);
+  const [trigger, setTrigger] = useContext(TriggerContext)
   const color = user.meta.colorTheme[0]
   const bg = user.meta.colorTheme[1]
-  const [trigger, setTrigger] = useContext(TriggerContext)
 
   return user.starProjects.find((projekt) => projekt._id === project._id) ? (
     <div title="delete ">

@@ -10,7 +10,7 @@ import UserContext from "../../context/userContext.jsx";
 import CategoriesFilter from "../elements/CategoriesFilter.jsx";
 import RadioPrivacy from "../buttons/RadioPrivacy"
 import Footer from "../elements/Footer.jsx";
-import { RadioProjectColor } from "../buttons/RadioColor.jsx";
+// import { RadioProjectColor } from "../buttons/RadioColor.jsx";
 import { TalentToProjectCard } from "../elements/TalentToProjectCard.jsx";
 
 // ICONS
@@ -243,7 +243,7 @@ const CreateProject = () => {
           </div>
           <div className="col">
             <p>change your project color:</p>
-            <RadioProjectColor setProjectColor={setProjectColor} />
+            {/* <RadioProjectColor setProjectColor={setProjectColor} /> */}
           </div>
         </div>
 

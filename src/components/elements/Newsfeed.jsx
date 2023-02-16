@@ -32,7 +32,7 @@ const Newsfeed = () => {
   const [category, setCategory] = useState("");
   const [numberSlides, setNumberSlides] = useState(undefined)
 
-  const color = user.meta.colorTheme[0]
+  const bg = user.meta.colorTheme[1]
 
   useEffect(() => {
     const getProjects = async () => {
@@ -91,12 +91,12 @@ const Newsfeed = () => {
               )}
         </Slider>
         <div className="central">
-          <ButtonBack><h3><Back /></h3></ButtonBack>
+          <ButtonBack className={bg}><h3><Back /></h3></ButtonBack>
           <div className="central col">
             <p className="mb1">choose your topic</p>
             <CategoriesFilter category={category} setCategory={setCategory} />
           </div>
-          <ButtonNext><h3><Forward/></h3></ButtonNext>
+          <ButtonNext className={bg}><h3><Forward/></h3></ButtonNext>
         </div>
       </CarouselProvider>
     </div>

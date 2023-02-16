@@ -13,10 +13,14 @@ const ReceiveMessage = () => {
 const Message = ({msg, user}) => {
     const date1 = msg.createdAt.toString().split("T")
     const date = date1[0].split("-").reverse().join(".")
-    const time = date1[1].slice(0,5)          
+    const time = date1[1].slice(0,5) 
+    const color = user.meta.colorTheme[0]
+
+     
+
     return (
         <div className={msg.from === user._id ? "mb1 right" : "mb1 left"}>
-            <p className="c-FAV">{msg.text}</p>
+            <p className={color}>{msg.text}</p>
             <p>{date} {time}</p>
         </div>
     );
@@ -25,10 +29,11 @@ const Message = ({msg, user}) => {
 
 const Sender = ({sender}) => {
     const navigate = useNavigate()
+    // const bg = sender.meta.colorTheme[1]
     return (
         <div className="mb2" onClick={()=> navigate(`/userdetails/${sender._id}`)}>
             <div className="flex central">
-                <div className="circle50 bg-FAV central"></div>
+                <div className={`circle50 bg-FAV central`}></div>
                 <div className="ml1 col">
                     <p>{sender.profile?.firstName}</p>
                     <p className="c-A80">{sender.profile?.isRecruiter ? "recruiter" : "talent"}</p>

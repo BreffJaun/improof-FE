@@ -21,6 +21,7 @@ import UserContext from "../context/userContext";
 const BurgerMenuTalent = ({setShowMenu, showMenu}) => {
   const navigate = useNavigate()
   const [user, setUser] = useContext(UserContext)
+  const bg = user.meta.colorTheme[1]
 
   return (
     <div className="burger-container">
@@ -28,39 +29,39 @@ const BurgerMenuTalent = ({setShowMenu, showMenu}) => {
         <div>
           <div className="col">
             <p className="mb05 info center">projects</p>
-            <button className="mb05 rel" onClick={() => navigate("/createproject")}>
+            <button className={`mb05 rel ${bg}`} onClick={() => navigate("/createproject")}>
               <NewProject className="burger-icon"/>
               <p className="ml2">new project</p>
             </button>
-            <button className="mb05 rel" onClick={() => navigate("/myprojects")}>
+            <button className={`mb05 rel ${bg}`} onClick={() => navigate("/myprojects")}>
               <Projects className="burger-icon"/> 
               <p className="ml2">my projects</p>
             </button>
-            <button className="mb05 rel" onClick={() => navigate("/projects")}>
+            <button className={`mb05 rel ${bg}`} onClick={() => navigate("/projects")}>
               <Star className="burger-icon"/>
               <p className="ml2">projects</p>
               </button>
             </div>
             <div className="mt05 col">
               <p className="mb05 info center">profiles</p>
-              <button className="mb05 rel" onClick={() => navigate(`/userdetails/${user._id}`)}>
+              <button className={`mb05 rel ${bg}`} onClick={() => navigate(`/userdetails/${user._id}`)}>
                 < MdOutlinePerson className="burger-icon"/>
                 <p className="ml2">my profile</p>
               </button>
-              <button className="mb05 rel" onClick={() => navigate("/community")}>
+              <button className={`mb05 rel ${bg}`} onClick={() => navigate("/community")}>
                 <Community className="burger-icon"/> 
                 <p className="ml2">community</p>
               </button>
             </div>
             <div className="mt05 col">
               <p className="mb05 info center">system</p>
-              <button className="mb05 rel">
+              <button className={`mb05 rel ${bg}`}>
                 <Light className="burger-icon"/> 
                 <p className="ml2">light/dark</p>
               </button>
               <div onClick={()=> setShowMenu(!showMenu)} className="mb05">
-              <button className="mb05 rel" onClick={() => navigate("/login")}>
-                <IoIosLogOut className="burger-icon"/>
+              <button className={`mb05 rel ${bg}`} onClick={() => navigate("/login")}>
+                <IoIosLogOut className={`burger-icon`} />
                 <p className="ml2">logout</p>
               </button>
             </div>

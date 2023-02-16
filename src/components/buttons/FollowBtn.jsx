@@ -61,10 +61,11 @@ const handleDeleteFollow = async (talent, user, trigger, setTrigger) => {
 }
 
 const FollowBtn = ({talent, user}) => {
+  const bg = talent.meta.colorTheme[1]
   const [trigger, setTrigger] = useContext(TriggerContext)
   return ( user.follows.find(follow => follow._id === talent._id) ? 
-    <button title="click to unfollow" className="action" onClick={() => handleDeleteFollow(talent, user, trigger, setTrigger)}><FIstar /></button> : 
-    <button title="click to follow" className="action" onClick={() => handleAddFollow(talent, user, trigger, setTrigger)}><OLstar /></button>
+    <button title="click to unfollow" className={`action ${bg}`} onClick={() => handleDeleteFollow(talent, user, trigger, setTrigger)}><FIstar /></button> : 
+    <button title="click to follow" className={`action ${bg}`} onClick={() => handleAddFollow(talent, user, trigger, setTrigger)}><OLstar /></button>
   )
 }
 
