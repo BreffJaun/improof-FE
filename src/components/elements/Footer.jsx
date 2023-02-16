@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import efjm from "../../images/efjm_logo.png"
 
+import { useContext } from "react";
+import UserContext from "../../context/userContext.jsx";
 
 
 // STYLE
@@ -9,6 +11,8 @@ import Up from "../elements/Up.jsx"
 
 
 const Footer = () => {
+  const [user, setUser] = useContext(UserContext)
+  const bg = user.meta.colorTheme[1]
 
   const navigate = useNavigate()
 
@@ -17,7 +21,7 @@ const Footer = () => {
     <Up />
     <div className="logoContainer central">
       <div 
-      className="efjm bg-FAV"
+      className={`efjm ${bg}`}
       onClick= { ()=> navigate("/efjm")}>
         <img src={efjm} alt="efjm" />
       </div>

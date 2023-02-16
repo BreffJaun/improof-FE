@@ -76,6 +76,8 @@ const Messages = () => {
           setMsg("")
         });
   }
+  const bg = user.meta.colorTheme[1]
+
 
   return ( conversation && sender &&
     <>
@@ -92,7 +94,7 @@ const Messages = () => {
           <div>
             <form onSubmit={handleSendMsg}>
               <input type="text" value={msg} onChange={handleMsg}/>
-              <button type="submit">send</button>
+              <button className={bg} type="submit">send</button>
             </form>
           </div>
 

@@ -10,7 +10,7 @@ import UserContext from "../../context/userContext.jsx";
 import CategoriesFilter from "../elements/CategoriesFilter.jsx";
 import RadioPrivacy from "../buttons/RadioPrivacy"
 import Footer from "../elements/Footer.jsx";
-import { RadioProjectColor } from "../buttons/RadioColor.jsx";
+// import { RadioProjectColor } from "../buttons/RadioColor.jsx";
 import { TalentToProjectCard } from "../elements/TalentToProjectCard.jsx";
 
 // ICONS
@@ -36,6 +36,7 @@ const CreateProject = () => {
   const follows = user.follows;
   const [addUserToTeamTrigger, setAddUserToTeamTrigger] = useState(false);
   const color = user.meta.colorTheme[0]
+  const bg = user.meta.colorTheme[1]
 
   const noFollowsFilter = (arr1, arr2) => {
     let clean = [];
@@ -219,7 +220,7 @@ const CreateProject = () => {
           </div>
           <div className="col">
             <p>colorize your project</p>
-            <RadioProjectColor setProjectColor={setProjectColor} />
+            {/* <RadioProjectColor setProjectColor={setProjectColor} /> */}
           </div>
         </div>
 

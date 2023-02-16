@@ -13,19 +13,21 @@ import { FollowBtn } from "../buttons/FollowBtn.jsx"
 import { SendMessageBtn } from "../buttons/MessageBtn.jsx"
 
 const TalentCard = ({talent, user}) => {
+  const color = talent.meta.colorTheme[0]
+  const bg = talent.meta.colorTheme[1]
   const navigate = useNavigate()
   return (
     <>
       <div className="t-card" >
         <div className="t-avatar">
-          <div className="bg-FAV central t-pic" onClick={()=> navigate(`/userDetails/${talent._id}`)}>
+          <div className={`${bg} central t-pic`} onClick={()=> navigate(`/userDetails/${talent._id}`)}>
             { talent?.profile?.avatar? 
               <img src={talent.profile?.avatar} /> : 
               <p className="initials">{talent.profile?.initials}</p> }
           </div>
         </div>
         <div className="t-info">
-            <p className="fw500 c-FAV" onClick={()=> navigate(`/userDetails/${talent._id}`)}>{talent.profile?.firstName} {talent.profile?.lastName}</p>
+            <p className={`fw500 ${color}`} onClick={()=> navigate(`/userDetails/${talent._id}`)}>{talent.profile?.firstName} {talent.profile?.lastName}</p>
             <p>{talent.profile?.position}</p>
             <p>{talent.profile?.toolsAndSkills}</p>
         </div>

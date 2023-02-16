@@ -8,6 +8,7 @@ import { MdOutlineClose as X} from "react-icons/md"
 
 const Conversations = ({setShowConversations, showConversations, user, unreadMsgs}) => {
   const color = user.meta.colorTheme[0]
+  const bg = user.meta.colorTheme[1]
 
   const setMsgRead = (id) => {
     fetch(`${host}/messages`, {
@@ -59,7 +60,7 @@ const Conversations = ({setShowConversations, showConversations, user, unreadMsg
                 }).reverse()
               }
               <div className="central" onClick={() => setShowConversations(!showConversations)}>
-                <button className="circle40 bg-FAV central BrgClsBtn" title="close">
+                <button className={`circle40 ${bg} central BrgClsBtn`} title="close">
                   <h1><X /></h1>
                 </button>
               </div>
