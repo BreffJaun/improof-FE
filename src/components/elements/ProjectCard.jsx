@@ -2,14 +2,14 @@ import "../../styles/cards.scss";
 import "../../styles/colors.scss";
 import "../../styles/banner.scss";
 
-import { useNavigate } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
 
 
 // ICONS
 import { RxCross2 } from "react-icons/rx";
 import { HiPlus } from "react-icons/hi";
-import { AiOutlineCamera as Camera} from "react-icons/ai"
+import { FiCameraOff as Camera} from "react-icons/fi"
 import logoW from "../../images/improof_A100.png";
 
 
@@ -31,7 +31,9 @@ const MyProjectCard = ({ project, user }) => {
           <div
             className="project-banner bg-FAV"
             onClick={() => navigate(`/projectdetails/${project._id}`)}
-          ></div>
+          >
+            <img src={project.thumbnail} alt="" />
+          </div>
         )}
         <div className="project-body">
           <div>
@@ -46,9 +48,6 @@ const MyProjectCard = ({ project, user }) => {
                   <div className="col mt05">
                     {project?.team?.length &&
                       project?.team?.map((member) => {
-                        // console.log("member", member)
-                        // console.log("USERID", user._id)
-                        // console.log(user._id !== member._id);
                         if (member._id !== user._id) {
                           return (
                             <TalentCard
@@ -145,17 +144,13 @@ const ProjectCard = ({ project, user }) => {
           <div
             className="project-banner bg-gA central col"
             onClick={() => navigate(`/projectdetails/${project._id}`)}>
-            <h1><Camera /></h1>
-            <p>A picture says more than 1000 words.</p>
+          <h1><Camera /></h1>
+          <p>i have no photo for you today!</p>
           </div>
         )}
         {project.thumbnail && (
-          <div
-            className="project-banner bg-FAV"
-            onClick={() => navigate(`/projectdetails/${project._id}`)}
-          ></div>
+            <img className="project-banner bg-FAV" src={project.thumbnail} alt="" onClick={() => navigate(`/projectdetails/${project._id}`)}/>
         )}
-
         <div>
           {project?.team?.length && (
             <div className="contributors-container col rel">

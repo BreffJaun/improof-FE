@@ -16,7 +16,8 @@ const Community = () => {
   const [user, setUser] = useContext(UserContext)
   const [trigger, setTrigger] = useContext(TriggerContext)
   const [isPending, setPending] = useState(false)
-
+  const color = user.meta.colorTheme[0]
+  const bg = user.meta.colorTheme[1]
 
 useEffect( () => {
   setPending(true)
@@ -53,13 +54,13 @@ useEffect(() => {
   return(
     <>
       <div className="mt2 mb2">
-        <h1 className="central c-FAV">community</h1>
+        <h1 className={`central ${color}`}>community</h1>
       </div>
       <div className="mt2 mb2 central">
         <CategoriesFilter setCategory={setCategory}/>
       </div>
       <div className="mt4 mb2 central">
-        <h4 className="central c-FAV mt05">talents you know</h4>
+        <h4 className={`central ${color} mt05`}>talents you know</h4>
       </div>
 
       <div className="mt4 mb2 talent-container central">
@@ -86,7 +87,7 @@ useEffect(() => {
         </div>
 
       <div className="mb1 mt3 central">
-        <h4 className="central c-FAV mt05">discover new talents</h4>
+        <h4 className={`central ${color} mt05`}>discover new talents</h4>
       </div>
       <div className="talent-container">
       {talents && talents.map((talent) =>

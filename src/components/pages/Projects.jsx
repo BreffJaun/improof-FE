@@ -19,6 +19,7 @@ const StarProjects = () => {
   const [projects, setProjects] = useState([])
   const [pending, setPending] = useState(true)
   const [category, setCategory] = useState("")
+  const color = user.meta.colorTheme[0]
 
   useEffect(()=> {
     const getProjects = async () => {
@@ -46,12 +47,12 @@ const StarProjects = () => {
   console.log(category)
   return ( !pending &&
     <>
-      <h3 className="central c-FAV mt1 mb2">projects</h3>
+      <h3 className={`central ${color} mt1 mb2`}>projects</h3>
       <div className="central">
         <CategoriesFilter setCategory={setCategory}/>
       </div>
 
-      <h1 className="center c-FAV mt2 mb2">your star projects</h1>
+      <h1 className={`center ${color} mt2 mb2`}>your star projects</h1>
       <div className="projects-container">
         { category ? 
         user?.starProjects.map(project => project.category === category &&
@@ -61,7 +62,7 @@ const StarProjects = () => {
         }
       </div>
     
-      <h1 className="center c-FAV mt2 mb2">all the other projects</h1>
+      <h1 className={`center ${color} mt2 mb2`}>all the other projects</h1>
       <div  className="projects-container">
         {category ? 
         projects.map(project => project.category === category && <ProjectCard key={project._id} user={user} project={project}/>)

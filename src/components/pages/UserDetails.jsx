@@ -33,6 +33,8 @@ const TalentDetails = () => {
   const [showContact, setShowContact] = useState(false)
   const [showInfos, setShowInfos] = useState(false)
 
+  const color = user.meta.colorTheme[0]
+
   useEffect(() => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0; 
@@ -99,28 +101,28 @@ const TalentDetails = () => {
           : ""
         }
       </div>
-        <h1 className="central c-FAV mt05">{talent.profile.firstName} {talent.profile.lastName}</h1>
+        <h1 className={`central ${color} mt05`}>{talent.profile.firstName} {talent.profile.lastName}</h1>
         <p className="mt05 mb1">{talent.profile.description ? talent.profile.description : "You could add some info to your profile."}</p>
         {showInfos ?
           <div className="col mb1">
             {/* ----------------------------------------------- */}
             {talent.profile.position &&
               <div className="mb1">
-                <p className="c-FAV">my current position</p>
+                <p className={color}>my current position</p>
                 <p>{talent.profile.position}</p>
               </div>
             }
             {/* ----------------------------------------------- */}
             {talent.profile.toolsAndSkills &&
               <div className="mb1">
-                <p className="c-FAV">my tools and skills</p>
+                <p className={color}>my tools and skills</p>
                 <p>{talent.profile.toolsAndSkills}</p>
               </div>
             }
             {/* ----------------------------------------------- */}
             {talent.profile.goal &&
               <div className="mb1">
-                <p className="c-FAV">i want to achieve</p>
+                <p className={color}>i want to achieve</p>
                 <p>{talent.profile.goal}</p>
               </div>
             }
@@ -142,9 +144,9 @@ const TalentDetails = () => {
 
       <div className="bo-DARK"></div>
       <div className="mt4 central col">
-        <h1 className="c-FAV">projects</h1>
-        <p className="c-FAV mb2">({talent.myProjects.length})</p>
-        <div className="project-container g1">
+        <h1 className={color}>projects</h1>
+        <p className={`${color} mb2`}>({talent.myProjects.length})</p>
+        <div className="projects-container g1">
           {talent.myProjects.length ? 
           talent.myProjects.map(project => <ProjectCard key={project._id} project={project} user={user} />) : 
           <p>It is time for your first project.</p>}
@@ -153,9 +155,9 @@ const TalentDetails = () => {
       
       <div className="bo-DARK"></div>
       <div className="mt4 central col">
-        <h1 className="central c-FAV">following</h1>
-        <p className="central c-FAV mb2">({talent.follows.length})</p>
-        <div className="project-container g1">
+        <h1 className={`central ${color}`}>following</h1>
+        <p className={`central ${color} mb2`}>({talent.follows.length})</p>
+        <div className="projects-container g1">
           {talent.follows.length ? 
           talent.follows.map(follow => follow._id !== user._id && <TalentCard key={follow._id} talent={follow} user={user}/> ):
           <p>{talent.profile.firstName} {talent.profile.lastName} is not following anybody!</p>
@@ -164,27 +166,27 @@ const TalentDetails = () => {
       </div>
       <div className="bo-DARK"></div>
       <div className="central col">
-        <h1 className="c-FAV mb1">contact</h1>
+        <h1 className={`${color} mb1`}>contact</h1>
         {showContact ?
           <div className="col mb1">
             {/* ----------------------------------------------- */}
             {talent.contact.mobile &&
               <div className="mb1">
-                <p className="c-FAV">phone number</p>
+                <p className={color}>phone number</p>
                 <p>{talent.contact.mobile}</p>
               </div>
             }
             {/* ----------------------------------------------- */}
             {talent.contact.website &&
               <div className="mb1">
-                <p className="c-FAV">website</p>
+                <p className={color}>website</p>
                 <p>{talent.contact.website}</p>
               </div>
             }
             {/* ----------------------------------------------- */}
             {(talent.contact.online1 || talent.contact.online2 || talent.contact.online3) &&
               <div>
-                <p className="c-FAV">online profiles</p>
+                <p className={color}>online profiles</p>
               </div>
             }
             {talent.contact.online1 &&

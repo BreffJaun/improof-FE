@@ -19,6 +19,7 @@ const CreateStone = () => {
   const [isPending, setPending] = useState(true);
   const { projectId } = useParams("projectId");
   const [contributors, setContributors] = useState([]);
+  const color = user.meta.colorTheme[0]
 
   useEffect(() => {
     setPending(true);
@@ -84,13 +85,13 @@ const CreateStone = () => {
 
   return (
     <>
-      <h1 className="central c-FAV mt1 mb2">new stone</h1>
+      <h1 className={`central ${color} mt1 mb2`}>new stone</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="central col pa1 mb2">
           <div className="col">
             <p>
-              title <span className="c-FAV">*</span>
+              title <span className={color}>*</span>
             </p>
             <input
               type="text"
@@ -181,7 +182,7 @@ const CreateStone = () => {
                       </div>
                       <div className="t-info">
                         <p
-                          className="fw500 c-FAV"
+                          className={`fw500 ${color}`}
                           onClick={() => navigate(`/userDetails/${talent._id}`)}
                         >
                           {talent.profile?.firstName} {talent.profile?.lastName}

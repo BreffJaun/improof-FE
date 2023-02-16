@@ -90,7 +90,7 @@ const Navbar = () => {
       <div onClick={() => navigate("/")} className="navbar-left">
         <div className="logoNav">
           <img src={logo} alt="improof-logo" />
-          <h1 className="c-FAV">improof</h1>
+          <h1 className={`${user.meta.colorTheme[0]}`}>improof</h1>
         </div>
       </div>
 

@@ -22,9 +22,10 @@ const handleMessage = async (navigate, talent, user) => {
 }
 
   const SendMessageBtn = ({talent, user}) => {
+    const bg = talent.meta.colorTheme[1]
     const navigate = useNavigate()
   return (
-    <button className="action" onClick={() => handleMessage(navigate, talent, user)}><FiSend /></button>
+    <button className={`action ${bg}`} onClick={() => handleMessage(navigate, talent, user)}><FiSend /></button>
   )
 }
 

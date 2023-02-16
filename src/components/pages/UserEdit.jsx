@@ -20,7 +20,6 @@ import Footer from "../elements/Footer.jsx";
 
 
 const UserEdit = () => {
-
   const {id} = useParams("id")
   const [avatar, setAvatar] = useState(undefined);
   const [avatarUrl, setAvatarUrl] = useState("");
@@ -35,6 +34,7 @@ const UserEdit = () => {
   const [userAvatar, setUserAvatar] = useState(undefined)
 
   const [favColor, setFavColor] = useState("")
+  const color = favColor[0]
 
   const navigate = useNavigate()
 
@@ -51,26 +51,26 @@ const UserEdit = () => {
         }
       })};
     getUser()
-  }, [id])
+  }, [id, favColor])
 
-  useEffect(() => {
-    // FETCH CURR USER AVATAR FROM DATABASE (GRID FS)
-    const getUserAvatar = ()=>{
-      fetch(`${host}/media/${user.profile.avatar}`,{
-      credentials:"include"
-      })
-      .then((response) => {
-      if(response) {
-          // console.log('response: ', response)
-          setUserAvatar(response.url)
-          console.log('DID WORK!')
-        } else {
-          // console.log('response: ', response)
-          console.log('DID NOT WORK!')
-        }
-      })};
-    getUserAvatar();
-  }, [avatar])
+  // useEffect(() => {
+  //   // FETCH CURR USER AVATAR FROM DATABASE (GRID FS)
+  //   const getUserAvatar = ()=>{
+  //     fetch(`${host}/media/${user.profile.avatar}`,{
+  //     credentials:"include"
+  //     })
+  //     .then((response) => {
+  //     if(response) {
+  //         // console.log('response: ', response)
+  //         setUserAvatar(response.url)
+  //         console.log('DID WORK!')
+  //       } else {
+  //         // console.log('response: ', response)
+  //         console.log('DID NOT WORK!')
+  //       }
+  //     })};
+  //   getUserAvatar();
+  // }, [avatar])
   
 
   const avatarUploadHandler = (e) => {
@@ -96,9 +96,8 @@ const UserEdit = () => {
   }
     
   const handleSubmit = (event) => {
-    const newUser = favColor && {...userData, meta:{...userData.meta, colorTheme:favColor} }
-    console.log("NEW USER",newUser);
-     setUserData(newUser)
+    const newUser = favColor ? {...userData, meta:{...userData.meta, colorTheme:favColor}} : userData
+    setUserData(newUser)
     event.preventDefault();
 
     const formData = new FormData();
@@ -158,7 +157,7 @@ const UserEdit = () => {
           :
           <div className="initials"><p>{talent.profile.initials}</p></div>
         }
-        <div><RadioColor user={talent} setFavColor={setFavColor}/></div>
+       
         <div
           title="upload image"
           className="circle40 bg-FAV central editBtn">
@@ -171,16 +170,17 @@ const UserEdit = () => {
           />
       </div>
       </div>
-        <h1 className="central c-FAV mt05">Hi, {talent.profile.firstName}!</h1>
-        <p className="central c-FAV">Let´s spice up your profile!</p>
+        <h1 className={`central ${color} mt05`}>Hi, {talent.profile.firstName}!</h1>
+        <p className={`central ${color}`}>Let´s spice up your profile!</p>
       </div>
+      <div><RadioColor user={talent} setFavColor={setFavColor}/></div>
 
       <div className="col mt2 mb1">
-        <p>first name<span className="c-FAV fw900">*</span></p>
+        <p>first name<span className={`${color} fw900`}>*</span></p>
         <input onChange={handleInputProfile} name="firstName" type="text" defaultValue={user.profile.firstName} />
       </div>
       <div className="col mb1">
-        <p>last name<span className="c-FAV fw900">*</span></p>
+        <p>last name<span className={`${color} fw900`}>*</span></p>
         <input onChange={handleInputProfile} name="lastName"  type="text" defaultValue={user.profile.lastName} />
       </div>
       <div className="col mb1">
@@ -218,7 +218,7 @@ const UserEdit = () => {
 
       
       <div className="bo-DARK"></div>
-      <h1 className="central c-FAV mt05">contact</h1>
+      <h1 className={`central ${color} mt05`}>contact</h1>
       <div className="col mb1">
         <p>mobile</p>
         <input onChange={handleInputContact} name="mobile" type="text" defaultValue={user.contact.mobile} />
@@ -241,7 +241,7 @@ const UserEdit = () => {
       </div>
 
       <div className="bo-DARK"></div>
-      <h1 className="central c-FAV mt05">location</h1>
+      <h1 className={`central ${color} mt05`}>location</h1>
       <div className="col mb1">
         <p>street</p>
         <input onChange={handleInputLocation} name="street" type="text" defaultValue={user.location.street} />
@@ -256,7 +256,7 @@ const UserEdit = () => {
       </div>
 
       <div className="bo-DARK"></div>
-      <h1 className="central c-FAV mt05">security</h1>
+      <h1 className={`central ${color} mt05`}>security</h1>
       <div className="col mb1">
         <p>set new password</p>
         <input name="" type="text" placeholder="new password"/>
@@ -299,15 +299,16 @@ const UserEdit = () => {
           </p>
         </div>
         </div>
-          <h1 className="central c-FAV mt05">Hi, {user.profile.firstName}!</h1>
-          <p className="central c-FAV">Time to find some talents!</p>
-        </div>
+          <h1 className={`central ${color} mt05`}>Hi, {user.profile.firstName}!</h1>
+          <p className={`central ${color}`}>Time to find some talents!</p>
+            </div>
+            <div><RadioColor user={talent} setFavColor={setFavColor}/></div>
         <div className="col mt2 mb1">
-          <p>first name<span className="c-FAV fw900">*</span></p>
+          <p>first name<span className={`${color} fw900`}>*</span></p>
           <input onChange={handleInputProfile} name="firstName" type="text" defaultValue={user.profile.firstName} />
         </div>
         <div className="col mb1">
-          <p>last name<span className="c-FAV fw900">*</span></p>
+          <p>last name<span className={`${color} fw900`}>*</span></p>
           <input onChange={handleInputProfile} name="lastName" type="text" defaultValue={user.profile.lastName} />
         </div>
         <div className="col mb1">
@@ -316,7 +317,7 @@ const UserEdit = () => {
         </div>
 
         <div className="bo-DARK"></div>
-        <h1 className="central c-FAV mt05">contact</h1>
+        <h1 className={`central ${color} mt05`}>contact</h1>
 
         <div className="col mb1">
           <p>company</p>
@@ -333,14 +334,14 @@ const UserEdit = () => {
         </div>
 
         <div className="bo-DARK"></div>
-        <h1 className="central c-FAV mt05"></h1>
+        <h1 className={`central ${color} mt05`}></h1>
         <div className="col mb1">
           <p>city</p>
           <input onChange={handleInputLocation} name="city" type="text" defaultValue={user.location.city} />
         </div>
 
         <div className="bo-DARK"></div>
-        <h1 className="central c-FAV mt05">security</h1>
+        <h1 className={`central ${color} mt05`}>security</h1>
         <div className="col mb1">
           <p>set new password</p>
           <input type="text" placeholder="new password"/>

@@ -16,6 +16,7 @@ const Messages = () => {
   const [msg, setMsg] = useState("")
   const [trigger, setTrigger] = useState(false)
   const [reload, setReload] = useState(false)
+  const color = user.meta.colorTheme[0]
 
   setTimeout(()=> {
     setReload(!reload)
@@ -75,11 +76,13 @@ const Messages = () => {
           setMsg("")
         });
   }
+  const bg = user.meta.colorTheme[1]
+
 
   return ( conversation && sender &&
     <>
       <div className="center">
-        <h1 className="c-FAV mt1 mb2">messages</h1>
+        <h1 className={`${color} mt1 mb2`}>messages</h1>
 
         <div className="wide col">
 
@@ -91,7 +94,7 @@ const Messages = () => {
           <div>
             <form onSubmit={handleSendMsg}>
               <input type="text" value={msg} onChange={handleMsg}/>
-              <button type="submit">send</button>
+              <button className={bg} type="submit">send</button>
             </form>
           </div>
 

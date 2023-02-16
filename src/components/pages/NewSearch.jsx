@@ -34,6 +34,8 @@ const NewSearch = () => {
   const [searchData, setSearchData] = useState(search);
   const [searchTrigger, setSearchTrigger] = useState(false);
   const [redMarker, setRedMarker] = useState(false);
+  const color = user.meta.colorTheme[0]
+
   const toastOptions = {
       position: "bottom-right",
       autoClose: 8000,
@@ -237,7 +239,7 @@ console.log('redMarker: ', redMarker)
     < div className="componente">
         <div className="mb2 mt2">
             </div>
-            <p className="central c-FAV mb2">new search</p>
+            <p className={`central ${color} mb2`}>new search</p>
             <form onSubmit={handleSubmit}>
                 <div className="central col">
                     <p>position</p>

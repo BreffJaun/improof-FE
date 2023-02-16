@@ -16,18 +16,15 @@ import UserContext from "../../context/userContext.jsx";
 
 const Start = () => {
   const [user, setUser] = useContext(UserContext);
+  const color = user.meta.colorTheme[0]
+  const bg = user.meta.colorTheme[1]
+
   return (
     <>
-      <div className="mt4 mb4">
-        <h1 className="central c-FAV">Newsfeed</h1>
-        <h4 className="central c-FAV mt05">What´s new on improof?</h4>
+      <div className="mt4 mb2">
+        <h1 className={`central ${color}`}>What´s new?</h1>
       </div>
       <Newsfeed />
-      {/* <div className="central col">
-        <h1 className="c-FAV mb1">filter your interest</h1>
-        < CategoriesFilter />
-      </div> */}
-
       <div className="bo-DARK"></div>
       {user?.profile?.isTalent && <TalentMenu />}
       {user?.profile?.isRecruiter && <RecruiterMenu />}
