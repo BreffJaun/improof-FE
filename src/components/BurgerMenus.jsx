@@ -109,21 +109,21 @@ const BurgerMenuTalent = ({ setShowMenu, showMenu }) => {
 
           <div>
             <p className="info center">close menu</p>
-            {/* <div
+            <div
               className="central"
               onClick={() => {
                 setShowMenu(!showMenu);
               }}
-            > */}
+            >
               <div
                 className="circle40 bg-FAV BrgClsBtn central"
                 title="close"
               >
                 <X /></button>
-                <p className="info center">close</p>
+                {/* <p className="info center">close</p>
                 <div className="central" onClick={()=> { setShowMenu(!showMenu) }}>
-                <button className="circle40 BrgClsBtn central" title="close"><X/></button>
-            </div>
+                <button className="circle40 BrgClsBtn central" title="close"><X/></button> */}
+            {/* </div> */}
           </div>
         </div>
       </div>
@@ -211,3 +211,4 @@ const BurgerMenuRecruiter = ({setShowMenu,showMenu,setShowNotifications}) => {
 };
 
 export { BurgerMenuTalent, BurgerMenuRecruiter };
+
