@@ -149,7 +149,7 @@ const BurgerMenuRecruiter = ({
       .then((response) => response.json())
       .then((json) => console.log(json));
   };
-  const bg = user.meta.colorTheme[1];
+
   return (
     <div className="burger-container">
       <div
