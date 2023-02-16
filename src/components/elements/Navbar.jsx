@@ -21,7 +21,7 @@ import UserContext from "../../context/userContext.jsx";
 import Notifications from "../pages/Notifications.jsx";
 import Conversations from "../pages/Conversations.jsx";
 
-const Navbar = () => {
+const Navbar = ({setModeTrigger, modeTrigger}) => {
   const [user, setUser] = useContext(UserContext);
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState({});
@@ -168,13 +168,15 @@ const Navbar = () => {
 
         <div>
           {showMenu && user?.profile?.isTalent && (
-            <BurgerMenuTalent setShowMenu={setShowMenu} showMenu={showMenu} />
+            <BurgerMenuTalent setShowMenu={setShowMenu} showMenu={showMenu} setModeTrigger={setModeTrigger} modeTrigger={modeTrigger}/>
           )}
           {showMenu && user?.profile?.isRecruiter && (
             <BurgerMenuRecruiter
               setShowMenu={setShowMenu}
               showMenu={showMenu}
               setShowNotifications={setShowNotifications}
+              setModeTrigger={setModeTrigger}
+              modeTrigger={modeTrigger}
             />
           )}
         </div>
