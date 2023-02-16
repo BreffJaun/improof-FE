@@ -32,10 +32,14 @@ import EFJM from "./EFJM";
 import UserContext from "../../context/userContext.jsx";
 import { ToastContainer } from "react-toastify";
 
-const Main = () => {
+const Main = ({modeTrigger, setModeTrigger}) => {
   const [user, setUser] = useContext(UserContext);
   const [isPending, setPending] = useState(true);
+  // const [modeTrigger, setModeTrigger] = useState(false)
   const navigate = useNavigate();
+  const mode = user.meta?.darkMode;
+  // const body = document.querySelector("body");
+  // mode && body.classList.add(`bgG`);
 
   // AUTHENTIFIZIERUNG VOM COOKIE
   useEffect(() => {
@@ -55,12 +59,12 @@ const Main = () => {
           navigate("/login");
         }
       });
-  }, []);
+  }, [modeTrigger]);
 
   return (
     !isPending && (
       <>
-        <Navbar user={user} />
+        <Navbar user={user} setModeTrigger={setModeTrigger} modeTrigger={modeTrigger} />
         {/* <LogoS /> */}
         <Routes>
           <Route path="/" element={<Start />} />
