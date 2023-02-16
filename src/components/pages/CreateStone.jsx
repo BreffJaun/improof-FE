@@ -1,8 +1,9 @@
-import { useState, useEffect, useContext } from "react";
-import { host } from "../../api/host.jsx";
+import { useState, useEffect, useContext, React } from "react";
+import ReactPlayer from 'react-player'
 import { toast, ToastContainer } from "react-toastify";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import Footer from "../elements/Footer.jsx";
+import Switch from "react-switch";
+
 
 // CONTEXT
 import UserContext from "../../context/userContext.jsx";
@@ -11,8 +12,9 @@ import UserContext from "../../context/userContext.jsx";
 import { AiOutlineCamera as Camera} from "react-icons/ai"
 
 // ELEMENTS
+import { host } from "../../api/host.jsx";
+import Footer from "../elements/Footer.jsx";
 import { TalentCard } from "../elements/TalentCard.jsx";
-import Switch from "react-switch";
 
 const CreateStone = () => {
   const navigate = useNavigate();
@@ -192,7 +194,23 @@ const CreateStone = () => {
               <p> add media</p>
               <div className="thumbnailS">
                 {
-                  mediaUrl
+                  mediaUrl && videoTrigger
+                  ?
+                  <ReactPlayer 
+                    url={mediaUrl} 
+                    playing={true}
+                    controls={true}
+                    light={true} // for video thumbnail
+                    // playIcon={martinsPlayIcon}
+                    volume={null}
+                    muted={true}
+                    // width={"640px"}
+                    // height={"360px"}
+                    pip={true}
+                    stopOnUnmount={false}
+                  />
+                  : 
+                  mediaUrl && imageTrigger 
                   ?
                   <img 
                     src={mediaUrl} 
