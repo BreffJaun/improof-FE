@@ -24,48 +24,56 @@ import Conversations from "../pages/Conversations.jsx";
 const Navbar = () => {
   const [user, setUser] = useContext(UserContext);
   const [search, setSearch] = useState("");
-  const [searchResult, setSearchResult] = useState({})
+  const [searchResult, setSearchResult] = useState({});
   // const [showResult, setShowResult] = useState(false)
   const [showMenu, setShowMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showNotifications, setShowNotifications] = useState(undefined);
   const [showConversations, setShowConversations] = useState(undefined);
+  const mode = user.meta.darkMode;
 
   const navigate = useNavigate();
 
-  const unreadNots = user?.notifications?.filter(not => !not.isRead)
-  const unreadMsgsSTEPONE = user?.conversations?.map(con => con.message.filter(msg => !msg.isRead && msg?.from != user._id))
-  const unreadMsgs = unreadMsgsSTEPONE.map(arr => arr.length).reduce((a, b) => a + b, 0)
-
-  useEffect(()=>{
-    const getSearch = async () => {
-      await fetch(`${host}/search`, {
-        method: 'POST',
-        body: JSON.stringify({searchInput:search}),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          if(json.status){
-            setSearchResult({talent:json.talentSearch, project:json.projectSearch})
-          }
-        });
-    }
-    search && getSearch()
-  },[search])
+  const unreadNots = user?.notifications?.filter((not) => !not.isRead);
+  const unreadMsgsSTEPONE = user?.conversations?.map((con) =>
+    con.message.filter((msg) => !msg.isRead && msg?.from != user._id)
+  );
+  const unreadMsgs = unreadMsgsSTEPONE
+    .map((arr) => arr.length)
+    .reduce((a, b) => a + b, 0);
 
   useEffect(() => {
-    const handleReadNotification = async () => {
-      await fetch(`${host}/notifications/read`, {
-        method: 'PATCH',
-        body: JSON.stringify({userId: user._id}),
+    const getSearch = async () => {
+      await fetch(`${host}/search`, {
+        method: "POST",
+        body: JSON.stringify({ searchInput: search }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
       })
-    }
+        .then((response) => response.json())
+        .then((json) => {
+          if (json.status) {
+            setSearchResult({
+              talent: json.talentSearch,
+              project: json.projectSearch,
+            });
+          }
+        });
+    };
+    search && getSearch();
+  }, [search]);
+
+  useEffect(() => {
+    const handleReadNotification = async () => {
+      await fetch(`${host}/notifications/read`, {
+        method: "PATCH",
+        body: JSON.stringify({ userId: user._id }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+    };
 
     const getUser = async () => {
       !showNotifications &&
@@ -86,11 +94,11 @@ const Navbar = () => {
   }, [showNotifications, showConversations]);
 
   return (
-    <div className="navbar-container">
+    <div className={`navbar-container`} id={mode ? `bgG` : ``}>
       <div onClick={() => navigate("/")} className="navbar-left">
         <div className="logoNav">
           <img src={logo} alt="improof-logo" />
-          <h1 className={`${user.meta.colorTheme[0]}`}>improof</h1>
+          <h1 className={`${user.meta?.colorTheme[0]}`}>improof</h1>
         </div>
       </div>
 
@@ -101,7 +109,7 @@ const Navbar = () => {
               onClick={() => {
                 setShowNotifications(!showNotifications);
                 setShowMenu(false);
-                setShowSearch(false)
+                setShowSearch(false);
                 setShowConversations(undefined);
               }}
             />
@@ -116,7 +124,7 @@ const Navbar = () => {
               onClick={() => {
                 setShowConversations(!showConversations);
                 setShowNotifications(undefined);
-                setShowSearch(false)
+                setShowSearch(false);
                 setShowMenu(false);
               }}
             />
@@ -127,14 +135,19 @@ const Navbar = () => {
             )}
           </div>
           <div>
-            {showSearch && <input type="text" onChange={(event)=> setSearch(event.target.value)}/>}
+            {showSearch && (
+              <input
+                type="text"
+                onChange={(event) => setSearch(event.target.value)}
+              />
+            )}
             <Lupe
               onClick={() => {
                 setShowSearch(!showSearch);
                 setShowNotifications(undefined);
                 setShowConversations(undefined);
                 setShowMenu(false);
-                setSearchResult({})
+                setSearchResult({});
               }}
             />
           </div>
@@ -146,7 +159,7 @@ const Navbar = () => {
               setShowMenu(!showMenu);
               setShowNotifications(undefined);
               setShowConversations(undefined);
-              setShowSearch(false)
+              setShowSearch(false);
             }}
           >
             <RxHamburgerMenu />
@@ -184,12 +197,13 @@ const Navbar = () => {
           )}
         </div>
         <div>
-          { Object.keys(searchResult).length > 0 && showSearch && 
-          <MasterSearch 
-          projects={searchResult.project} 
-          talents={searchResult.talent}
-          setShowSearch={setShowSearch}
-          />}
+          {Object.keys(searchResult).length > 0 && showSearch && (
+            <MasterSearch
+              projects={searchResult.project}
+              talents={searchResult.talent}
+              setShowSearch={setShowSearch}
+            />
+          )}
         </div>
       </div>
     </div>

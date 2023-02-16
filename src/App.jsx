@@ -1,37 +1,40 @@
-import { useState } from 'react'
-import { BrowserRouter } from 'react-router-dom'
-import { Routes, Route}  from "react-router-dom"
-
+import { useState } from "react";
+import { BrowserRouter } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import { useContext } from "react";
 
 // STYLES
-import './App.css'
-import "./styles/general.scss"
-import "./styles/fonts.scss"
-import "./styles/elements.scss"
-import "./styles/buttons.scss"
-import "./styles/scrolling.scss"
-import "./styles/projects.scss"
-
+import "./App.css";
+import "./styles/general.scss";
+import "./styles/fonts.scss";
+import "./styles/elements.scss";
+import "./styles/buttons.scss";
+import "./styles/scrolling.scss";
+import "./styles/projects.scss";
 
 // COMPONENTEN
-import Login from './components/pages/Login.jsx'
-import Registration from './components/pages/Registration.jsx'
-import Main from './components/pages/Main.jsx'
+import Login from "./components/pages/Login.jsx";
+import Registration from "./components/pages/Registration.jsx";
+import Main from "./components/pages/Main.jsx";
 
-
-
+// CONTEXT
+import UserContext from "./context/userContext.jsx";
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [user, setUser] = useContext(UserContext);
+  const mode = user.meta?.darkMode;
+  const body = document.querySelector("body");
+  mode && body.classList.add(`bgG`);
 
   return (
-    <div className="App">
+    <div className={mode ? `App bgG` : `App`}>
       <Routes>
-        <Route path="/login" element={<Login/>} />
-        <Route path="/registration" element={<Registration/>} />
-        <Route path="*" element={<Main/>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="*" element={<Main />} />
       </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
