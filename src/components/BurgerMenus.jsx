@@ -107,32 +107,28 @@ const BurgerMenuTalent = ({ setShowMenu, showMenu }) => {
             </div>
           </div>
 
-          <div>
-            <p className="info center">close menu</p>
-            <div
-              className="central"
-              onClick={() => {
-                setShowMenu(!showMenu);
-              }}
-            >
-              <button
-                className="circle40 bg-FAV BrgClsBtn central"
-                title="close"
-              >
-                <X /></button>
-                <p className="info center">close</p>
-                <div className="central" onClick={()=> { setShowMenu(!showMenu) }}>
-                <button className="circle40 BrgClsBtn central" title="close"><X/></button>
-            </div>
+          <p className="info center">close menu</p>
+          <div
+            className="central"
+            onClick={() => {
+              setShowMenu(!showMenu);
+            }}
+          >
+            <button className="circle40 BrgClsBtn central" title="close">
+              <X />
+            </button>
           </div>
         </div>
       </div>
     </div>
-    </div>
   );
 };
 
-const BurgerMenuRecruiter = ({setShowMenu,showMenu,setShowNotifications}) => {
+const BurgerMenuRecruiter = ({
+  setShowMenu,
+  showMenu,
+  setShowNotifications,
+}) => {
   const navigate = useNavigate();
   const [user, setUser] = useContext(UserContext);
   const bg = user.meta.colorTheme[1];
@@ -153,6 +149,7 @@ const BurgerMenuRecruiter = ({setShowMenu,showMenu,setShowNotifications}) => {
       .then((response) => response.json())
       .then((json) => console.log(json));
   };
+  const bg = user.meta.colorTheme[1];
   return (
     <div className="burger-container">
       <div
@@ -163,13 +160,22 @@ const BurgerMenuRecruiter = ({setShowMenu,showMenu,setShowNotifications}) => {
       >
         <div>
           <div className="mt05 col">
-            <button className={`mb05 rel ${bg}`} onClick={() => navigate("/newsearch")}>
+            <button
+              className={`mb05 rel ${bg}`}
+              onClick={() => navigate("/newsearch")}
+            >
               new search
             </button>
-            <button className={`mb05 rel ${bg}`} onClick={() => navigate("/community")}>
+            <button
+              className={`mb05 rel ${bg}`}
+              onClick={() => navigate("/community")}
+            >
               talents
             </button>
-            <button className={`mb05 rel ${bg}`} onClick={() => navigate("/projects")}>
+            <button
+              className={`mb05 rel ${bg}`}
+              onClick={() => navigate("/projects")}
+            >
               projects
             </button>
             {/* <button className="mb05" onClick={ ()=> navigate("/searchhistory")}>search history</button> */}
@@ -191,7 +197,10 @@ const BurgerMenuRecruiter = ({setShowMenu,showMenu,setShowNotifications}) => {
             </button>
           </div>
           <div onClick={() => setShowMenu(!showMenu)} className="mb05">
-            <button className={`mb05 rel ${bg}`} onClick={() => navigate("/login")}>
+            <button
+              className={`mb05 rel ${bg}`}
+              onClick={() => navigate("/login")}
+            >
               <IoIosLogOut className="burger-icon" />
               <p className="ml2">logout</p>
             </button>
@@ -210,20 +219,29 @@ const BurgerMenuRecruiter = ({setShowMenu,showMenu,setShowNotifications}) => {
             }}
           >
             <button className="circle40 bg-FAV BrgClsBtn central" title="close">
-              <X /> </button>
-        <div className="central" onClick={()=> {
-          setShowMenu(!showMenu)
-          }}>
-          <div className="central" onClick={()=> { setShowMenu(!showMenu) }}>
-            <button className="circle40 BrgClsBtn central" title="close">
-                <X/>
+              <X />{" "}
             </button>
+            <div
+              className="central"
+              onClick={() => {
+                setShowMenu(!showMenu);
+              }}
+            >
+              <div
+                className="central"
+                onClick={() => {
+                  setShowMenu(!showMenu);
+                }}
+              >
+                <button className="circle40 BrgClsBtn central" title="close">
+                  <X />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
   );
 };
 
