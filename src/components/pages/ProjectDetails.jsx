@@ -66,17 +66,25 @@ const ProjectDetails = () => {
     getUser();
   }, [trigger]);
 
-  return !isPending && user &&( 
-    <div className="componente">
-
-      <div>
-        {project.thumbnail &&  <img src={project.thumbnail} alt="Thumbnail" width="350"/>}
-        <h1>{project.name}</h1>
-        <p>{project.description}</p>
-      </div>
-          {project.team.find(member => member._id === user._id) && 
-            <button className={bg} onClick={()=> navigate(`/projectedit/${project._id}`)}>edit project</button>
-        }
+  return (
+    !isPending &&
+    user && (
+      <div className="componente">
+        <div>
+          {project.thumbnail && (
+            <img src={project.thumbnail} alt="Thumbnail" width="350" />
+          )}
+          <h1>{project.name}</h1>
+          <p>{project.description}</p>
+        </div>
+        {project.team.find((member) => member._id === user._id) && (
+          <button
+            className={bg}
+            onClick={() => navigate(`/projectedit/${project._id}`)}
+          >
+            edit project
+          </button>
+        )}
 
         <Chrono>
           {
@@ -103,6 +111,15 @@ const ProjectDetails = () => {
                         </div>
                       ))}
                     </div>
+                    <button
+                      className={bg}
+                      onClick={() =>
+                        navigate(`/editstone/${project._id}/${stone._id}`)
+                      }
+                    >
+                      {" "}
+                      edit stone
+                    </button>
                   </div>
                 );
               })
@@ -146,7 +163,8 @@ const ProjectDetails = () => {
           )}
         </div>
         <Footer />
-      </div>    
+      </div>
+    )
   );
 };
 
