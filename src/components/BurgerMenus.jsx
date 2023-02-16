@@ -119,25 +119,20 @@ const BurgerMenuTalent = ({ setShowMenu, showMenu }) => {
                 className="circle40 bg-FAV BrgClsBtn central"
                 title="close"
               >
-                <X />
-            <p className="info center">close</p>
-            <div className="central" onClick={()=> { setShowMenu(!showMenu) }}>
-              <button className="circle40 BrgClsBtn central" title="close">
-                  <X/>
-              </button>
+                <X /></button>
+                <p className="info center">close</p>
+                <div className="central" onClick={()=> { setShowMenu(!showMenu) }}>
+                <button className="circle40 BrgClsBtn central" title="close"><X/></button>
             </div>
           </div>
         </div>
       </div>
     </div>
+    </div>
   );
 };
 
-const BurgerMenuRecruiter = ({
-  setShowMenu,
-  showMenu,
-  setShowNotifications,
-}) => {
+const BurgerMenuRecruiter = ({setShowMenu,showMenu,setShowNotifications}) => {
   const navigate = useNavigate();
   const [user, setUser] = useContext(UserContext);
   return (
@@ -197,7 +192,7 @@ const BurgerMenuRecruiter = ({
             }}
           >
             <button className="circle40 bg-FAV BrgClsBtn central" title="close">
-              <X />
+              <X /> </button>
         <div className="central" onClick={()=> {
           setShowMenu(!showMenu)
           }}>
@@ -209,6 +204,8 @@ const BurgerMenuRecruiter = ({
         </div>
       </div>
     </div>
+  </div>
+  </div>
   );
 };
 
