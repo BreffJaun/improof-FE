@@ -31,3 +31,14 @@
     left: 0.8rem;
     font-size: 1.5rem;
 }
+
+.conversation-icon{
+    display: flex;
+    overflow: hidden;
+    margin-right: 0.75rem;
+    *{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}

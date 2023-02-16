@@ -16,7 +16,7 @@ const RadioColor = ({setFavColor, user}) => {
   
   return (
     <div className="flex central mt05 mb05 colorCard">
-      <div className={isTalent ? "circle20 bg-gDB" : "bg-gGR1"}>
+      <div className={isTalent ? "circle20 bg-gDB" : "circle20 bg-gGR1"}>
         <input
           type="radio"
           value={isTalent ? "c-DB2,bg-gDB" : "c-GR1,bg-gGR1"}
