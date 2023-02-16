@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import "../../styles/logo.scss";
+import "../../styles/congrats.scss";
 import logo from "../../images/improof_OR.png";
 import { useNavigate } from "react-router-dom";
 
@@ -14,13 +14,18 @@ const Congrats = () => {
 
   return (
     <>
-      <div className="logoContainer congrats-left">
-        <div className="logoL col">
+      <div className="logoContainer ">
+        <div className="logoXXL-congrats one col">
           <img src={logo} alt="logo" />
         </div>
       </div>
-      <div className="logoContainer congrats-right">
-        <div className="logoXl col">
+      <div className="logoContainer ">
+        <div className="logoXXL-congrats oneOne col">
+          <img src={logo} alt="logo" />
+        </div>
+      </div>
+      {/* <div className="logoContainer">
+        <div className="logoXXL-congrats two col">
           <img src={logo} alt="logo" />
         </div>
       </div>
@@ -30,11 +35,21 @@ const Congrats = () => {
           to <strong>improof</strong>
         </h1>
       </div>
-      <div className="logoContainer congrats-left-second">
-        <div className=" col">
+      <div className="logoContainer ">
+        <div className="logo-congrats three col">
           <img src={logo} alt="logo" />
         </div>
       </div>
+      <div className="logoContainer">
+        <div className="logo-congrats  four col">
+          <img src={logo} alt="logo" />
+        </div>
+      </div>{" "}
+      <div className="logoContainer">
+        <div className="logoXXL-congrats col five">
+          <img src={logo} alt="logo" />
+        </div>
+      </div> */}
     </>
   );
 };
