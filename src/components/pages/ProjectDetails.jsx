@@ -1,6 +1,8 @@
 // STYLE
 import "../../styles/project-details.scss";
 import "../../styles/chrono.scss";
+// import "../../styles/project-details.scss"
+// import "../../styles/chrono.scss"
 
 import React from "react";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -134,6 +136,62 @@ const ProjectDetails = () => {
             })}
           </div>
         </Chrono>
+        <Chrono>
+          {!isPending &&
+            project.stones.map((stone) => {
+              return (
+                <div key={stone._id}>
+                  {stone.media && <img src="" alt="" />}
+                  <h1>{stone.title}</h1>
+                  <p>{stone.kind}</p>
+                  <p>{stone.description}</p>
+                  <div className="mt1 flex g05">
+                    {stone?.team?.map((member) => (
+                      <div key={member._id} className="circle50 bg-FAV central">
+                        {member.profile.avatar ? (
+                          <img width="80" src={member.profile.avatar} />
+                        ) : (
+                          <p className="c-A100">{member.profile.initials}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+        </Chrono>
+
+        {
+          // HIER FUNKTIONIERT DAS KEY ATTRIBUT NICHT.. WEIß NICHT WARUM!
+          !isPending &&
+            project.stones.map((stone) => {
+              return (
+                <div key={stone._id}>
+                  {stone.media && <img src="" alt="" />}
+                  <h1>{stone.title}</h1>
+                  <p>{stone.kind}</p>
+                  <p>{stone.description}</p>
+                  {/* <div className="mt1 flex g05">
+                    {stone?.team?.map(member =>
+                      <div key={member._id}className="circle50 bg-FAV central">
+                        {member.profile.avatar ? <img src={member.profile.avatar}/> : <p className="c-A100">{member.profile.initials}</p>}
+                      </div>
+                    )}
+                </div> */}
+                </div>
+              );
+            })
+        }
+        {/* <div className="chrono-icons" id="icons">
+          {project?.stones.map(stone => {
+            return (
+                stone.kind === "flintstone" && <img src="" alt="" key={stone._id}/> ||
+                stone.kind === "stepstone" && <img src="https://www.downloadclipart.net/thumb/9394-stone-1-vector-thumb.png" alt="" key={stone._id} /> ||
+                stone.kind === "milestone" && <img src="" alt="" key={stone._id} /> ||
+                stone.kind === "endstone" && <img src="" alt="" key={stone._id} />             
+            )
+          })}
+        </div> */}
 
         <h1>Project Team</h1>
         {project.team.map((member) => (
