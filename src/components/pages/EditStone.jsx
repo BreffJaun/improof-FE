@@ -151,8 +151,8 @@ const EditStone = () => {
     });
   }, [adIdsTrigger]);
 
-  // console.log("projectId: ", projectId)
-  // console.log("stoneId: ", stoneId)
+  console.log("projectId: ", projectId)
+  console.log("stoneId: ", stoneId)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -183,9 +183,7 @@ const EditStone = () => {
       });
   };
 
-  return editStonePending ? (
-    <div>Loading...</div>
-  ) : (
+  return editStonePending ? <div>Loading...</div> : (
     <>
       <h1 className={`central ${color} mt1 mb2`}>edit stone</h1>
 
