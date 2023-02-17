@@ -101,7 +101,7 @@ const ProjectDetails = () => {
           {project?.stones.map(stone => {
             return (
                 stone.kind === "flintstone" && <img src="" alt="" key={stone._id}/> ||
-                stone.kind === "stepstone" && <img src="https://www.downloadclipart.net/thumb/9394-stone-1-vector-thumb.png" alt="" key={stone._id} /> ||
+                stone.kind === "stepstone" && <img src="" alt="" key={stone._id} /> ||
                 stone.kind === "milestone" && <img src="" alt="" key={stone._id} /> ||
                 stone.kind === "endstone" && <img src="" alt="" key={stone._id} />             
             )
