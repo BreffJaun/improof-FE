@@ -19,6 +19,7 @@ import { TalentCard } from "../elements/TalentCard.jsx";
 import Footer from "../elements/Footer.jsx";
 
 const ProjectDetails = () => {
+  const navigate = useNavigate();
   const { id } = useParams("id");
   const [user, setUser] = useContext(UserContext);
   const [trigger, setTrigger] = useContext(TriggerContext);
@@ -27,7 +28,6 @@ const ProjectDetails = () => {
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
 
-  const navigate = useNavigate();
 
   // FETCH CURR PROJECT
   useEffect(() => {

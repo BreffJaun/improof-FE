@@ -91,7 +91,6 @@ const CreateStone = () => {
       setMediaUrl(media);
     }
   };
-  // HANDLING MEDIA FILES END //
   
   const resetVideoHandler = (event)=> {
     event.preventDefault();
@@ -100,6 +99,7 @@ const CreateStone = () => {
     setMediaUrl(undefined)
     setVideoTrigger(false)
   } 
+  // HANDLING MEDIA FILES END //
   
   const handleContributor = (contributor) => {
     if (contributors.includes(contributor)) {

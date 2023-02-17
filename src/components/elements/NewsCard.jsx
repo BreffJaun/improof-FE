@@ -47,7 +47,7 @@ const News = ({ project, user }) => {
                     <div className="flex">
                       {project?.team?.length &&
                         project?.team?.map((member) => (
-                          <>
+                          <div key={member._id}>
                             <div className="col central">
                               <div
                                 className="members-image-container bg-FAV central"
@@ -67,7 +67,7 @@ const News = ({ project, user }) => {
                                 <p>{member.profile.lastName}</p>
                                 </div>
                             </div>
-                          </>
+                          </div>
                         ))}
                       </div>
                     </div>
