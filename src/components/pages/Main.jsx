@@ -24,6 +24,7 @@ import Conversations from "./Conversations.jsx";
 import CreateStone from "./CreateStone.jsx";
 import EditStone from "./EditStone.jsx";
 import Congrats from "../elements/Congrats.jsx";
+import StoneCard from "../elements/StoneCard.jsx";
 
 // FOOTER-COMPONENTEN
 import EFJM from "./EFJM";
@@ -32,7 +33,7 @@ import EFJM from "./EFJM";
 import UserContext from "../../context/userContext.jsx";
 import { ToastContainer } from "react-toastify";
 
-const Main = ({modeTrigger, setModeTrigger}) => {
+const Main = ({ modeTrigger, setModeTrigger }) => {
   const [user, setUser] = useContext(UserContext);
   const [isPending, setPending] = useState(true);
   // const [modeTrigger, setModeTrigger] = useState(false)
@@ -64,7 +65,11 @@ const Main = ({modeTrigger, setModeTrigger}) => {
   return (
     !isPending && (
       <>
-        <Navbar user={user} setModeTrigger={setModeTrigger} modeTrigger={modeTrigger} />
+        <Navbar
+          user={user}
+          setModeTrigger={setModeTrigger}
+          modeTrigger={modeTrigger}
+        />
         {/* <LogoS /> */}
         <Routes>
           <Route path="/" element={<Start />} />
@@ -84,9 +89,10 @@ const Main = ({modeTrigger, setModeTrigger}) => {
           <Route path="/projectedit/:id" element={<ProjectEdit />} />
           <Route path="/createStone/:projectId" element={<CreateStone />} />
           <Route
-            path="/editStone/:projectId/:stoneId"
-            element={<EditStone />}
+            path="/stonecard/:projectId/:stoneId"
+            element={<StoneCard />}
           />
+          <Route path="/:stoneId" element={<StoneCard />} />
 
           {/* ROUTES RECRUITER */}
           <Route path="/newsearch" element={<NewSearch />} />
