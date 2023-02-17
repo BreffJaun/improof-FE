@@ -26,7 +26,6 @@ const EditStone = () => {
   const [isPending, setPending] = useState(true);
   const [contributors, setContributors] = useState([]);
   const [project, setProject] = useState({});
-  const color = user.meta.colorTheme[0];
   const [media, setMedia] = useState(undefined);
   const [mediaUrl, setMediaUrl] = useState("");
   const [imageTrigger, setImageTrigger] = useState(false);
