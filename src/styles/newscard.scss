@@ -4,8 +4,8 @@
     align-items: center;
     margin-bottom: 2rem;
     width: 70%;
-    box-shadow: 0.4rem 0.4rem 1rem var(--A80);
     border-radius: 8px;
+    box-shadow: 0.4rem 0.4rem 1rem rgba(0,0,0,0.3);
     .news{
         width: 100%;
         border-radius: 8px;
@@ -37,7 +37,7 @@
             bottom: -2.1rem;
             >*{
                 background-color: white;
-                box-shadow: 0.4rem 0.4rem 1rem var(--A80);
+                box-shadow: 0.4rem 0.4rem 1rem rgba(0,0,0,0.3);
             }
         }
     }
@@ -65,7 +65,7 @@
                 border-radius: 40px;
                 outline: 4px solid white;
                 margin-bottom: 1rem;
-                box-shadow: 0.4rem 0.4rem 1rem rgba(0,0,0,0.2);
+                box-shadow: 0.4rem 0.4rem 1rem rgba(0,0,0,0.3);
                 >img{
                     object-fit: cover;
                     width: 110%;

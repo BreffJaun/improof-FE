@@ -7,14 +7,15 @@ import Jeff from "../elements/EFJM-jeff.jsx"
 
 
 // ICONS
-import {GrClose} from "react-icons/gr"
+import { GrClose } from "react-icons/gr"
+
 
 
 const EFJM = () => {
     const navigate = useNavigate()
     
     return (
-        <>
+        <div className="max1200">
             <div>
                 <h1 className="central c-FAV">Hello, nice to meet you!</h1>
                 <h4 className="central c-FAV mt05">We are EFJM</h4>
@@ -41,7 +42,7 @@ const EFJM = () => {
                 </div>
             </div>
 
-        </>
+        </div>
     );
 };
 
