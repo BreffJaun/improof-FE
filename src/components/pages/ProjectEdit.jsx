@@ -39,7 +39,7 @@ const CreateProject = () => {
   const [inviteEmail, setInviteEmail] = useState([]);
   const follows = user.follows;
   const [addUserIdToProjectTrigger, setAddUserIdToProjectTrigger] = useState(false);
-
+  const color = user.meta.colorTheme[0]
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
