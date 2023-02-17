@@ -21,7 +21,7 @@ const EditStone = () => {
   const [contributors, setContributors] = useState([]);
   const { projectId } = useParams("projectId");
   const [project, setProject] = useState({});
-  const color = user.meta.colorTheme[0]
+  const color = user.meta.colorTheme[0];
 
   useEffect(() => {
     setPending(true);
@@ -67,7 +67,7 @@ const EditStone = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch(`${host}/stones/${stoneId}`, {
+    await fetch(`${host}/stones/${projectId}/${stoneId}`, {
       method: "PATCH",
       body: JSON.stringify({
         ...editedStone,
@@ -102,7 +102,7 @@ const EditStone = () => {
 
   return (
     <>
-        <h1 className={`central ${color} mt1 mb2`}>edit stone</h1>
+      <h1 className={`central ${color} mt1 mb2`}>edit stone</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="central col pa1 mb2">
