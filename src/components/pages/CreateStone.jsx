@@ -114,6 +114,7 @@ const CreateStone = () => {
     setNewStone({ ...newStone, team: contributors })
   }, [contributors])
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("newStone: ", newStone)

@@ -31,6 +31,7 @@ const EditStone = () => {
   const [imageTrigger, setImageTrigger] = useState (false)
   const [videoTrigger, setVideoTrigger] = useState (false)
   const [editStonePending, setEditStonePending] = useState(false);
+  const [adIdsTrigger, setIdsTrigger] = useState(false)
   const color = user.meta.colorTheme[0]
   // console.log("projectId: ", projectId)
   const toastOptions = {
@@ -40,6 +41,8 @@ const EditStone = () => {
   };
 
   useEffect(() => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0; 
     setPending(true);
     const fetchStone = async () => {
       fetch(`${host}/stones/${stoneId}`, {
@@ -47,12 +50,12 @@ const EditStone = () => {
       })
         .then((response) => response.json())
         .then((json) => {
-          console.log(json);
           if (json.status) {
             setStone(json.data);
             const newCon = json.data.team.map((con) => con._id);
             setContributors(newCon);
             setPending(false);
+            console.log("STONE GEZOGEN");
           }
         });
     };
@@ -65,6 +68,7 @@ const EditStone = () => {
           if (json.status) {
             setProject(json.data);
             setPending(false);
+            console.log("PROJECT GEZOGEN");
           }
         });
     };
@@ -72,6 +76,7 @@ const EditStone = () => {
     fetchProject();
   }, []); // warum auf editedStone?
 
+ 
   // console.log(stone);
   const handleInput = (e) => {
     setEditedStone({ ...editedStone, [e.target.name]: e.target.value });
@@ -132,28 +137,41 @@ const EditStone = () => {
   useEffect (() => {
     setEditedStone({...editedStone, team: contributors})
   }, [contributors])
+
+  useEffect (() => {
+    setEditedStone({...editedStone, userId: userId, projectId: projectId, stoneId: stoneId})
+  }, [adIdsTrigger])
+
+
+  // console.log("projectId: ", projectId)
+  // console.log("stoneId: ", stoneId)
+  
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIdsTrigger(true);
     console.log("editedStone: ", editedStone)
+    console.log("stoneId: ", stoneId)
 
     const formData = new FormData()
     formData.append('media', media)
     formData.append('data', JSON.stringify(editedStone))
 
     setEditStonePending(true);
-    await fetch(`${host}/stones/${stoneId}`, {
+    await fetch(`${host}/stones/${stoneId}`, 
+    {
       credentials: "include",
       method: "PATCH",
       body: formData
     })
       .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        if (!json.status) {
+      .then((data) => {
+        if(!data.status) {
+          console.log("ICH HÄNGE IM IF")
           toast.error(json.error, toastOptions);
           setEditStonePending(false);
         } else {
+          console.log("ICH HÄNGE IM ELSE")
           navigate(`/projectdetails/${projectId}`);
         }
       });
