@@ -89,7 +89,9 @@ const Messages = () => {
           <h1 className={`${color} mt1 mb2`}>messages</h1>
 
           <div className="wide col">
-            <Sender user={user} sender={sender} />
+            <div className="center">
+              <Sender user={user} sender={sender} />
+            </div>
 
             <div className="wide col mb2">
               <div className="scroll-container">
