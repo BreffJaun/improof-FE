@@ -94,6 +94,7 @@ const Main = ({ modeTrigger, setModeTrigger }) => {
           />
           <Route path="/:stoneId" element={<StoneCard />} />
 
+
           {/* ROUTES RECRUITER */}
           <Route path="/newsearch" element={<NewSearch />} />
           <Route path="/searchhistory" element={<SearchHistory />} />
