@@ -14,7 +14,7 @@ import { FiCameraOff as Camera} from "react-icons/fi"
 
 const News = ({ project, user }) => {
   const navigate = useNavigate();
-  return (Object.keys(project).length > 0 &&
+  return Object.keys(project).length &&
     <>
       <div className="central">
         <div className="news-container">
@@ -31,6 +31,7 @@ const News = ({ project, user }) => {
             <div
               className="news-banner bg-gA"
               onClick={() => navigate(`/projectdetails/${project._id}`)}>
+                <img src={project.thumbnail} alt="" />
             </div>
           )}
         </div>
@@ -47,8 +48,8 @@ const News = ({ project, user }) => {
                     <div className="flex">
                       {project?.team?.length &&
                         project?.team?.map((member) => (
-                          <>
-                            <div className="col central">
+                     
+                            <div key={member._id} className="col central">
                               <div
                                 className="members-image-container bg-FAV central"
                                 onClick={() => navigate(`/userDetails/${member._id}`)}
@@ -67,7 +68,7 @@ const News = ({ project, user }) => {
                                 <p>{member.profile.lastName}</p>
                                 </div>
                             </div>
-                          </>
+                   
                         ))}
                       </div>
                     </div>
@@ -84,7 +85,7 @@ const News = ({ project, user }) => {
         </div>
       </div>
     </>
-  );
+  ;
 };
 
 

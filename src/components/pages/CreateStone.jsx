@@ -1,24 +1,35 @@
-import { useState, useEffect, useContext } from "react";
-import { host } from "../../api/host.jsx";
+import { useState, useEffect, useContext, React } from "react";
+import ReactPlayer from 'react-player'
 import { toast, ToastContainer } from "react-toastify";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import Footer from "../elements/Footer.jsx";
+import Switch from "react-switch";
+
 
 // CONTEXT
 import UserContext from "../../context/userContext.jsx";
 
+// ICONS
+import { AiOutlineCamera as Camera} from "react-icons/ai"
+
 // ELEMENTS
+import { host } from "../../api/host.jsx";
+import Footer from "../elements/Footer.jsx";
 import { TalentCard } from "../elements/TalentCard.jsx";
-import Switch from "react-switch";
 
 const CreateStone = () => {
   const navigate = useNavigate();
   const [user, setUser] = useContext(UserContext);
-  const [newStone, setNewStone] = useState({});
   const [project, setProject] = useState({});
   const [isPending, setPending] = useState(true);
   const { projectId } = useParams("projectId");
+  const initial = {userId: user._id, projectId: projectId}
+  const [newStone, setNewStone] = useState(initial);
   const [contributors, setContributors] = useState([]);
+  const [media, setMedia] = useState(undefined)
+  const [mediaUrl, setMediaUrl] = useState("");
+  const [createStonePending, setCreateStonePending] = useState(false);
+  const [imageTrigger, setImageTrigger] = useState (false)
+  const [videoTrigger, setVideoTrigger] = useState (false)
   const color = user.meta.colorTheme[0]
 
   useEffect(() => {
@@ -48,32 +59,48 @@ const CreateStone = () => {
     setNewStone({ ...newStone, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await fetch(`${host}/stones`, {
-      method: "POST",
-      body: JSON.stringify({
-        ...newStone,
-        userId: user._id,
-        projectId: projectId,
-        team: contributors,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        if (!json.status) {
-          toast.error(json.error, toastOptions);
-        } else {
-          toast.info("You just added a new stone", toastOptions);
-        }
-      });
-    navigate(`/projectdetails/${projectId}`);
+  // HANDLING MEDIA FILES START //
+  const handleImages = (event) => {
+    if(event.target.files[0]?.size > 8000000) {
+      document.getElementById('media-pic').value=''
+      toast.error("Upload failed! Max file size for images is 8MB", toastOptions);
+    }
+    setImageTrigger(true)
+    setMedia(event.target.files[0])
+    const media = URL.createObjectURL(event.target.files[0])
+    setMediaUrl(media);
   };
-  const handleMedia = () => {};
+
+  const resetImageHandler = (event)=> {
+    event.preventDefault();
+    document.getElementById('media-pic').value=''
+    setMedia(undefined)
+    setMediaUrl(undefined)
+    setImageTrigger(false)
+  } 
+
+  const handleVideos = (event) => {
+    // ca. 3min Video length => should be enough!
+    if(event.target.files[0]?.size > 10000000) {
+      document.getElementById('media-vid').value=''
+      toast.error("Upload failed! Max file size for videos is 10MB", toastOptions);
+    } else {
+      setVideoTrigger(true)
+      setMedia(event.target.files[0])
+      const media = URL.createObjectURL(event.target.files[0])
+      setMediaUrl(media);
+    }
+  };
+  // HANDLING MEDIA FILES END //
+  
+  const resetVideoHandler = (event)=> {
+    event.preventDefault();
+    document.getElementById('media-vid').value=''
+    setMedia(undefined)
+    setMediaUrl(undefined)
+    setVideoTrigger(false)
+  } 
+  
   const handleContributor = (contributor) => {
     if (contributors.includes(contributor)) {
       const newContributors = contributors.filter((con) => con !== contributor);
@@ -81,9 +108,42 @@ const CreateStone = () => {
     } else {
       setContributors([...contributors, contributor]);
     }
+  };  
+  
+  useEffect (() => {
+    setNewStone({ ...newStone, team: contributors })
+  }, [contributors])
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("newStone: ", newStone)
+
+    const formData = new FormData()
+    formData.append('media', media)
+    formData.append('data', JSON.stringify(newStone))
+
+    setCreateStonePending(true)
+    await fetch(`${host}/stones`, 
+    {
+      credentials: "include",
+      method: "POST",
+      body: formData
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (!json.status) {
+          toast.error(json.error, toastOptions);
+          setCreateStonePending(false)
+        } else {
+          // toast.info("You just added a new stone", toastOptions);
+          navigate(`/projectdetails/${projectId}`);
+        }
+      });
   };
 
-  return (
+  
+
+  return createStonePending ?  <div>Loading...</div> : (
     <>
       <h1 className={`central ${color} mt1 mb2`}>new stone</h1>
 
@@ -130,7 +190,7 @@ const CreateStone = () => {
               name="kind"
               value="endstone"
               onChange={handleInput}
-              talent
+              // talent
             />
             <label>endstone</label>
           </div>
@@ -140,20 +200,59 @@ const CreateStone = () => {
           <div>
             <div className="col">
               <p> add media</p>
-              <label htmlFor="media-pic">add photos</label>
-              <input
-                type="file"
-                multiple
-                id="media-pic"
-                onChange={handleMedia}
-              />
-              <label htmlFor="media-vid">add videos</label>
-              <input
-                type="file"
-                multiple
-                id="media-vid"
-                onChange={handleMedia}
-              />
+              <div className="thumbnailS">
+                {
+                  mediaUrl && videoTrigger
+                  ?
+                  <ReactPlayer 
+                    url={mediaUrl} 
+                    playing={true}
+                    controls={true}
+                    light={true} // for video thumbnail
+                    // playIcon={martinsPlayIcon}
+                    volume={null}
+                    muted={true}
+                    // width={"640px"}
+                    // height={"360px"}
+                    pip={true}
+                    stopOnUnmount={false}
+                  />
+                  : 
+                  mediaUrl && imageTrigger 
+                  ?
+                  <img 
+                    src={mediaUrl} 
+                    alt="media"                 
+                  />
+                  : 
+                  <div title="upload"><Camera /></div>
+                }
+              </div>
+              <div className="col">
+                <label htmlFor="media-pic">photos</label>
+                <input
+                  type="file"
+                  multiple
+                  id="media-pic"
+                  onChange={handleImages}
+                  accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
+                  disabled={videoTrigger}
+                />
+                {imageTrigger && <button type="button" onClick={resetImageHandler}>reset image selection</button>}                
+              </div>
+              <div className="col">
+                <label htmlFor="media-vid">videos</label>
+                <input
+                  type="file"
+                  multiple
+                  id="media-vid"
+                  onChange={handleVideos}
+                  accept=".mp4, .mov, .wmv, .avi, .mkv, .flv"
+                  disabled={imageTrigger}
+                />
+                {videoTrigger && <button type="button" onClick={resetVideoHandler}>reset video selection</button>}
+                
+              </div>
             </div>
           </div>
           <div>
@@ -165,8 +264,8 @@ const CreateStone = () => {
               {project.team?.length &&
                 project.team.map((talent) => {
                   return (
-                    <>
-                      <div className="t-avatar">
+                    <div key={talent._id}>
+                      <div className="t-avatar" >
                         <div
                           className="bg-FAV central t-pic"
                           onClick={() => navigate(`/userDetails/${talent._id}`)}
@@ -205,7 +304,7 @@ const CreateStone = () => {
                           id="material-switch"
                         />
                       </div>
-                    </>
+                    </div>
                   );
                 })}
             </div>
