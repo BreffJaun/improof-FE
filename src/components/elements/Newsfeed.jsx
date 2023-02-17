@@ -40,8 +40,8 @@ const Newsfeed = () => {
   useEffect(()=>{
     const sorted = projects.sort((a,b)=> {
       if(a.updatedAt && b.updatedAt){
-        let x = a.updatedAt.slice(0,10)
-        let y = b.updatedAt.slice(0,10)
+        let x = a.updatedAt
+        let y = b.updatedAt
         if (x < y) {return -1;}
         if (x > y) {return 1;}
         return 0;
