@@ -81,13 +81,11 @@ const UserEdit = () => {
   }, [favColor])
     
   const handleSubmit = (event) => {
-    const newUser = favColor ? {...userData, meta:{...userData.meta, colorTheme:favColor}} : userData
-    setUserData(newUser)
     event.preventDefault();
 
     const formData = new FormData();
     formData.append('avatar', avatar);
-    formData.append('data', JSON.stringify(newUser));
+    formData.append('data', JSON.stringify(userData));
     
     const updateUserData = async () => {
       setUploadPending(true)
