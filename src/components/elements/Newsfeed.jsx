@@ -31,8 +31,28 @@ const Newsfeed = () => {
   const [isPending, setPending] = useState(true);
   const [category, setCategory] = useState("");
   const [numberSlides, setNumberSlides] = useState(undefined)
+  const [sortedList, setSortedList] = useState(projects)
 
+  const color = user.meta.colorTheme[0]
   const bg = user.meta.colorTheme[1]
+
+
+  useEffect(()=>{
+    const sorted = projects.sort((a,b)=> {
+      if(a.updatedAt && b.updatedAt){
+        let x = a.updatedAt
+        let y = b.updatedAt
+        if (x < y) {return -1;}
+        if (x > y) {return 1;}
+        return 0;
+      }
+      return 0
+    })
+    const short = sorted.reverse().splice(0,10)
+    console.log("SHORT", short);
+    console.log("SORTED", sorted);
+    setSortedList(short)
+  },[projects])
 
   useEffect(() => {
     const getProjects = async () => {
@@ -56,49 +76,64 @@ const Newsfeed = () => {
 
   return (
     <div className="mt2">
-      <CarouselProvider
-        interval={3000}
-        naturalSlideWidth={100}
-        naturalSlideHeight={40}
-        totalSlides={10}
-        infinite={true}
-        lockOnWindowScroll={true}
-      >
-        <Slider>
-          {category === undefined ||
-          category === "others" ||
-          category === "All categories"
-            ? projects.map((project) => {
-                <Slide index={0} key={project._id}>
-                  <NewsCard
-                    key={project._id}
-                    user={user}
-                    project={project}
-                  />
-                </Slide>;
-              })
-            : projects.map(
-                (project) =>                
-                  project.category === category && (
-                    <Slide index={0} key={project._id}>
-                      <NewsCard
-                        key={project._id}
-                        user={user}
-                        project={project}
-                      />
-                    </Slide>
+      <div>
+        <CarouselProvider
+          interval={3000}
+          naturalSlideWidth={100}
+          naturalSlideHeight={40}
+          totalSlides={sortedList.length}
+          infinite={true}
+          lockOnWindowScroll={true}
+        >
+          <Slider>
+            {category === undefined ||
+            category === "all categories" ||
+            category === "" || !category
+              ? sortedList?.map((project,i) => {
+                  return(
+                  <Slide index={i} key={project._id}>
+                    <NewsCard
+                      key={project._id}
+                      user={user}
+                      project={project}
+                    />
+                  </Slide>
                   )
-              )}
-        </Slider>
-        <div className="central">
-          <ButtonBack className={bg}><h3><Back /></h3></ButtonBack>
-          <div className="central col">
-            <p className="mb1">choose your topic</p>
-            <CategoriesFilter category={category} setCategory={setCategory} />
+                })
+              : sortedList?.map((project,i) =>{            
+                return category === project.category &&            
+                  <Slide index={i} key={project._id}>
+                    <NewsCard
+                      key={project._id}
+                      user={user}
+                      project={project}
+                      />
+                  </Slide>
+              
+                
+
+              }                
+                )}
+          </Slider>
+          <div className="central">
+            <ButtonBack className={bg}><h3><Back /></h3></ButtonBack>
+            <div className="central col">
+              <p className="mb1">choose your topic</p>
+              <CategoriesFilter category={category} setCategory={setCategory} />
+            </div>
+            <ButtonNext className={bg}><h3><Forward/></h3></ButtonNext>
           </div>
-          <ButtonNext className={bg}><h3><Forward/></h3></ButtonNext>
+        </CarouselProvider>
+      </div>
+      <div>
+        <h1 className={`${color} center mt1`}>newsfeed</h1>
+        <div className="">
+          {/* HIER MUSS EINE KARTE ERSTELLT WERDEN FÜR DEN NEWSFEED */}
+          <div>
+            <p>Name hat am updatedAt diesen Stone angelegt!</p>            
+          </div>
         </div>
-      </CarouselProvider>
+      </div>
     </div>
   );
 };

@@ -78,17 +78,27 @@ const ProjectDetails = () => {
           <p>{project.description}</p>
         </div>
         {project.team.find((member) => member._id === user._id) && (
-          <button
-            className={bg}
-            onClick={() => navigate(`/projectedit/${project._id}`)}
-          >
-            edit project
-          </button>
+          <div>
+            <button
+              className={bg}
+              onClick={() => navigate(`/projectedit/${project._id}`)}
+            >
+              edit project
+            </button>
+
+            <button
+              className={bg}
+              onClick={() => navigate(`/createStone/${project._id}`)}
+            >
+              create stone
+            </button>
+        </div>
+
         )}
 
         <Chrono>
+
           {
-            // HIER FUNKTIONIERT DAS KEY ATTRIBUT NICHT.. WEIß NICHT WARUM!
             !isPending &&
               project.stones.map((stone) => {
                 return (
@@ -152,16 +162,7 @@ const ProjectDetails = () => {
         {project.team.map((member) => (
           <TalentCard key={member._id} talent={member} user={user} />
         ))}
-        <div>
-          {project.team.find((member) => member._id === user._id) && (
-            <button
-              className={bg}
-              onClick={() => navigate(`/createStone/${project._id}`)}
-            >
-              create stone
-            </button>
-          )}
-        </div>
+
         <Footer />
       </div>
     )
