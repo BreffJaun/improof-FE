@@ -29,9 +29,11 @@ const News = ({ project, user }) => {
           )}
           {project.thumbnail && (
             <div
-              className="news-banner bg-gA"
+              className="news-banner bg-gA central"
               onClick={() => navigate(`/projectdetails/${project._id}`)}>
-                <img src={project.thumbnail} alt="" />
+                <div className="news-image-container">
+                  <img src={project.thumbnail} alt="" />
+                </div>
             </div>
           )}
         </div>

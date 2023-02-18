@@ -88,7 +88,7 @@ const TalentDetails = () => {
           alt="avatar" 
           /> 
           :
-            <div className="initials"><p>{talent.profile.initials}</p></div>
+          <div className="initials circle90 bg-FAV central rel"><p>{talent.profile.initials}</p></div>
           }
         </div>
         {user._id === talent._id ?
@@ -103,28 +103,14 @@ const TalentDetails = () => {
         }
       </div>
         <h1 className={`central ${color} mt05`}>{talent.profile.firstName} {talent.profile.lastName}</h1>
-        <p className="mt05 mb1">{talent.profile.description ? talent.profile.description : "You could add some info to your profile."}</p>
+        {/* <p className="mt05 mb1">{talent.profile.description ? talent.profile.description : "You could add some info to your profile."}</p> */}
         {showInfos ?
-          <div className="col mb1">
+          <div className="col mt05 mb1">
             {/* ----------------------------------------------- */}
-            {talent.profile.position &&
+            {talent.profile.description &&
               <div className="mb1">
-                <p className={color}>my current position</p>
-                <p>{talent.profile.position}</p>
-              </div>
-            }
-            {/* ----------------------------------------------- */}
-            {talent.profile.toolsAndSkills &&
-              <div className="mb1">
-                <p className={color}>my tools and skills</p>
-                <p>{talent.profile.toolsAndSkills}</p>
-              </div>
-            }
-            {/* ----------------------------------------------- */}
-            {talent.profile.goal &&
-              <div className="mb1">
-                <p className={color}>i want to achieve</p>
-                <p>{talent.profile.goal}</p>
+                <p className={color}>description</p>
+                <p>{talent.profile.description}</p>
               </div>
             }
             {/* ----------------------------------------------- */}
@@ -171,10 +157,17 @@ const TalentDetails = () => {
         {showContact ?
           <div className="col mb1">
             {/* ----------------------------------------------- */}
-            {talent.contact.mobile &&
+            {talent.contact.company &&
               <div className="mb1">
-                <p className={color}>phone number</p>
-                <p>{talent.contact.mobile}</p>
+                <p className={color}>company</p>
+                <p>{talent.contact.company}</p>
+              </div>
+            }
+            {/* ----------------------------------------------- */}
+            {talent.profile.position &&
+              <div className="mb1">
+                <p className={color}>position</p>
+                <p>{talent.profile.position}</p>
               </div>
             }
             {/* ----------------------------------------------- */}
@@ -183,29 +176,7 @@ const TalentDetails = () => {
                 <p className={color}>website</p>
                 <p>{talent.contact.website}</p>
               </div>
-            }
-            {/* ----------------------------------------------- */}
-            {(talent.contact.online1 || talent.contact.online2 || talent.contact.online3) &&
-              <div>
-                <p className={color}>online profiles</p>
-              </div>
-            }
-            {talent.contact.online1 &&
-              <div className="mb1">
-                <p>{talent.contact.online1}</p>
-              </div>
-            }
-            {talent.contact.online2 &&
-              <div className="mb1">
-                <p>{talent.contact.online2}</p>
-              </div>
-            }
-            {talent.contact.online3 &&
-              <div className="mb1">
-                <p>{talent.contact.online3}</p>
-              </div>
-            }
-            {/* ----------------------------------------------- */}
+            }     
           </div> : ""
         }
         <button className={bg} onClick={() => setShowContact(!showContact)}>{showContact ? "close" : "show me"}</button>

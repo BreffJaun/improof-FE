@@ -7,6 +7,7 @@ import { host } from "./api/host.jsx";
 
 // STYLES
 import "./App.css";
+import "./styles/aaa_mediascreens.scss"
 import "./styles/general.scss";
 import "./styles/fonts.scss";
 import "./styles/elements.scss";

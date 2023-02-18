@@ -4,15 +4,28 @@
     align-items: center;
     margin-bottom: 2rem;
     width: 70%;
-    box-shadow: 0.4rem 0.4rem 1rem var(--A80);
     border-radius: 8px;
+    box-shadow: 0.4rem 0.4rem 1rem rgba(0,0,0,0.3);
     .news{
         width: 100%;
         border-radius: 8px;
         .news-banner{
             height: 350px;
-            margin: 0;
+            width: 100%;
             border-radius: 8px 8px 0 0;
+            display: flex;
+            overflow: hidden;
+            .news-image-container{
+                border: 2px solid rgb(255, 0, 255);
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                object-fit: contain;
+                >img{
+                    width: 100%;
+                    border: 2px solid greenyellow;
+                }
+            }
         };
     }
 
@@ -37,7 +50,7 @@
             bottom: -2.1rem;
             >*{
                 background-color: white;
-                box-shadow: 0.4rem 0.4rem 1rem var(--A80);
+                box-shadow: 0.4rem 0.4rem 1rem rgba(0,0,0,0.3);
             }
         }
     }
@@ -65,7 +78,7 @@
                 border-radius: 40px;
                 outline: 4px solid white;
                 margin-bottom: 1rem;
-                box-shadow: 0.4rem 0.4rem 1rem rgba(0,0,0,0.2);
+                box-shadow: 0.4rem 0.4rem 1rem rgba(0,0,0,0.3);
                 >img{
                     object-fit: cover;
                     width: 110%;

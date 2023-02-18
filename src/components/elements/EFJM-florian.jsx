@@ -30,16 +30,11 @@ const Florian = () => {
                 <div>
                     <div className="contact mt15 mb15">
                         <button className="efjm-icon circle30">
-                            <div><LinkedIn /></div>
-                        </button>
-                        <button className="efjm-icon circle30">
-                            <div><Xing /></div>
-                        </button>
-                        <button className="efjm-icon circle30">
-                            <div className="fs15"><GitHub /></div>
-                        </button>
-                        <button className="efjm-icon circle30">
-                            <div className="fs15"><Website /></div>
+                            <div className="fs15">
+                                <a href="https://github.com/itzFlorian" target="_blank">
+                                    <GitHub />
+                                </a>
+                            </div>
                         </button>
                     </div>
                 </div>

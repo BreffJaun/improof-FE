@@ -44,7 +44,7 @@ const StarProjects = () => {
 
   },[trigger])
 
-  console.log(category)
+  // console.log(category)
   return ( !pending &&
     <>
       <h3 className={`central ${color} mt1 mb2`}>projects</h3>
