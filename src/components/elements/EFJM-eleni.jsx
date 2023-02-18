@@ -30,16 +30,21 @@ const Eleni = () => {
                 <div>
                     <div className="contact mt15 mb15">
                         <button className="efjm-icon circle30">
-                            <div><LinkedIn /></div>
+                            <a href="https://www.linkedin.com/in/eleniorfanou" target="_blank">
+                                <LinkedIn />
+                            </a>
                         </button>
                         <button className="efjm-icon circle30">
-                            <div><Xing /></div>
+                            <a href="https://www.xing.com/profile/eleni_orfanou3/cv" target="_blank">
+                                <Xing />
+                            </a>
                         </button>
                         <button className="efjm-icon circle30">
-                            <div className="fs15"><GitHub /></div>
-                        </button>
-                        <button className="efjm-icon circle30">
-                            <div className="fs15"><Website /></div>
+                            <div className="fs15">
+                                <a href="https://github.com/elenosis" target="_blank">
+                                    <GitHub />
+                                </a>
+                            </div>
                         </button>
                     </div>
                 </div>

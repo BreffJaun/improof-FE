@@ -139,9 +139,9 @@ const UserEdit = () => {
           className="circle90 bg-FAV central rel"
           alt="avatar" /> 
           :
-          <div className="initials"><p>{talent.profile.initials}</p></div>
+          <div className="initials"><p>{user.profile.initials}</p></div>
         }
-       
+      
         <div
           title="upload image"
           className="circle40 bg-FAV central editBtn">
@@ -154,17 +154,17 @@ const UserEdit = () => {
           />
       </div>
       </div>
-        <h1 className={`central ${color} mt05`}>Hi, {talent.profile.firstName}!</h1>
-        <p className={`central ${color}`}>Let´s spice up your profile!</p>
+        <h1 className={`central ${color ? color : user.meta.colorTheme[0] } mt05`}>Hi, {talent.profile.firstName}!</h1>
+        <p className={`central ${color ? color : user.meta.colorTheme[0]}`}>Let´s spice up your profile!</p>
       </div>
       <div><RadioColor user={talent} setFavColor={setFavColor}/></div>
 
       <div className="col mt2 mb1">
-        <p>first name<span className={`${color} fw900`}>*</span></p>
+        <p>first name<span className={`${color ? color : user.meta.colorTheme[0]} fw900`}>*</span></p>
         <input onChange={handleInputProfile} name="firstName" type="text" defaultValue={user.profile.firstName} />
       </div>
       <div className="col mb1">
-        <p>last name<span className={`${color} fw900`}>*</span></p>
+        <p>last name<span className={`${color ? color : user.meta.colorTheme[0]} fw900`}>*</span></p>
         <input onChange={handleInputProfile} name="lastName"  type="text" defaultValue={user.profile.lastName} />
       </div>
       <div className="col mb1">
@@ -202,7 +202,7 @@ const UserEdit = () => {
 
       
       <div className="bo-DARK"></div>
-      <h1 className={`central ${color} mt05`}>contact</h1>
+      <h1 className={`central ${color ? color : user.meta.colorTheme[0]} mt05`}>contact</h1>
       <div className="col mb1">
         <p>mobile</p>
         <input onChange={handleInputContact} name="mobile" type="text" defaultValue={user.contact.mobile} />
@@ -225,7 +225,7 @@ const UserEdit = () => {
       </div>
 
       <div className="bo-DARK"></div>
-      <h1 className={`central ${color} mt05`}>location</h1>
+      <h1 className={`central ${color ? color : user.meta.colorTheme[0]} mt05`}>location</h1>
       <div className="col mb1">
         <p>street</p>
         <input onChange={handleInputLocation} name="street" type="text" defaultValue={user.location.street} />
@@ -240,7 +240,7 @@ const UserEdit = () => {
       </div>
 
       <div className="bo-DARK"></div>
-      <h1 className={`central ${color} mt05`}>security</h1>
+      <h1 className={`central ${color ? color : user.meta.colorTheme[0]} mt05`}>security</h1>
       <div className="col mb1">
         <p>set new password</p>
         <input name="" type="text" placeholder="new password"/>
@@ -268,90 +268,106 @@ const UserEdit = () => {
     </form>
   </>
 
-    : !isPending && user.profile.isRecruiter ? 
-    <>
-    <form onSubmit={handleSubmit}>
-        <div className="central col mt3">
-          <div className="circle90 bg-FAV central rel">
-            {user.profile.avatar ? <img src="" alt="" /> :
-              <div className="initials"><p>{user.profile.initials}</p></div>
-          }
-          <div
+  : uploadPending ? <div>Loading...</div> : 
+  !isPending && user.profile.isRecruiter ? 
+  <>
+  <form onSubmit={handleSubmit}>
+      <div className="central col mt3">
+        <div className="circle90 bg-FAV central rel">
+        {avatarUrl 
+          ?
+          <img 
+          src={avatarUrl} 
+          className="circle90 bg-FAV central rel"
+          alt="avatar" /> 
+          :          
+          user.profile.avatar 
+          ? 
+          <img 
+          src={user.profile.avatar} 
+          className="circle90 bg-FAV central rel"
+          alt="avatar" /> 
+          :
+          <div className="initials"><p>{user.profile.initials}</p></div>
+        }
+        <div
             title="upload image"
             className="circle40 bg-FAV central editBtn">
-          <p className="c-A100"><AiOutlineCamera/>
-          </p>
+            {/* <p className="c-A100">image</p> */}
+            <input 
+            onChange={avatarUploadHandler} 
+            name="avatar" 
+            type="file"
+            accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
+            />
         </div>
-        </div>
-          <h1 className={`central ${color} mt05`}>Hi, {user.profile.firstName}!</h1>
-          <p className={`central ${color}`}>Time to find some talents!</p>
-            </div>
-            <div><RadioColor user={talent} setFavColor={setFavColor}/></div>
-        <div className="col mt2 mb1">
-          <p>first name<span className={`${color} fw900`}>*</span></p>
-          <input onChange={handleInputProfile} name="firstName" type="text" defaultValue={user.profile.firstName} />
-        </div>
-        <div className="col mb1">
-          <p>last name<span className={`${color} fw900`}>*</span></p>
-          <input onChange={handleInputProfile} name="lastName" type="text" defaultValue={user.profile.lastName} />
-        </div>
-        <div className="col mb1">
-          <p>that´s me</p>
-          <input onChange={handleInputProfile} name="description" type="text" defaultValue={user.profile.description} />
-        </div>
-
-        <div className="bo-DARK"></div>
-        <h1 className={`central ${color} mt05`}>contact</h1>
-
-        <div className="col mb1">
-          <p>company</p>
-          <input onChange={handleInputContact} name="company" type="text" defaultValue={user.profile.company} />
-        </div>
-        <div className="col mb1">
-          <p>position</p>
-          <input onChange={handleInputContact} name="position" type="text" defaultValue={user.profile.position} />
-        </div>
-
-        <div className="col mb1">
-          <p>company website</p>
-          <input onChange={handleInputContact} name="website" type="text" defaultValue={user.contact.website} />
-        </div>
-
-        <div className="bo-DARK"></div>
-        <h1 className={`central ${color} mt05`}></h1>
-        <div className="col mb1">
-          <p>city</p>
-          <input onChange={handleInputLocation} name="city" type="text" defaultValue={user.location.city} />
-        </div>
-
-        <div className="bo-DARK"></div>
-        <h1 className={`central ${color} mt05`}>security</h1>
-        <div className="col mb1">
-          <p>set new password</p>
-          <input type="text" placeholder="new password"/>
-        </div>
-        <div className="col mb1">
-          <p>confirm new password</p>
-          <input type="text" placeholder="confirm password"/>
       </div>
-      
+      <h1 className={`central ${color ? color : user.meta.colorTheme[0]} mt05`}>Hi, {user.profile.firstName}!</h1>
+      {/* <p className={`central ${user ? user.meta.colorTheme[0] : color}`}>Time to find some talents!</p> */}
+      </div>
+
+          <div><RadioColor user={talent} setFavColor={setFavColor}/></div>
+      <div className="col mt2 mb1">
+        <p>first name<span className={`${color ? color : user.meta.colorTheme[0]} fw900`}>*</span></p>
+        <input onChange={handleInputProfile} name="firstName" type="text" defaultValue={user.profile.firstName} />
+      </div>
+      <div className="col mb1">
+        <p>last name<span className={`${color ? color : user.meta.colorTheme[0]} fw900`}>*</span></p>
+        <input onChange={handleInputProfile} name="lastName" type="text" defaultValue={user.profile.lastName} />
+      </div>
+      <div className="col mb1">
+        <p>description</p>
+        <input onChange={handleInputProfile} name="description" type="text" defaultValue={user.profile.description} />
+      </div>
+
       <div className="bo-DARK"></div>
-      <div className="central">
-        <button
-          type="submit"
-          title="save changes"
-          className="bg-FAV"><BiCheck />
-        </button>
-        <button
-          onClick={() => navigate(`/userdetails/${user._id}`)}
-          title="cancel"
-          className="bg-FAV"><RxCross2 />
-        </button>
+      <h1 className={`central ${color ? color : user.meta.colorTheme[0]} mt05`}>contact</h1>
+
+      <div className="col mb1">
+        <p>company</p>
+        <input onChange={handleInputContact} name="company" type="text" defaultValue={user.contact.company} />
       </div>
-      <Footer />
-      <ToastContainer/>
-    </form>
-    </> 
+      <div className="col mb1">
+        <p>position</p>
+        {/* WRONG INPUTHANDLER */}
+        <input onChange={handleInputProfile} name="position" type="text" defaultValue={user.profile.position} />
+      </div>
+
+      <div className="col mb1">
+        <p>company website</p>
+        <input onChange={handleInputContact} name="website" type="text" defaultValue={user.contact.website} />
+      </div>
+
+      <div className="bo-DARK"></div>
+      <h1 className={`central ${color ? color : user.meta.colorTheme[0]} mt05`}></h1>
+
+      <h1 className={`central ${color ? color : user.meta.colorTheme[0]} mt05`}>security</h1>
+      <div className="col mb1">
+        <p>set new password</p>
+        <input type="text" placeholder="new password"/>
+      </div>
+      <div className="col mb1">
+        <p>confirm new password</p>
+        <input type="text" placeholder="confirm password"/>
+    </div>
+    
+    <div className="bo-DARK"></div>
+    <div className="central">
+      <button
+        type="submit"
+        title="save changes"
+        className="bg-FAV"><BiCheck />
+      </button>
+      <button
+        onClick={() => navigate(`/userdetails/${user._id}`)}
+        title="cancel"
+        className="bg-FAV"><RxCross2 />
+      </button>
+    </div>
+    <Footer />
+    <ToastContainer/>
+  </form>
+  </> 
   :
   null
 };

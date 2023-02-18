@@ -191,7 +191,6 @@ const CreateProject = () => {
         .then((data) => {
           if (data.status) {
             toast.info("Your project is save!", toastOptions);
-            // setAddUserIdToProjectTrigger(false);
             setUploadPending(false);
             if(!createProjectPending) {
               navigate(`/projectdetails/${data.data._id}`)
@@ -211,14 +210,14 @@ const CreateProject = () => {
   project && (
     <>
       <div className="mt4 mb2">
-        <h1 className={`central ${color}`}>new project</h1>
-        <h4 className={`central ${color} mt05`}>It is time to amaze the world!</h4>
+        <h1 className={`central ${project.color}`}>new project</h1>
+        <h4 className={`central ${project.color} mt05`}>It is time to amaze the world!</h4>
       </div>
 
       <form onSubmit={handleSubmit}>
         <div className="central col pa1 mb2">
           <div className="col">
-            <p>project name<span className={color}>*</span></p>
+            <p>project name<span className={project.color}>*</span></p>
             <input
               type="text"
               name="name"
@@ -228,7 +227,7 @@ const CreateProject = () => {
           </div>
 
           <div className="col">
-            <p>description<span className={color}>*</span></p>
+            <p>description<span className={project.color}>*</span></p>
             <input
               type="text"
               name="description"
@@ -265,7 +264,7 @@ const CreateProject = () => {
             />
           </div>
           <div className="col">
-            <p>Current category:<span className={color}>*</span></p>
+            <p>Current category:<span className={project.color}>*</span></p>
             <p>{project.category}</p>
           </div>
           <div className="col">
@@ -296,7 +295,7 @@ const CreateProject = () => {
 
     {/*  - - - - - NO TEAM FOLLOWING COMMUNITY - - - - - */}
     <div className="bo-DARK"></div>
-    <h4 className={`central ${color} mt4 mb4`}>setup your team</h4>
+    <h4 className={`central ${project.color} mt4 mb4`}>setup your team</h4>
     <div className="talent-container">
       { 
       noTeamFollows.map(talent => 
@@ -316,7 +315,7 @@ const CreateProject = () => {
     {/*  - - - - - REST COMMUNITY - - - - - */}
     <div className="bo-DARK"></div>
     <div className="mb1 mt3 central">
-        <h4 className={`central ${color} mt05`}>add new talents</h4>
+        <h4 className={`central ${project.color} mt05`}>add new talents</h4>
       </div>
       <div className="talent-container">
           {noFollows && noFollows.map((talent) =>
@@ -336,7 +335,7 @@ const CreateProject = () => {
       {/*  - - - - - INVITATION - - - - - */}
       <div className="bo-DARK"></div>
       <div className="mb1 mt3 central">
-        <h4 className={`central ${color} mt05`}>invite to improof</h4>
+        <h4 className={`central ${project.color} mt05`}>invite to improof</h4>
         </div>
         <div className="col">
           {eMailFields.map((el, i) => 

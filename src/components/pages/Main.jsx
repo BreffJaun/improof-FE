@@ -32,7 +32,7 @@ import EFJM from "./EFJM";
 import UserContext from "../../context/userContext.jsx";
 import { ToastContainer } from "react-toastify";
 
-const Main = ({modeTrigger, setModeTrigger}) => {
+const Main = ({ modeTrigger, setModeTrigger }) => {
   const [user, setUser] = useContext(UserContext);
   const [isPending, setPending] = useState(true);
   // const [modeTrigger, setModeTrigger] = useState(false)
@@ -64,7 +64,11 @@ const Main = ({modeTrigger, setModeTrigger}) => {
   return (
     !isPending && (
       <>
-        <Navbar user={user} setModeTrigger={setModeTrigger} modeTrigger={modeTrigger} />
+        <Navbar
+          user={user}
+          setModeTrigger={setModeTrigger}
+          modeTrigger={modeTrigger}
+        />
         {/* <LogoS /> */}
         <Routes>
           <Route path="/" element={<Start />} />

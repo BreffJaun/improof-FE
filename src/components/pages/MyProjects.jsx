@@ -27,7 +27,7 @@ const MyProjects = () => {
     <div className="mb2 mt2 ">
       <h1 className={`central ${color} mb2`}>my projects</h1>
       <div className="projects-container">
-        {user?.myProjects?.map((project)=> <ProjectCard project={project} user={user} />)}
+        {user?.myProjects?.map((project)=> <ProjectCard project={project} user={user} key={project._id}/>)}
       </div>
       
       <Footer/>
