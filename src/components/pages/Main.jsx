@@ -24,7 +24,6 @@ import Conversations from "./Conversations.jsx";
 import CreateStone from "./CreateStone.jsx";
 import EditStone from "./EditStone.jsx";
 import Congrats from "../elements/Congrats.jsx";
-import StoneCard from "../elements/StoneCard.jsx";
 
 // FOOTER-COMPONENTEN
 import EFJM from "./EFJM";
@@ -89,11 +88,9 @@ const Main = ({ modeTrigger, setModeTrigger }) => {
           <Route path="/projectedit/:id" element={<ProjectEdit />} />
           <Route path="/createStone/:projectId" element={<CreateStone />} />
           <Route
-            path="/stonecard/:projectId/:stoneId"
-            element={<StoneCard />}
+            path="/editStone/:projectId/:stoneId"
+            element={<EditStone />}
           />
-          <Route path="/:stoneId" element={<StoneCard />} />
-
 
           {/* ROUTES RECRUITER */}
           <Route path="/newsearch" element={<NewSearch />} />

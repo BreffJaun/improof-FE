@@ -33,13 +33,14 @@ const EditStone = () => {
   const [videoTrigger, setVideoTrigger] = useState(false);
   const [editStonePending, setEditStonePending] = useState(false);
   const [adIdsTrigger, setIdsTrigger] = useState(false);
-  const color = user.meta.colorTheme[0];
+  // const color = user.meta.colorTheme[0];
   // console.log("projectId: ", projectId)
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
     theme: "dark",
   };
+  console.log(stone);
 
   useEffect(() => {
     document.body.scrollTop = 0;

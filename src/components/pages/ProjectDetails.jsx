@@ -17,6 +17,7 @@ import TriggerContext from "../../context/triggerContext.jsx";
 //ELEMENTS
 import { TalentCard } from "../elements/TalentCard.jsx";
 import Footer from "../elements/Footer.jsx";
+import StoneCard from "../elements/StoneCard.jsx";
 
 const ProjectDetails = () => {
   const navigate = useNavigate();
@@ -27,7 +28,8 @@ const ProjectDetails = () => {
   const [isPending, setPending] = useState(true);
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
-
+  const [openStoneCard, setOpenStoneCard] = useState(false);
+  const [stone, setStone] = useState({});
 
   // FETCH CURR PROJECT
   useEffect(() => {
@@ -65,6 +67,11 @@ const ProjectDetails = () => {
     };
     getUser();
   }, [trigger]);
+  const seeStoneDetails = (stoneId) => {
+    setOpenStoneCard(!openStoneCard);
+    setStone(project.stoneId);
+    console.log(stone);
+  };
 
   return (
     !isPending &&
@@ -92,48 +99,51 @@ const ProjectDetails = () => {
             >
               create stone
             </button>
-        </div>
-
+          </div>
         )}
 
         <Chrono>
-
-          {
-            !isPending &&
-              project.stones.map((stone) => {
-                return (
-                  <div key={stone._id}>
-                    {stone.media && <img src="" alt="" />}
-                    <h1>{stone.title}</h1>
-                    <p>{stone.kind}</p>
-                    <p>{stone.description}</p>
-                    <div className="mt1 flex g05">
-                      {stone?.team?.map((member) => (
-                        <div
-                          key={member._id}
-                          className="circle50 bg-FAV central"
-                        >
-                          {member.profile.avatar ? (
-                            <img src={member.profile.avatar} width="100" />
-                          ) : (
-                            <p className="c-A100">{member.profile.initials}</p>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                    <button
-                      className={bg}
-                      onClick={() =>
-                        navigate(`/editstone/${project._id}/${stone._id}`)
-                      }
-                    >
-                      {" "}
-                      edit stone
-                    </button>
+          {!isPending &&
+            project.stones.map((stone) => {
+              return (
+                <div key={stone._id}>
+                  {stone.media && <img src="" alt="" />}
+                  <h1>{stone.title}</h1>
+                  <p>{stone.kind}</p>
+                  <p>{stone.description}</p>
+                  <div className="mt1 flex g05">
+                    {stone?.team?.map((member) => (
+                      <div key={member._id} className="circle50 bg-FAV central">
+                        {member.profile.avatar ? (
+                          <img src={member.profile.avatar} width="100" />
+                        ) : (
+                          <p className="c-A100">{member.profile.initials}</p>
+                        )}
+                      </div>
+                    ))}
                   </div>
-                );
-              })
-          }
+                  <button
+                    className={bg}
+                    onClick={() => seeStoneDetails(stone._id)}
+                  >
+                    see more details
+                  </button>
+                  {openStoneCard && (
+                    <StoneCard
+                      id={stone._id}
+                      title={stone.title}
+                      description={stone.description}
+                      media={stone.media}
+                      kind={stone.kind}
+                      team={stone.team}
+                      createdAt={stone.createdAt}
+                      projectId={project._id}
+                      projectTeam={project.team}
+                    />
+                  )}
+                </div>
+              );
+            })}
           {/* <div className="chrono-icons" id="icons">
             {project?.stones.map((stone) => {
               return (
