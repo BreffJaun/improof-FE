@@ -242,13 +242,13 @@ const CreateProject = () => {
             {/* <div className="thumbnailS"> */}
               {thumbnailUrl 
               ?
-              <img 
+              <img className="center" width={200}
                   src={thumbnailUrl} 
                   alt="thumbnail"                 
               />
               :
               project.thumbnail ?
-                <img 
+                <img width={200}
                   src={project.thumbnail} 
                   alt="thumbnail"                 
                 />

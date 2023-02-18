@@ -31,7 +31,7 @@ const News = ({ project, user }) => {
             <div
               className="news-banner bg-gA"
               onClick={() => navigate(`/projectdetails/${project._id}`)}>
-                <img src={project.thumbnail} alt="" />
+                <img src={project.thumbnail} alt="thumbnail" />
             </div>
           )}
         </div>
