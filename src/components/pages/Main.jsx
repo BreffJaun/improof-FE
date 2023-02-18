@@ -88,9 +88,17 @@ const Main = ({ modeTrigger, setModeTrigger }) => {
           <Route path="/projectedit/:id" element={<ProjectEdit />} />
           <Route path="/createStone/:projectId" element={<CreateStone />} />
           <Route
-            path="/editStone/:projectId/:stoneId"
+            path="/editstone/:projectId/:stoneId"
             element={<EditStone />}
           />
+          <Route
+            path="/editstone/:projectId/:stoneId"
+            element={<EditStone />}
+          />
+
+
+          <Route path="/:stoneId" element={<StoneCard />} />
+
 
           {/* ROUTES RECRUITER */}
           <Route path="/newsearch" element={<NewSearch />} />
