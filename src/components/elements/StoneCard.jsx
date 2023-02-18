@@ -42,28 +42,32 @@ const StoneCard = (props) => {
   // }, []);
   return (
     <div className="news-container">
-      <h1>{props.title}</h1>
+      <div className="projects-container">
+        <h1>{props.title}</h1>
+        <h6>{props.description}</h6>
 
-      <h3>
-        This is a <b>{props.kind.toUpperCase()}</b> created at {date}
-      </h3>
-      <div>{props.media}</div>
-      <h6>{props.description}</h6>
+        <h3>
+          This is a <b>{props.kind.toUpperCase()}</b> created at {date} by
+        </h3>
+        <div>{props.media}</div>
 
-      <div>
-        {props.team.map((member) => (
-          <TalentCard key={member._id} talent={member} user={user} />
-        ))}
+        <div>
+          {props.team.map((member) => (
+            <TalentCard key={member._id} talent={member} user={user} />
+          ))}
+        </div>
+        {teamMember && (
+          <button
+            className={bg}
+            onClick={() =>
+              navigate(`/editstone/${props.projectId}/${props.id}`)
+            }
+          >
+            {" "}
+            edit stone
+          </button>
+        )}
       </div>
-      {teamMember && (
-        <button
-          className={bg}
-          onClick={() => navigate(`/editstone/${props.projectId}/${props.id}`)}
-        >
-          {" "}
-          edit stone
-        </button>
-      )}
     </div>
   );
 };

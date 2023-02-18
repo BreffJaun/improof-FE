@@ -28,7 +28,7 @@ const ProjectDetails = () => {
   const [isPending, setPending] = useState(true);
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
-  const [openStoneCard, setOpenStoneCard] = useState(false);
+  const [openStoneCard, setOpenStoneCard] = useState();
   const [stone, setStone] = useState({});
 
   // FETCH CURR PROJECT
@@ -68,7 +68,7 @@ const ProjectDetails = () => {
     getUser();
   }, [trigger]);
   const seeStoneDetails = (stoneId) => {
-    setOpenStoneCard(!openStoneCard);
+    setOpenStoneCard(stoneId);
     setStone(project.stoneId);
     console.log(stone);
   };
@@ -109,16 +109,16 @@ const ProjectDetails = () => {
                 <div key={stone._id}>
                   {stone.media && <img src="" alt="" />}
                   <h1>{stone.title}</h1>
-                  <p>{stone.kind}</p>
-                  <p>{stone.description}</p>
+                  {/* <p>{stone.kind}</p> */}
+                  {/* <p>{stone.description}</p> */}
                   <div className="mt1 flex g05">
                     {stone?.team?.map((member) => (
                       <div key={member._id} className="circle50 bg-FAV central">
-                        {member.profile.avatar ? (
+                        {/* {member.profile.initials ? (
                           <img src={member.profile.avatar} width="100" />
-                        ) : (
-                          <p className="c-A100">{member.profile.initials}</p>
-                        )}
+                        ) : ( */}
+                        <p className="c-A100">{member.profile.initials}</p>
+                        {/* )} */}
                       </div>
                     ))}
                   </div>
@@ -128,7 +128,7 @@ const ProjectDetails = () => {
                   >
                     see more details
                   </button>
-                  {openStoneCard && (
+                  {openStoneCard === stone._id && (
                     <StoneCard
                       id={stone._id}
                       title={stone.title}
