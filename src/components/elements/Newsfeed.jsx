@@ -146,7 +146,16 @@ const Newsfeed = () => {
             </div>
             )} */}
             {starProjects.map(project => {
-              return project.stones.map(stone => {
+              return project.stones.sort((a,b)=> {
+                if(a.createdAt && b.createdAt){
+                  let x = a.createdAt
+                  let y = b.createdAt
+                  if (x < y) {return 1;}
+                  if (x > y) {return -1;}
+                  return 0;
+                }
+                return 0
+              }).map(stone => {
                 return (
                   <div>
                     <div>
@@ -156,16 +165,7 @@ const Newsfeed = () => {
                         <p><img className="circle50" src={member.profile.avatar}></img>{member.profile.firstName} has created a new {stone.kind} in {project.name} at {stone.createdAt}</p>
                         <NewsCard project={project} user={user}/>
                       </div>            
-                      ).sort((a,b)=> {
-                        if(a.createdAt && b.createdAt){
-                          let x = a.createdAt
-                          let y = b.createdAt
-                          if (x < y) {return -1;}
-                          if (x > y) {return 1;}
-                          return 0;
-                        }
-                        return 0
-                      })}
+                      )}
                     </div>
                   </div>
                 )               
