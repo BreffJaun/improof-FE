@@ -116,7 +116,7 @@ const TalentDetails = () => {
             {/* ----------------------------------------------- */}
           </div> : ""
         }
-        <div className="y mt1 central">
+        <div className="mt1 central">
           <div className="z">
             <button className={`x ${bg}`} onClick={() => setShowInfos(!showInfos)}>{showInfos ? "close" : "read more"}</button>
           </div>
@@ -130,7 +130,7 @@ const TalentDetails = () => {
       </div>
 
       <div className="bo-DARK"></div>
-      <div className="mt4 central col">
+      <div className="central col">
         <h1 className={color}>projects</h1>
         <p className={`${color} mb2`}>({talent.myProjects.length})</p>
         <div className="projects-container g1">
@@ -141,7 +141,7 @@ const TalentDetails = () => {
       </div>
       
       <div className="bo-DARK"></div>
-      <div className="mt4 central col">
+      <div className="central col">
         <h1 className={`central ${color}`}>following</h1>
         <p className={`central ${color} mb2`}>({talent.follows.length})</p>
         <div className="projects-container g1">

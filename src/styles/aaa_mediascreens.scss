@@ -1,7 +1,18 @@
-.max1200{
+.max1300{
     display: flex;
     flex-direction: column;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: auto;
+    border: 2px solid rgb(255, 0, 255);
 }
 
+.max{
+    width: 100%;
+    border: 2px solid greenyellow;
+}
+
+.maxM{
+    margin: auto;
+    width: 60%;
+    border: 4px solid greenyellow;
+}

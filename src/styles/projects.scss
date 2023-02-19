@@ -7,3 +7,66 @@
         gap: 1rem;
     }
 }
+
+.project{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    padding: 0;
+    width: 320px;
+    .project-banner{
+        width: 100%;
+        height: 150px;
+        margin: 0;
+        border-radius: 8px 8px 0 0;
+    };
+    .project-body{
+        display: flex;
+        position: relative;
+        width: 100%;
+        height: 110px;
+        padding: 0.5rem 1rem 0.5rem 1rem;
+        border-radius: 0 0 8px 8px;
+        >*{
+            margin-top: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .star{
+            display: flex;
+            position: absolute;
+            width: 100%;
+            bottom: -1.8rem;
+        }
+    }
+}
+
+
+.contributors-container{
+    display: flex;
+    justify-content: flex-end;
+    width: 300px;
+    .contributors{
+        display: flex;
+        position: absolute;
+        right: 0.3rem;
+        bottom: -1.2rem;
+        >*{
+            cursor: pointer;
+            display: flex;
+            padding: -1rem;
+            .contributor-image-container{
+                display: flex;
+                overflow: hidden;
+                height: 40px;
+                width: 40px;
+                border-radius: 40px;
+                outline: 3px solid white;
+                >img{
+                    object-fit: cover;
+                    width: 110%;
+                    height: 110%;
+                }
+            }
+        }
+    }
+}
