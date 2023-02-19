@@ -14,7 +14,9 @@ import { RadioColor } from "../buttons/RadioColor.jsx";
 import { TalentToProjectCard } from "../elements/TalentToProjectCard.jsx";
 
 // ICONS
-import { AiOutlineCamera as Camera} from "react-icons/ai"
+import { AiOutlineCamera as Camera } from "react-icons/ai"
+import { RiMailAddLine as MailPlus } from "react-icons/ri"
+import { RiMailCloseLine as MailMinus } from "react-icons/ri"
 
 
 const CreateProject = () => {
@@ -181,7 +183,7 @@ const CreateProject = () => {
             <input
               type="text"
               name="name"
-              placeholder="Give your project a catchy name!"
+              placeholder="Give it a catchy name!"
               required
               onChange={handleInput}
             />
@@ -229,7 +231,7 @@ const CreateProject = () => {
     {/*  - - - - - FOLLOWING COMMUNITY - - - - - */}
         <div className="bo-DARK"></div>
         <h1 className={`central ${color}`}>team setup</h1>
-        <h4 className={`center ${color} mb2`}>star talents</h4>
+        <h4 className={`center ${color} mb2`}>your star talents</h4>
         <div className="center maxM mt2">
           <div className="talent-container">
             {user.follows.length === 0 ?
@@ -278,27 +280,39 @@ const CreateProject = () => {
             <input 
               type="email" 
               name={`inviteOthers${i}`}
-                onChange={inviteInputHandler}
-                placeholer="invite to improof"
+              onChange={inviteInputHandler}
+              placeholer="invite to improof"
               key={i}
             />           
             )} 
           </div>
-          <div className="mt2 flex">
-            <button 
-              className={`mb05 rel ${bg}`}
-              onClick={addEmailFields}
-              disabled={eMailFields.length === 5}
-              >{eMailFields.length === 5 ? "you can invite more people later in the project" :"+ email"}
-            </button>
-            <button
-              className={`mb05 rel ${bg}`}  
-              onClick={subEmailFields}
-              disabled={eMailFields.length === 1}
-              >- email
-            </button>
+          <div className="central mt2 flex g3">
+
+            <div>
+              <button 
+                className={`mb05 rel ${bg} central circle40`}
+                onClick={addEmailFields}
+                disabled={eMailFields.length === 5}
+              >{eMailFields.length === 5 ? "you can invite more people later in the project" :
+              <div>
+                <h2 className="central"><MailPlus /></h2>
+              </div>}
+              </button>
+              <p>add an email</p>
+            </div>
+
+            <div>
+              <button
+                className={`mb05 rel ${bg} central circle40`}  
+                onClick={subEmailFields}
+                disabled={eMailFields.length === 1}
+                ><h2 className="central"><MailMinus /></h2> 
+                </button>
+                <p>delete the mail</p>
+              </div>
+            </div>
           </div>
-        </div>
+
 
         <div className="bo-DARK"></div>
         <div className="col">

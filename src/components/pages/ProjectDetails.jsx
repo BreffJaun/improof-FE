@@ -4,6 +4,7 @@ import "../../styles/chrono.scss";
 // import "../../styles/project-details.scss"
 // import "../../styles/chrono.scss"
 
+
 import React from "react";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -18,6 +19,9 @@ import TriggerContext from "../../context/triggerContext.jsx";
 import { TalentCard } from "../elements/TalentCard.jsx";
 import Footer from "../elements/Footer.jsx";
 import StoneCard from "../elements/StoneCard.jsx";
+
+// ICONS
+import { AiOutlineEdit as Edit } from "react-icons/ai"
 
 const ProjectDetails = () => {
   const navigate = useNavigate();
@@ -76,25 +80,33 @@ const ProjectDetails = () => {
   return (
     !isPending &&
     user && (
-      <div className="componente">
-        <div>
+      <div>
+        <div className="central col mb2">
           {project.thumbnail && (
             <img src={project.thumbnail} alt="Thumbnail" width="350" />
           )}
-          <h1>{project.name}</h1>
-          <p>{project.description}</p>
+          <h1 className={color}>"{project.name}"</h1>
+          <h4 className={color}>{project.description}</h4>
         </div>
         {project.team.find((member) => member._id === user._id) && (
-          <div>
+          <div className="center">
             <button
-              className={bg}
+              className={`${bg} circle30 central`}
               onClick={() => navigate(`/projectedit/${project._id}`)}
             >
-              edit project
+              <h3>
+                <Edit />
+              </h3>
             </button>
+            <p>edit project</p>
+          </div>
+        )}
 
+
+        {project.team.find((member) => member._id === user._id) && (
+          <div className="center">
             <button
-              className={bg}
+              className={`${bg} circle60`}
               onClick={() => navigate(`/createStone/${project._id}`)}
             >
               create stone

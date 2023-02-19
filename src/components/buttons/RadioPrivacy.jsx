@@ -13,7 +13,7 @@ const RadioPrivacy = ({ setPrivacy }) => {
 
   return (
     <>
-      <div className="central g1">
+      <div className="central g2">
         <div className="flex mb05 g05">
           <label className="ml05">privat</label>
           <input
