@@ -41,7 +41,7 @@ const StoneCard = (props) => {
   //   };
   //   fetchStone();
   // }, []);
-
+  console.log("fileType: ", props.contentType.includes("image"))
   return (
     <div className="news-container">
       <div className="projects-container">
@@ -52,8 +52,14 @@ const StoneCard = (props) => {
           This is a <b>{props.kind.toUpperCase()}</b> created at {date} by
         </h3>
         <div>
-          {props.media[0] 
+          {!props.media[0]
           ?
+          null
+          : 
+          props.contentType.includes("image")
+          ?
+          <img src={props.media[0]}/>   
+          :
           <ReactPlayer
             url={props.media[0]}
             playing={false}
@@ -67,8 +73,6 @@ const StoneCard = (props) => {
             pip={true}
             stopOnUnmount={false}
           />
-          : 
-          null          
           }   
         </div>
         <div>
