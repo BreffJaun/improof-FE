@@ -146,6 +146,7 @@ const ProjectDetails = () => {
                       title={stone.title}
                       description={stone.description}
                       media={stone.media}
+                      contentType={stone.contentType}
                       kind={stone.kind}
                       team={stone.team}
                       createdAt={stone.createdAt}
