@@ -15,9 +15,11 @@ import { AiOutlineStar as Star } from "react-icons/ai";
 import { MdOutlineClose as X } from "react-icons/md";
 import { MdLightbulbOutline as Light } from "react-icons/md";
 
+
 // CONTEXT
 import UserContext from "../context/userContext";
 import TriggerContext from "../context/triggerContext.jsx";
+
 
 const BurgerMenuTalent = ({
   setShowMenu,
@@ -126,7 +128,7 @@ const BurgerMenuTalent = ({
               setShowMenu(!showMenu);
             }}
           >
-            <button className="circle40 BrgClsBtn central" title="close">
+            <button className={`circle40 BrgClsBtn ${bg} central`} title="close">
               <X />
             </button>
           </div>

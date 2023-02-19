@@ -2,7 +2,6 @@
 import "../../styles/project-details.scss";
 import "../../styles/chrono.scss";
 // import "../../styles/project-details.scss"
-// import "../../styles/chrono.scss"
 
 
 import React from "react";
@@ -22,6 +21,8 @@ import StoneCard from "../elements/StoneCard.jsx";
 
 // ICONS
 import { AiOutlineEdit as Edit } from "react-icons/ai"
+import { AiOutlinePlus as Plus } from "react-icons/ai"
+
 
 const ProjectDetails = () => {
   const navigate = useNavigate();
@@ -81,7 +82,7 @@ const ProjectDetails = () => {
     !isPending &&
     user && (
       <div>
-        <div className="central col mb2">
+        <div className="central col mb1">
           {project.thumbnail && (
             <img src={project.thumbnail} alt="Thumbnail" width="350" />
           )}
@@ -102,18 +103,18 @@ const ProjectDetails = () => {
           </div>
         )}
 
-
+        <div className="bo-DARK"></div>
         {project.team.find((member) => member._id === user._id) && (
-          <div className="center">
+          <div className="center mt4">
             <button
-              className={`${bg} circle60`}
+              className={`${bg} circle70 central`}
               onClick={() => navigate(`/createStone/${project._id}`)}
             >
-              create stone
+              <Plus className="fs3" />
             </button>
+            <h4 className={color}>create new stone</h4>
           </div>
         )}
-
         <Chrono>
           {!isPending &&
             project.stones.map((stone) => {
@@ -181,11 +182,15 @@ const ProjectDetails = () => {
           </div> */}
         </Chrono>
 
-        <h1>Project Team</h1>
-        {project.team.map((member) => (
-          <TalentCard key={member._id} talent={member} user={user} />
-        ))}
-
+        <div className="bo-DARK"></div>
+        <div className="center">
+          <h4 className={color}>project members</h4>
+          <div  className="central mt2 g1">
+          {project.team.map((member) => (
+            <TalentCard key={member._id} talent={member} user={user} />
+          ))}
+          </div>
+        </div>
         <Footer />
       </div>
     )
