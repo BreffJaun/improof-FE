@@ -25,7 +25,6 @@ import CreateStone from "./CreateStone.jsx";
 import EditStone from "./EditStone.jsx";
 import StoneCard from "../elements/StoneCard.jsx";
 import Congrats from "../elements/Congrats.jsx";
-import StoneCard from "../elements/StoneCard.jsx";
 
 // FOOTER-COMPONENTEN
 import EFJM from "./EFJM";
