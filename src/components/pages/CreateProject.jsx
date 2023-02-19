@@ -168,16 +168,16 @@ const CreateProject = () => {
   }
 
   return (
-    <>
-      <div className="mt4 mb2">
-        <h1 className={`central ${color}`}>new project</h1>
+    < div className="max">
+      <div className="mb2">
+        <h1 className={`central ${color}`}>project setup</h1>
         <h4 className={`central ${color} mt05`}>It is time to amaze the world!</h4>
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div className="central col pa1 mb2">
+        <div className="maxM mt2">
           <div className="col">
-            <p>project name<span className={color}>*</span></p>
+            <p className="mb05 central">project name<span className={color}>*</span></p>
             <input
               type="text"
               name="name"
@@ -186,9 +186,8 @@ const CreateProject = () => {
               onChange={handleInput}
             />
           </div>
-
           <div className="col">
-            <p>description<span className={color}>*</span></p>
+            <p className="mt15 mb05 central">description<span className={color}>*</span></p>
             <input
               type="text"
               name="description"
@@ -197,9 +196,8 @@ const CreateProject = () => {
               onChange={handleInput}
             />
           </div>
-
           <div className="col">
-            <p>thumbnail</p>
+            <p className="mt15 mb05 central">thumbnail</p>
             <div className="thumbnailS">
               {thumbnailUrl ?
                 <img 
@@ -218,90 +216,112 @@ const CreateProject = () => {
               accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
             />
           </div>
-          <div className="col">
-            <p>What is the topic?<span className={color}>*</span></p>
+          <div className="col central">
+            <p className="mt15 mb05">What is the topic?<span className={color}>*</span></p>
             <CategoriesFilter setCategory={setCategory}/>
           </div>
-          <div className="col">
-            <p>colorize your project</p>
+          <div className="col central">
+            <p className="mt15 mb05">colorize your project</p>
             <RadioColor user={user} setFavColor={setFavColor} /> 
           </div>
         </div>
 
     {/*  - - - - - FOLLOWING COMMUNITY - - - - - */}
-    <div className="bo-DARK"></div>
-    <h4 className={`central ${color} mt4 mb4`}>setup your team</h4>
-    <div className="talent-container">
-      {user.follows.length === 0 ?
-      <p>get inspired by the community</p> : 
-      user.follows.map(talent => 
-        talent._id !== user._id &&
-        <TalentToProjectCard 
-          team={team} 
-          setTeam={setTeam}
-          key={talent._id}
-          talent={talent}
-          user={user} 
-        />
-      )}
-    </div>
+        <div className="bo-DARK"></div>
+        <h1 className={`central ${color}`}>team setup</h1>
+        <h4 className={`center ${color} mb2`}>star talents</h4>
+        <div className="center maxM mt2">
+          <div className="talent-container">
+            {user.follows.length === 0 ?
+            <p>get inspired by the community</p> : 
+            user.follows.map(talent => 
+              talent._id !== user._id &&
+              <TalentToProjectCard 
+                team={team} 
+                setTeam={setTeam}
+                key={talent._id}
+                talent={talent}
+                user={user} 
+              />
+            )}
+          </div>
+        </div>
 
-
-    {/*  - - - - - COMMUNITY - - - - - */}
-    <div className="mb1 mt3 central">
-        <h4 className={`central ${color} mt05`}>add new talents</h4>
-      </div>
-      <div className="talent-container">
-          {noFollows && noFollows.map((talent) =>
-          talent._id !== user._id &&
-          <TalentToProjectCard 
-            team={team} 
-            setTeam={setTeam}
-            key={talent._id}
-            talent={talent}
-            user={user} 
-        />
-      )}
-      </div>
+        {/*  - - - - - COMMUNITY - - - - - */}
+        <div className="mt3 central">
+          <h4 className={`central ${color} mt05`}>add new talents</h4>
+        </div>
+        <div className="maxM mt2">
+          <div className="talent-container">
+            {noFollows && noFollows.map((talent) =>
+            talent._id !== user._id &&
+            <TalentToProjectCard 
+              team={team} 
+              setTeam={setTeam}
+              key={talent._id}
+              talent={talent}
+              user={user} 
+            />
+          )}
+          </div>
+        </div>
         
 
-      {/*  - - - - - INVITATION - - - - - */}
-      <div className="bo-DARK"></div>
-      <div className="mb1 mt3 central">
-        <h4 className={`central ${color} mt05`}>invite to improof</h4>
+        {/*  - - - - - INVITATION - - - - - */}
+        <div className="bo-DARK"></div>
+        <div className="mb1 mt3 central">
+          <h4 className={`${color}`}>invite to improof</h4>
         </div>
-        <div className="col">
-          {eMailFields.map((el, i) => 
-          <input 
-            type="email" 
-            name={`inviteOthers${i}`}
-            onChange={inviteInputHandler}
-            key={i}
-          />           
-          )} 
-          
-          <button 
-            onClick={addEmailFields}
-            disabled={eMailFields.length === 5}
-            >{eMailFields.length === 5 ? "you can invite more people later in the project" :"+ email"}
-          </button>
-          <button 
-            onClick={subEmailFields}
-            disabled={eMailFields.length === 1}
-            >- email
-          </button>
+        <div className="maxM mt2">
+          <div className="col">
+            {eMailFields.map((el, i) => 
+            <input 
+              type="email" 
+              name={`inviteOthers${i}`}
+                onChange={inviteInputHandler}
+                placeholer="invite to improof"
+              key={i}
+            />           
+            )} 
+          </div>
+          <div className="mt2 flex">
+            <button 
+              className={`mb05 rel ${bg}`}
+              onClick={addEmailFields}
+              disabled={eMailFields.length === 5}
+              >{eMailFields.length === 5 ? "you can invite more people later in the project" :"+ email"}
+            </button>
+            <button
+              className={`mb05 rel ${bg}`}  
+              onClick={subEmailFields}
+              disabled={eMailFields.length === 1}
+              >- email
+            </button>
+          </div>
         </div>
 
         <div className="bo-DARK"></div>
         <div className="col">
-          <RadioPrivacy setPrivacy={setPrivacy}/>
-          <button type="submit" className="mt2 bg-FAV">create your project!</button>
+          <div className="mb1 central">
+            <h4 className={`${color}`}>privacy</h4>
+          </div>
+          <div className="maxM">
+            <RadioPrivacy setPrivacy={setPrivacy} />
+          </div>
         </div>
 
+        <div className="bo-DARK"></div>
+
+        <div>
+          <button
+            className={`mb2 mt2 rel ${bg}`}
+            type="submit">create your project!
+          </button>
+        </div>
       </form>
       <ToastContainer />
       <Footer />
-    </>
+    </div>
   );
 };
 

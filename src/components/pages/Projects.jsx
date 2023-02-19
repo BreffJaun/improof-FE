@@ -1,17 +1,18 @@
-import Newsfeed from "../elements/Newsfeed.jsx";
-import CategoriesFilter from "../elements/CategoriesFilter.jsx";
-import { MyProjectCard, ProjectCardNewsFeed, ProjectCard } from "../elements/ProjectCard.jsx";
-import Footer from "../elements/Footer.jsx";
-
 import { host } from "../../api/host.jsx";
 import { useContext, useState, useEffect } from "react";
-
-// STYLES
-import "../../styles/projects.scss"
 
 // CONTEXT 
 import UserContext from "../../context/userContext.jsx";
 import TriggerContext from "../../context/triggerContext.jsx";
+
+// COMPONENTS
+import CategoriesFilter from "../elements/CategoriesFilter.jsx";
+import { ProjectCard } from "../elements/ProjectCard.jsx";
+import Footer from "../elements/Footer.jsx";
+
+// STYLES
+import "../../styles/projects.scss"
+
 
 const StarProjects = () => {  
   const [user, setUser] = useContext(UserContext)
@@ -44,15 +45,11 @@ const StarProjects = () => {
 
   },[trigger])
 
+  
   // console.log(category)
   return ( !pending &&
-    <>
-      <h3 className={`central ${color} mt1 mb2`}>projects</h3>
-      <div className="central">
-        <CategoriesFilter setCategory={setCategory}/>
-      </div>
-
-      <h1 className={`center ${color} mt2 mb2`}>your star projects</h1>
+    <div className="max">
+      <h1 className={`center ${color} mb2`}>your star projects</h1>
       <div className="projects-container">
         { category ? 
         user?.starProjects.map(project => project.category === category &&
@@ -62,7 +59,12 @@ const StarProjects = () => {
         }
       </div>
     
-      <h1 className={`center ${color} mt2 mb2`}>all the other projects</h1>
+      
+      <div className="bo-DARK central rel"></div>
+      <h1 className={`center ${color} mt2 mb2`}>all projects</h1>
+            <div className="central">
+        <CategoriesFilter setCategory={setCategory}/>
+      </div>
       <div  className="projects-container">
         {category ? 
         projects.map(project => project.category === category && <ProjectCard key={project._id} user={user} project={project}/>)
@@ -73,8 +75,8 @@ const StarProjects = () => {
         })
         }
       </div>
-      <Footer/>
-    </>
+      <Footer />
+    </div>
   );
 };
 

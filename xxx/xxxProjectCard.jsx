@@ -7,12 +7,12 @@ import { useNavigate } from "react-router-dom";
 // ICONS
 import { RxCross2 } from "react-icons/rx";
 import { HiPlus } from "react-icons/hi";
-import ProjectBtn from "../buttons/ProjectBtn.jsx";
+import ProjectBtn from "../src/components/buttons/ProjectBtn.jsx";
 
 import { AiOutlineCamera as Camera} from "react-icons/ai"
 
 // ELEMENTS
-import { TalentCard } from "./TalentCard.jsx";
+import { TalentCard } from "../src/components/elements/TalentCard.jsx";
 
 const ProjectCardFollow = () => {
   return (
