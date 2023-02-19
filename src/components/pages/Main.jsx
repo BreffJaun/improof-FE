@@ -23,6 +23,7 @@ import UserEdit from "./UserEdit.jsx";
 import Conversations from "./Conversations.jsx";
 import CreateStone from "./CreateStone.jsx";
 import EditStone from "./EditStone.jsx";
+import StoneCard from "../elements/StoneCard.jsx";
 import Congrats from "../elements/Congrats.jsx";
 
 // FOOTER-COMPONENTEN
