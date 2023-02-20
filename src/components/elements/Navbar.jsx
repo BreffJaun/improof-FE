@@ -104,7 +104,7 @@ const Navbar = ({setModeTrigger, modeTrigger}) => {
           <img src={logo} alt="improof-logo" />
           <h1 className={`${user?.meta?.colorTheme[0]}`}>improof</h1>
         </div>
-        <h1 className={`logo-HL ${user.meta?.colorTheme[0]}`}>improof</h1>
+        <h1 className={`logo-HL ${user?.meta?.colorTheme[0]}`}>improof</h1>
       </div>
 
       <div>
