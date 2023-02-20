@@ -84,17 +84,17 @@ const TalentDetails = () => {
           {talent.profile.avatar ? 
           <img 
           src={user._id === talent._id ? user.profile.avatar : talent.profile.avatar} 
-          className="circle90 bg-FAV central rel"
+                className={`circle90 ${bg} central rel`}
           alt="avatar" 
           /> 
           :
-          <div className="initials circle90 bg-FAV central rel"><p>{talent.profile.initials}</p></div>
+          <div className={`circle90 ${bg} central rel initials`}><p>{talent.profile.initials}</p></div>
           }
         </div>
         {user._id === talent._id ?
             <div
               title="edit your profile"
-              className="circle40 bg-FAV central editBtn"
+              className={`circle40 ${bg} central editBtn`}
               onClick={() => navigate(`/useredit/${user._id}`)}>
             <p className="c-A100"><AiFillEdit/>
             </p>
@@ -117,13 +117,13 @@ const TalentDetails = () => {
           </div> : ""
         }
         <div className="mt1 central">
-          <div className="z">
-            <button className={`x ${bg}`} onClick={() => setShowInfos(!showInfos)}>{showInfos ? "close" : "read more"}</button>
+          <div>
+            <button className={`${bg}`} onClick={() => setShowInfos(!showInfos)}>{showInfos ? "close" : "read more"}</button>
           </div>
-          <div className="x">
+          <div>
             {user?._id !== talent._id && <FollowBtn talent={talent} user={user} /> } 
           </div>
-          <div className="x">
+          <div>
             {user._id !== talent._id && <SendMessageBtn talent={talent} user={user} />}
           </div>
         </div>
