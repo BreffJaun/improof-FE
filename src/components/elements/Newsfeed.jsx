@@ -206,7 +206,6 @@ const Newsfeed = () => {
                       <NewsfeedCard stone={stone} projectId={project._id}/>
                     </div>
                   </div>
-                </div>
               );
             })}
           </div>
