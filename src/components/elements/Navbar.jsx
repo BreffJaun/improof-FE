@@ -21,7 +21,7 @@ import UserContext from "../../context/userContext.jsx";
 import Notifications from "../pages/Notifications.jsx";
 import Conversations from "../pages/Conversations.jsx";
 
-const Navbar = ({setModeTrigger, modeTrigger}) => {
+const Navbar = ({ setModeTrigger, modeTrigger }) => {
   const [user, setUser] = useContext(UserContext);
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState({});
@@ -30,9 +30,9 @@ const Navbar = ({setModeTrigger, modeTrigger}) => {
   const [showSearch, setShowSearch] = useState(false);
   const [showNotifications, setShowNotifications] = useState(undefined);
   const [showConversations, setShowConversations] = useState(undefined);
-  const mode = user.meta.darkMode;
-  const color = user.meta.colorTheme[0];
-  const bg = user.meta.colorTheme[1];
+  const mode = user?.meta.darkMode;
+  const color = user?.meta.colorTheme[0];
+  const bg = user?.meta.colorTheme[1];
 
   const navigate = useNavigate();
 
@@ -41,10 +41,9 @@ const Navbar = ({setModeTrigger, modeTrigger}) => {
     con.message.filter((msg) => !msg.isRead && msg?.from != user._id)
   );
   const unreadMsgs = unreadMsgsSTEPONE
-    .map((arr) => arr.length)
+    ?.map((arr) => arr.length)
     .reduce((a, b) => a + b, 0);
 
-  
   useEffect(() => {
     const getSearch = async () => {
       await fetch(`${host}/search`, {
@@ -96,9 +95,7 @@ const Navbar = ({setModeTrigger, modeTrigger}) => {
     showNotifications !== undefined && handleReadNotification();
   }, [showNotifications, showConversations]);
 
-
   return (
-
     <div className={`navbar-container`} id={mode ? `bgG` : ``}>
       <div onClick={() => navigate("/")} className="navbar-left">
         <div className={`logo-container ${bg}`}>
@@ -173,7 +170,12 @@ const Navbar = ({setModeTrigger, modeTrigger}) => {
 
         <div>
           {showMenu && user?.profile?.isTalent && (
-            <BurgerMenuTalent setShowMenu={setShowMenu} showMenu={showMenu} setModeTrigger={setModeTrigger} modeTrigger={modeTrigger}/>
+            <BurgerMenuTalent
+              setShowMenu={setShowMenu}
+              showMenu={showMenu}
+              setModeTrigger={setModeTrigger}
+              modeTrigger={modeTrigger}
+            />
           )}
           {showMenu && user?.profile?.isRecruiter && (
             <BurgerMenuRecruiter
