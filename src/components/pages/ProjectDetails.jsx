@@ -30,7 +30,8 @@ const ProjectDetails = () => {
   const bg = user.meta.colorTheme[1];
   const [openStoneCard, setOpenStoneCard] = useState();
   const [stone, setStone] = useState({});
-
+  const [buttonText, setButtonText] = useState("see details");
+  // const []
   // FETCH CURR PROJECT
   useEffect(() => {
     document.body.scrollTop = 0;
@@ -70,7 +71,7 @@ const ProjectDetails = () => {
   const seeStoneDetails = (stoneId) => {
     setOpenStoneCard(stoneId);
     setStone(project.stoneId);
-    console.log(stone);
+    setButtonText("close");
   };
 
   return (
@@ -126,7 +127,7 @@ const ProjectDetails = () => {
                     className={bg}
                     onClick={() => seeStoneDetails(stone._id)}
                   >
-                    see more details
+                    {buttonText}
                   </button>
                   {openStoneCard === stone._id && (
                     <StoneCard
