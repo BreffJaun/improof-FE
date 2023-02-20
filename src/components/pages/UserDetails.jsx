@@ -114,6 +114,34 @@ const TalentDetails = () => {
               </div>
             }
             {/* ----------------------------------------------- */}
+            {talent.profile.goal &&
+              <div className="mb1">
+                <p className={color}>goal</p>
+                <p>{talent.profile.goal}</p>
+              </div>
+            }
+            {/* ----------------------------------------------- */}
+            {talent.profile.position &&
+              <div className="mb1">
+                <p className={color}>position</p>
+                <p>{talent.profile.position}</p>
+              </div>
+            }
+            {/* ----------------------------------------------- */}
+            {talent.profile.category &&
+              <div className="mb1">
+                <p className={color}>category</p>
+                <p>{talent.profile.category}</p>
+              </div>
+            }
+            {/* ----------------------------------------------- */}
+            {talent.profile.toolsAndSkills &&
+              <div className="mb1">
+                <p className={color}>Tools and Skills</p>
+                <p>{talent.profile.toolsAndSkills}</p>
+              </div>
+            }
+            {/* ----------------------------------------------- */}
           </div> : ""
         }
         <div className="mt1 central">
@@ -157,17 +185,10 @@ const TalentDetails = () => {
         {showContact ?
           <div className="col mb1">
             {/* ----------------------------------------------- */}
-            {talent.contact.company &&
+            {talent.contact.mobile &&
               <div className="mb1">
-                <p className={color}>company</p>
-                <p>{talent.contact.company}</p>
-              </div>
-            }
-            {/* ----------------------------------------------- */}
-            {talent.profile.position &&
-              <div className="mb1">
-                <p className={color}>position</p>
-                <p>{talent.profile.position}</p>
+                <p className={color}>mobile</p>
+                <p>{talent.contact.mobile}</p>
               </div>
             }
             {/* ----------------------------------------------- */}
@@ -176,7 +197,43 @@ const TalentDetails = () => {
                 <p className={color}>website</p>
                 <p>{talent.contact.website}</p>
               </div>
-            }     
+            }
+            {/* ----------------------------------------------- */}
+            {talent.contact.online1 &&
+              <div className="mb1">
+                <p className={color}>online profile #1</p>
+                <p>{talent.contact.online1}</p>
+              </div>
+            }
+            {/* ----------------------------------------------- */}
+            {talent.contact.online2 &&
+              <div className="mb1">
+                <p className={color}>online profile #2</p>
+                <p>{talent.contact.online2}</p>
+              </div>
+            }
+            {/* ----------------------------------------------- */}
+            {talent.contact.online3 &&
+              <div className="mb1">
+                <p className={color}>online profile #3</p>
+                <p>{talent.contact.online3}</p>
+              </div>
+            }
+            {/* ----------------------------------------------- */} 
+            {talent.contact.company &&
+              <div className="mb1">
+                <p className={color}>company</p>
+                <p>{talent.contact.company}</p>
+              </div>
+            }
+            {/* ----------------------------------------------- */} 
+            {talent.location.city &&
+              <div className="mb1">
+                <p className={color}>city</p>
+                <p>{talent.location.city}</p>
+              </div>
+            }
+            {/* ----------------------------------------------- */}
           </div> : ""
         }
         <button className={bg} onClick={() => setShowContact(!showContact)}>{showContact ? "close" : "show me"}</button>

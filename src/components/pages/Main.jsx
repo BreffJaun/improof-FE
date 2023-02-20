@@ -53,7 +53,7 @@ const Main = ({ modeTrigger, setModeTrigger }) => {
         if (json.status) {
           setUser(json.user);
           setPending(false);
-          if (json.user?.meta.loginCount === 1) {
+          if (json.user?.meta?.loginCount === 1) {
             navigate("/congrats");
           }
         } else {

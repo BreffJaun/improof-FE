@@ -27,11 +27,15 @@ const Notifications = ({ setShowNotifications }) => {
                   return (
                     <div className="mb1" key={notification._id}>
                       <p
-                        className={notification.isRead ? { color } : "bg-gGR1"}
+                        // className={notification.isRead ? { color } : "bg-gGR1"}
+                        className={color}
                       >
                         {notification.notText}
                       </p>
-                      <p>{date + "   " + time}</p>
+                      <p>
+                        <span className="fw700">{time}</span> - {date}
+                        {notification.isRead && "&#128308"}
+                      </p>
                     </div>
                   );
                 })

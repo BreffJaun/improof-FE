@@ -30,9 +30,9 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
   const [showSearch, setShowSearch] = useState(false);
   const [showNotifications, setShowNotifications] = useState(undefined);
   const [showConversations, setShowConversations] = useState(undefined);
-  const mode = user?.meta.darkMode;
-  const color = user?.meta.colorTheme[0];
-  const bg = user?.meta.colorTheme[1];
+  const mode = user?.meta?.darkMode;
+  const color = user?.meta?.colorTheme[0];
+  const bg = user?.meta?.colorTheme[1];
 
   const navigate = useNavigate();
 
@@ -100,8 +100,9 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
       <div onClick={() => navigate("/")} className="navbar-left">
         <div className={`logo-container ${bg}`}>
           <img src={logo} alt="improof-logo" />
+          <h1 className={`${user?.meta?.colorTheme[0]}`}>improof</h1>
         </div>
-        <h1 className={`logo-HL ${user.meta?.colorTheme[0]}`}>improof</h1>
+        <h1 className={`logo-HL ${user?.meta?.colorTheme[0]}`}>improof</h1>
       </div>
 
       <div>
