@@ -33,8 +33,8 @@ const TalentDetails = () => {
   const [showContact, setShowContact] = useState(false)
   const [showInfos, setShowInfos] = useState(false)
 
-  const color = user.meta.colorTheme[0]
-  const bg = user.meta.colorTheme[1]
+  const color = talent?.meta?.colorTheme[0]
+  const bg = talent?.meta?.colorTheme[1]
 
   useEffect(() => {
     document.body.scrollTop = 0;
