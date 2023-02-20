@@ -1,4 +1,5 @@
 import { host } from "../../api/host.jsx";
+import { useNavigate } from "react-router";
 import { useContext, useEffect, useSate, useState } from "react";
 import {
   CarouselProvider,
@@ -20,6 +21,8 @@ import UserContext from "../../context/userContext.jsx";
 import { IoIosArrowBack as Back } from "react-icons/io";
 import { IoIosArrowForward as Forward } from "react-icons/io";
 
+import NewsfeedCard from "./NewsfeedCard.jsx";
+
 const Newsfeed = () => {
   const [projects, setProjects] = useState([]);
   const [starProjects, setStarProjects] = useState([]);
@@ -27,6 +30,7 @@ const Newsfeed = () => {
   const [category, setCategory] = useState("");
   const [sortedList, setSortedList] = useState(projects)
   const [stoneswithProjects, setStoneswithProjects] = useState([])
+  const navigate = useNavigate()
 
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
@@ -74,21 +78,27 @@ const Newsfeed = () => {
       })
         .then((response) => response.json())
         .then((json) => {
-          const newsfeedData = []
-          for (let i = 0 ; i < json.data.length ; i++){
-            newsfeedData.push(...json.data[i].stones)
+          const newsfeedData = [];
+          for (let i = 0; i < json.data.length; i++) {
+            newsfeedData.push(...json.data[i].stones);
           }
 
-          setStoneswithProjects(newsfeedData.sort((a,b)=> {
-            if(a.createdAt && b.createdAt){
-              let x = a.createdAt
-              let y = b.createdAt
-              if (x < y) {return 1;}
-              if (x > y) {return -1;}
+          setStoneswithProjects(
+            newsfeedData.sort((a, b) => {
+              if (a.createdAt && b.createdAt) {
+                let x = a.createdAt;
+                let y = b.createdAt;
+                if (x < y) {
+                  return 1;
+                }
+                if (x > y) {
+                  return -1;
+                }
+                return 0;
+              }
               return 0;
-            }
-            return 0
-          }))
+            })
+          );
           setStarProjects(json.data);
         });
     };
@@ -164,39 +174,40 @@ const Newsfeed = () => {
         <h1 className={`${color} center mt1`}>newsfeed</h1>
         <div className="">
           <div>
-
-            {/* ICH BRAUCHE EIN ARRAY MIT DEN NACH DATUM SORTIERTEN STONES INDEM DIE ID´S DES PROJECTS SIND DAMIT DIE REIHENFOLGE DER ANGEZEIGTEN STONES STIMMT, DANN IN DEN STONES MIT FIND DAS ZUGEHÖRIGE PROJEKT FINDEN UM ALLE DATEN AM RICHTIGEN ORT ZU HABEN*/}
-
             {stoneswithProjects.map(stone => {
-                const date1 = stone.createdAt.toString().split("T")
+                const date1 = stone.createdAt?.toString().split("T")
                 const date = date1[0].split("-").reverse().join(".")
                 const time = date1[1].slice(0,5) 
-                return (
-                  <div>
-                    <div>
-                      {stone.team.map(member =>{     
-                      let project = {}
+                let project = {}
                       for (let i = 0 ; i<starProjects.length ; i++){
                         const pro = starProjects[i].stones.find(findStone => findStone._id === stone._id && starProjects[i])
                         if(pro !== undefined)
                         project = starProjects[i]
                       }
-                      console.log("PROJECT",project);
-                      
-                      return <div>
-                        {/* <img className="circle50" src={member.profile.avatar}></img> */}
-                        <p><img className="circle50" src={member.profile.avatar}></img>{member.profile.firstName} {member.profile.lastName} has created a new {stone.kind.toUpperCase()} in {project?.name} <br/>{date} {time}</p>
-                        <NewsCard project={project} user={user}/>
-                      </div>            
-
+                return (
+                  <div className="mt5">
+                    <div >
+                      <div className="flex">
+                        {stone.team.map(member =>{
+                        return ( 
+                          <>
+                            <img className="circle50" src={member.profile.avatar} onClick={()=>navigate(`/userdetails/${member._id}`)}/>
+                            {/* <p>{member.profile.firstName}</p>                                                   */}
+                          </>          
+                        )                         
                       }
-                      )}
+                        )}
+
+                      </div>
+                      <h3>
+                      New {stone.kind.toUpperCase()} in {project?.name} <br/>{date} {time}
+
+                      </h3>
+                      <NewsfeedCard stone={stone} projectId={project._id}/>
                     </div>
                   </div>
-                )               
-              })
-            }
-         
+              );
+            })}
           </div>
         </div>
       </div>
