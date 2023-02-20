@@ -63,3 +63,10 @@ h3{
 .fs3{
     font-size: 3rem;
 }
+
+.overflow{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    width: 100%;
+    height: 2.7rem;
+}

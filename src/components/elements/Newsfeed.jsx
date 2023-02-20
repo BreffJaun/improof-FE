@@ -32,8 +32,8 @@ const Newsfeed = () => {
   const [stoneswithProjects, setStoneswithProjects] = useState([])
   const navigate = useNavigate()
 
-  const color = user.meta.colorTheme[0];
-  const bg = user.meta.colorTheme[1];
+  const color = user?.meta?.colorTheme[0]
+  const bg = user?.meta?.colorTheme[1]
 
   useEffect(() => {
     const sorted = projects.sort((a, b) => {
@@ -66,7 +66,7 @@ const Newsfeed = () => {
     };
     getProjects();
 
-    const starProjectIds = user.starProjects.map((pro) => pro._id);
+    const starProjectIds = user?.starProjects?.map(pro => pro._id)
     const getStarProjects = async () => {
       fetch(`${host}/projects/news`, {
         credentials: "include",
