@@ -39,10 +39,10 @@ function App() {
         if (json.status) {
           setUser(json.user);
 
-          if (json.user?.meta?.loginCount === 1) {
-            navigate("/congrats");
-          }
-        } else {
+        //   if (json.user?.meta?.loginCount === 1) {
+        //     navigate("/congrats");
+        //   }
+        // } else {
           navigate("/login");
         }
       });

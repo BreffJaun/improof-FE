@@ -2,6 +2,7 @@ import { useContext } from "react";
 
 // ICONS
 import { MdOutlineClose as X } from "react-icons/md";
+import { GoPrimitiveDot } from "react-icons/go";
 
 //CONTEXT
 import UserContext from "../../context/userContext.jsx";
@@ -33,8 +34,12 @@ const Notifications = ({ setShowNotifications }) => {
                         {notification.notText}
                       </p>
                       <p>
-                        <span className="fw700">{time}</span> - {date}
-                        {notification.isRead && "&#128308"}
+                          <span className="fw700">{time}</span> - {date}
+                          {!notification.isRead && 
+                          <span className="red-dot">
+                            <GoPrimitiveDot/>
+                          </span>
+                          }
                       </p>
                     </div>
                   );

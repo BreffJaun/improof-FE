@@ -30,8 +30,10 @@ const UserEdit = () => {
   const [isPending, setIsPending] = useState(true);
   const [uploadPending, setUploadPending] = useState(false);
 
-  const [favColor, setFavColor] = useState("");
-  const color = favColor[0];
+  const [favColor, setFavColor] = useState("")
+  // const color = favColor[0]
+  const color = talent?.meta?.colorTheme[0]
+  const bg = talent?.meta?.colorTheme[1]
 
   const navigate = useNavigate();
 
@@ -117,8 +119,8 @@ const UserEdit = () => {
             // toast.info(data.message)
             setAvatar(undefined);
             setUploadPending(false);
-            if (!uploadPending) {
-              location.reload();
+            if(!uploadPending) {
+              navigate(`/userdetails/${user._id}`)
             }
           }
           if (data.error) {
@@ -138,53 +140,41 @@ const UserEdit = () => {
   ) : !isPending && user.profile.isTalent ? (
     <>
       <form onSubmit={handleSubmit} encType="multipart/form">
-        <div className="central col mt3">
-          <div className="circle90 bg-FAV central rel">
-            {avatarUrl ? (
-              <img
-                src={avatarUrl}
-                className="circle90 bg-FAV central rel"
-                alt="avatar"
-              />
-            ) : user.profile.avatar ? (
-              <img
-                src={user.profile.avatar}
-                className="circle90 bg-FAV central rel"
-                alt="avatar"
-              />
-            ) : (
-              <div className="initials">
-                <p>{user.profile.initials}</p>
-              </div>
-            )}
-
-            <div
-              title="upload image"
-              className="circle40 bg-FAV central editBtn"
-            >
-              {/* <p className="c-A100">image</p> */}
-              <input
-                onChange={avatarUploadHandler}
-                name="avatar"
-                type="file"
-                accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
-              />
-            </div>
-          </div>
-          <h1
-            className={`central ${
-              color ? color : user.meta.colorTheme[0]
-            } mt05`}
-          >
-            Hi, {talent.profile.firstName}!
-          </h1>
-          <p className={`central ${color ? color : user.meta.colorTheme[0]}`}>
-            Let´s spice up your profile!
-          </p>
-        </div>
-        <div>
-          <RadioColor user={talent} setFavColor={setFavColor} />
-        </div>
+      <div className="central col mt3">
+        <div className="circle90 bg-FAV central rel">
+          {avatarUrl 
+          ?
+          <img 
+          src={avatarUrl} 
+          className={`circle90 ${bg} central rel`}
+          alt="avatar" /> 
+          :          
+          user.profile.avatar 
+          ? 
+          <img 
+          src={user.profile.avatar} 
+          className={`circle90 ${bg} central rel`}
+          alt="avatar" /> 
+          :
+          <div className="initials"><p>{user.profile.initials}</p></div>
+        }
+      
+        <div
+          title="upload image"
+          className= {`circle40 ${bg} central editBtn`}>
+          {/* <p className="c-A100">image</p> */}
+          <input 
+          onChange={avatarUploadHandler} 
+          name="avatar" 
+          type="file"
+          accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
+          />
+      </div>
+      </div>
+        <h1 className={`central ${color ? color : user.meta.colorTheme[0] } mt05`}>Hi, {talent.profile.firstName}!</h1>
+        <p className={`central ${color ? color : user.meta.colorTheme[0]}`}>Let´s spice up your profile!</p>
+      </div>
+      <div><RadioColor user={talent} setFavColor={setFavColor}/></div>
 
         <div className="col mt2 mb1">
           <p>

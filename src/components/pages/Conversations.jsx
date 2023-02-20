@@ -5,6 +5,7 @@ import { host } from "../../api/host.jsx";
 
 // ICONS
 import { MdOutlineClose as X } from "react-icons/md";
+import { GoPrimitiveDot } from "react-icons/go";
 
 const Conversations = ({
   setShowConversations,
@@ -52,7 +53,7 @@ const Conversations = ({
                   return (
                     participant && (
                       <div
-                        className={unread && "bg-FAV"}
+                        // className={unread && "bg-FAV"}
                         key={con._id}
                         onClick={() => {
                           navigate(`/messages/${con._id}`);
@@ -77,6 +78,11 @@ const Conversations = ({
                             </p>
                             <p>
                               <span className="fw700">{time}</span> - {date}
+                              {unread &&
+                              <span className="red-dot">
+                                <GoPrimitiveDot/>
+                              </span>
+                              }
                             </p>
                           </div>
                         </div>

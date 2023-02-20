@@ -9,9 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/material": "^5.11.8",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "dotenv": "^16.0.3",
     "multer-gridfs-storage": "^5.0.2",
     "pigeon-maps": "^0.21.3",
