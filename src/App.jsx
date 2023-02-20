@@ -7,7 +7,7 @@ import { host } from "./api/host.jsx";
 
 // STYLES
 import "./App.css";
-import "./styles/aaa_mediascreens.scss"
+import "./styles/aaa_mediascreens.scss";
 import "./styles/general.scss";
 import "./styles/fonts.scss";
 import "./styles/elements.scss";
@@ -25,13 +25,12 @@ import UserContext from "./context/userContext.jsx";
 function App() {
   const [count, setCount] = useState(0);
   const [user, setUser] = useContext(UserContext);
-  const [modeTrigger, setModeTrigger] = useState(false)
-  const mode = user?.meta?.darkMode;
+  const [modeTrigger, setModeTrigger] = useState(false);
+  const mode = user.meta?.darkMode;
   // const body = document.querySelector("body");
   // mode && body.classList.add(`bgG`);
 
   useEffect(() => {
-
     fetch(`${host}/users/checklogin`, {
       credentials: "include",
     })
@@ -49,14 +48,18 @@ function App() {
       });
   }, [modeTrigger]);
 
-
   return (
     <div className={mode ? `App bgG` : `App`}>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="*" element={<Main modeTrigger={modeTrigger} setModeTrigger={setModeTrigger}/>} />
-        </Routes>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route
+          path="*"
+          element={
+            <Main modeTrigger={modeTrigger} setModeTrigger={setModeTrigger} />
+          }
+        />
+      </Routes>
     </div>
   );
 }

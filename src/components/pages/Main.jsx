@@ -71,7 +71,7 @@ const Main = ({ modeTrigger, setModeTrigger }) => {
           modeTrigger={modeTrigger}
         />
         {/* <LogoS /> */}
-          <div className="max1300">
+        <div className="max1300">
           <Routes>
             <Route path="/" element={<Start />} />
             <Route path="/efjm" element={<EFJM />} />
@@ -89,9 +89,11 @@ const Main = ({ modeTrigger, setModeTrigger }) => {
             <Route path="/projectdetails/:id" element={<ProjectDetails />} />
             <Route path="/projectedit/:id" element={<ProjectEdit />} />
             <Route path="/createStone/:projectId" element={<CreateStone />} />
-            <Route path="/editstone/:projectId/:stoneId" element={<EditStone />}/>
+            <Route
+              path="/editstone/:projectId/:stoneId"
+              element={<EditStone />}
+            />
             <Route path="/:stoneId" element={<StoneCard />} />
-
 
             {/* ROUTES RECRUITER */}
             <Route path="/newsearch" element={<NewSearch />} />
@@ -102,8 +104,8 @@ const Main = ({ modeTrigger, setModeTrigger }) => {
             <Route path="/messages/:id" element={<Messages />} />
             <Route path="/conversations" element={<Conversations />} />
             <Route path="/congrats" element={<Congrats />} />
-            </Routes>
-          </div>
+          </Routes>
+        </div>
         <ToastContainer />
       </>
     )
