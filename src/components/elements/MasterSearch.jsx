@@ -1,23 +1,28 @@
-import { MyProjectCard, ProjectCardNewsFeed } from "./ProjectCard.jsx";
-import { TalentCard } from "./TalentCard.jsx";
+import { ProjectCardS, ProjectCardNewsFeed } from "./ProjectCard.jsx";
+import { TalentCard, TalentCardS } from "./TalentCard.jsx";
 import { useContext } from "react";
 
 import UserContext from "../../context/userContext.jsx";
 
 const MasterSearch = ({projects, talents, setShowSearch, showSearch}) => {
   const [user, setUser] = useContext(UserContext)
+  const color = user.meta.colorTheme[0]
+  const bg = user.meta.colorTheme[1]
+  
 
   return (
     <div className="burger-container rel">
       <div>
-        <div>
+        <p className="mb2 info center">search results</p>
+        <div className="scroll-container">
+          <div className="col mr1">
           {
           talents.length > 0 && 
           <>
-            <h1>Talents</h1>
+            {/* <p className={`${color} fw700 mb1 central`}>talents</p> */}
             {talents.map((talent, i) => talent.profile.isTalent && talent._id !== user._id && 
               <div onClick={()=>setShowSearch(false)}  key={i}>
-                <TalentCard 
+                <TalentCardS 
                 talent={talent} 
                 user={user} /> 
               </div> 
@@ -30,10 +35,10 @@ const MasterSearch = ({projects, talents, setShowSearch, showSearch}) => {
           {
           projects.length && 
           <>
-            <h1>Projects</h1>
+            {/* <p className={`${color} fw700 mt2 mb1 central`}>projects</p> */}
             {projects.map((project, i) => 
               <div onClick={()=>setShowSearch(false)} key={i}>
-                <ProjectCardNewsFeed 
+                <ProjectCardS 
                 project={project} 
                 user={user} /> 
               </div>
@@ -43,7 +48,8 @@ const MasterSearch = ({projects, talents, setShowSearch, showSearch}) => {
           }
         </div>
       </div>
-    </div>
+      </div>
+      </div>
   );
 };
 
