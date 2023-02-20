@@ -19,7 +19,7 @@ const MasterSearch = ({projects, talents, setShowSearch, showSearch}) => {
           {
           talents.length > 0 && 
           <>
-            {/* <p className={`${color} fw700 mb1 central`}>talents</p> */}
+            <p className={`${color} fw700 mb1 central`}>talents</p>
             {talents.map((talent, i) => talent.profile.isTalent && talent._id !== user._id && 
               <div onClick={()=>setShowSearch(false)}  key={i}>
                 <TalentCardS 
@@ -33,9 +33,9 @@ const MasterSearch = ({projects, talents, setShowSearch, showSearch}) => {
         </div>
         <div>          
           {
-          projects.length && 
+          projects.length > 0 && 
           <>
-            {/* <p className={`${color} fw700 mt2 mb1 central`}>projects</p> */}
+            <p className={`${color} fw700 mt2 mb1 central`}>projects</p>
             {projects.map((project, i) => 
               <div onClick={()=>setShowSearch(false)} key={i}>
                 <ProjectCardS 

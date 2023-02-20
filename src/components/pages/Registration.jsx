@@ -68,7 +68,7 @@ const Registration = () => {
 
 
     return (
-        <>
+        <div>
             <div className="mb2 mt2">
                 <LogoL/>
             </div>
@@ -77,13 +77,15 @@ const Registration = () => {
             <form onSubmit={handleSubmit}>
                 <div className="central col">
                     <input
+                        className="mb05"
                         type="text"
                         name="firstName"
                         placeholder="first name"
                         required
                         onChange={handleInput}
                     />
-                    <input 
+                    <input
+                        className="mb05"    
                         type="text" 
                         name="lastName" 
                         placeholder="last name" 
@@ -91,6 +93,7 @@ const Registration = () => {
                         onChange={handleInput} 
                     />
                     <input 
+                        className="mb05"
                         type="email" 
                         name="email" 
                         placeholder="email" 
@@ -99,20 +102,20 @@ const Registration = () => {
                     />
                 </div>
                 <div className="central col mb2 mt2">
-                    <input type="password" name="password" placeholder="password" required onChange={handleInput}/>
+                    <input className="mb05" type="password" name="password" placeholder="password" required onChange={handleInput}/>
                     <input type="password" name="confirmPassword" placeholder="confirm password" required onChange={handleInput}/>
                 </div>
                 <div className="central">
-                    <div className="mb05">
+                    <div className="mb05 flex">
+                        <label className="mr05">i am a talent</label>
                         <input
                             type="radio"
                             name="whoAmI"
                             value="isTalent"
                             onChange={handleTalent}
                         />
-                        <label className="ml05">i am a talent</label>
                     </div>
-                    <div className="mb05 ml2">
+                    <div className="mb05 ml2 flex">
                         <input
                             type="radio"
                             name="whoAmI"
@@ -133,7 +136,7 @@ const Registration = () => {
             </form>
             <Footer/>
             <ToastContainer />
-        </>
+        </div>
     )
 }
 
