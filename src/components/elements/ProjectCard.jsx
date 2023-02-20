@@ -195,8 +195,70 @@ const ProjectCard = ({ project, user }) => {
 
 
 
+const ProjectCardS = ({ project, user }) => {
+  const navigate = useNavigate();
+  return (Object.keys(project).length > 0 &&
+    <div className="col">
+      <div className="project card col">
+        {!project.thumbnail && (
+          <div
+            className="project-banner bg-gA central col"
+            onClick={() => navigate(`/projectdetails/${project._id}`)}>
+          <h1><Camera /></h1>
+          <p>i have no photo for you today!</p>
+          </div>
+        )}
+        {project.thumbnail && (
+            <img className="project-banner bg-FAV" src={project.thumbnail} alt="" onClick={() => navigate(`/projectdetails/${project._id}`)}/>
+        )}
+        <div>
+          {project?.team?.length && (
+            <div className="contributors-container col rel">
+              <div className="contributors">
+                <div className="flex">
+                  {project?.team?.length &&
+                    project?.team?.map((member) => (
+                      <div
+                        key={member._id}
+                        className="contributor-image-container bg-FAV central"
+                        onClick={() => navigate(`/userDetails/${member._id}`)}
+                      >
+                        {member?.profile?.avatar ? (
+                          <img src={member.profile.avatar}/>
+                        ) : (
+                          <p className="initials">
+                            {member.profile?.initials}
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="project-body col rel">
+          <div onClick={() => navigate(`/projectdetails/${project._id}`)}>
+            <h3 className="mt035 fw900">{project?.name}</h3>
+            <p className="mt015">{project?.description}</p>
+          </div>
+          <div className="star central">
+            <div>
+              <ProjectBtn project={project} user={user} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
+
+
 export {
   MyProjectCard,
   ProjectCardNewsFeed,
   ProjectCard,
+  ProjectCardS
 };
