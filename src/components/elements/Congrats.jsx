@@ -2,6 +2,11 @@ import { useEffect } from "react";
 import "../../styles/congrats.scss";
 import logo from "../../images/improof_OR.png";
 import { useNavigate } from "react-router-dom";
+import logoBlue from "../../images/improof_BL.png";
+import logoOrange from "../../images/improof_OR.png";
+import logoPink from "../../images/improof_PI.png";
+import logoYellow from "../../images/improof_YE.png";
+import logoPurple from "../../images/improof_PU.png";
 
 const Congrats = () => {
   const navigate = useNavigate();
@@ -14,42 +19,24 @@ const Congrats = () => {
 
   return (
     <>
-      <div className="logoContainer ">
-        <div className="logoXXL-congrats one col">
-          <img src={logo} alt="logo" />
+      <div className="congrats_container">
+        <div className="logo_blue">
+          <img src={logoBlue} alt="logo" />
+        </div>
+        <div className="logo_lightblue">
+          <img src={logoBlue} alt="logo" />
+        </div>
+
+        <div className="logo_orange">
+          <img src={logoOrange} alt="logo" />
+        </div>
+        <div className="logo_purple">
+          <img src={logoPurple} alt="logo" />
+        </div>
+        <div className="logo_pink">
+          <img src={logoPink} alt="logo" />
         </div>
       </div>
-      <div className="logoContainer ">
-        <div className="logoXXL-congrats oneOne col">
-          <img src={logo} alt="logo" />
-        </div>
-      </div>
-      {/* <div className="logoContainer">
-        <div className="logoXXL-congrats two col">
-          <img src={logo} alt="logo" />
-        </div>
-      </div>
-      <div className="moto">
-        <h1>
-          Welcome <br />
-          to <strong>improof</strong>
-        </h1>
-      </div>
-      <div className="logoContainer ">
-        <div className="logo-congrats three col">
-          <img src={logo} alt="logo" />
-        </div>
-      </div>
-      <div className="logoContainer">
-        <div className="logo-congrats  four col">
-          <img src={logo} alt="logo" />
-        </div>
-      </div>{" "}
-      <div className="logoContainer">
-        <div className="logoXXL-congrats col five">
-          <img src={logo} alt="logo" />
-        </div>
-      </div> */}
     </>
   );
 };

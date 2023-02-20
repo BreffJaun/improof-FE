@@ -1,14 +1,36 @@
-.logoContainer{
-  display: flex;
-  justify-content: center;
+.congrats_container{
+  position: relative;
+  width: 70vw;
+  max-height:80vh;
+  border: 3px solid hotpink;
 }
 
+.logo_blue{
+  position:absolute;
 
-// .rightcorner{
-//   position: absolute;
-//   bottom: -20vw;
-//   right: 15vw;
-// }
+  >img{
+    width:110%
+   }
+}
+.logo_lightblue{
+ position: absolute;
+ >img{
+  width:10rem
+ }
+
+
+
+}
+.logo_orange{
+
+}
+
+.logo_purple{
+
+}
+.logo_pink{
+
+}
 
 .logoL-congrats{
   align-items: center;
