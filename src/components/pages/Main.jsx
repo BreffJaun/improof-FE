@@ -38,7 +38,7 @@ const Main = ({ modeTrigger, setModeTrigger }) => {
   const [isPending, setPending] = useState(true);
   // const [modeTrigger, setModeTrigger] = useState(false)
   const navigate = useNavigate();
-  const mode = user.meta?.darkMode;
+  const mode = user?.meta?.darkMode;
   // const body = document.querySelector("body");
   // mode && body.classList.add(`bgG`);
 
@@ -53,7 +53,7 @@ const Main = ({ modeTrigger, setModeTrigger }) => {
         if (json.status) {
           setUser(json.user);
           setPending(false);
-          if (json.user.meta.loginCount === 1) {
+          if (json.user?.meta?.loginCount === 1) {
             navigate("/congrats");
           }
         } else {

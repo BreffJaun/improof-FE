@@ -28,7 +28,7 @@ const CreateProject = () => {
   const initial = {userId: user._id}
   const [thumbnail, setThumbnail] = useState(undefined)
   const [thumbnailUrl, setThumbnailUrl] = useState("");
-  const [projectColor, setProjectColor] = useState("orange")
+  // const [projectColor, setProjectColor] = useState("orange")
   const [category, setCategory] = useState(undefined)
   const [privacy, setPrivacy] = useState(false)
   const [newProject, setNewProject] = useState(initial)
@@ -42,6 +42,7 @@ const CreateProject = () => {
   const [addUserToTeamTrigger, setAddUserToTeamTrigger] = useState(false);
   const color = user.meta.colorTheme[0]
   const bg = user.meta.colorTheme[1]
+  // console.log("projectColor: ", projectColor)
 
   const noFollowsFilter = (arr1, arr2) => {
     let clean = [];
@@ -186,6 +187,7 @@ const CreateProject = () => {
               name="name"
               placeholder="Give it a catchy name!"
               required
+              maxLength={20}
               onChange={handleInput}
             />
           </div>
@@ -196,6 +198,7 @@ const CreateProject = () => {
               name="description"
               placeholder="what is your project about?"
               required
+              maxLength={150}
               onChange={handleInput}
             />
           </div>
@@ -284,7 +287,7 @@ const CreateProject = () => {
               type="email" 
               name={`inviteOthers${i}`}
               onChange={inviteInputHandler}
-              placeholer="invite to improof"
+              placeholder="invite to improof"
               key={i}
             />           
             )} 

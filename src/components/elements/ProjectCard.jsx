@@ -180,7 +180,7 @@ const ProjectCard = ({ project, user }) => {
         <div className="project-body col rel">
           <div onClick={() => navigate(`/projectdetails/${project._id}`)}>
             <h3 className="mt035 fw900">{project?.name}</h3>
-            <p className="mt015">{project?.description}</p>
+            <p className="mt015 overflow">{project?.description}</p>
           </div>
           <div className="star central">
             <div>

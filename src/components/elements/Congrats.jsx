@@ -11,14 +11,20 @@ import logoPurple from "../../images/improof_PU.png";
 const Congrats = () => {
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     navigate("/");
-  //   }, 3500);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      navigate("/");
+    }, 7500);
+  }, []);
 
   return (
     <>
+      <h1>Welcome to improof!</h1>
+      <h2>
+        The social media platform that supports you with the documentation of
+        your projects and gives you fair chances in being discovered by
+        companies and recruiters.
+      </h2>
       <div className="congrats_container">
         <div className="logo_blue">
           <img src={logoBlue} alt="logo" />
@@ -26,7 +32,6 @@ const Congrats = () => {
         <div className="logo_lightblue">
           <img src={logoBlue} alt="logo" />
         </div>
-
         <div className="logo_orange">
           <img src={logoOrange} alt="logo" />
         </div>
