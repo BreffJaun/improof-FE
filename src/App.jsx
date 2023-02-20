@@ -26,7 +26,7 @@ function App() {
   const [count, setCount] = useState(0);
   const [user, setUser] = useContext(UserContext);
   const [modeTrigger, setModeTrigger] = useState(false)
-  const mode = user.meta?.darkMode;
+  const mode = user?.meta?.darkMode;
   // const body = document.querySelector("body");
   // mode && body.classList.add(`bgG`);
 
@@ -40,7 +40,7 @@ function App() {
         if (json.status) {
           setUser(json.user);
 
-          if (json.user.meta.loginCount === 1) {
+          if (json.user?.meta?.loginCount === 1) {
             navigate("/congrats");
           }
         } else {
