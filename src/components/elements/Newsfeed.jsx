@@ -177,7 +177,7 @@ const Newsfeed = () => {
                       
                       return <div>
                         {/* <img className="circle50" src={member.profile.avatar}></img> */}
-                        <p><img className="circle50" src={member.profile.avatar}></img>{member.profile.firstName} has created a new {stone.kind} in {project?.name} <br/>{date} {time}</p>
+                        <p><img className="circle50" src={member.profile.avatar}></img>{member.profile.firstName} {member.profile.lastName} has created a new {stone.kind.toUpperCase()} in {project?.name} <br/>{date} {time}</p>
                         <NewsCard project={project} user={user}/>
                       </div>            
 
@@ -187,7 +187,7 @@ const Newsfeed = () => {
                   </div>
                 )               
               })
-            })}
+            }
          
           </div>
         </div>
