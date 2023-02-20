@@ -30,6 +30,7 @@ const Newsfeed = () => {
   const [user, setUser] = useContext(UserContext);
   const [category, setCategory] = useState("");
   const [sortedList, setSortedList] = useState(projects)
+  const [stoneswithProjects, setStoneswithProjects] = useState([])
 
   const color = user.meta.colorTheme[0]
   const bg = user.meta.colorTheme[1]
@@ -73,13 +74,16 @@ const Newsfeed = () => {
       })      
         .then((response) => response.json())
         .then((json) => {
+          setStoneswithProjects(json.data.map(project => {
+            return {stones:[...project.stones], project:project }}))
           setStarProjects(json.data);
         });
     };
     getStarProjects();
   }, []);
 
-  console.log(starProjects);
+  // console.log(starProjects);
+  console.log(stoneswithProjects);
 
   return (
     <div className="mt2">
@@ -138,13 +142,9 @@ const Newsfeed = () => {
         <div className="">
 
           <div>
-            {/* {starProjects.map(project => 
-            <div key={project._id}>
-              <div>{project.team.map((member)=> <img className="circle50" src={member.profile.avatar}></img>)}</div>
-              <p>{project.team.length > 1 ? "haben" : "hat"} ein neues Projekt erstellt</p>
-              <NewsCard project={project._id} user={user}/>
-            </div>
-            )} */}
+
+            {/* ICH BRAUCHE EIN ARRAY MIT DEN NACH DATUM SORTIERTEN STONES INDEM DIE ID´S DES PROJECTS SIND DAMIT DIE REIHENFOLGE DER ANGEZEIGTEN STONES STIMMT, DANN IN DEN STONES MIT FIND DAS ZUGEHÖRIGE PROJEKT FINDEN UM ALLE DATEN AM RICHTIGEN ORT ZU HABEN*/}
+
             {starProjects.map(project => {
               return project.stones.sort((a,b)=> {
                 if(a.createdAt && b.createdAt){
@@ -156,13 +156,16 @@ const Newsfeed = () => {
                 }
                 return 0
               }).map(stone => {
+                const date1 = stone.createdAt.toString().split("T")
+                const date = date1[0].split("-").reverse().join(".")
+                const time = date1[1].slice(0,5) 
                 return (
                   <div>
                     <div>
                       {stone.team.map(member =>
                       <div>
                         {/* <img className="circle50" src={member.profile.avatar}></img> */}
-                        <p><img className="circle50" src={member.profile.avatar}></img>{member.profile.firstName} has created a new {stone.kind} in {project.name} at {stone.createdAt}</p>
+                        <p><img className="circle50" src={member.profile.avatar}></img>{member.profile.firstName} has created a new {stone.kind} in {project.name} <br/>{date} {time}</p>
                         <NewsCard project={project} user={user}/>
                       </div>            
                       )}
