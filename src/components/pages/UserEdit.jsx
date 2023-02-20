@@ -34,7 +34,9 @@ const UserEdit = () => {
   const [uploadPending, setUploadPending] = useState(false);
 
   const [favColor, setFavColor] = useState("")
-  const color = favColor[0]
+  // const color = favColor[0]
+  const color = talent?.meta?.colorTheme[0]
+  const bg = talent?.meta?.colorTheme[1]
 
   const navigate = useNavigate()
 
@@ -103,7 +105,7 @@ const UserEdit = () => {
             setAvatar(undefined);
             setUploadPending(false);
             if(!uploadPending) {
-              location.reload()
+              navigate(`/userdetails/${user._id}`)
             }
           }
           if (data.error) {
@@ -129,14 +131,14 @@ const UserEdit = () => {
           ?
           <img 
           src={avatarUrl} 
-          className="circle90 bg-FAV central rel"
+          className={`circle90 ${bg} central rel`}
           alt="avatar" /> 
           :          
           user.profile.avatar 
           ? 
           <img 
           src={user.profile.avatar} 
-          className="circle90 bg-FAV central rel"
+          className={`circle90 ${bg} central rel`}
           alt="avatar" /> 
           :
           <div className="initials"><p>{user.profile.initials}</p></div>
@@ -144,7 +146,7 @@ const UserEdit = () => {
       
         <div
           title="upload image"
-          className="circle40 bg-FAV central editBtn">
+          className= {`circle40 ${bg} central editBtn`}>
           {/* <p className="c-A100">image</p> */}
           <input 
           onChange={avatarUploadHandler} 
