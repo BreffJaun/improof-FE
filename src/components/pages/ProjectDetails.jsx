@@ -139,7 +139,9 @@ const ProjectDetails = () => {
                   >
                     {openStoneCard === stone._id ? "close" : "see details"}
                   </button>
-                  {openStoneCard === stone._id && <StoneCard stone={stone} />}
+                  {openStoneCard === stone._id && (
+                    <StoneCard stone={stone} project={project} />
+                  )}
                 </div>
               );
             })}

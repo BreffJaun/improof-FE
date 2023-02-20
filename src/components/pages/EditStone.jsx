@@ -42,7 +42,7 @@ const EditStone = () => {
     autoClose: 8000,
     theme: "dark",
   };
-  console.log(stone);
+  // console.log(stone);
 
   useEffect(() => {
     document.body.scrollTop = 0;
@@ -132,7 +132,6 @@ const EditStone = () => {
     setVideoTrigger(false);
   };
 
-
   // HANDLING MEDIA FILES END //
 
   const handleContributor = (contributor) => {
@@ -189,7 +188,9 @@ const EditStone = () => {
       });
   };
 
-  return editStonePending ? <div>Loading...</div> : (
+  return editStonePending ? (
+    <div>Loading...</div>
+  ) : (
     <>
       <h1 className={`central ${color} mt1 mb2`}>edit stone</h1>
 
@@ -250,30 +251,29 @@ const EditStone = () => {
               <p> add media</p>
 
               {/* <div className="thumbnailS"> */}
-                {mediaUrl && videoTrigger ? (
-                  <div>
-                    <ReactPlayer
-                      url={mediaUrl}
-                      playing={false}
-                      controls={true}
-                      light={thumbnail}
-                      // playIcon={noch keine Ahnung}
-                      volume={null}
-                      muted={true}
-                      width='100%'
-                      height='100%'
-                      pip={true}
-                      stopOnUnmount={false}
-                    />
-                    
-                  </div>
-                ) : mediaUrl && imageTrigger ? (
-                  <img src={mediaUrl} alt="media" />
-                ) : (
-                  <div className="thumbnailS">
-                    <Camera />
-                  </div>
-                )}
+              {mediaUrl && videoTrigger ? (
+                <div>
+                  <ReactPlayer
+                    url={mediaUrl}
+                    playing={false}
+                    controls={true}
+                    light={thumbnail}
+                    // playIcon={noch keine Ahnung}
+                    volume={null}
+                    muted={true}
+                    width="100%"
+                    height="100%"
+                    pip={true}
+                    stopOnUnmount={false}
+                  />
+                </div>
+              ) : mediaUrl && imageTrigger ? (
+                <img src={mediaUrl} alt="media" />
+              ) : (
+                <div className="thumbnailS">
+                  <Camera />
+                </div>
+              )}
               {/* </div> */}
               <div className="col">
                 <label htmlFor="media-pic">photos</label>
@@ -367,7 +367,6 @@ const EditStone = () => {
         <button type="submit" className={bg} onClick={() => handleSubmit}>
           edit stone
         </button>
-        
       </form>
       <ToastContainer />
       <Footer />

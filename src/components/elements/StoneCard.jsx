@@ -5,16 +5,14 @@ import UserContext from "../../context/userContext.jsx";
 import { useNavigate } from "react-router-dom";
 import ReactPlayer from "react-player";
 
-const StoneCard = ({stone}) => {
+const StoneCard = ({ stone, project }) => {
   const navigate = useNavigate();
 
   const [user, setUser] = useContext(UserContext);
   // const [isPending, setPending] = useState(true);
   // const [stone, setStone] = useState({});
   const bg = user.meta.colorTheme[1];
-  const teamMember = stone.team.find(
-    (member) => member._id === user._id
-  );
+  const teamMember = stone.team.find((member) => member._id === user._id);
 
   const date =
     stone.createdAt.slice(8, 10) +
@@ -58,9 +56,7 @@ const StoneCard = ({stone}) => {
         {teamMember && (
           <button
             className={bg}
-            onClick={() =>
-              navigate(`/editstone/${stone.projectId}/${stone.id}`)
-            }
+            onClick={() => navigate(`/editstone/${project._id}/${stone._id}`)}
           >
             {" "}
             edit stone
