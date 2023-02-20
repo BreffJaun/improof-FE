@@ -17,6 +17,7 @@ import { TalentToProjectCard } from "../elements/TalentToProjectCard.jsx";
 import { AiOutlineCamera as Camera } from "react-icons/ai"
 import { RiMailAddLine as MailPlus } from "react-icons/ri"
 import { RiMailCloseLine as MailMinus } from "react-icons/ri"
+import { FiUpload as Upload } from "react-icons/fi"
 
 
 const CreateProject = () => {
@@ -179,7 +180,7 @@ const CreateProject = () => {
       <form onSubmit={handleSubmit}>
         <div className="maxM mt2">
           <div className="col">
-            <p className="mb05 central">project name<span className={color}>*</span></p>
+            <p className="mb05 central">name<span className={color}>*</span></p>
             <input
               type="text"
               name="name"
@@ -209,21 +210,23 @@ const CreateProject = () => {
                 : 
                 null           
               }
-              <div title="upload"><Camera /></div>
+              <div title="x upload">
+                <Upload className="y"/>
+                <input className="z"
+                  type="file"
+                  name="thumbnail"
+                  onChange={handleFile}
+                  accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
+                />
+              </div>
             </div>
-            <input
-              type="file"
-              name="thumbnail"
-              onChange={handleFile}
-              accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
-            />
           </div>
           <div className="col central">
             <p className="mt15 mb05">What is the topic?<span className={color}>*</span></p>
             <CategoriesFilter setCategory={setCategory}/>
           </div>
           <div className="col central">
-            <p className="mt15 mb05">colorize your project</p>
+            <p className="mt15 mb05">Pick a color!</p>
             <RadioColor user={user} setFavColor={setFavColor} /> 
           </div>
         </div>

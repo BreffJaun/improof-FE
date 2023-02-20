@@ -78,21 +78,27 @@ const Newsfeed = () => {
       })
         .then((response) => response.json())
         .then((json) => {
-          const newsfeedData = []
-          for (let i = 0 ; i < json.data.length ; i++){
-            newsfeedData.push(...json.data[i].stones)
+          const newsfeedData = [];
+          for (let i = 0; i < json.data.length; i++) {
+            newsfeedData.push(...json.data[i].stones);
           }
 
-          setStoneswithProjects(newsfeedData.sort((a,b)=> {
-            if(a.createdAt && b.createdAt){
-              let x = a.createdAt
-              let y = b.createdAt
-              if (x < y) {return 1;}
-              if (x > y) {return -1;}
+          setStoneswithProjects(
+            newsfeedData.sort((a, b) => {
+              if (a.createdAt && b.createdAt) {
+                let x = a.createdAt;
+                let y = b.createdAt;
+                if (x < y) {
+                  return 1;
+                }
+                if (x > y) {
+                  return -1;
+                }
+                return 0;
+              }
               return 0;
-            }
-            return 0
-          }))
+            })
+          );
           setStarProjects(json.data);
         });
     };
@@ -200,10 +206,9 @@ const Newsfeed = () => {
                       <NewsfeedCard stone={stone} projectId={project._id}/>
                     </div>
                   </div>
-                )               
-              })
-            }
-         
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
