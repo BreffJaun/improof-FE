@@ -1,35 +1,65 @@
 .congrats_container{
   position: relative;
   width: 70vw;
-  max-height:80vh;
-  border: 3px solid hotpink;
+  min-height: 70vh;
+  max-height:70vh;
+  // border: 3px solid hotpink;
 }
-
+h1{
+  text-align: center;
+}
+h2{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: center;
+}
 .logo_blue{
-  position:absolute;
-
+  position: absolute;
+top:2%;
+width:38%;
+margin-left:20%;
   >img{
-    width:110%
+    width:100%
    }
 }
 .logo_lightblue{
- position: absolute;
- >img{
-  width:10rem
- }
-
-
-
+  position: absolute;
+  top:3%;
+  left:21%;
+  width:36%;
+  margin-left:25%;
+    >img{
+      width:100%
+     }
 }
 .logo_orange{
-
+  position: absolute;
+  top:26%;
+  left:12%;
+  width:30%;
+    >img{
+      width:100%
+     }
 }
 
 .logo_purple{
+  position: absolute;
+  top:30%;
+  left:35%;
+  width:30%;
+    >img{
+      width:100%
+     }
 
 }
 .logo_pink{
-
+  position: absolute;
+  top:30%;
+  left:57%;
+  width:30%;
+    >img{
+      width:100%
+     }
 }
 
 .logoL-congrats{
