@@ -5,38 +5,38 @@ import UserContext from "../../context/userContext.jsx";
 import { useNavigate } from "react-router-dom";
 import ReactPlayer from "react-player";
 
-const StoneCard = (props) => {
+const StoneCard = ({stone}) => {
   const navigate = useNavigate();
 
-  const [user, steUser] = useContext(UserContext);
-  const [isPending, setPending] = useState(true);
-  const [stone, setStone] = useState({});
+  const [user, setUser] = useContext(UserContext);
+  // const [isPending, setPending] = useState(true);
+  // const [stone, setStone] = useState({});
   const bg = user.meta.colorTheme[1];
-  const teamMember = props.projectTeam.find(
+  const teamMember = stone.team.find(
     (member) => member._id === user._id
   );
 
   const date =
-    props.createdAt.slice(8, 10) +
+    stone.createdAt.slice(8, 10) +
     "-" +
-    props.createdAt.slice(6, 8) +
-    props.createdAt.slice(0, 4);
+    stone.createdAt.slice(6, 8) +
+    stone.createdAt.slice(0, 4);
 
   return (
     <div className="news-container">
       <div className="projects-container">
-        <h1>{props.title}</h1>
-        <h6>{props.description}</h6>
+        <h1>{stone.title}</h1>
+        <h6>{stone.description}</h6>
 
         <h3>
-          This is a <b>{props.kind.toUpperCase()}</b> created at {date} by
+          This is a <b>{stone.kind.toUpperCase()}</b> created at {date} by
         </h3>
         <div>
-          {!props.media[0] ? null : props.contentType.includes("image") ? (
-            <img src={props.media[0]} />
+          {!stone.media[0] ? null : stone.contentType.includes("image") ? (
+            <img src={stone.media[0]} />
           ) : (
             <ReactPlayer
-              url={props.media[0]}
+              url={stone.media[0]}
               playing={false}
               controls={true}
               light={false}
@@ -51,7 +51,7 @@ const StoneCard = (props) => {
           )}
         </div>
         <div>
-          {props.team.map((member) => (
+          {stone.team.map((member) => (
             <TalentCard key={member._id} talent={member} user={user} />
           ))}
         </div>
@@ -59,7 +59,7 @@ const StoneCard = (props) => {
           <button
             className={bg}
             onClick={() =>
-              navigate(`/editstone/${props.projectId}/${props.id}`)
+              navigate(`/editstone/${stone.projectId}/${stone.id}`)
             }
           >
             {" "}

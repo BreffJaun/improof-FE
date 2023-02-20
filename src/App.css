@@ -19,3 +19,9 @@ body{
   min-height: 100vh;
   padding:0 2rem 2rem 2rem;
 }
+.player{
+  width: 400px;
+}
+.flex{
+  display: flex;
+}
