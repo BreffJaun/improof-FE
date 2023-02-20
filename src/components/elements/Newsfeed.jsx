@@ -82,7 +82,7 @@ const Newsfeed = () => {
   console.log(starProjects);
 
   return (
-    <div className="mt2">
+    <div>
       <div>
         <CarouselProvider
           interval={3000}
@@ -133,6 +133,7 @@ const Newsfeed = () => {
         </CarouselProvider>        
       </div>
 
+      <div className="bo-DARK"></div>
       <div>
         <h1 className={`${color} center mt1`}>newsfeed</h1>
         <div className="">

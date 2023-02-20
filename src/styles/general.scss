@@ -12,6 +12,9 @@
 }
 
 
+.visHid{
+    visibility: hidden;
+}
 
 .col{
     display: flex;
@@ -143,13 +146,26 @@
 }
 
 
-
-.g1{
-    gap: 1rem;
-}
 .g05{
     gap: 0.5rem;
 }
+.g1{
+    gap: 1rem;
+}
+.g2{
+    gap: 2rem;
+}
+.g3{
+    gap: 3rem;
+}
+.g4{
+    gap: 4rem;
+}
+.g5{
+    gap: 5rem;
+}
+
+
 
 .flex{
     display: flex;

@@ -73,8 +73,7 @@ select{
     border: none;
     outline: 1px solid rgba(255,255,255,0);
     text-decoration: none;
-    margin: 0.25rem;
-    padding: 0.7rem 1rem;
+    padding: 0.7rem 1rem 0.7rem 1rem;
     border-radius: 3rem;
     transition: 0.4s;
 }
@@ -202,7 +201,6 @@ input[type=radio]:checked::before {
     position: relative;
     height:250px;
     background-color: var(--A60);
-    width: 750px;
     border-radius: 8px;
     *{
         display: flex;

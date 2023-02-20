@@ -14,6 +14,7 @@ import { AiOutlineCamera as Camera } from "react-icons/ai";
 // ELEMENTS
 import { TalentCard } from "../elements/TalentCard.jsx";
 import Switch from "react-switch";
+import styledEngine from "@mui/styled-engine";
 
 const EditStone = () => {
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ const EditStone = () => {
   const [videoTrigger, setVideoTrigger] = useState(false);
   const [editStonePending, setEditStonePending] = useState(false);
   const [adIdsTrigger, setIdsTrigger] = useState(false);
+  const [thumbnail, setThumbnail] = useState("");
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
   // console.log("projectId: ", projectId)
@@ -129,6 +131,8 @@ const EditStone = () => {
     setMediaUrl(undefined);
     setVideoTrigger(false);
   };
+
+
   // HANDLING MEDIA FILES END //
 
   const handleContributor = (contributor) => {
@@ -175,19 +179,17 @@ const EditStone = () => {
       .then((response) => response.json())
       .then((data) => {
         if (!data.status) {
-          console.log("ICH HÄNGE IM IF");
+          // console.log("ICH HÄNGE IM IF");
           toast.error(json.error, toastOptions);
           setEditStonePending(false);
         } else {
-          console.log("ICH HÄNGE IM ELSE");
+          // console.log("ICH HÄNGE IM ELSE");
           navigate(`/projectdetails/${projectId}`);
         }
       });
   };
 
-  return editStonePending ? (
-    <div>Loading...</div>
-  ) : (
+  return editStonePending ? <div>Loading...</div> : (
     <>
       <h1 className={`central ${color} mt1 mb2`}>edit stone</h1>
 
@@ -246,29 +248,33 @@ const EditStone = () => {
           <div>
             <div className="col">
               <p> add media</p>
-              <div className="thumbnailS">
+
+              {/* <div className="thumbnailS"> */}
                 {mediaUrl && videoTrigger ? (
-                  <ReactPlayer
-                    url={mediaUrl}
-                    playing={true}
-                    controls={true}
-                    light={true} // for video thumbnail
-                    // playIcon={martinsPlayIcon}
-                    volume={null}
-                    muted={true}
-                    // width={"640px"}
-                    // height={"360px"}
-                    pip={true}
-                    stopOnUnmount={false}
-                  />
+                  <div>
+                    <ReactPlayer
+                      url={mediaUrl}
+                      playing={false}
+                      controls={true}
+                      light={thumbnail}
+                      // playIcon={noch keine Ahnung}
+                      volume={null}
+                      muted={true}
+                      width='100%'
+                      height='100%'
+                      pip={true}
+                      stopOnUnmount={false}
+                    />
+                    
+                  </div>
                 ) : mediaUrl && imageTrigger ? (
                   <img src={mediaUrl} alt="media" />
                 ) : (
-                  <div title="upload">
+                  <div className="thumbnailS">
                     <Camera />
                   </div>
                 )}
-              </div>
+              {/* </div> */}
               <div className="col">
                 <label htmlFor="media-pic">photos</label>
                 <input
@@ -361,6 +367,7 @@ const EditStone = () => {
         <button type="submit" className={bg} onClick={() => handleSubmit}>
           edit stone
         </button>
+        
       </form>
       <ToastContainer />
       <Footer />

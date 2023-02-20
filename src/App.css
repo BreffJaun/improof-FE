@@ -1,6 +1,4 @@
 #root {
-  /* width: 100vw; */
-  max-width: 1400px;
   color: var(--A40);
 }
 
@@ -15,9 +13,9 @@ body{
   position: relative;
   background-color: var(--A100);
 }
+
 .App{
   width: 100vw;
   min-height: 100vh;
-  padding:0 2rem;
-  padding-bottom: 2rem;
+  padding:0 2rem 2rem 2rem;
 }

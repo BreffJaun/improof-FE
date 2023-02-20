@@ -53,17 +53,17 @@ useEffect(() => {
 
   return(
     <>
-      <div className="mt2 mb2">
+      <div className="mb2">
         <h1 className={`central ${color}`}>community</h1>
       </div>
-      <div className="mt2 mb2 central">
+      <div className="mb2 central">
         <CategoriesFilter setCategory={setCategory}/>
       </div>
-      <div className="mt4 mb2 central">
-        <h4 className={`central ${color} mt05`}>talents you know</h4>
+      <div className="mb2 central">
+        <h4 className={`central ${color}`}>your star talents</h4>
       </div>
 
-      <div className="mt4 mb2 talent-container central">
+      <div className="talent-container central">
         {user.follows.length === 0 && !category ?
         <p></p> 
         : 

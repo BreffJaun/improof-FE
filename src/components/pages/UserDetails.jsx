@@ -84,17 +84,17 @@ const TalentDetails = () => {
           {talent.profile.avatar ? 
           <img 
           src={user._id === talent._id ? user.profile.avatar : talent.profile.avatar} 
-          className="circle90 bg-FAV central rel"
+                className={`circle90 ${bg} central rel`}
           alt="avatar" 
           /> 
           :
-          <div className="initials circle90 bg-FAV central rel"><p>{talent.profile.initials}</p></div>
+          <div className={`circle90 ${bg} central rel initials`}><p>{talent.profile.initials}</p></div>
           }
         </div>
         {user._id === talent._id ?
             <div
               title="edit your profile"
-              className="circle40 bg-FAV central editBtn"
+              className={`circle40 ${bg} central editBtn`}
               onClick={() => navigate(`/useredit/${user._id}`)}>
             <p className="c-A100"><AiFillEdit/>
             </p>
@@ -116,21 +116,21 @@ const TalentDetails = () => {
             {/* ----------------------------------------------- */}
           </div> : ""
         }
-        <div className="y mt1 central">
-          <div className="z">
-            <button className={`x ${bg}`} onClick={() => setShowInfos(!showInfos)}>{showInfos ? "close" : "read more"}</button>
+        <div className="mt1 central">
+          <div>
+            <button className={`${bg}`} onClick={() => setShowInfos(!showInfos)}>{showInfos ? "close" : "read more"}</button>
           </div>
-          <div className="x">
+          <div>
             {user?._id !== talent._id && <FollowBtn talent={talent} user={user} /> } 
           </div>
-          <div className="x">
+          <div>
             {user._id !== talent._id && <SendMessageBtn talent={talent} user={user} />}
           </div>
         </div>
       </div>
 
       <div className="bo-DARK"></div>
-      <div className="mt4 central col">
+      <div className="central col">
         <h1 className={color}>projects</h1>
         <p className={`${color} mb2`}>({talent.myProjects.length})</p>
         <div className="projects-container g1">
@@ -141,7 +141,7 @@ const TalentDetails = () => {
       </div>
       
       <div className="bo-DARK"></div>
-      <div className="mt4 central col">
+      <div className="central col">
         <h1 className={`central ${color}`}>following</h1>
         <p className={`central ${color} mb2`}>({talent.follows.length})</p>
         <div className="projects-container g1">

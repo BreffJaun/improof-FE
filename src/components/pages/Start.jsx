@@ -22,7 +22,7 @@ const Start = () => {
 
   return (
     <>
-      <div className={mode ? `bgG mt4 mb2` : `mt4 mb2`}>
+      <div className={mode ? `bgG mb2` : `mb2`}>
         <h1 className={`central ${color}`}>What´s new?</h1>
       </div>
       <Newsfeed />

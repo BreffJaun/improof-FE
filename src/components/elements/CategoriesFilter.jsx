@@ -28,7 +28,7 @@ const CategoriesFilter = ({ setCategory, category }) => {
   // console.log(category === "Web-Development")
   
   return (
-    <>
+    < div className="mb2">
       <select 
       onChange={handleCategory} name="newsfeed-filter">
         <option value="">All categories</option>
@@ -131,7 +131,7 @@ const CategoriesFilter = ({ setCategory, category }) => {
         <option value="Science">Science</option>
         <option value="others">others</option> */}
       </select>
-    </>
+    </ div>
   );
 };
 

@@ -23,6 +23,7 @@ import UserEdit from "./UserEdit.jsx";
 import Conversations from "./Conversations.jsx";
 import CreateStone from "./CreateStone.jsx";
 import EditStone from "./EditStone.jsx";
+import StoneCard from "../elements/StoneCard.jsx";
 import Congrats from "../elements/Congrats.jsx";
 
 // FOOTER-COMPONENTEN
@@ -70,38 +71,39 @@ const Main = ({ modeTrigger, setModeTrigger }) => {
           modeTrigger={modeTrigger}
         />
         {/* <LogoS /> */}
-        <Routes>
-          <Route path="/" element={<Start />} />
-          <Route path="/efjm" element={<EFJM />} />
+          <div className="max1300">
+          <Routes>
+            <Route path="/" element={<Start />} />
+            <Route path="/efjm" element={<EFJM />} />
 
-          {/* ROUTES USER */}
-          <Route path="/community" element={<Community />} />
-          <Route path="/efjm" element={<EFJM />} />
-          <Route path="/userdetails/:id" element={<UserDetails />} />
-          <Route path="/useredit/:id" element={<UserEdit />} />
+            {/* ROUTES USER */}
+            <Route path="/community" element={<Community />} />
+            <Route path="/efjm" element={<EFJM />} />
+            <Route path="/userdetails/:id" element={<UserDetails />} />
+            <Route path="/useredit/:id" element={<UserEdit />} />
 
-          {/* ROUTES PROJECTS */}
-          <Route path="/createproject" element={<CreateProject />} />
-          <Route path="/myprojects" element={<MyProjects />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projectdetails/:id" element={<ProjectDetails />} />
-          <Route path="/projectedit/:id" element={<ProjectEdit />} />
-          <Route path="/createStone/:projectId" element={<CreateStone />} />
-          <Route
-            path="/editStone/:projectId/:stoneId"
-            element={<EditStone />}
-          />
+            {/* ROUTES PROJECTS */}
+            <Route path="/createproject" element={<CreateProject />} />
+            <Route path="/myprojects" element={<MyProjects />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projectdetails/:id" element={<ProjectDetails />} />
+            <Route path="/projectedit/:id" element={<ProjectEdit />} />
+            <Route path="/createStone/:projectId" element={<CreateStone />} />
+            <Route path="/editstone/:projectId/:stoneId" element={<EditStone />}/>
+            <Route path="/:stoneId" element={<StoneCard />} />
 
-          {/* ROUTES RECRUITER */}
-          <Route path="/newsearch" element={<NewSearch />} />
-          <Route path="/searchhistory" element={<SearchHistory />} />
 
-          {/* ROUTES NAVBAR */}
-          <Route path="/notifications" element={<Notifications />} />
-          <Route path="/messages/:id" element={<Messages />} />
-          <Route path="/conversations" element={<Conversations />} />
-          <Route path="/congrats" element={<Congrats />} />
-        </Routes>
+            {/* ROUTES RECRUITER */}
+            <Route path="/newsearch" element={<NewSearch />} />
+            <Route path="/searchhistory" element={<SearchHistory />} />
+
+            {/* ROUTES NAVBAR */}
+            <Route path="/notifications" element={<Notifications />} />
+            <Route path="/messages/:id" element={<Messages />} />
+            <Route path="/conversations" element={<Conversations />} />
+            <Route path="/congrats" element={<Congrats />} />
+            </Routes>
+          </div>
         <ToastContainer />
       </>
     )

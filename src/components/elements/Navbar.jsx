@@ -31,6 +31,8 @@ const Navbar = ({setModeTrigger, modeTrigger}) => {
   const [showNotifications, setShowNotifications] = useState(undefined);
   const [showConversations, setShowConversations] = useState(undefined);
   const mode = user.meta.darkMode;
+  const color = user.meta.colorTheme[0];
+  const bg = user.meta.colorTheme[1];
 
   const navigate = useNavigate();
 
@@ -114,7 +116,7 @@ const Navbar = ({setModeTrigger, modeTrigger}) => {
               }}
             />
             {unreadNots?.length > 0 && (
-              <div className="signal circle15 bg-FAV central">
+              <div className={`signal circle15 ${bg} central`}>
                 <div className="c-A100">{unreadNots.length}</div>
               </div>
             )}
@@ -129,7 +131,7 @@ const Navbar = ({setModeTrigger, modeTrigger}) => {
               }}
             />
             {unreadMsgs > 0 && (
-              <div className="signal circle15 bg-FAV central">
+              <div className={`signal circle15 ${bg} central`}>
                 <div className="c-A100">{unreadMsgs}</div>
               </div>
             )}
