@@ -31,6 +31,7 @@ const ProjectDetails = () => {
   const [isPending, setPending] = useState(true);
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
+  const darkMode = user?.meta?.darkMode;
   const [openStoneCard, setOpenStoneCard] = useState();
   const [stone, setStone] = useState({});
   // const []
@@ -116,7 +117,16 @@ const ProjectDetails = () => {
             <h4 className={color}>create new stone</h4>
           </div>
         )}
-        <Chrono>
+        <Chrono
+          theme={{
+            primary: `#fff`,
+            secondary: "#333",
+            cardBgColor: darkMode ? "#333" : "#fff",
+            cardForeColor: "violet",
+            titleColor: darkMode ? "#fff" : "#333",
+            titleColorActive: "red",
+          }}
+        >
           {!isPending &&
             project.stones.map((stone) => {
               return (
