@@ -14,7 +14,7 @@ import { AiOutlineBell as Bell } from "react-icons/ai";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxMagnifyingGlass as Lupe } from "react-icons/rx";
 import { RiHome2Line as Home } from "react-icons/ri";
-import logo from "../../images/improof_OR.png";
+import logo from "../../images/improof_A100.png";
 
 // CONTEXT
 import UserContext from "../../context/userContext.jsx";
@@ -44,6 +44,7 @@ const Navbar = ({setModeTrigger, modeTrigger}) => {
     .map((arr) => arr.length)
     .reduce((a, b) => a + b, 0);
 
+  
   useEffect(() => {
     const getSearch = async () => {
       await fetch(`${host}/search`, {
@@ -95,13 +96,15 @@ const Navbar = ({setModeTrigger, modeTrigger}) => {
     showNotifications !== undefined && handleReadNotification();
   }, [showNotifications, showConversations]);
 
+
   return (
+
     <div className={`navbar-container`} id={mode ? `bgG` : ``}>
       <div onClick={() => navigate("/")} className="navbar-left">
-        <div className="logoNav">
+        <div className={`logo-container ${bg}`}>
           <img src={logo} alt="improof-logo" />
-          <h1 className={`${user.meta?.colorTheme[0]}`}>improof</h1>
         </div>
+        <h1 className={`logo-HL ${user.meta?.colorTheme[0]}`}>improof</h1>
       </div>
 
       <div>
