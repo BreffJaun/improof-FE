@@ -220,6 +220,20 @@ const TalentDetails = () => {
               </div>
             }
             {/* ----------------------------------------------- */} 
+            {talent.contact.company &&
+              <div className="mb1">
+                <p className={color}>company</p>
+                <p>{talent.contact.company}</p>
+              </div>
+            }
+            {/* ----------------------------------------------- */} 
+            {talent.location.city &&
+              <div className="mb1">
+                <p className={color}>city</p>
+                <p>{talent.location.city}</p>
+              </div>
+            }
+            {/* ----------------------------------------------- */}
           </div> : ""
         }
         <button className={bg} onClick={() => setShowContact(!showContact)}>{showContact ? "close" : "show me"}</button>
