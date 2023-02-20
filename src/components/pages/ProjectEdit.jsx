@@ -222,6 +222,7 @@ const CreateProject = () => {
               type="text"
               name="name"
               placeholder={project.name}
+              maxLength={20}
               onChange={handleInput}
             />
           </div>
@@ -232,6 +233,7 @@ const CreateProject = () => {
               type="text"
               name="description"
               placeholder={project.description}
+              maxLength={150}
               onChange={handleInput}
             />
           </div>

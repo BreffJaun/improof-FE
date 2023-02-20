@@ -185,6 +185,7 @@ const CreateProject = () => {
               name="name"
               placeholder="Give it a catchy name!"
               required
+              maxLength={20}
               onChange={handleInput}
             />
           </div>
@@ -195,6 +196,7 @@ const CreateProject = () => {
               name="description"
               placeholder="what is your project about?"
               required
+              maxLength={150}
               onChange={handleInput}
             />
           </div>
@@ -281,7 +283,7 @@ const CreateProject = () => {
               type="email" 
               name={`inviteOthers${i}`}
               onChange={inviteInputHandler}
-              placeholer="invite to improof"
+              placeholder="invite to improof"
               key={i}
             />           
             )} 
