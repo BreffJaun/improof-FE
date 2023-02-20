@@ -2,7 +2,7 @@
 import "../../styles/project-details.scss";
 import "../../styles/chrono.scss";
 // import "../../styles/project-details.scss"
-// import "../../styles/chrono.scss"
+
 
 import React from "react";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -19,6 +19,11 @@ import { TalentCard } from "../elements/TalentCard.jsx";
 import Footer from "../elements/Footer.jsx";
 import StoneCard from "../elements/StoneCard.jsx";
 
+// ICONS
+import { AiOutlineEdit as Edit } from "react-icons/ai"
+import { AiOutlinePlus as Plus } from "react-icons/ai"
+
+
 const ProjectDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams("id");
@@ -28,9 +33,10 @@ const ProjectDetails = () => {
   const [isPending, setPending] = useState(true);
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
-  const [openStoneCard, setOpenStoneCard] = useState(false);
+  const [openStoneCard, setOpenStoneCard] = useState();
   const [stone, setStone] = useState({});
-
+  const [buttonText, setButtonText] = useState("see details");
+  // const []
   // FETCH CURR PROJECT
   useEffect(() => {
     document.body.scrollTop = 0;
@@ -68,40 +74,48 @@ const ProjectDetails = () => {
     getUser();
   }, [trigger]);
   const seeStoneDetails = (stoneId) => {
-    setOpenStoneCard(!openStoneCard);
+    setOpenStoneCard(stoneId);
     setStone(project.stoneId);
-    console.log(stone);
+    setButtonText("close");
   };
 
   return (
     !isPending &&
     user && (
-      <div className="componente">
-        <div>
+      <div>
+        <div className="central col mb1">
           {project.thumbnail && (
             <img src={project.thumbnail} alt="Thumbnail" width="350" />
           )}
-          <h1>{project.name}</h1>
-          <p>{project.description}</p>
+          <h1 className={color}>"{project.name}"</h1>
+          <h4 className={color}>{project.description}</h4>
         </div>
         {project.team.find((member) => member._id === user._id) && (
-          <div>
+          <div className="center">
             <button
-              className={bg}
+              className={`${bg} circle30 central`}
               onClick={() => navigate(`/projectedit/${project._id}`)}
             >
-              edit project
+              <h3>
+                <Edit />
+              </h3>
             </button>
-
-            <button
-              className={bg}
-              onClick={() => navigate(`/createStone/${project._id}`)}
-            >
-              create stone
-            </button>
+            <p>edit project</p>
           </div>
         )}
 
+        <div className="bo-DARK"></div>
+        {project.team.find((member) => member._id === user._id) && (
+          <div className="center mt4">
+            <button
+              className={`${bg} circle70 central`}
+              onClick={() => navigate(`/createStone/${project._id}`)}
+            >
+              <Plus className="fs3" />
+            </button>
+            <h4 className={color}>create new stone</h4>
+          </div>
+        )}
         <Chrono>
           {!isPending &&
             project.stones.map((stone) => {
@@ -109,16 +123,16 @@ const ProjectDetails = () => {
                 <div key={stone._id}>
                   {stone.media && <img src="" alt="" />}
                   <h1>{stone.title}</h1>
-                  <p>{stone.kind}</p>
-                  <p>{stone.description}</p>
+                  {/* <p>{stone.kind}</p> */}
+                  {/* <p>{stone.description}</p> */}
                   <div className="mt1 flex g05">
                     {stone?.team?.map((member) => (
                       <div key={member._id} className="circle50 bg-FAV central">
-                        {member.profile.avatar ? (
+                        {/* {member.profile.initials ? (
                           <img src={member.profile.avatar} width="100" />
-                        ) : (
-                          <p className="c-A100">{member.profile.initials}</p>
-                        )}
+                        ) : ( */}
+                        <p className="c-A100">{member.profile.initials}</p>
+                        {/* )} */}
                       </div>
                     ))}
                   </div>
@@ -126,14 +140,15 @@ const ProjectDetails = () => {
                     className={bg}
                     onClick={() => seeStoneDetails(stone._id)}
                   >
-                    see more details
+                    {buttonText}
                   </button>
-                  {openStoneCard && (
+                  {openStoneCard === stone._id && (
                     <StoneCard
                       id={stone._id}
                       title={stone.title}
                       description={stone.description}
                       media={stone.media}
+                      contentType={stone.contentType}
                       kind={stone.kind}
                       team={stone.team}
                       createdAt={stone.createdAt}
@@ -168,11 +183,15 @@ const ProjectDetails = () => {
           </div> */}
         </Chrono>
 
-        <h1>Project Team</h1>
-        {project.team.map((member) => (
-          <TalentCard key={member._id} talent={member} user={user} />
-        ))}
-
+        <div className="bo-DARK"></div>
+        <div className="center">
+          <h4 className={color}>project members</h4>
+          <div  className="central mt2 g1">
+          {project.team.map((member) => (
+            <TalentCard key={member._id} talent={member} user={user} />
+          ))}
+          </div>
+        </div>
         <Footer />
       </div>
     )

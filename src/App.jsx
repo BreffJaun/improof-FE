@@ -52,11 +52,11 @@ function App() {
 
   return (
     <div className={mode ? `App bgG` : `App`}>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/registration" element={<Registration />} />
-        <Route path="*" element={<Main modeTrigger={modeTrigger} setModeTrigger={setModeTrigger}/>} />
-      </Routes>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="*" element={<Main modeTrigger={modeTrigger} setModeTrigger={setModeTrigger}/>} />
+        </Routes>
     </div>
   );
 }
