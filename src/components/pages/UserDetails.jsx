@@ -84,7 +84,7 @@ const TalentDetails = () => {
           {talent.profile.avatar ? 
           <img 
           src={user._id === talent._id ? user.profile.avatar : talent.profile.avatar} 
-                className={`circle90 ${bg} central rel`}
+          className={`circle90 ${bg} central rel`}
           alt="avatar" 
           /> 
           :
