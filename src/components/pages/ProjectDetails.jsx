@@ -3,7 +3,6 @@ import "../../styles/project-details.scss";
 import "../../styles/chrono.scss";
 // import "../../styles/project-details.scss"
 
-
 import React from "react";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -20,9 +19,8 @@ import Footer from "../elements/Footer.jsx";
 import StoneCard from "../elements/StoneCard.jsx";
 
 // ICONS
-import { AiOutlineEdit as Edit } from "react-icons/ai"
-import { AiOutlinePlus as Plus } from "react-icons/ai"
-
+import { AiOutlineEdit as Edit } from "react-icons/ai";
+import { AiOutlinePlus as Plus } from "react-icons/ai";
 
 const ProjectDetails = () => {
   const navigate = useNavigate();
@@ -35,7 +33,7 @@ const ProjectDetails = () => {
   const bg = user.meta.colorTheme[1];
   const [openStoneCard, setOpenStoneCard] = useState();
   const [stone, setStone] = useState({});
-
+  // const []
   // FETCH CURR PROJECT
   useEffect(() => {
     document.body.scrollTop = 0;
@@ -73,9 +71,12 @@ const ProjectDetails = () => {
     getUser();
   }, [trigger]);
   const seeStoneDetails = (stoneId) => {
-    setOpenStoneCard(stoneId);
-    setStone(project.stoneId);
-    console.log(stone);
+    if (openStoneCard === stoneId) {
+      setOpenStoneCard("");
+    } else {
+      setOpenStoneCard(stoneId);
+      setStone(project.stoneId);
+    }
   };
 
   return (
@@ -120,16 +121,13 @@ const ProjectDetails = () => {
             project.stones.map((stone) => {
               return (
                 <div key={stone._id}>
-                  {stone.media && <img src="" alt="" />}
+                  {stone.media && <img src={stone.media} alt="" width="150" />}
                   <h1>{stone.title}</h1>
                   {/* <p>{stone.kind}</p> */}
                   {/* <p>{stone.description}</p> */}
                   <div className="mt1 flex g05">
                     {stone?.team?.map((member) => (
                       <div key={member._id} className="circle50 bg-FAV central">
-                        {/* {member.profile.initials ? (
-                          <img src={member.profile.avatar} width="100" />
-                        ) : ( */}
                         <p className="c-A100">{member.profile.initials}</p>
                         {/* )} */}
                       </div>
@@ -139,7 +137,7 @@ const ProjectDetails = () => {
                     className={bg}
                     onClick={() => seeStoneDetails(stone._id)}
                   >
-                    see more details
+                    {openStoneCard === stone._id ? "close" : "see details"}
                   </button>
                   {openStoneCard === stone._id && (
                     <StoneCard
@@ -185,10 +183,10 @@ const ProjectDetails = () => {
         <div className="bo-DARK"></div>
         <div className="center">
           <h4 className={color}>project members</h4>
-          <div  className="central mt2 g1">
-          {project.team.map((member) => (
-            <TalentCard key={member._id} talent={member} user={user} />
-          ))}
+          <div className="central mt2 g1">
+            {project.team.map((member) => (
+              <TalentCard key={member._id} talent={member} user={user} />
+            ))}
           </div>
         </div>
         <Footer />

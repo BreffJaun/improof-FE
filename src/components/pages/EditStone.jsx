@@ -35,6 +35,7 @@ const EditStone = () => {
   const [adIdsTrigger, setIdsTrigger] = useState(false);
   const [thumbnail, setThumbnail] = useState("");
   const color = user.meta.colorTheme[0];
+  const bg = user.meta.colorTheme[1];
   // console.log("projectId: ", projectId)
   const toastOptions = {
     position: "bottom-right",
@@ -363,7 +364,7 @@ const EditStone = () => {
             </div>
           </div>
         </div>
-        <button type="submit" onClick={() => handleSubmit}>
+        <button type="submit" className={bg} onClick={() => handleSubmit}>
           edit stone
         </button>
         

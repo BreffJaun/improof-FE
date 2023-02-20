@@ -11,8 +11,8 @@ import Up from "../elements/Up.jsx"
 
 const Footer = () => {
   const [user, setUser] = useContext(UserContext);
-  const color = user.meta.colorTheme[0]
-  const bg = user.meta.colorTheme[1]
+  // const color = user.meta.colorTheme[0]
+  // const bg = user.meta.colorTheme[1]
   const navigate = useNavigate()
 
   return (
@@ -20,7 +20,7 @@ const Footer = () => {
     <Up />
     <div className="logoContainer central">
       <div 
-      className={`efjm ${bg}`}
+      className={`efjm`}
       onClick= { ()=> navigate("/efjm")}>
         <img src={efjm} alt="efjm" />
       </div>
