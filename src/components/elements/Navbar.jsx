@@ -212,7 +212,6 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
               projects={searchResult.project}
               talents={searchResult.talent}
               setShowSearch={setShowSearch}
-              setShowConversations={setShowConversations}
               darkMode={darkMode}
             />
           )}

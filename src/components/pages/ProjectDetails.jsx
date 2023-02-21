@@ -119,8 +119,8 @@ const ProjectDetails = () => {
         )}
         <Chrono
           theme={{
-            primary: `#fff`,
-            secondary: "#333",
+            primary: darkMode ? "#fff" : "#333",
+            secondary: darkMode ? "#333" : "#fff",
             cardBgColor: darkMode ? "#333" : "#fff",
             cardForeColor: "violet",
             titleColor: darkMode ? "#fff" : "#333",

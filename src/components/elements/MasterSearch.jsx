@@ -12,7 +12,6 @@ const MasterSearch = ({
   talents,
   setShowSearch,
   showSearch,
-  setShowNotifications,
   darkMode,
 }) => {
   const [user, setUser] = useContext(UserContext);
@@ -60,7 +59,7 @@ const MasterSearch = ({
               </>
             )}
           </div>
-          <div className="central" onClick={() => setShowNotifications(false)}>
+          <div className="central" onClick={() => setShowSearch(false)}>
             <button
               className={`circle40 ${bg} central BrgClsBtn`}
               title="close"
