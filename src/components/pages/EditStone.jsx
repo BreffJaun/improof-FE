@@ -14,7 +14,7 @@ import { AiOutlineCamera as Camera } from "react-icons/ai";
 // ELEMENTS
 import { TalentCard } from "../elements/TalentCard.jsx";
 import Switch from "react-switch";
-import styledEngine from "@mui/styled-engine";
+// import styledEngine from "@mui/styled-engine";
 
 const EditStone = () => {
   const navigate = useNavigate();

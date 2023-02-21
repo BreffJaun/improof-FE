@@ -15,6 +15,9 @@ import { AiOutlineStar as Star } from "react-icons/ai";
 import { MdOutlineClose as X } from "react-icons/md";
 import { MdLightbulbOutline as Light } from "react-icons/md";
 
+import { BsLightbulbOff as Dark } from "react-icons/bs";
+import { BsLightbulb as Light } from "react-icons/bs";
+
 
 // CONTEXT
 import UserContext from "../context/userContext";
@@ -107,8 +110,20 @@ const BurgerMenuTalent = ({
           <div className="mt05 col">
             <p className="mb05 info center">system</p>
             <button className={`mb05 rel ${bg}`} onClick={handleMode}>
-              <Light className="burger-icon" />
-              <p className="ml2">light/dark</p>
+              {/* <Light className="burger-icon" />
+              <p className="ml2">light/dark</p> */}
+
+              {mode ?
+                <div>
+                  < Light className="burger-icon" />
+                  <p className="ml2">lightmode</p>
+                </div>
+                :
+                <div>
+                  < Dark className="burger-icon" />
+                  <p className="ml2">darkmode</p>
+                </div>}
+
             </button>
             <div onClick={() => setShowMenu(!showMenu)} className="mb05">
               <button
