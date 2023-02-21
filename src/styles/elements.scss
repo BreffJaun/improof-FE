@@ -2,26 +2,21 @@
     width: 15px;
     height: 15px;
     border-radius: 15px;
-
 }
 .circle20{
     width: 20px;
     height: 20px;
     border-radius: 20px;
-
 }
 .circle30{
     width: 30px;
     height: 30px;
     border-radius: 15px;
-
 }
 .circle40{
     width: 40px;
     height: 40px;
     border-radius: 20px;
-
-
 }
 .circle50{
     width: 50px;
@@ -32,31 +27,26 @@
     width: 60px;
     height: 60px;
     border-radius: 60px;
-
 }
 .circle70{
     width: 70px;
     height: 70px;
     border-radius: 70px;  
-  
 }
 .circle80{
     width: 80px;
     height: 80px;
     border-radius: 80px;
-
 }
 .circle90{
     width: 90px;
     height: 90px;
     border-radius: 90px;
-
 }
 .circle100{
     width: 100px;
     height: 100px;
     border-radius: 50px;
-
 }
 
 
@@ -150,11 +140,6 @@ input[type=file]::before {
 }
 
 
-
-
-
-
-
 .up-icon{
     display: flex;
     position: absolute;
@@ -246,3 +231,10 @@ input[type=file]::before {
 }
 
 
+.dot{
+    width: 17px;
+    height: 17px;
+    left: -1.5rem;
+    bottom: -0.5rem;
+    outline: 2px solid var(--A100);
+}

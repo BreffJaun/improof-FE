@@ -5,7 +5,6 @@ import { host } from "../../api/host.jsx";
 
 // ICONS
 import { MdOutlineClose as X } from "react-icons/md";
-import { GoPrimitiveDot } from "react-icons/go";
 
 const Conversations = ({
   setShowConversations,
@@ -71,18 +70,16 @@ const Conversations = ({
                               </p>
                             )}
                           </div>
-                          <div>
-                            <p className={color}>
-                              {participant.profile.firstName}{" "}
-                              {participant.profile.lastName}
-                            </p>
+                          <div className="rel col">
                             <p>
                               <span className="fw700">{time}</span> - {date}
                               {unread &&
-                              <span className="red-dot">
-                                <GoPrimitiveDot/>
-                              </span>
+                                <div className={`dot abs circle15 ${bg}`}></div>
                               }
+                            </p>
+                            <p className={color}>
+                              {participant.profile.firstName}{" "}
+                              {participant.profile.lastName}
                             </p>
                           </div>
                         </div>

@@ -11,11 +11,8 @@ import { LogoL } from "../Logo.jsx";
 
 
 const Login = () => {
-
   const navigate = useNavigate(); 
-
   const [loginData, setLoginData] = useState({});
-
   const handleInput = (event) => {
     setLoginData({...loginData, profile:{...loginData.profile, [event.target.name]: event.target.value}});
   }
@@ -50,19 +47,15 @@ const Login = () => {
     sendData();
   }
 
-
   return (
-    <>
+    <div className="x" >
       <div className="mb2 mt2">
         <LogoL/>
       </div>
-
       <form onSubmit={handleSubmit}>
-        <div className="central col">
-
+        <div className="y central col">
           {/* <p>{loginData.email}</p>
           <p>{loginData.password}</p> */}
-
           <div className="mb2 col">
             <input 
               type="text" 
@@ -77,7 +70,6 @@ const Login = () => {
               onChange={handleInput}
             />
           </div>
-
           <button className={`bg-FAV mb2`} type="submit">login</button>
           <div className="col central">
             <p>Not registered yet?</p>
@@ -86,8 +78,7 @@ const Login = () => {
         </div>
       </form>
       <ToastContainer />
-      <Footer/>
-    </>
+    </div >
   );
 };
 

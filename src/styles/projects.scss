@@ -40,8 +40,6 @@
         }
     }
 }
-
-
 .contributors-container{
     display: flex;
     justify-content: flex-end;
@@ -60,6 +58,60 @@
                 overflow: hidden;
                 height: 40px;
                 width: 40px;
+                border-radius: 40px;
+                outline: 3px solid white;
+                >img{
+                    object-fit: cover;
+                    width: 110%;
+                    height: 110%;
+                }
+            }
+        }
+    }
+}
+
+
+
+.projectS{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    padding: 0;
+    width: 235px;
+    .project-banner{
+        width: 100%;
+        height: 120px;
+        margin: 0;
+        border-radius: 8px 8px 0 0;
+    };
+    .project-body{
+        display: flex;
+        padding: 0rem 0.5rem 1rem;
+        border-radius: 0 0 8px 8px;
+        >*{
+            margin-top: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+}
+.contributors-containerS{
+    display: flex;
+    justify-content: flex-end;
+    width: 235px;
+    .contributors{
+        display: flex;
+        position: absolute;
+        right: 1rem;
+        top: -1.2rem;
+        >*{
+            cursor: pointer;
+            display: flex;
+            padding: -1rem;
+            .contributor-image-container{
+                display: flex;
+                overflow: hidden;
+                height: 35px;
+                width: 35px;
                 border-radius: 40px;
                 outline: 3px solid white;
                 >img{
