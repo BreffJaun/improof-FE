@@ -42,7 +42,7 @@ const News = ({ project, user }) => {
           <div>
             <div onClick={() => navigate(`/projectdetails/${project._id}`)}>
               <h3>{project?.name}</h3>
-              <p className="mt05 c-A60">{project?.description}</p>
+              <p className="mt05 c-A60">{project.description.length > 80 ? project?.description.slice(0,80) + "..." : project?.description }</p>
             </div>
             <div>
               {project?.team?.length && (

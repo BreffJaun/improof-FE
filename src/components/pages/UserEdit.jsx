@@ -218,7 +218,7 @@ const UserEdit = () => {
           />
         </div>
         <div className="col mb1">
-          <p>that´s me</p>
+          <p>that´s me:</p>
           <input
             onChange={handleInputProfile}
             name="description"
@@ -227,7 +227,7 @@ const UserEdit = () => {
           />
         </div>
         <div className="central">
-          <p>here I perform my best: </p>
+          <p>here i perform my best:</p>
           <select onChange={handleCategoryProfile} name="category">
             <option value="">All categories</option>
             {user.profile.category === "Web-Development" ? (
@@ -334,8 +334,19 @@ const UserEdit = () => {
             )}
           </select>
         </div>
+          
         <div className="col mb1">
-          <p>i do right now</p>
+          <p>tools and skills: </p>
+          <input
+            onChange={handleInputProfile}
+            name="goal"
+            type="text"
+            defaultValue={user.profile.toolsAndSkills}
+          />
+        </div>
+
+        <div className="col mb1">
+          <p>current occupation:</p>
           <input
             onChange={handleInputProfile}
             name="position"
@@ -344,7 +355,7 @@ const UserEdit = () => {
           />
         </div>
         <div className="col mb1">
-          <p>i want to achieve</p>
+          <p>i want to achieve: </p>
           <input
             onChange={handleInputProfile}
             name="goal"
@@ -357,7 +368,7 @@ const UserEdit = () => {
         <h1
           className={`central ${color ? color : user.meta.colorTheme[0]} mt05`}
         >
-          contact
+          contact:
         </h1>
         <div className="col mb1">
           <p>mobile</p>
