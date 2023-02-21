@@ -1,14 +1,15 @@
-import {
-  MyProjectCard,
-  ProjectCardNewsFeed,
-  ProjectCard,
-} from "../elements/ProjectCard.jsx";
 import { useContext, useEffect } from "react";
 import { host } from "../../api/host.jsx";
-import Footer from "../elements/Footer.jsx";
+
 
 import UserContext from "../../context/userContext.jsx";
 import TriggerContext from "../../context/triggerContext.jsx";
+
+
+// COMPONENTS
+import { ProjectCard } from "../elements/ProjectCard.jsx";
+import Footer from "../elements/Footer.jsx";
+
 
 const MyProjects = () => {
   const [user, setUser] = useContext(UserContext);

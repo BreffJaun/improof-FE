@@ -71,16 +71,17 @@ const Conversations = ({
                             )}
                           </div>
                           <div className="rel col">
+                            <p className={color}>
+                              {participant.profile.firstName}{" "}
+                              {participant.profile.lastName}
+                            </p>
                             <p>
                               <span className="fw700">{time}</span> - {date}
                               {unread &&
                                 <div className={`dot abs circle15 ${bg}`}></div>
                               }
                             </p>
-                            <p className={color}>
-                              {participant.profile.firstName}{" "}
-                              {participant.profile.lastName}
-                            </p>
+
                           </div>
                         </div>
                       </div>

@@ -1,5 +1,5 @@
-import { ProjectCardS, ProjectCardNewsFeed } from "./ProjectCard.jsx";
-import { TalentCard, TalentCardS } from "./TalentCard.jsx";
+import { ProjectCardS} from "./ProjectCard.jsx";
+import { TalentCardS } from "./TalentCard.jsx";
 import { useContext } from "react";
 
 //  ICONS

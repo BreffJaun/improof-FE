@@ -49,7 +49,7 @@ const TalentToProjectCard = ({ talent, user, team, setTeam, projectEdit }) => {
           >
             {talent.profile?.firstName} {talent.profile?.lastName}
           </p>
-          <p>{talent.profile?.toolsAndSkills}</p>
+          <p>{talent.profile?.category}</p>
         </div>
         {!checkTeam ? (
           <div className="w100 abs b0">

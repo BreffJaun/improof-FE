@@ -96,6 +96,7 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
   }, [showNotifications, showConversations]);
 
   return (
+
     <div className={`navbar-container`} id={darkMode ? `bgG` : ``}>
       <div onClick={() => navigate("/")} className="navbar-left">
         <div className={`logo-container ${bg}`}>

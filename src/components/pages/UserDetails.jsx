@@ -14,7 +14,7 @@ import { SendMessageBtn } from "../buttons/MessageBtn.jsx";
 import { AiFillEdit } from "react-icons/ai";
 
 //ELEMENTS
-import { MyProjectCard, ProjectCard } from "../elements/ProjectCard.jsx";
+import { ProjectCard } from "../elements/ProjectCard.jsx";
 import { TalentCard } from "../elements/TalentCard.jsx";
 import Up from "../elements/Up.jsx";
 import Footer from "../elements/Footer.jsx";
