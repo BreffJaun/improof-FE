@@ -19,7 +19,7 @@ const MasterSearch = ({
   const bg = user.meta.colorTheme[1];
 
   return (
-    <div className="burger-container rel">
+    <div className="burger-container rel bgG">
       <div>
         <p className="mb2 info center">search results</p>
         <div className="scroll-container">
