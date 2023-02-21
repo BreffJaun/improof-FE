@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { host } from "./api/host.jsx";
 
@@ -23,6 +24,7 @@ import Main from "./components/pages/Main.jsx";
 // CONTEXT
 import UserContext from "./context/userContext.jsx";
 function App() {
+  const navigate = useNavigate()
   const [count, setCount] = useState(0);
   const [user, setUser] = useContext(UserContext);
   const [modeTrigger, setModeTrigger] = useState(false);

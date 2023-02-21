@@ -92,12 +92,11 @@ const TalentDetails = () => {
           }
         </div>
         {user._id === talent._id ?
-            <div
+          <div
               title="edit your profile"
               className={`circle40 ${bg} central editBtn`}
               onClick={() => navigate(`/useredit/${user._id}`)}>
-            <p className="c-A100"><AiFillEdit/>
-            </p>
+            <p className="c-A100"><AiFillEdit/></p>
           </div>
           : ""
         }

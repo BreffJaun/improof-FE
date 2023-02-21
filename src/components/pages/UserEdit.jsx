@@ -9,6 +9,7 @@ import "../../styles/colors.scss";
 
 //ICONS
 import { AiOutlineCamera } from "react-icons/ai";
+
 import { BiCheck } from "react-icons/bi";
 import { RxCross2 } from "react-icons/rx";
 
@@ -164,11 +165,19 @@ const UserEdit = () => {
           className= {`circle40 ${bg} central editBtn`}>
           {/* <p className="c-A100">image</p> */}
           <input 
-          onChange={avatarUploadHandler} 
-          name="avatar" 
-          type="file"
-          accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
+            id="uploadAvatar"
+            onChange={avatarUploadHandler} 
+            name="avatar" 
+            type="file"
+            accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
+            hidden
           />
+          <label 
+            for="uploadAvatar"
+            className="c-A100 pointer"
+          >
+            <AiOutlineCamera/>
+          </label>
       </div>
       </div>
         <h1 className={`central ${color ? color : user.meta.colorTheme[0] } mt05`}>Hi, {talent.profile.firstName}!</h1>
