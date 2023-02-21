@@ -108,35 +108,35 @@ const TalentDetails = () => {
             {/* ----------------------------------------------- */}
             {talent.profile.description &&
               <div className="mb1">
-                <p className={color}>description</p>
+                <p className={color}>that´s me:</p>
                 <p>{talent.profile.description}</p>
               </div>
             }
             {/* ----------------------------------------------- */}
             {talent.profile.goal &&
               <div className="mb1">
-                <p className={color}>goal</p>
+                <p className={color}>i want to achieve:</p>
                 <p>{talent.profile.goal}</p>
               </div>
             }
             {/* ----------------------------------------------- */}
             {talent.profile.position &&
               <div className="mb1">
-                <p className={color}>position</p>
+                <p className={color}>current occupation:</p>
                 <p>{talent.profile.position}</p>
               </div>
             }
             {/* ----------------------------------------------- */}
             {talent.profile.category &&
               <div className="mb1">
-                <p className={color}>category</p>
+                <p className={color}>here i perform my best: </p>
                 <p>{talent.profile.category}</p>
               </div>
             }
             {/* ----------------------------------------------- */}
             {talent.profile.toolsAndSkills &&
               <div className="mb1">
-                <p className={color}>Tools and Skills</p>
+                <p className={color}>tools and skills: </p>
                 <p>{talent.profile.toolsAndSkills}</p>
               </div>
             }
