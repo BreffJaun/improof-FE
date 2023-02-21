@@ -64,7 +64,7 @@ const TalentCardS = ({talent, user}) => {
           
           <div>
             <p className={`fw500 ${color}`} onClick={()=> navigate(`/userDetails/${talent._id}`)}>{talent.profile?.firstName} {talent.profile?.lastName}</p>
-            <p>{talent.profile?.position}</p>
+            <p>{talent.profile?.category}</p>
           </div>
         </div>
 

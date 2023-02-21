@@ -65,9 +65,7 @@ const MasterSearch = ({
               className={`circle40 ${bg} central BrgClsBtn`}
               title="close"
             >
-              <h1>
-                <X />
-              </h1>
+              <X />
             </button>
           </div>
         </div>
