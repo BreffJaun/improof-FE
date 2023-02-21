@@ -153,37 +153,40 @@ const ProjectCard = ({ project, user, darkMode }) => {
               onClick={() => navigate(`/projectdetails/${project._id}`)}
             />
           )}
-          <div>
-            {project?.team?.length && (
-              <div className="contributors-container col rel">
-                <div className="contributors">
-                  <div className="flex">
-                    {project?.team?.length &&
-                      project?.team?.map((member) => (
-                        <div
-                          key={member._id}
-                          className="contributor-image-container bg-FAV central"
-                          onClick={() => navigate(`/userDetails/${member._id}`)}
-                        >
-                          {member?.profile?.avatar ? (
-                            <img src={member.profile.avatar} />
-                          ) : (
-                            <p className="initials">
-                              {member.profile?.initials}
-                            </p>
-                          )}
-                        </div>
-                      ))}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
+
           <div
             className={
               darkMode ? `project-body col rel bgG` : "project-body col rel"
             }
           >
+            <div>
+              {project?.team?.length && (
+                <div className="contributors-container col rel">
+                  <div className="contributors">
+                    <div className="flex">
+                      {project?.team?.length &&
+                        project?.team?.map((member) => (
+                          <div
+                            key={member._id}
+                            className="contributor-image-container bg-FAV central"
+                            onClick={() =>
+                              navigate(`/userDetails/${member._id}`)
+                            }
+                          >
+                            {member?.profile?.avatar ? (
+                              <img src={member.profile.avatar} />
+                            ) : (
+                              <p className="initials">
+                                {member.profile?.initials}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
             <div onClick={() => navigate(`/projectdetails/${project._id}`)}>
               <h3 className="mt035 fw900">{project?.name}</h3>
               <p className="mt015 overflow">{project?.description}</p>

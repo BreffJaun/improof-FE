@@ -7,20 +7,16 @@ import { MdOutlineClose as X } from "react-icons/md";
 
 import UserContext from "../../context/userContext.jsx";
 
-const MasterSearch = ({
-  projects,
-  talents,
-  setShowSearch,
-  showSearch,
-  darkMode,
-}) => {
+const MasterSearch = ({ projects, talents, setShowSearch, showSearch }) => {
   const [user, setUser] = useContext(UserContext);
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
+  const darkMode = user.meta.darkMode;
+  console.log(darkMode);
 
   return (
-    <div className="burger-container rel bgG">
-      <div>
+    <div className="burger-container rel ">
+      <div id={darkMode && "bgG"}>
         <p className="mb2 info center">search results</p>
         <div className="scroll-container">
           <div className="col mr1">
