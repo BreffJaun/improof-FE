@@ -13,7 +13,6 @@ import { AiOutlineAppstoreAdd as Projects } from "react-icons/ai";
 import { AiOutlinePlusSquare as NewProject } from "react-icons/ai";
 import { AiOutlineStar as Star } from "react-icons/ai";
 import { MdOutlineClose as X } from "react-icons/md";
-import { MdLightbulbOutline as Light } from "react-icons/md";
 
 import { BsLightbulbOff as Dark } from "react-icons/bs";
 import { BsLightbulb as Light } from "react-icons/bs";
