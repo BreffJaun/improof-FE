@@ -6,7 +6,7 @@ import {UserContextProvider} from './context/userContext.jsx'
 import { TriggerContextProvider } from './context/triggerContext.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
 
-  // <React.StrictMode>
+  <React.StrictMode>
     <TriggerContextProvider>
       <UserContextProvider>
         <BrowserRouter>
@@ -14,5 +14,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </BrowserRouter>
       </UserContextProvider>
     </TriggerContextProvider>
-  // </React.StrictMode>
+  </React.StrictMode>
 )
