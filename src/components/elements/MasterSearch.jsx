@@ -3,9 +3,18 @@ import { TalentCard, TalentCardS } from "./TalentCard.jsx";
 import { useContext } from "react";
 
 //  ICONS
+import { MdOutlineClose as X } from "react-icons/md";
+
 import UserContext from "../../context/userContext.jsx";
 
-const MasterSearch = ({ projects, talents, setShowSearch, showSearch }) => {
+const MasterSearch = ({
+  projects,
+  talents,
+  setShowSearch,
+  showSearch,
+  setShowNotifications,
+  darkMode,
+}) => {
   const [user, setUser] = useContext(UserContext);
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
@@ -24,7 +33,11 @@ const MasterSearch = ({ projects, talents, setShowSearch, showSearch }) => {
                     talent.profile.isTalent &&
                     talent._id !== user._id && (
                       <div onClick={() => setShowSearch(false)} key={i}>
-                        <TalentCardS talent={talent} user={user} />
+                        <TalentCardS
+                          talent={talent}
+                          user={user}
+                          darkMode={darkMode}
+                        />
                       </div>
                     )
                 )}
@@ -37,7 +50,11 @@ const MasterSearch = ({ projects, talents, setShowSearch, showSearch }) => {
                 <p className={`${color} fw700 mt2 mb1 central`}>projects</p>
                 {projects.map((project, i) => (
                   <div onClick={() => setShowSearch(false)} key={i}>
-                    <ProjectCardS project={project} user={user} />
+                    <ProjectCardS
+                      project={project}
+                      user={user}
+                      darkMode={darkMode}
+                    />
                   </div>
                 ))}
               </>

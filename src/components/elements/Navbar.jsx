@@ -30,7 +30,7 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
   const [showSearch, setShowSearch] = useState(false);
   const [showNotifications, setShowNotifications] = useState(undefined);
   const [showConversations, setShowConversations] = useState(undefined);
-  const mode = user?.meta?.darkMode;
+  const darkMode = user?.meta?.darkMode;
   const color = user?.meta?.colorTheme[0];
   const bg = user?.meta?.colorTheme[1];
 
@@ -96,7 +96,7 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
   }, [showNotifications, showConversations]);
 
   return (
-    <div className={`navbar-container`} id={mode ? `bgG` : ``}>
+    <div className={`navbar-container`} id={darkMode ? `bgG` : ``}>
       <div onClick={() => navigate("/")} className="navbar-left">
         <div className={`logo-container ${bg}`}>
           <img src={logo} alt="improof-logo" />
@@ -212,6 +212,8 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
               projects={searchResult.project}
               talents={searchResult.talent}
               setShowSearch={setShowSearch}
+              setShowConversations={setShowConversations}
+              darkMode={darkMode}
             />
           )}
         </div>
