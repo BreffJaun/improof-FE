@@ -213,20 +213,23 @@ const CreateProject = () => {
                 : 
                 null           
               }
-              <div title="x upload">
-                <Upload className="y"/>
+              <div 
+                title="upload thumbnail"
+                className= {`circle40 central`}
+              >
                 <input 
-                  className="z"
-                  type="file"
-                  name="thumbnail"
+                  id="uploadThumbnail"
                   onChange={handleFile}
+                  name="thumbnail"
+                  type="file"
                   accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
+                  hidden
                 />
                 <label 
-                  for="uploadAvatar"
+                  htmlFor="uploadThumbnail"
                   className="c-A100 pointer"
                 >
-                  <AiOutlineCamera/>
+                  <Upload />
                 </label>
               </div>
             </div>

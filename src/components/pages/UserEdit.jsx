@@ -163,7 +163,6 @@ const UserEdit = () => {
         <div
           title="upload image"
           className= {`circle40 ${bg} central editBtn`}>
-          {/* <p className="c-A100">image</p> */}
           <input 
             id="uploadAvatar"
             onChange={avatarUploadHandler} 
@@ -173,12 +172,12 @@ const UserEdit = () => {
             hidden
           />
           <label 
-            for="uploadAvatar"
+            htmlFor="uploadAvatar"
             className="c-A100 pointer"
           >
             <AiOutlineCamera/>
           </label>
-      </div>
+        </div>
       </div>
         <h1 className={`central ${color ? color : user.meta.colorTheme[0] } mt05`}>Hi, {talent.profile.firstName}!</h1>
         <p className={`central ${color ? color : user.meta.colorTheme[0]}`}>Let´s spice up your profile!</p>
