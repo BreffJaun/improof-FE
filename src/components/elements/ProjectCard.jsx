@@ -203,12 +203,13 @@ const ProjectCard = ({ project, user, darkMode }) => {
   );
 };
 
+
 const ProjectCardS = ({ project, user, darkMode }) => {
   const navigate = useNavigate();
   return (
     Object.keys(project).length > 0 && (
       <div className="col">
-        <div className="project card col">
+        <div className="projectS card col">
           {!project.thumbnail && (
             <div
               className="project-banner bg-gA central col"
@@ -230,7 +231,7 @@ const ProjectCardS = ({ project, user, darkMode }) => {
           )}
           <div>
             {project?.team?.length && (
-              <div className="contributors-container col rel">
+              <div className="contributors-containerS col rel">
                 <div className="contributors">
                   <div className="flex">
                     {project?.team?.length &&
@@ -261,12 +262,6 @@ const ProjectCardS = ({ project, user, darkMode }) => {
           >
             <div onClick={() => navigate(`/projectdetails/${project._id}`)}>
               <h3 className="mt035 fw900">{project?.name}</h3>
-              <p className="mt015">{project?.description}</p>
-            </div>
-            <div className="star central">
-              <div>
-                <ProjectBtn project={project} user={user} />
-              </div>
             </div>
           </div>
         </div>

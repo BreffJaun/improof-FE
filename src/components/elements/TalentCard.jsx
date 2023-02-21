@@ -68,14 +68,14 @@ const TalentCardS = ({talent, user}) => {
           </div>
         </div>
 
-        <div className="t-community">
+        {/* <div className="t-community">
           <div title="send message">
             <SendMessageBtn talent={talent} user={user} />
           </div>
           <div>
             {user.follows.find(follow => follow._id === talent._id) ? <FollowBtn talent={talent} user={user}/> : <FollowBtn  talent={talent} user={user}/>}
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
