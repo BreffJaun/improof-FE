@@ -8,11 +8,11 @@ const NewsfeedCard = ({stone, projectId}) => {
       <div className="">
         <h4 onClick={()=>navigate(`/projectdetails/${projectId}`)}>{stone.title}</h4>
         <h5>{stone.description}</h5>
-        <div className="player">
+        <div className="player" onClick={()=>navigate(`/projectdetails/${projectId}`)}>
           {!stone.media[0] ? null : stone.contentType.includes("image") ? (
             <img className="player" src={stone.media[0]} />
           ) : (
-            <div>
+            <div >
               <ReactPlayer
                 url={stone.media[0]}
                 playing={false}
