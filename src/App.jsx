@@ -44,7 +44,7 @@ function App() {
         //   if (json.user?.meta?.loginCount === 1) {
         //     navigate("/congrats");
         //   }
-        // } else {
+        } else {
           navigate("/login");
         }
       });
