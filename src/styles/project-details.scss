@@ -10,10 +10,17 @@ color:red
   height:500px;
 }
 
-.project-details-container{
-  border: 2px solid greenyellow;
+.stone-card-container{
   width: 100%;
   display: flex;
   position: relative;
   flex-direction: column;
+}
+
+.stone-card-media{
+  display: flex;
+  object-fit: cover;
+  img{
+    width: 100%;
+  }
 }
