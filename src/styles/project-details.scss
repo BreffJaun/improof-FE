@@ -9,3 +9,11 @@ color:red
 .stone-card{
   height:500px;
 }
+
+.project-details-container{
+  border: 2px solid greenyellow;
+  width: 100%;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}

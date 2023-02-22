@@ -34,6 +34,7 @@ const ProjectDetails = () => {
   const darkMode = user?.meta?.darkMode;
   const [openStoneCard, setOpenStoneCard] = useState();
   const [stone, setStone] = useState({});
+
   // const []
   // FETCH CURR PROJECT
   useEffect(() => {
@@ -130,11 +131,11 @@ const ProjectDetails = () => {
           {!isPending &&
             project.stones.map((stone) => {
               return (
-                <div key={stone._id}>
+                <div className="project-details-container" key={stone._id}>
                   {stone.media && <img src={stone.media} alt="" width="150" />}
-                  <h1>{stone.title}</h1>
-                  {/* <p>{stone.kind}</p> */}
-                  {/* <p>{stone.description}</p> */}
+                  <p>{stone.kind}</p>
+                  <h3>{stone.title}</h3>
+                  <p>{ stone.createdAt.slice(8, 10) + "-" + stone.createdAt.slice(6, 8) + stone.createdAt.slice(0, 4)}</p>
                   <div className="mt1 flex g05">
                     {stone?.team?.map((member) => (
                       <div key={member._id} className="circle50 bg-FAV central">
