@@ -37,25 +37,6 @@ const TalentDetails = () => {
   const darkMode = talent?.meta?.darkMode;
 
   useEffect(() => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-    setIsPending(true);
-    const getUser = async () => {
-      await fetch(`${host}/users/${id}`, {
-        credentials: "include",
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          if (json.status) {
-            setTalent(json.userData);
-            setIsPending(false);
-          }
-        });
-    };
-    getUser();
-  }, [id]);
-
-  useEffect(() => {
     setIsPending(true);
     const getUser = async () => {
       await fetch(`${host}/users/checklogin`, {
@@ -74,6 +55,26 @@ const TalentDetails = () => {
     };
     getUser();
   }, [trigger]);
+
+  useEffect(() => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    setIsPending(true);
+    const getUser = async () => {
+      await fetch(`${host}/users/${id}`, {
+        credentials: "include",
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          if (json.status) {
+            setTalent(json.userData);
+            setIsPending(false);
+            }
+        });
+    };
+    getUser();
+  }, [id]);
+
 
   return (
     talent && (

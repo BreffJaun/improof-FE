@@ -108,7 +108,7 @@ const UserEdit = () => {
 
     console.log("userData: ", userData)
     console.log("avatar: ", avatar)
-    
+
     const updateUserData = async () => {
       setUploadPending(true);
       await fetch(`${host}/users/${user._id}`, {
@@ -120,25 +120,16 @@ const UserEdit = () => {
         .then((json) => json.json())
         .then((data) => {
           if (data.status) {
-            // toast.info(data.message)
-            setAvatar(undefined);
-            setUploadPending(false);
-            if(!uploadPending) {
-              navigate(`/userdetails/${user._id}`)
-            }
+            navigate(`/userdetails/${user._id}`)
           }
           if (data.error) {
-            data.error.map((err) => {
-              // setUploadPending(false);
               toast.error(err.msg, toastOptions);
-            });
           }
         });
     };
     updateUserData();
-    navigate(`/userdetails/${user._id}`);
   };
-
+  
   return uploadPending ? (
     <div>Loading...</div>
   ) : !isPending && user.profile.isTalent ? (
