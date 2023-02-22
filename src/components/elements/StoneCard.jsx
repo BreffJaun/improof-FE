@@ -25,7 +25,7 @@ const StoneCard = ({ stone, project }) => {
       <div className="x">
         <p>What happened?</p>
         <p>{stone.description}</p>
-        <div>
+        {/* <div>
           {!stone.media[0] ? null : stone.contentType.includes("image") ? (
             <img src={stone.media[0]} />
           ) : (
@@ -43,7 +43,7 @@ const StoneCard = ({ stone, project }) => {
               stopOnUnmount={false}
             />
           )}
-        </div>
+        </div> */}
         <div>
           {stone.team.map((member) => (
             <TalentCardS key={member._id} talent={member} user={user} />

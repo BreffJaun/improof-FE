@@ -428,7 +428,6 @@ const NewSearch = () => {
         <ToastContainer />
       </div>
     )
-  );
 };
 
 export default NewSearch;
