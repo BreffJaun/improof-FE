@@ -1,13 +1,12 @@
 .navbar-container{
     display: flex;
-    position: sticky;
+    // position: sticky;
     justify-content: space-between;
     top: 0;
-    background-color: var(--A100);
     border-bottom: 1px solid var(--A60);
     padding-top: 2rem;
     padding-bottom: 2rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     z-index:10;
     .navbar-left{
         display: flex;
@@ -29,5 +28,15 @@
     >*{
         font-size: 0.7rem;
         font-weight: 700;
+    }
+}
+
+.sidebar-container{
+    height: 78%;
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    .sidebar{
     }
 }

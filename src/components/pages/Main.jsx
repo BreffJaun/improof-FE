@@ -1,6 +1,8 @@
 import { useNavigate, Route, Routes } from "react-router";
 import { useEffect, useState, useContext } from "react";
 import { host } from "../../api/host.jsx";
+import TalentMenu from "../TalentMenu.jsx";
+import RecruiterMenu from "../RecruiterMenu.jsx";
 
 // NAVBAR-COMPONENTEN
 import Navbar from "../elements/Navbar.jsx";
@@ -25,6 +27,7 @@ import CreateStone from "./CreateStone.jsx";
 import EditStone from "./EditStone.jsx";
 import StoneCard from "../elements/StoneCard.jsx";
 import Congrats from "../elements/Congrats.jsx";
+import Sidebar from "../elements/Sidebar.jsx";
 
 // FOOTER-COMPONENTEN
 import EFJM from "./EFJM";
@@ -70,42 +73,45 @@ const Main = ({ modeTrigger, setModeTrigger }) => {
           setModeTrigger={setModeTrigger}
           modeTrigger={modeTrigger}
         />
+        <Sidebar />
         {/* <LogoS /> */}
-        <div className="max1300">
-          <Routes>
-            <Route path="/" element={<Start />} />
-            <Route path="/efjm" element={<EFJM />} />
+        <div className="content-scroll-container">
+          <div className="max1300">
+            <Routes>
+              <Route path="/" element={<Start />} />
+              <Route path="/efjm" element={<EFJM />} />
 
-            {/* ROUTES USER */}
-            <Route path="/community" element={<Community />} />
-            <Route path="/efjm" element={<EFJM />} />
-            <Route path="/userdetails/:id" element={<UserDetails />} />
-            <Route path="/useredit/:id" element={<UserEdit />} />
+              {/* ROUTES USER */}
+              <Route path="/community" element={<Community />} />
+              <Route path="/efjm" element={<EFJM />} />
+              <Route path="/userdetails/:id" element={<UserDetails />} />
+              <Route path="/useredit/:id" element={<UserEdit />} />
 
-            {/* ROUTES PROJECTS */}
-            <Route path="/createproject" element={<CreateProject />} />
-            <Route path="/myprojects" element={<MyProjects />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/projectdetails/:id" element={<ProjectDetails />} />
-            <Route path="/projectedit/:id" element={<ProjectEdit />} />
-            <Route path="/createStone/:projectId" element={<CreateStone />} />
-            <Route
-              path="/editstone/:projectId/:stoneId"
-              element={<EditStone />}
-            />
-            <Route path="/:stoneId" element={<StoneCard />} />
+              {/* ROUTES PROJECTS */}
+              <Route path="/createproject" element={<CreateProject />} />
+              <Route path="/myprojects" element={<MyProjects />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/projectdetails/:id" element={<ProjectDetails />} />
+              <Route path="/projectedit/:id" element={<ProjectEdit />} />
+              <Route path="/createStone/:projectId" element={<CreateStone />} />
+              <Route
+                path="/editstone/:projectId/:stoneId"
+                element={<EditStone />}
+              />
+              <Route path="/:stoneId" element={<StoneCard />} />
 
-            {/* ROUTES RECRUITER */}
-            <Route path="/newsearch" element={<NewSearch />} />
-            <Route path="/searchhistory" element={<SearchHistory />} />
+              {/* ROUTES RECRUITER */}
+              <Route path="/newsearch" element={<NewSearch />} />
+              <Route path="/searchhistory" element={<SearchHistory />} />
 
-            {/* ROUTES NAVBAR */}
-            <Route path="/notifications" element={<Notifications />} />
-            <Route path="/messages/:id" element={<Messages />} />
-            <Route path="/conversations" element={<Conversations />} />
-            <Route path="/congrats" element={<Congrats />} />
-          </Routes>
-        </div>
+              {/* ROUTES NAVBAR */}
+              <Route path="/notifications" element={<Notifications />} />
+              <Route path="/messages/:id" element={<Messages />} />
+              <Route path="/conversations" element={<Conversations />} />
+              <Route path="/congrats" element={<Congrats />} />
+            </Routes>
+            </div>
+          </div>
         <ToastContainer />
       </>
     )

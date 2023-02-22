@@ -1,18 +1,23 @@
+.content-scroll-container{
+    height: 85%;
+    overflow-y: scroll;
+}
+
 .max1300{
     display: flex;
     flex-direction: column;
     max-width: 1300px;
     margin: auto;
-    border: 2px solid rgb(255, 0, 255);
+    // border: 2px solid rgb(255, 0, 255);
 }
 
 .max{
     width: 100%;
-    border: 2px solid greenyellow;
+    // border: 2px solid greenyellow;
 }
 
 .maxM{
     margin: auto;
     width: 60%;
-    border: 4px solid rgb(89, 143, 9);
+    // border: 4px solid rgb(89, 143, 9);
 }

@@ -88,3 +88,13 @@ const Martin = ({ darkMode }) => {
 };
 
 export default Martin;
+
+
+// Ich bin mit Leib und Seele Designer und
+// lebe für die Visualisierung von
+// Ideen. Dies konnte ich über 16 Jahren
+// Jahren bei Magazinen und
+// Zeitungen in Europas größtem
+// Verlagshaus ausleben.
+// Derzeit lerne ich WebDev,
+// damit ich mich kreativ im UI und Frontend austoben kann. Und das wird faszinierend werden.
