@@ -22,7 +22,7 @@ const NewSearch = () => {
   const navigate = useNavigate();
   const search = {
     position: "",
-    tas: "",
+    toolsAndSkills: "",
     zip: "",
     radius: ""
   }
@@ -260,7 +260,7 @@ console.log('redMarker: ', redMarker)
                         placeholder="what is the talents set" 
                         onChange={handleInput}
                         disabled={searchTrigger} 
-                        value={searchData.tas}
+                        value={searchData.toolsAndSkills}
                     />
                     <p>ZIP-Code</p>
                     <input 
