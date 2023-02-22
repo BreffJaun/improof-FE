@@ -162,8 +162,6 @@ const NewSearch = () => {
       setUpdatedTalents(talents.filter((talent) => talent.profile.toolsAndSkills.includes(tas)));
       // console.log(talentsToMap)
     }
-    
-
   };
   // updatedTalents && console.log('updatedTalents: ', updatedTalents)
 
@@ -194,23 +192,6 @@ const NewSearch = () => {
   };
   // FUNCTIONS TO CALCULATE DISTANCE END //
 
-  // FETCH TO SAVE SEARCHDATA //
-  // await fetch(`${host}/newsearch`, {
-
-//     method: 'POST',
-//     body: JSON.stringify(searchData),
-//     headers: {
-//         'Content-type': 'application/json; charset=UTF-8',
-//     },
-// })
-//     .then((response) => response.json())
-//     .then((json) => {
-//         console.log(json)
-//         if (!json.status) {
-//             toast.error(json.error, toastOptions);
-//         }
-//     });
-  
 
 // SHOW PIN OVERLAYS
 const overlayHandler = (e, talent) => {
@@ -227,14 +208,10 @@ const resetHandler = () => {
 };
 console.log('searchTrigger: ', searchTrigger)
 console.log('redMarker: ', redMarker)
+console.log("searchData: ", searchData)
 
 // RESET SEARCH END //
 
-// const geoJsonFeatureSample = {
-//   type: "Feature",
-//   geometry: { type: "Point", coordinates: [2.0, 48.5] },
-//   properties: { prop0: "value0" },
-// };
 
   return !isLoading && (
     < div className="componente">
@@ -353,16 +330,6 @@ console.log('redMarker: ', redMarker)
                 </Overlay>
               )}
                 <ZoomControl />
-                {/* <GeoJson
-                  svgAttributes={{
-                    fill: "#d4e6ec99",
-                    strokeWidth: "1",
-                    stroke: "white",
-                    r: "20",
-                  }}
-                >
-                  <GeoJsonFeature feature={geoJsonFeatureSample} />
-                </GeoJson> */}
               </Map>
               )}
             </div>
