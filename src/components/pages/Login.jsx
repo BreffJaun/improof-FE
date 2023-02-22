@@ -64,6 +64,7 @@ const Login = () => {
               onChange={handleInput}
             />
             <input
+              className="mt05"
               type="password" 
               name="password" 
               placeholder="password" 
