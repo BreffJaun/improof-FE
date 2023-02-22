@@ -8,6 +8,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Chrono } from "react-chrono";
 import { host } from "../../api/host.jsx";
+import ReactPlayer from "react-player";
 
 //CONTEXT
 import UserContext from "../../context/userContext.jsx";
@@ -121,8 +122,8 @@ const ProjectDetails = () => {
         <Chrono
           theme={{
             primary: darkMode ? "var(--A40)" : "var(--A40)",
-            secondary: darkMode ? "#333" : "#fff",
-            cardBgColor: darkMode ? "#333" : "#fff",
+            secondary: darkMode ? "var(--A15)" : "var(--A100)",
+            cardBgColor: darkMode ? "var(--A15)" : "var(--A100)",
             cardForeColor: "black",
             titleColor: darkMode ? "#fff" : "#333",
             titleColorActive: "red",
@@ -131,12 +132,30 @@ const ProjectDetails = () => {
           {!isPending &&
             project.stones.map((stone) => {
               return (
-                <div className="project-details-container" key={stone._id}>
-                  {stone.media && <img src={stone.media} alt="" width="150" />}
+                <div className="x stone-card-container" key={stone._id}>
+                  {stone.media.length !== 0 ?
+                    <div>
+                      {!stone.media[0] ? null : stone.contentType.includes("image") ? (
+                        <img src={stone.media[0]} />
+                      ) : (
+                        <ReactPlayer
+                          url={stone.media[0]}
+                          playing={false}
+                          controls={true}
+                          light={false}
+                          // playIcon={noch keine Ahnung}
+                          volume={null}
+                          muted={true}
+                          width="100%"
+                          height="100%"
+                          pip={true}
+                          stopOnUnmount={false}
+                        />
+                      )} </div> : ""}
                   <p>{stone.kind}</p>
                   <h3>{stone.title}</h3>
                   <p>{ stone.createdAt.slice(8, 10) + "-" + stone.createdAt.slice(6, 8) + stone.createdAt.slice(0, 4)}</p>
-                  <div className="mt1 flex g05">
+                  <div className="mt1 flex">
                     {stone?.team?.map((member) => (
                       <div key={member._id} className="circle50 bg-FAV central">
                         <p className="c-A100">{member.profile.initials}</p>
