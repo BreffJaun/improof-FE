@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { host } from "../../api/host.jsx";
-import { TalentCard } from "./TalentCard.jsx";
+import { TalentCard, TalentCardS } from "./TalentCard.jsx";
 import UserContext from "../../context/userContext.jsx";
 import { useNavigate } from "react-router-dom";
 import ReactPlayer from "react-player";
@@ -21,14 +21,10 @@ const StoneCard = ({ stone, project }) => {
     stone.createdAt.slice(0, 4);
 
   return (
-    <div className="news-container">
-      <div className="projects-container">
-        <h1>{stone.title}</h1>
-        <h6>{stone.description}</h6>
-
-        <h3>
-          This is a <b>{stone.kind.toUpperCase()}</b> created at {date} by
-        </h3>
+    <div>
+      <div className="x">
+        <p>What happened?</p>
+        <p>{stone.description}</p>
         <div>
           {!stone.media[0] ? null : stone.contentType.includes("image") ? (
             <img src={stone.media[0]} />
@@ -50,7 +46,7 @@ const StoneCard = ({ stone, project }) => {
         </div>
         <div>
           {stone.team.map((member) => (
-            <TalentCard key={member._id} talent={member} user={user} />
+            <TalentCardS key={member._id} talent={member} user={user} />
           ))}
         </div>
         {teamMember && (
