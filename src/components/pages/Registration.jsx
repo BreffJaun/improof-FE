@@ -52,6 +52,7 @@ const Registration = () => {
                     toast.error(json.error, toastOptions);
                 } else {
                     toast.info("We sent you an email for verification.", toastOptions);
+                    setTimeout(() => navigate("/login"), 8000)
                 }
             });
         };
