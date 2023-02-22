@@ -17,11 +17,9 @@ import { MdOutlineClose as X } from "react-icons/md";
 import { BsLightbulbOff as Dark } from "react-icons/bs";
 import { BsLightbulb as Light } from "react-icons/bs";
 
-
 // CONTEXT
 import UserContext from "../context/userContext";
 import TriggerContext from "../context/triggerContext.jsx";
-
 
 const BurgerMenuTalent = ({
   setShowMenu,
@@ -112,17 +110,17 @@ const BurgerMenuTalent = ({
               {/* <Light className="burger-icon" />
               <p className="ml2">light/dark</p> */}
 
-              {mode ?
+              {mode ? (
                 <div>
-                  < Light className="burger-icon" />
+                  <Light className="burger-icon" />
                   <p className="ml2">lightmode</p>
                 </div>
-                :
+              ) : (
                 <div>
-                  < Dark className="burger-icon" />
+                  <Dark className="burger-icon" />
                   <p className="ml2">darkmode</p>
-                </div>}
-
+                </div>
+              )}
             </button>
             <div onClick={() => setShowMenu(!showMenu)} className="mb05">
               <button
@@ -142,7 +140,10 @@ const BurgerMenuTalent = ({
               setShowMenu(!showMenu);
             }}
           >
-            <button className={`circle40 BrgClsBtn ${bg} central`} title="close">
+            <button
+              className={`circle40 BrgClsBtn ${bg} central`}
+              title="close"
+            >
               <X />
             </button>
           </div>
@@ -264,7 +265,10 @@ const BurgerMenuRecruiter = ({
                   setShowMenu(!showMenu);
                 }}
               >
-                <button className="circle40 BrgClsBtn central" title="close">
+                <button
+                  className={`circle40 BrgClsBtn ${bg} central`}
+                  title="close"
+                >
                   <X />
                 </button>
               </div>
