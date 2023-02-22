@@ -133,13 +133,12 @@ const ProjectDetails = () => {
             project.stones.map((stone) => {
               return (
                 <div className="x stone-card-container" key={stone._id}>
-                  {stone.media.length !== 0 ?
                     <div>
-                      {!stone.media[0] ? null : stone.contentType.includes("image") ? (
-                        <img src={stone.media[0]} />
+                      {!stone.media ? null : stone.contentType.includes("image") ? (
+                        <img src={stone.media} />
                       ) : (
                         <ReactPlayer
-                          url={stone.media[0]}
+                          url={stone.media}
                           playing={false}
                           controls={true}
                           light={false}
@@ -151,7 +150,8 @@ const ProjectDetails = () => {
                           pip={true}
                           stopOnUnmount={false}
                         />
-                      )} </div> : ""}
+                      )} 
+                    </div>
                   <p>{stone.kind}</p>
                   <h3>{stone.title}</h3>
                   <p>{ stone.createdAt.slice(8, 10) + "-" + stone.createdAt.slice(6, 8) + stone.createdAt.slice(0, 4)}</p>
