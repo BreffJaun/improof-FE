@@ -106,6 +106,9 @@ const UserEdit = () => {
     formData.append("avatar", avatar);
     formData.append("data", JSON.stringify(userData));
 
+    console.log("userData: ", userData)
+    console.log("avatar: ", avatar)
+    
     const updateUserData = async () => {
       setUploadPending(true);
       await fetch(`${host}/users/${user._id}`, {
@@ -482,9 +485,9 @@ const UserEdit = () => {
         <ToastContainer />
       </form>
     </>
-  ) : uploadPending ? (
-    <div>Loading...</div>
-  ) : !isPending && user.profile.isRecruiter ? (
+  ) : 
+  
+  uploadPending ? (<div>Loading...</div>) : !isPending && user.profile.isRecruiter ? (
     <>
       <form onSubmit={handleSubmit}>
         <div className="central col mt3">
