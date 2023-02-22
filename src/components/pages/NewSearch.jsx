@@ -427,7 +427,7 @@ const NewSearch = () => {
         <Footer />
         <ToastContainer />
       </div>
-    )
+    ))
 };
 
 export default NewSearch;
