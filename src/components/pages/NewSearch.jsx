@@ -33,7 +33,7 @@ const NewSearch = () => {
   const navigate = useNavigate();
   const search = {
     position: "",
-    toolsAndSkills: "",
+    tas: "",
     zip: "",
     radius: "",
   };
@@ -277,83 +277,82 @@ const NewSearch = () => {
   //   properties: { prop0: "value0" },
   // };
 
-  return !isLoading && (
-    < div className="componente">
-        <div className="mb2 mt2">
-            </div>
-            <p className={`central ${color} mb2`}>new search</p>
-            <form onSubmit={handleSubmit}>
-                <div className="central col">
-                    <p>position</p>
-                    <input
-                        type="text"
-                        name="position"
-                        placeholder="what do you want to achieve"
-                        onChange={handleInput}
-                        disabled={searchTrigger}
-                        value={searchData.position}
-                        
-                    />
-                    <p>tools & skills</p>
-                    <input 
-                        type="text" 
-                        name="toolsAndSkills" 
-                        placeholder="what is the talents set" 
-                        onChange={handleInput}
-                        disabled={searchTrigger} 
-                        value={searchData.toolsAndSkills}
-                    />
-                    <p>ZIP-Code</p>
-                    <input 
-                        type="text" 
-                        name="zip" 
-                        placeholder="type in a number" 
-                        onChange={handleInput}
-                        disabled={searchTrigger}
-                        value={searchData.zip}
-                    />
-                    <p>search radius (km)</p>
-                    <input 
-                        style={{cursor:'pointer'}}
-                        type="text" 
-                        name="radius" 
-                        placeholder="type in a number" 
-                        onChange={handleInput}
-                        disabled={searchTrigger}
-                        value={searchData.radius}
-                    />
-                </div>
-                <div className="central mb2 mt2">
-                    <button 
-                      style={{cursor:'pointer'}}
-                      type="submit" 
-                      className={bg}
-                      disabled={searchTrigger}
-                    >get result</button>
-                </div> 
-                <div className="central mb2 mt2">
-                    <button 
-                      style={{cursor:'pointer'}}
-                      type="reset" 
-                      className={bg}
-                      disabled={!searchTrigger}
-                      onClick={resetHandler}
-                    >reset search</button>
-                </div>        
-              </form>
-            <div>
-              
-              {(talents) && (
-              <Map
-                height={280}
-                width={800}
-                defaultCenter={[51.165691, 10.451526]} // MIDDLE OF GERMANY
-                center={[
-                  searchData?.latitude,
-                  searchData?.longitude,
-                ]}
-                defaultZoom={5} // je größer die Zahl, desto weiter rein gezoomt
-              >
+  return (
+    !isLoading && (
+      <div className="componente">
+        <div className="mb2 mt2"></div>
+        <p className={`central ${color} mb2`}>new search</p>
+        <form onSubmit={handleSubmit}>
+          <div className="central col">
+            <p>position</p>
+            <input
+              type="text"
+              name="position"
+              placeholder="what do you want to achieve"
+              onChange={handleInput}
+              disabled={searchTrigger}
+              value={searchData.position}
+            />
+            <p>tools & skills</p>
+            <input
+              type="text"
+              name="toolsAndSkills"
+              placeholder="what is the talents set"
+              onChange={handleInput}
+              disabled={searchTrigger}
+              value={searchData.tas}
+            />
+            <p>ZIP-Code</p>
+            <input
+              type="text"
+              name="zip"
+              placeholder="type in a number"
+              onChange={handleInput}
+              disabled={searchTrigger}
+              value={searchData.zip}
+            />
+            <p>search radius (km)</p>
+            <input
+              style={{ cursor: "pointer" }}
+              type="text"
+              name="radius"
+              placeholder="type in a number"
+              onChange={handleInput}
+              disabled={searchTrigger}
+              value={searchData.radius}
+            />
+          </div>
+          <div className="central mb2 mt2">
+            <button
+              style={{ cursor: "pointer" }}
+              type="submit"
+              className={bg}
+              disabled={searchTrigger}
+            >
+              get result
+            </button>
+          </div>
+          <div className="central mb2 mt2">
+            <button
+              style={{ cursor: "pointer" }}
+              type="reset"
+              className={bg}
+              disabled={!searchTrigger}
+              onClick={resetHandler}
+            >
+              reset search
+            </button>
+          </div>
+        </form>
+        <div>
+          {talents && (
+            <Map
+              height={280}
+              width={800}
+              defaultCenter={[51.165691, 10.451526]} // MIDDLE OF GERMANY
+              center={[searchData?.latitude, searchData?.longitude]}
+              defaultZoom={5} // je größer die Zahl, desto weiter rein gezoomt
+            >
               {/* RED MARKER FOR ZIP */}
               {redMarker ? (
                 <Marker
