@@ -34,12 +34,14 @@ const CategoriesFilter = ({ setCategory, category, searchTrigger }) => {
       disabled={searchTrigger}
       > 
         {/* <option value="">All categories</option> */}
+        {/* TEST START */}
         {!category
         ?
         <option value="" selected>All categories</option>
         : 
         <option value="">All categories</option>
         }
+        {/* TEST ENDE */}
         {category === "Web-Development" 
         ? 
         <option value="Web-Development" selected>Web-Development</option>

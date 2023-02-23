@@ -177,15 +177,12 @@ const NewSearch = () => {
     if (!zip && !radius) {
       // CATEGORY FILTER
       if (category) {
-        // setSearchTrigger(true);
         filteredTalents = talents.filter((talent) =>
           talent.profile.category.includes(category));
-        // console.log("CATEGORY IF");
       } 
     
       // TOOLS & SKILLS FILTER
       if (toolsAndSkills) {
-        // setSearchTrigger(true);
         if(category) {
           filteredTalents = filteredTalents.filter((talent) =>
             talent.profile.toolsAndSkills.includes(toolsAndSkills));
@@ -200,16 +197,6 @@ const NewSearch = () => {
       setUpdatedTalents(filteredTalents)
     }
   };
-
-  // updatedTalents && console.log('updatedTalents: ', updatedTalents)
-
-  // console.log("category: ", category);
-  // console.log("searchData.category: ", searchData.category)
-  // if(searchData.category) {
-  //   console.log("searchData.category === TRUE")
-  // } else {
-  //   console.log("searchData.category === FALSE")
-  // }
 
   // SET THE RIGHT TALENT SOURCE TO map OVER FOR THE "MAP"
   if (updatedTalents) {
@@ -257,7 +244,6 @@ const NewSearch = () => {
 
   // RESET SEARCH END //
 
-
   return (
     !isLoading && (
       <div className="componente">
@@ -275,6 +261,7 @@ const NewSearch = () => {
               value={searchData.position}
             /> */}
             <CategoriesFilter 
+              category={category}
               setCategory={setCategory} 
               searchTrigger={searchTrigger}
             />
