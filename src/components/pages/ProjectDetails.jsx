@@ -130,11 +130,14 @@ const ProjectDetails = () => {
           }}
         >
           {!isPending &&
-            project.stones.map((stone) => {
-              return (
-                <div className="stone-card-container" key={stone._id}>
+            project.stones
+              .map((stone) => {
+                return (
+                  <div className="stone-card-container" key={stone._id}>
                     <div className="stone-card-media mb1">
-                      {!stone.media ? null : stone.contentType.includes("image") ? (
+                      {!stone.media ? null : stone.contentType.includes(
+                          "image"
+                        ) ? (
                         <img src={stone.media} />
                       ) : (
                         <ReactPlayer
@@ -150,23 +153,35 @@ const ProjectDetails = () => {
                           pip={true}
                           stopOnUnmount={false}
                         />
-                      )} 
+                      )}
                     </div>
-                  <p className="center">{stone.kind}</p>
-                  <h2>"{stone.title}"</h2>
-                  <p className="center">{ stone.createdAt.slice(8, 10) + ". " + stone.createdAt.slice(6, 7) + ". " + stone.createdAt.slice(0, 4)}</p>
-                  <button
-                    className={`${bg} mt1`}
-                    onClick={() => seeStoneDetails(stone._id)}
-                  >
-                    {openStoneCard === stone._id ? "close" : "read more"}
-                  </button>
-                  {openStoneCard === stone._id && (
-                    <StoneCard stone={stone} project={project} />
-                  )}
-                </div>
-              );
-            }).reverse()}
+                    <p className="center">{stone.kind}</p>
+                    <h2>"{stone.title}"</h2>
+                    <p className="center">
+                      <strong>
+                        {" "}
+                        {parseInt(stone.createdAt.slice(11, 13)) + 1}
+                        {stone.createdAt.slice(13, 16)}
+                      </strong>
+                      {stone.createdAt.slice(8, 10) +
+                        ". " +
+                        stone.createdAt.slice(5, 7) +
+                        ". " +
+                        stone.createdAt.slice(0, 4)}
+                    </p>
+                    <button
+                      className={`${bg} mt1`}
+                      onClick={() => seeStoneDetails(stone._id)}
+                    >
+                      {openStoneCard === stone._id ? "close" : "read more"}
+                    </button>
+                    {openStoneCard === stone._id && (
+                      <StoneCard stone={stone} project={project} />
+                    )}
+                  </div>
+                );
+              })
+              .reverse()}
           {/* <div className="chrono-icons" id="icons">
             {project?.stones.map((stone) => {
               return (
