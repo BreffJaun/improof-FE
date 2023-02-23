@@ -15,6 +15,7 @@ import Footer from "../elements/Footer.jsx";
 import { host } from "../../api/host.jsx";
 import UserContext from "../../context/userContext.jsx";
 import { TalentCard } from "../elements/TalentCard.jsx";
+import CategoriesFilter from "../elements/CategoriesFilter.jsx";
 
 // I M P O R T:  K E Y S
 import {
@@ -26,7 +27,8 @@ import {
 const NewSearch = () => {
   const navigate = useNavigate();
   const search = {
-    position: "",
+    // position: "",
+    category: "",
     toolsAndSkills: "",
     zip: "",
     radius: "",
@@ -39,6 +41,8 @@ const NewSearch = () => {
   const [searchData, setSearchData] = useState(search);
   const [searchTrigger, setSearchTrigger] = useState(false);
   const [redMarker, setRedMarker] = useState(false);
+  const [category, setCategory] = useState(undefined);
+  
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
 
@@ -101,23 +105,23 @@ const NewSearch = () => {
     setSearchData({ ...searchData, [event.target.name]: event.target.value });
   };
 
-  const searchTriggerHandler = () => {
-    setSearchTrigger(!searchTrigger);
-  };
+  useEffect(() => {
+    setSearchData({...searchData, category: category})
+  }, [category])
 
-  const redMarkerHandler = () => {
-    setRedMarker(!redMarker);
-  };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const position = searchData.position;
+    // const position = searchData.position;
+    const category = searchData.category;
     const toolsAndSkills = searchData.toolsAndSkills;
     const zip = searchData.zip;
     const radius = searchData.radius;
     const SEARCH_TEXT = `${zip}`;
-    const getSearchData = async () => {
-      await fetch(
+    let filteredTalents;
+
+    if (zip && radius) {
+      fetch(
         `${MAP_BOX_URL}/${MAP_BOX_ENDPOINT}/${SEARCH_TEXT}.json?access_token=${MAP_BOX_KEY}`
       )
         .then((res) => res.json())
@@ -129,74 +133,83 @@ const NewSearch = () => {
             latitude: lat,
             longitude: lon,
           };
-          setSearchData(newSearchData);
-          setSearchTrigger(true);
-          setRedMarker(true);
           // SET SEARCH DATA & ADD LONG.- & LATITUDE END //
           // CALCULATE & FILTER DISTANCE WITH GEOCODES START //
-          const talentsWithDistance = talents.map((talent, i) => {
+          filteredTalents = talents.map((talent, i) => {
             const dist = getDistanceFromLatLonInKm(
               talent.location.latitude,
               talent.location.longitude,
               newSearchData.latitude,
               newSearchData.longitude
-            );
-            return {
-              ...talent,
-              location: { ...talent.location, distance: dist },
-            };
-          });
-          setUpdatedTalents(talentsWithDistance);
-          // console.log('talentsWithDistance: ', talentsWithDistance)
-
-          // FILTER TALENTS ON DISTANCE
-          const talentsSortedByDistance = talentsWithDistance
+              );
+              return {
+                ...talent,
+                location: { ...talent.location, distance: dist },
+              };
+            });
+            
+            // FILTER TALENTS ON DISTANCE
+            filteredTalents = filteredTalents
             .filter((talent) => !Object.is(talent.location.distance, NaN))
             .filter((talent) => talent.location.distance < radius)
             .sort((a, b) => a.location.distance - b.location.distance);
-          setUpdatedTalents(talentsSortedByDistance);
-          // console.log('talentsSortedByDistance: ', talentsSortedByDistance)
+            
+            console.log("filteredTalents: ", filteredTalents)
+          // CATEGORY FILTER
+          if (category) {
+            filteredTalents = talentsSortedByDistance.filter((talent) =>
+              talent.profile.category.includes(category));
+            // console.log("CATEGORY IF");
+          } 
+        
+          // TOOLS & SKILLS FILTER
+          if (toolsAndSkills) {
+            filteredTalents = filteredTalents.filter((talent) =>
+              talent.profile.toolsAndSkills.includes(toolsAndSkills));
+          } 
+          setSearchTrigger(true);
+          setRedMarker(true);
+          console.log("filteredTalents: ", filteredTalents)
+          setUpdatedTalents(filteredTalents)
         })
         .catch((error) => console.log(searchData, error));
-    };
-    zip && radius && getSearchData();
-    // CALCULATE & FILTER DISTANCE WITH GEOCODES END //
-
-    // POSITION FILTER
-    if (updatedTalents && position) {
+    } 
+    if (!zip && !radius) {
+      // CATEGORY FILTER
+      if (category) {
+        // setSearchTrigger(true);
+        filteredTalents = talents.filter((talent) =>
+          talent.profile.category.includes(category));
+        // console.log("CATEGORY IF");
+      } 
+    
+      // TOOLS & SKILLS FILTER
+      if (toolsAndSkills) {
+        // setSearchTrigger(true);
+        if(category) {
+          filteredTalents = filteredTalents.filter((talent) =>
+            talent.profile.toolsAndSkills.includes(toolsAndSkills));
+        } else {
+          filteredTalents = talents.filter((talent) =>
+            talent.profile.toolsAndSkills.includes(toolsAndSkills));
+        }
+      } 
       setSearchTrigger(true);
-      setUpdatedTalents(
-        updatedTalents.filter((talent) =>
-        talent.profile.position.includes(position)));
-        // talentsToMap = updatedTalents.filter((talent) => talent.profile.position.includes(position));
-      console.log("POSITION IF");
-      console.log(talentsToMap);
-    } else if (position) {
-      setSearchTrigger(true);
-      setUpdatedTalents(
-        talents.filter((talent) => talent.profile.position.includes(position))
-        );
-      console.log("POSITION ELSE");
-      // console.log(talentsToMap)
-    }
-
-    // TOOLS & SKILLS FILTER
-    if (updatedTalents && toolsAndSkills) {
-      setSearchTrigger(true);
-      setUpdatedTalents(
-        updatedTalents.filter((talent) =>
-        talent.profile.toolsAndSkills.includes(toolsAndSkills)));
-      console.log("TAS IF");
-      // console.log(talentsToMap)
-    } else if (toolsAndSkills) {
-      setSearchTrigger(true);
-      setUpdatedTalents(
-        talents.filter((talent) => talent.profile.toolsAndSkills.includes(toolsAndSkills)));
-      console.log("TAS ELSE");
-      // console.log(talentsToMap)
+      setRedMarker(true);
+      console.log("filteredTalents: ", filteredTalents)
+      setUpdatedTalents(filteredTalents)
     }
   };
+
   // updatedTalents && console.log('updatedTalents: ', updatedTalents)
+
+  // console.log("category: ", category);
+  // console.log("searchData.category: ", searchData.category)
+  // if(searchData.category) {
+  //   console.log("searchData.category === TRUE")
+  // } else {
+  //   console.log("searchData.category === FALSE")
+  // }
 
   // SET THE RIGHT TALENT SOURCE TO map OVER FOR THE "MAP"
   if (updatedTalents) {
@@ -234,12 +247,13 @@ const NewSearch = () => {
   const resetHandler = () => {
     setUpdatedTalents(undefined);
     setSearchData(search);
+    setCategory(undefined)
     setCurrTalent(undefined);
     setSearchTrigger(false);
     setRedMarker(false);
   };
-  // console.log("searchTrigger: ", searchTrigger);
-  // console.log("redMarker: ", redMarker);
+  console.log("searchTrigger: ", searchTrigger);
+  console.log("redMarker: ", redMarker);
 
   // RESET SEARCH END //
 
@@ -251,16 +265,19 @@ const NewSearch = () => {
         <p className={`central ${color} mb2`}>new search</p>
         <form onSubmit={handleSubmit}>
           <div className="central col">
-            <p>position</p>
-            <input
+            <p>category</p>
+            {/* <input
               type="text"
               name="position"
               placeholder="what do you want to achieve"
               onChange={handleInput}
               disabled={searchTrigger}
               value={searchData.position}
+            /> */}
+            <CategoriesFilter 
+              setCategory={setCategory} 
+              searchTrigger={searchTrigger}
             />
-
 
             <p>tools & skills</p>
             <input
@@ -390,3 +407,25 @@ const NewSearch = () => {
 };
 
 export default NewSearch;
+
+
+
+
+
+  // POSITION FILTER
+    // if (updatedTalents && position) {
+    //   setSearchTrigger(true);
+    //   setUpdatedTalents(
+    //     updatedTalents.filter((talent) =>
+    //     talent.profile.position.includes(position)));
+    //     // talentsToMap = updatedTalents.filter((talent) => talent.profile.position.includes(position));
+    //   console.log("POSITION IF");
+    //   console.log(talentsToMap);
+    // } else if (position) {
+    //   setSearchTrigger(true);
+    //   setUpdatedTalents(
+    //     talents.filter((talent) => talent.profile.position.includes(position))
+    //     );
+    //   console.log("POSITION ELSE");
+    //   // console.log(talentsToMap)
+    // }
