@@ -110,24 +110,28 @@ const Newsfeed = () => {
 
   return (
     <div>
-      <div>
+      <div className="x">
         <CarouselProvider
           interval={3000}
           naturalSlideWidth={100}
-          naturalSlideHeight={40}
+          naturalSlideHeight={50}
           totalSlides={sortedList.length}
           infinite={true}
           lockOnWindowScroll={true}
           isPlaying={true}
         >
-          <Slider>
+          <div className="row">
+            <div className="carousel-btn-container">
+              <ButtonBack className={`circle40 central ${bg}`}><><Back /></></ButtonBack>
+            </div>
+          <Slider className="w80d">
             {category === undefined ||
             category === "all categories" ||
             category === "" ||
             !category
               ? sortedList?.map((project, i) => {
                   return (
-                    <Slide index={i} key={project._id}>
+                    <Slide index={i} key={project._id} className="x">
                       <NewsCard
                         key={project._id}
                         user={user}
@@ -149,24 +153,17 @@ const Newsfeed = () => {
                     )
                   );
                 })}
-          </Slider>
-          <div className="central">
-            <ButtonBack className={bg}>
-              <h3>
-                <Back />
-              </h3>
-            </ButtonBack>
-            <div className="central col">
-              <p className="mb1">choose your topic</p>
-              <CategoriesFilter category={category} setCategory={setCategory} />
+            </Slider>
+            <div className="carousel-btn-container">
+              <ButtonNext className={`circle40 central ${bg}`}><h3><Forward /></h3></ButtonNext>
             </div>
-            <ButtonNext className={bg}>
-              <h3>
-                <Forward />
-              </h3>
-            </ButtonNext>
-          </div>
+            </div>
         </CarouselProvider>
+      </div>
+
+      <div className="central col">
+        <p className="mb1">choose your topic</p>
+        <CategoriesFilter category={category} setCategory={setCategory} />
       </div>
 
       <div className="bo-DARK"></div>
