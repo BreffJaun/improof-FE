@@ -1,8 +1,8 @@
 // global BACKEND
-const host = "https://improof-be.onrender.com";
+//const host = "https://improof-be.onrender.com";
 
 // local BACKEND
-// const host = "http://localhost:2404";
+const host = "http://localhost:2404";
 
 export { host };
 

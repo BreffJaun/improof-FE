@@ -238,10 +238,10 @@ const CreateProject = () => {
         </div>
 
         {/*  - - - - - FOLLOWING COMMUNITY - - - - - */}
-        <div className="bo-DARK"></div>
+        <div className="bo-DARK max"></div>
         <h1 className={`central ${color}`}>team setup</h1>
         <h4 className={`center ${color} mb2`}>your star talents</h4>
-        <div className="center maxM mt2">
+        <div className="x center max mt2">
           <div className="talent-container">
             {user.follows.length === 0 ? (
               <p>get inspired by the community</p>
@@ -263,10 +263,10 @@ const CreateProject = () => {
         </div>
 
         {/*  - - - - - COMMUNITY - - - - - */}
-        <div className="mt3 central">
+        <div className="mt4 central">
           <h4 className={`central ${color} mt05`}>add new talents</h4>
         </div>
-        <div className="maxM mt2">
+        <div className="x center max mt2">
           <div className="talent-container">
             {noFollows &&
               noFollows.map(
@@ -285,8 +285,7 @@ const CreateProject = () => {
         </div>
 
         {/*  - - - - - INVITATION - - - - - */}
-        <div className="bo-DARK"></div>
-        <div className="mb1 mt3 central">
+        <div className="mb1 mt4 central">
           <h4 className={`${color}`}>invite to improof</h4>
         </div>
         <div className="maxM mt2">
@@ -346,16 +345,13 @@ const CreateProject = () => {
           </div>
         </div>
 
-        <div className="bo-DARK"></div>
-
         <div>
-          <button className={`mb2 mt2 rel ${bg}`} type="submit">
+          <button className={`mb2 mt3 rel ${bg}`} type="submit">
             create your project!
           </button>
         </div>
       </form>
       <ToastContainer />
-      <Footer />
     </div>
   );
 };
