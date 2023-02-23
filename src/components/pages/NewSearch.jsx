@@ -1,5 +1,4 @@
 // I M P O R T:  E X T E R N A L  D E P E N D E N C I E S
-// import * as dotenv from "dotenv"; dotenv.config();
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { toast, ToastContainer } from "react-toastify";
@@ -8,16 +7,15 @@ import {
   Marker,
   ZoomControl,
   Overlay,
-  GeoJson,
-  GeoJsonFeature,
 } from "pigeon-maps";
-import Geocode from "react-geocode";
+// import Geocode from "react-geocode";
 
 // I M P O R T:  F I L E S   &   F U N C T I O N S
 import Footer from "../elements/Footer.jsx";
 import { host } from "../../api/host.jsx";
 import UserContext from "../../context/userContext.jsx";
 import { TalentCard } from "../elements/TalentCard.jsx";
+import CategoriesFilter from "../elements/CategoriesFilter.jsx";
 
 // I M P O R T:  K E Y S
 import {
@@ -25,15 +23,13 @@ import {
   MAP_BOX_ENDPOINT,
   MAP_BOX_KEY,
 } from "../../api/mapBoxApiKeys.jsx";
-// const MAP_BOX_URL = process.env.MAP_BOX_URL
-// const MAP_BOX_ENDPOINT = process.env.MAP_BOX_ENDPOINT
-// const MAP_BOX_KEY = process.env.REACT_APP_MAP_BOX_KEY;
 
 const NewSearch = () => {
   const navigate = useNavigate();
   const search = {
-    position: "",
-    tas: "",
+    // position: "",
+    category: "",
+    toolsAndSkills: "",
     zip: "",
     radius: "",
   };
@@ -45,6 +41,8 @@ const NewSearch = () => {
   const [searchData, setSearchData] = useState(search);
   const [searchTrigger, setSearchTrigger] = useState(false);
   const [redMarker, setRedMarker] = useState(false);
+  const [category, setCategory] = useState(undefined);
+  
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
 
@@ -107,23 +105,23 @@ const NewSearch = () => {
     setSearchData({ ...searchData, [event.target.name]: event.target.value });
   };
 
-  const searchTriggerHandler = () => {
-    setSearchTrigger(!searchTrigger);
-  };
+  useEffect(() => {
+    setSearchData({...searchData, category: category})
+  }, [category])
 
-  const redMarkerHandler = () => {
-    setRedMarker(!redMarker);
-  };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const position = searchData.position;
-    const tas = searchData.tas;
+    // const position = searchData.position;
+    const category = searchData.category;
+    const toolsAndSkills = searchData.toolsAndSkills;
     const zip = searchData.zip;
     const radius = searchData.radius;
     const SEARCH_TEXT = `${zip}`;
-    const getSearchData = async () => {
-      await fetch(
+    let filteredTalents;
+
+    if (zip && radius) {
+      fetch(
         `${MAP_BOX_URL}/${MAP_BOX_ENDPOINT}/${SEARCH_TEXT}.json?access_token=${MAP_BOX_KEY}`
       )
         .then((res) => res.json())
@@ -135,79 +133,70 @@ const NewSearch = () => {
             latitude: lat,
             longitude: lon,
           };
-          setSearchData(newSearchData);
-          setSearchTrigger(true);
-          setRedMarker(true);
           // SET SEARCH DATA & ADD LONG.- & LATITUDE END //
           // CALCULATE & FILTER DISTANCE WITH GEOCODES START //
-          const talentsWithDistance = talents.map((talent, i) => {
+          filteredTalents = talents.map((talent, i) => {
             const dist = getDistanceFromLatLonInKm(
               talent.location.latitude,
               talent.location.longitude,
               newSearchData.latitude,
               newSearchData.longitude
-            );
-            return {
-              ...talent,
-              location: { ...talent.location, distance: dist },
-            };
-          });
-          setUpdatedTalents(talentsWithDistance);
-          // console.log('talentsWithDistance: ', talentsWithDistance)
-
-          // FILTER TALENTS ON DISTANCE
-          const talentsSortedByDistance = talentsWithDistance
+              );
+              return {
+                ...talent,
+                location: { ...talent.location, distance: dist },
+              };
+            });
+            
+            // FILTER TALENTS ON DISTANCE
+            filteredTalents = filteredTalents
             .filter((talent) => !Object.is(talent.location.distance, NaN))
             .filter((talent) => talent.location.distance < radius)
             .sort((a, b) => a.location.distance - b.location.distance);
-          setUpdatedTalents(talentsSortedByDistance);
-          // console.log('talentsSortedByDistance: ', talentsSortedByDistance)
+            
+            console.log("filteredTalents: ", filteredTalents)
+          // CATEGORY FILTER
+          if (category) {
+            filteredTalents = talentsSortedByDistance.filter((talent) =>
+              talent.profile.category.includes(category));
+            // console.log("CATEGORY IF");
+          } 
+        
+          // TOOLS & SKILLS FILTER
+          if (toolsAndSkills) {
+            filteredTalents = filteredTalents.filter((talent) =>
+              talent.profile.toolsAndSkills.includes(toolsAndSkills));
+          } 
+          setSearchTrigger(true);
+          setRedMarker(true);
+          console.log("filteredTalents: ", filteredTalents)
+          setUpdatedTalents(filteredTalents)
         })
         .catch((error) => console.log(searchData, error));
-    };
-    zip && radius && getSearchData();
-    // CALCULATE & FILTER DISTANCE WITH GEOCODES END //
-
-    // POSITION FILTER
-    if (updatedTalents && position) {
+    } 
+    if (!zip && !radius) {
+      // CATEGORY FILTER
+      if (category) {
+        filteredTalents = talents.filter((talent) =>
+          talent.profile.category.includes(category));
+      } 
+    
+      // TOOLS & SKILLS FILTER
+      if (toolsAndSkills) {
+        if(category) {
+          filteredTalents = filteredTalents.filter((talent) =>
+            talent.profile.toolsAndSkills.includes(toolsAndSkills));
+        } else {
+          filteredTalents = talents.filter((talent) =>
+            talent.profile.toolsAndSkills.includes(toolsAndSkills));
+        }
+      } 
       setSearchTrigger(true);
-      console.log("POSITION IF");
-      setUpdatedTalents(
-        updatedTalents.filter((talent) =>
-          talent.profile.position.includes(position)
-        )
-      );
-      // talentsToMap = updatedTalents.filter((talent) => talent.profile.position.includes(position));
-      console.log(talentsToMap);
-    } else if (position) {
-      setSearchTrigger(true);
-      console.log("POSITION ELSE");
-      setUpdatedTalents(
-        talents.filter((talent) => talent.profile.position.includes(position))
-      );
-      // console.log(talentsToMap)
-    }
-
-    // TOOLS & SKILLS FILTER
-    if (updatedTalents && tas) {
-      setSearchTrigger(true);
-      console.log("TAS IF");
-      setUpdatedTalents(
-        updatedTalents.filter((talent) =>
-          talent.profile.toolsAndSkills.includes(tas)
-        )
-      );
-      // console.log(talentsToMap)
-    } else if (tas) {
-      setSearchTrigger(true);
-      console.log("TAS ELSE");
-      setUpdatedTalents(
-        talents.filter((talent) => talent.profile.toolsAndSkills.includes(tas))
-      );
-      // console.log(talentsToMap)
+      setRedMarker(true);
+      console.log("filteredTalents: ", filteredTalents)
+      setUpdatedTalents(filteredTalents)
     }
   };
-  // updatedTalents && console.log('updatedTalents: ', updatedTalents)
 
   // SET THE RIGHT TALENT SOURCE TO map OVER FOR THE "MAP"
   if (updatedTalents) {
@@ -236,23 +225,6 @@ const NewSearch = () => {
   };
   // FUNCTIONS TO CALCULATE DISTANCE END //
 
-  // FETCH TO SAVE SEARCHDATA //
-  // await fetch(`${host}/newsearch`, {
-
-  //     method: 'POST',
-  //     body: JSON.stringify(searchData),
-  //     headers: {
-  //         'Content-type': 'application/json; charset=UTF-8',
-  //     },
-  // })
-  //     .then((response) => response.json())
-  //     .then((json) => {
-  //         console.log(json)
-  //         if (!json.status) {
-  //             toast.error(json.error, toastOptions);
-  //         }
-  //     });
-
   // SHOW PIN OVERLAYS
   const overlayHandler = (e, talent) => {
     setCurrTalent(talent);
@@ -262,6 +234,7 @@ const NewSearch = () => {
   const resetHandler = () => {
     setUpdatedTalents(undefined);
     setSearchData(search);
+    setCategory(undefined)
     setCurrTalent(undefined);
     setSearchTrigger(false);
     setRedMarker(false);
@@ -271,12 +244,6 @@ const NewSearch = () => {
 
   // RESET SEARCH END //
 
-  // const geoJsonFeatureSample = {
-  //   type: "Feature",
-  //   geometry: { type: "Point", coordinates: [2.0, 48.5] },
-  //   properties: { prop0: "value0" },
-  // };
-
   return (
     !isLoading && (
       <div className="componente">
@@ -284,15 +251,21 @@ const NewSearch = () => {
         <p className={`central ${color} mb2`}>new search</p>
         <form onSubmit={handleSubmit}>
           <div className="central col">
-            <p>position</p>
-            <input
+            <p>category</p>
+            {/* <input
               type="text"
               name="position"
               placeholder="what do you want to achieve"
               onChange={handleInput}
               disabled={searchTrigger}
               value={searchData.position}
+            /> */}
+            <CategoriesFilter 
+              category={category}
+              setCategory={setCategory} 
+              searchTrigger={searchTrigger}
             />
+
             <p>tools & skills</p>
             <input
               type="text"
@@ -300,7 +273,7 @@ const NewSearch = () => {
               placeholder="what is the talents set"
               onChange={handleInput}
               disabled={searchTrigger}
-              value={searchData.tas}
+              value={searchData.toolsAndSkills}
             />
             <p>ZIP-Code</p>
             <input
@@ -357,7 +330,7 @@ const NewSearch = () => {
               {redMarker ? (
                 <Marker
                   width={30}
-                  color={"red"}
+                  color={"red"} // SET HERE RECRUITER COLOR ! ! !
                   anchor={[searchData.latitude, searchData.longitude]}
                 />
               ) : (
@@ -396,16 +369,6 @@ const NewSearch = () => {
                 </Overlay>
               )}
               <ZoomControl />
-              {/* <GeoJson
-                  svgAttributes={{
-                    fill: "#d4e6ec99",
-                    strokeWidth: "1",
-                    stroke: "white",
-                    r: "20",
-                  }}
-                >
-                  <GeoJsonFeature feature={geoJsonFeatureSample} />
-                </GeoJson> */}
             </Map>
           )}
         </div>
@@ -431,3 +394,25 @@ const NewSearch = () => {
 };
 
 export default NewSearch;
+
+
+
+
+
+  // POSITION FILTER
+    // if (updatedTalents && position) {
+    //   setSearchTrigger(true);
+    //   setUpdatedTalents(
+    //     updatedTalents.filter((talent) =>
+    //     talent.profile.position.includes(position)));
+    //     // talentsToMap = updatedTalents.filter((talent) => talent.profile.position.includes(position));
+    //   console.log("POSITION IF");
+    //   console.log(talentsToMap);
+    // } else if (position) {
+    //   setSearchTrigger(true);
+    //   setUpdatedTalents(
+    //     talents.filter((talent) => talent.profile.position.includes(position))
+    //     );
+    //   console.log("POSITION ELSE");
+    //   // console.log(talentsToMap)
+    // }
