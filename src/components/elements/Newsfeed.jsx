@@ -1,5 +1,4 @@
 import "../../styles/newsfeed.scss"
-
 import { host } from "../../api/host.jsx";
 import { useNavigate } from "react-router";
 import { useContext, useEffect, useSate, useState } from "react";
