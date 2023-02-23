@@ -44,7 +44,9 @@ const Conversations = ({
                   );
                   const date1 = con.message[0].createdAt?.toString().split("T");
                   const date = date1[0].split("-").reverse().join(".");
-                  const time = date1[1].slice(0, 5);
+                  const time1 = parseInt(date1[1].slice(0, 2)) + 1;
+                  const time2 = date1[1].slice(2, 5);
+                  const time = time1 + time2;
                   const participant = con.participants.find(
                     (part) => part._id !== user._id
                   );
@@ -76,12 +78,12 @@ const Conversations = ({
                               {participant.profile.lastName}
                             </p>
                             <p>
-                              <span className="fw700">{time && time}</span> - {date && date}
-                              {unread &&
+                              <span className="fw700">{time && time}</span> -{" "}
+                              {date && date}
+                              {unread && (
                                 <div className={`dot abs circle15 ${bg}`}></div>
-                              }
+                              )}
                             </p>
-
                           </div>
                         </div>
                       </div>
