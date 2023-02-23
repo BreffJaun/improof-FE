@@ -3,7 +3,7 @@ import UserContext from "../../context/userContext.jsx";
 import TriggerContext from "../../context/triggerContext.jsx";
 import { host } from "../../api/host.jsx";
 
-const CategoriesFilter = ({ setCategory, category }) => {
+const CategoriesFilter = ({ setCategory, category, searchTrigger }) => {
   const [user, setUser] = useContext(UserContext);
   const [trigger, setTrigger] = useContext(TriggerContext);
 
@@ -24,14 +24,24 @@ const CategoriesFilter = ({ setCategory, category }) => {
           navigate("/login");
         }
       });
-  }, [setCategory]);
-  // console.log(category === "Web-Development")
-  
+  }, [category]);
+
   return (
     < div className="mb2">
       <select 
-      onChange={handleCategory} name="newsfeed-filter">
+      onChange={handleCategory} 
+      name="newsfeed-filter"
+      disabled={searchTrigger}
+      > 
+        {/* <option value="">All categories</option> */}
+        {/* TEST START */}
+        {!category
+        ?
+        <option value="" selected>All categories</option>
+        : 
         <option value="">All categories</option>
+        }
+        {/* TEST ENDE */}
         {category === "Web-Development" 
         ? 
         <option value="Web-Development" selected>Web-Development</option>
