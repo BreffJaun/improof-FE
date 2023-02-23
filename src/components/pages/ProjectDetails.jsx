@@ -132,8 +132,8 @@ const ProjectDetails = () => {
           {!isPending &&
             project.stones.map((stone) => {
               return (
-                <div className="x stone-card-container" key={stone._id}>
-                    <div>
+                <div className="stone-card-container" key={stone._id}>
+                    <div className="stone-card-media mb1">
                       {!stone.media ? null : stone.contentType.includes("image") ? (
                         <img src={stone.media} />
                       ) : (
@@ -152,22 +152,14 @@ const ProjectDetails = () => {
                         />
                       )} 
                     </div>
-                  <p>{stone.kind}</p>
-                  <h3>{stone.title}</h3>
-                  <p>{ stone.createdAt.slice(8, 10) + "-" + stone.createdAt.slice(6, 8) + stone.createdAt.slice(0, 4)}</p>
-                  <div className="mt1 flex">
-                    {stone?.team?.map((member) => (
-                      <div key={member._id} className="circle50 bg-FAV central">
-                        <p className="c-A100">{member.profile.initials}</p>
-                        {/* )} */}
-                      </div>
-                    ))}
-                  </div>
+                  <p className="center">{stone.kind}</p>
+                  <h2>"{stone.title}"</h2>
+                  <p className="center">{ stone.createdAt.slice(8, 10) + ". " + stone.createdAt.slice(6, 7) + ". " + stone.createdAt.slice(0, 4)}</p>
                   <button
-                    className={bg}
+                    className={`${bg} mt1`}
                     onClick={() => seeStoneDetails(stone._id)}
                   >
-                    {openStoneCard === stone._id ? "close" : "see details"}
+                    {openStoneCard === stone._id ? "close" : "read more"}
                   </button>
                   {openStoneCard === stone._id && (
                     <StoneCard stone={stone} project={project} />

@@ -21,29 +21,10 @@ const StoneCard = ({ stone, project }) => {
     stone.createdAt.slice(0, 4);
 
   return (
-    <div>
-      <div className="x">
-        <p>What happened?</p>
-        <p>{stone.description}</p>
-        {/* <div>
-          {!stone.media[0] ? null : stone.contentType.includes("image") ? (
-            <img src={stone.media[0]} />
-          ) : (
-            <ReactPlayer
-              url={stone.media[0]}
-              playing={false}
-              controls={true}
-              light={false}
-              // playIcon={noch keine Ahnung}
-              volume={null}
-              muted={true}
-              width="100%"
-              height="100%"
-              pip={true}
-              stopOnUnmount={false}
-            />
-          )}
-        </div> */}
+    <div className="bo-top-DARK mt15">
+      <div className="mt2">
+        <p className="center">What happened?</p>
+        <p className="center">{stone.description}</p>
         <div>
           {stone.team.map((member) => (
             <TalentCardS key={member._id} talent={member} user={user} />
@@ -51,11 +32,11 @@ const StoneCard = ({ stone, project }) => {
         </div>
         {teamMember && (
           <button
-            className={bg}
+            className={`${bg} center mt1 mb1`}
             onClick={() => navigate(`/editstone/${project._id}/${stone._id}`)}
           >
             {" "}
-            edit stone
+            edit
           </button>
         )}
       </div>
