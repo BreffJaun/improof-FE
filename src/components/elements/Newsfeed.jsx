@@ -113,7 +113,7 @@ const Newsfeed = () => {
 
   return (
     <div>
-      <div className="x">
+      <div className="">
         <CarouselProvider
           interval={3000}
           naturalSlideWidth={100}
@@ -134,7 +134,7 @@ const Newsfeed = () => {
             !category
               ? sortedList?.map((project, i) => {
                   return (
-                    <Slide index={i} key={project._id} className="x">
+                    <Slide index={i} key={project._id} className="">
                       <NewsCard
                         key={project._id}
                         user={user}

@@ -23,7 +23,6 @@ const Start = () => {
   return (
     <>
       <div className="mb2">
-      {/* <div className={mode ? `bgG mb2` : `mb2`}> */}
         <h1 className={`central ${color}`}>What´s new?</h1>
       </div>
       <Newsfeed />
