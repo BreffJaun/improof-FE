@@ -12,6 +12,7 @@ const StoneCard = ({ stone, project }) => {
   // const [isPending, setPending] = useState(true);
   // const [stone, setStone] = useState({});
   const bg = user.meta.colorTheme[1];
+  const color = user.meta.colorTheme[0];
   const teamMember = stone.team.find((member) => member._id === user._id);
 
   const date =
@@ -23,7 +24,7 @@ const StoneCard = ({ stone, project }) => {
   return (
     <div className="bo-top-DARK mt15">
       <div className="mt2">
-        <p className="center">What happened?</p>
+        <p className={`${color} center`}>achievement:</p>
         <p className="center">{stone.description}</p>
         <div>
           {stone.team.map((member) => (

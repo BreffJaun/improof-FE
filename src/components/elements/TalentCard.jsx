@@ -54,19 +54,21 @@ const TalentCardS = ({talent, user}) => {
   const navigate = useNavigate()
   return (
     <>
-      <div className="t-cardS col  mt1" >
-        <div className="mt1 mb2 x flex">
-            <div className={`${bg} t-pic`} onClick={()=> navigate(`/userDetails/${talent._id}`)}>
-              { talent?.profile?.avatar? 
-                <img src={talent.profile?.avatar} /> : 
-                <p className="initials">{talent.profile?.initials}</p> }
+      <div className="t-cardS col mt1" >
+        <div className=" mt1 mb2 row">
+          <div className={`${bg} t-pic`} onClick={()=> navigate(`/userDetails/${talent._id}`)}>
+            { talent?.profile?.avatar? 
+              <img src={talent.profile?.avatar} /> : 
+            <p className="initials">{talent.profile?.initials}</p>
+            }
           </div>
           
           <div>
             <p className={`fw500 ${color}`} onClick={()=> navigate(`/userDetails/${talent._id}`)}>{talent.profile?.firstName} {talent.profile?.lastName}</p>
             <p>{talent.profile?.category}</p>
           </div>
-          <div className="t-community">
+
+          <div className="ml1 row">
             <div title="send message">
               <SendMessageBtn talent={talent} user={user} />
             </div>
@@ -74,8 +76,8 @@ const TalentCardS = ({talent, user}) => {
               {user.follows.find(follow => follow._id === talent._id) ? <FollowBtn talent={talent} user={user}/> : <FollowBtn  talent={talent} user={user}/>}
             </div>
           </div>
+          </div>
         </div>
-      </div>
     </>
   );
 };
