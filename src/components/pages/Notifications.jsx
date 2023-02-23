@@ -34,10 +34,10 @@ const Notifications = ({ setShowNotifications }) => {
                         {notification.notText}
                       </p>
                       <p className="rel">
-                          <span className="fw700">{time}</span> - {date}
-                          {!notification.isRead && 
+                        <span className="fw700">{time}</span> - {date}
+                        {!notification.isRead && (
                           <div className={`dot abs circle15 bg-gO`}></div>
-                          }
+                        )}
                       </p>
                     </div>
                   );
