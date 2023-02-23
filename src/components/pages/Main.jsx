@@ -73,7 +73,7 @@ const Main = ({ modeTrigger, setModeTrigger }) => {
           setModeTrigger={setModeTrigger}
           modeTrigger={modeTrigger}
         />
-        {/* <Sidebar /> */}
+        <Sidebar />
         {/* <LogoS /> */}
         <div className="content-scroll-container">
           <div className="max1300">
