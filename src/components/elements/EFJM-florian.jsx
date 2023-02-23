@@ -2,7 +2,7 @@ import { FaLinkedinIn as LinkedIn } from "react-icons/fa";
 import { FaXing as Xing } from "react-icons/fa";
 import { AiFillGithub as GitHub } from "react-icons/ai";
 import { TbWorld as Website } from "react-icons/tb";
-import img from "../../images/avatars/Florian.jpg"
+import img from "../../images/avatars/Florian.jpg";
 
 const Florian = ({ darkMode }) => {
   return (
@@ -37,12 +37,13 @@ const Florian = ({ darkMode }) => {
         <div>
           <div className="contact mt15 mb15">
             <button className="efjm-icon circle30">
-                <a
-                  href="https://www.linkedin.com/in/florian-mewes-947649240/"
-                  target="_blank"
-                >
-                  <LinkedIn />
-                </a>
+              <a
+                href="https://www.linkedin.com/in/florian-mewes-947649240/"
+                target="_blank"
+                className="c-PU2"
+              >
+                <LinkedIn />
+              </a>
             </button>
             <button className="efjm-icon circle30">
               <div className="fs15">
@@ -52,19 +53,8 @@ const Florian = ({ darkMode }) => {
                   className="c-PU2"
                 >
                   <GitHub />
-                <a
-                  href="https://www.linkedin.com/in/florian-mewes-947649240/"
-                  target="_blank"
-                >
-                  <LinkedIn />
                 </a>
-            </button>
-            <button className="efjm-icon circle30">
-                <div className="fs15">
-                  <a href="https://github.com/itzFlorian" target="_blank">
-                    <GitHub />
-                  </a>
-                </div>
+              </div>
             </button>
           </div>
         </div>
