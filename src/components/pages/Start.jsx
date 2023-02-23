@@ -28,8 +28,6 @@ const Start = () => {
       </div>
       <Newsfeed />
       <div className="bo-DARK"></div>
-      {user?.profile?.isTalent && <TalentMenu />}
-      {user?.profile?.isRecruiter && <RecruiterMenu />}
       <Footer />
     </>
   );

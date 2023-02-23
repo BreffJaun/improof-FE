@@ -174,7 +174,7 @@ const ProjectDetails = () => {
                   )}
                 </div>
               );
-            })}
+            }).reverse()}
           {/* <div className="chrono-icons" id="icons">
             {project?.stones.map((stone) => {
               return (

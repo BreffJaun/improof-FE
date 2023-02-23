@@ -11,17 +11,15 @@
 body{
   display: flex;
   position: relative;
-  background-color: var(--A100);
 }
 
 .App{
+  height: 100vh;
   width: 100vw;
-  min-height: 100vh;
-  padding:0 2rem 2rem 2rem;
+  padding:0 2rem 0 2rem;
+  background-image: linear-gradient(135deg, rgb(250, 255, 255)20%, rgb(242,246, 245)40%, rgb(211,215,227));
 }
+
 .player{
   width: 400px;
-}
-.flex{
-  display: flex;
 }

@@ -51,7 +51,7 @@ function App() {
   }, [modeTrigger]);
 
   return (
-    <div className={mode ? `App bgG` : `App`}>
+    <div className={mode ? `pNav App bgG` : `pNav App`}>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />

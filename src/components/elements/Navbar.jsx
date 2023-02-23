@@ -97,7 +97,8 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
 
   return (
 
-    <div className={`navbar-container`} id={darkMode ? `bgG` : ``}>
+    <div className={`navbar-container`} id={darkMode ? `` : ``}>
+    {/* <div className={`navbar-container`} id={darkMode ? `bgG` : ``}> */}
       <div onClick={() => navigate("/")} className="navbar-left">
         <div className={`logo-container ${bg}`}>
           <img src={logo} alt="improof-logo" />
