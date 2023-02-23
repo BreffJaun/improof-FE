@@ -1,5 +1,4 @@
 // I M P O R T:  E X T E R N A L  D E P E N D E N C I E S
-// import * as dotenv from "dotenv"; dotenv.config();
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { toast, ToastContainer } from "react-toastify";
@@ -8,10 +7,8 @@ import {
   Marker,
   ZoomControl,
   Overlay,
-  GeoJson,
-  GeoJsonFeature,
 } from "pigeon-maps";
-import Geocode from "react-geocode";
+// import Geocode from "react-geocode";
 
 // I M P O R T:  F I L E S   &   F U N C T I O N S
 import Footer from "../elements/Footer.jsx";
@@ -25,15 +22,12 @@ import {
   MAP_BOX_ENDPOINT,
   MAP_BOX_KEY,
 } from "../../api/mapBoxApiKeys.jsx";
-// const MAP_BOX_URL = process.env.MAP_BOX_URL
-// const MAP_BOX_ENDPOINT = process.env.MAP_BOX_ENDPOINT
-// const MAP_BOX_KEY = process.env.REACT_APP_MAP_BOX_KEY;
 
 const NewSearch = () => {
   const navigate = useNavigate();
   const search = {
     position: "",
-    tas: "",
+    toolsAndSkills: "",
     zip: "",
     radius: "",
   };
@@ -118,7 +112,7 @@ const NewSearch = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const position = searchData.position;
-    const tas = searchData.tas;
+    const toolsAndSkills = searchData.toolsAndSkills;
     const zip = searchData.zip;
     const radius = searchData.radius;
     const SEARCH_TEXT = `${zip}`;
@@ -171,39 +165,34 @@ const NewSearch = () => {
     // POSITION FILTER
     if (updatedTalents && position) {
       setSearchTrigger(true);
-      console.log("POSITION IF");
       setUpdatedTalents(
         updatedTalents.filter((talent) =>
-          talent.profile.position.includes(position)
-        )
-      );
-      // talentsToMap = updatedTalents.filter((talent) => talent.profile.position.includes(position));
+        talent.profile.position.includes(position)));
+        // talentsToMap = updatedTalents.filter((talent) => talent.profile.position.includes(position));
+      console.log("POSITION IF");
       console.log(talentsToMap);
     } else if (position) {
       setSearchTrigger(true);
-      console.log("POSITION ELSE");
       setUpdatedTalents(
         talents.filter((talent) => talent.profile.position.includes(position))
-      );
+        );
+      console.log("POSITION ELSE");
       // console.log(talentsToMap)
     }
 
     // TOOLS & SKILLS FILTER
-    if (updatedTalents && tas) {
+    if (updatedTalents && toolsAndSkills) {
       setSearchTrigger(true);
-      console.log("TAS IF");
       setUpdatedTalents(
         updatedTalents.filter((talent) =>
-          talent.profile.toolsAndSkills.includes(tas)
-        )
-      );
+        talent.profile.toolsAndSkills.includes(toolsAndSkills)));
+      console.log("TAS IF");
       // console.log(talentsToMap)
-    } else if (tas) {
+    } else if (toolsAndSkills) {
       setSearchTrigger(true);
-      console.log("TAS ELSE");
       setUpdatedTalents(
-        talents.filter((talent) => talent.profile.toolsAndSkills.includes(tas))
-      );
+        talents.filter((talent) => talent.profile.toolsAndSkills.includes(toolsAndSkills)));
+      console.log("TAS ELSE");
       // console.log(talentsToMap)
     }
   };
@@ -236,23 +225,6 @@ const NewSearch = () => {
   };
   // FUNCTIONS TO CALCULATE DISTANCE END //
 
-  // FETCH TO SAVE SEARCHDATA //
-  // await fetch(`${host}/newsearch`, {
-
-  //     method: 'POST',
-  //     body: JSON.stringify(searchData),
-  //     headers: {
-  //         'Content-type': 'application/json; charset=UTF-8',
-  //     },
-  // })
-  //     .then((response) => response.json())
-  //     .then((json) => {
-  //         console.log(json)
-  //         if (!json.status) {
-  //             toast.error(json.error, toastOptions);
-  //         }
-  //     });
-
   // SHOW PIN OVERLAYS
   const overlayHandler = (e, talent) => {
     setCurrTalent(talent);
@@ -266,16 +238,11 @@ const NewSearch = () => {
     setSearchTrigger(false);
     setRedMarker(false);
   };
-  console.log("searchTrigger: ", searchTrigger);
-  console.log("redMarker: ", redMarker);
+  // console.log("searchTrigger: ", searchTrigger);
+  // console.log("redMarker: ", redMarker);
 
   // RESET SEARCH END //
 
-  // const geoJsonFeatureSample = {
-  //   type: "Feature",
-  //   geometry: { type: "Point", coordinates: [2.0, 48.5] },
-  //   properties: { prop0: "value0" },
-  // };
 
   return (
     !isLoading && (
@@ -293,6 +260,8 @@ const NewSearch = () => {
               disabled={searchTrigger}
               value={searchData.position}
             />
+
+
             <p>tools & skills</p>
             <input
               type="text"
@@ -300,7 +269,7 @@ const NewSearch = () => {
               placeholder="what is the talents set"
               onChange={handleInput}
               disabled={searchTrigger}
-              value={searchData.tas}
+              value={searchData.toolsAndSkills}
             />
             <p>ZIP-Code</p>
             <input
@@ -357,7 +326,7 @@ const NewSearch = () => {
               {redMarker ? (
                 <Marker
                   width={30}
-                  color={"red"}
+                  color={"red"} // SET HERE RECRUITER COLOR ! ! !
                   anchor={[searchData.latitude, searchData.longitude]}
                 />
               ) : (
@@ -396,16 +365,6 @@ const NewSearch = () => {
                 </Overlay>
               )}
               <ZoomControl />
-              {/* <GeoJson
-                  svgAttributes={{
-                    fill: "#d4e6ec99",
-                    strokeWidth: "1",
-                    stroke: "white",
-                    r: "20",
-                  }}
-                >
-                  <GeoJsonFeature feature={geoJsonFeatureSample} />
-                </GeoJson> */}
             </Map>
           )}
         </div>
