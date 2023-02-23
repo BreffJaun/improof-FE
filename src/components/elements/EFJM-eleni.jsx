@@ -25,13 +25,21 @@ const Eleni = ({ darkMode }) => {
         <div>
           <div className="col mb1">
             <p className="c-PI15">My field:</p>
-            <p>JavaScript, React, Frontend, Backend</p>
+            <p>
+              {" "}
+              HTML | CSS3 | JavaScript | React.js | MongoDB | Express | Node.js
+            </p>
           </div>
           <div className="col mb1">
             <p className="c-PI15">Meine Stärken</p>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Asperiores magni, quibusdam omnis alias illum quos!
+              Hi, I’m Eleni
+              <br />
+              I am a passionate web developer in progress
+              <br />
+              I’m interested in expanding my knowledge and getting involved in
+              challenging projects!
+              <br /> I’m currently learning the MERN stack.
             </p>
           </div>
         </div>

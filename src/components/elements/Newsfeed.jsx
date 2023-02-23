@@ -28,12 +28,12 @@ const Newsfeed = () => {
   const [starProjects, setStarProjects] = useState([]);
   const [user, setUser] = useContext(UserContext);
   const [category, setCategory] = useState("");
-  const [sortedList, setSortedList] = useState(projects)
-  const [stoneswithProjects, setStoneswithProjects] = useState([])
-  const navigate = useNavigate()
+  const [sortedList, setSortedList] = useState(projects);
+  const [stoneswithProjects, setStoneswithProjects] = useState([]);
+  const navigate = useNavigate();
 
-  const color = user?.meta?.colorTheme[0]
-  const bg = user?.meta?.colorTheme[1]
+  const color = user?.meta?.colorTheme[0];
+  const bg = user?.meta?.colorTheme[1];
 
   useEffect(() => {
     const sorted = projects.sort((a, b) => {
@@ -66,7 +66,7 @@ const Newsfeed = () => {
     };
     getProjects();
 
-    const starProjectIds = user?.starProjects?.map(pro => pro._id)
+    const starProjectIds = user?.starProjects?.map((pro) => pro._id);
     const getStarProjects = async () => {
       fetch(`${host}/projects/news`, {
         credentials: "include",
@@ -174,38 +174,43 @@ const Newsfeed = () => {
         <h1 className={`${color} center mt1`}>newsfeed</h1>
         <div className="">
           <div>
-            {stoneswithProjects.map(stone => {
-                const date1 = stone.createdAt?.toString().split("T")
-                const date = date1[0].split("-").reverse().join(".")
-                const time = date1[1].slice(0,5) 
-                let project = {}
-                      for (let i = 0 ; i<starProjects.length ; i++){
-                        const pro = starProjects[i].stones.find(findStone => findStone._id === stone._id && starProjects[i])
-                        if(pro !== undefined)
-                        project = starProjects[i]
-                      }
-                return (
-                  <div className="mt5">
-                    <div >
-                      <div className="flex">
-                        {stone.team.map(member =>{
-                        return ( 
+            {stoneswithProjects.map((stone) => {
+              const date1 = stone.createdAt?.toString().split("T");
+              const date = date1[0].split("-").reverse().join(".");
+              const time = date1[1].slice(0, 5);
+              let project = {};
+              for (let i = 0; i < starProjects.length; i++) {
+                const pro = starProjects[i].stones.find(
+                  (findStone) => findStone._id === stone._id && starProjects[i]
+                );
+                if (pro !== undefined) project = starProjects[i];
+              }
+              return (
+                <div className="mt5">
+                  <div>
+                    <div className="flex">
+                      {stone.team.map((member) => {
+                        return (
                           <>
-                            <img className="circle50" src={member.profile.avatar} onClick={()=>navigate(`/userdetails/${member._id}`)}/>
+                            <img
+                              className="circle50"
+                              src={member.profile.avatar}
+                              onClick={() =>
+                                navigate(`/userdetails/${member._id}`)
+                              }
+                            />
                             {/* <p>{member.profile.firstName}</p>                                                   */}
-                          </>          
-                        )                         
-                      }
-                        )}
-
-                      </div>
-                      <h3>
-                      New {stone.kind.toUpperCase()} in {project?.name} <br/>{date} {time}
-
-                      </h3>
-                      <NewsfeedCard stone={stone} projectId={project._id}/>
+                          </>
+                        );
+                      })}
                     </div>
+                    <h3>
+                      New {stone.kind.toUpperCase()} in {project?.name} <br />
+                      {date} {time}
+                    </h3>
+                    <NewsfeedCard stone={stone} projectId={project._id} />
                   </div>
+                </div>
               );
             })}
           </div>
