@@ -53,6 +53,17 @@ const BurgerMenuTalent = ({
       });
   };
 
+  const handleLogout = async () => {
+    console.log("hallo");
+    await fetch(`${host}/users/logout`,
+    {credentials:"include"})
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json)
+      navigate("/login")
+    });
+  }
+
   return (
     <div className="burger-container">
       <div
@@ -125,7 +136,7 @@ const BurgerMenuTalent = ({
             <div onClick={() => setShowMenu(!showMenu)} className="mb05">
               <button
                 className={`mb05 rel ${bg}`}
-                onClick={() => navigate("/login")}
+                onClick={() => handleLogout()}
               >
                 <IoIosLogOut className={`burger-icon`} />
                 <p className="ml2">logout</p>
