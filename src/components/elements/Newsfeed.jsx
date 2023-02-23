@@ -31,6 +31,7 @@ const Newsfeed = () => {
   const [category, setCategory] = useState(undefined);
   const [sortedList, setSortedList] = useState(projects);
   const [stoneswithProjects, setStoneswithProjects] = useState([]);
+  const [screen, setScreen] = useState(undefined)
   const navigate = useNavigate();
 
   const color = user?.meta?.colorTheme[0];
