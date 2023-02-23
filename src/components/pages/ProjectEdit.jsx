@@ -204,6 +204,21 @@ const CreateProject = () => {
     sendProjectData();
   };
   // project && console.log(project.team)
+  const handleDelete = async () => {
+    console.log(user._id, project._id);
+    await fetch(`${host}/projects/${project._id}`, {
+      credentials:"include",
+      method: 'DELETE',
+      body: JSON.stringify({
+        userId: user._id
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+    .then((response) => response.json())
+    .then((json) => navigate("/myprojects"));
+  }
 
   return uploadPending ? (
     <div>Loading...</div>
@@ -383,6 +398,9 @@ const CreateProject = () => {
             </button>
           </div>
         </form>
+            <button className="mt2 bg-FAV" onClick={()=> handleDelete()}>
+              DELETE PROJECT BITTE BESSER KENNZEICHNEN!
+            </button>
         <ToastContainer />
         <Footer />
       </>

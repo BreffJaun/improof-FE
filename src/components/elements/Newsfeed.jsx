@@ -1,3 +1,4 @@
+import "../../styles/newsfeed.scss"
 import { host } from "../../api/host.jsx";
 import { useNavigate } from "react-router";
 import { useContext, useEffect, useSate, useState } from "react";
@@ -27,13 +28,14 @@ const Newsfeed = () => {
   const [projects, setProjects] = useState([]);
   const [starProjects, setStarProjects] = useState([]);
   const [user, setUser] = useContext(UserContext);
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(undefined);
   const [sortedList, setSortedList] = useState(projects);
   const [stoneswithProjects, setStoneswithProjects] = useState([]);
   const navigate = useNavigate();
 
   const color = user?.meta?.colorTheme[0];
   const bg = user?.meta?.colorTheme[1];
+  console.log(category);
 
   useEffect(() => {
     const sorted = projects.sort((a, b) => {
@@ -114,7 +116,7 @@ const Newsfeed = () => {
         <CarouselProvider
           interval={3000}
           naturalSlideWidth={100}
-          naturalSlideHeight={50}
+          naturalSlideHeight={45}
           totalSlides={sortedList.length}
           infinite={true}
           lockOnWindowScroll={true}
@@ -124,7 +126,7 @@ const Newsfeed = () => {
             <div className="carousel-btn-container">
               <ButtonBack className={`circle40 central ${bg}`}><><Back /></></ButtonBack>
             </div>
-          <Slider className="w80d">
+          <Slider className="w100d">
             {category === undefined ||
             category === "all categories" ||
             category === "" ||
@@ -182,8 +184,9 @@ const Newsfeed = () => {
                 );
                 if (pro !== undefined) project = starProjects[i];
               }
-              return (
-                <div className="mt5">
+              console.log("project", project);
+              return ( 
+                <div className="newsfeed-card">
                   <div>
                     <div className="flex">
                       {stone.team.map((member) => {

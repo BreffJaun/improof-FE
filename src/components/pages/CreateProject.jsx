@@ -129,18 +129,18 @@ const CreateProject = () => {
   }, [privacy]);
 
   // USE EFFECTS END //
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     setAddUserToTeamTrigger(true);
-
+    
     // Add your own userId to the team, because your a member of the project too.
     console.log("Z 122, newProject: ", newProject);
-
+    
     const formData = new FormData();
     formData.append("thumbnail", thumbnail);
     formData.append("data", JSON.stringify(newProject));
-
+    
+    console.log(newProject.category);
     const sendProjectData = async () => {
       setCreateProjectPending(true);
       await fetch(`${host}/projects/add`, {
@@ -165,7 +165,11 @@ const CreateProject = () => {
           }
         });
     };
-    sendProjectData();
+    if(!newProject.category && newProject !== ""){
+      toast.info("set category")
+    }else{
+      sendProjectData();
+    }
   };
 
   return (
