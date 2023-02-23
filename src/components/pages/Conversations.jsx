@@ -76,7 +76,7 @@ const Conversations = ({
                               {participant.profile.lastName}
                             </p>
                             <p>
-                              <span className="fw700">{time}</span> - {date}
+                              <span className="fw700">{time && time}</span> - {date && date}
                               {unread &&
                                 <div className={`dot abs circle15 ${bg}`}></div>
                               }

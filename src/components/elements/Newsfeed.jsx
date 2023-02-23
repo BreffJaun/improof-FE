@@ -1,3 +1,5 @@
+import "../../styles/newsfeed.scss"
+
 import { host } from "../../api/host.jsx";
 import { useNavigate } from "react-router";
 import { useContext, useEffect, useSate, useState } from "react";
@@ -186,7 +188,7 @@ const Newsfeed = () => {
                 if (pro !== undefined) project = starProjects[i];
               }
               return (
-                <div className="mt5">
+                <div className="newsfeed-card">
                   <div>
                     <div className="flex">
                       {stone.team.map((member) => {
