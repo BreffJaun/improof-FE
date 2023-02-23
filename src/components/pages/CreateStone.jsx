@@ -47,7 +47,7 @@ const CreateStone = () => {
         });
     };
     fetchProject();
-  }, [contributors]);
+  }, []);
 
   const toastOptions = {
     position: "bottom-right",
@@ -119,31 +119,36 @@ const CreateStone = () => {
   useEffect(() => {
     setNewStone({ ...newStone, team: contributors });
   }, [contributors]);
-
+  
+  console.log("newStone: ", newStone.team?.length);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("newStone: ", newStone);
-
-    const formData = new FormData();
-    formData.append("media", media);
-    formData.append("data", JSON.stringify(newStone));
-
-    setCreateStonePending(true);
-    await fetch(`${host}/stones`, {
-      credentials: "include",
-      method: "POST",
-      body: formData,
-    })
+    if(newStone.team.length !== 0){
+  
+      const formData = new FormData();
+      formData.append("media", media);
+      formData.append("data", JSON.stringify(newStone));
+  
+      await fetch(`${host}/stones`, {
+        credentials: "include",
+        method: "POST",
+        body: formData,
+      })
       .then((response) => response.json())
       .then((json) => {
+        console.log(json);
         if (!json.status) {
           toast.error(json.error, toastOptions);
-          setCreateStonePending(false);
+          // setCreateStonePending(false);
         } else {
           // toast.info("You just added a new stone", toastOptions);
-          navigate(`/projectdetails/${projectId}`);
-        }
-      });
+          // setCreateStonePending(true);
+            navigate(`/projectdetails/${projectId}`);
+          }
+        });
+    }else{
+      toast.info("please add a contributor")
+    }
   };
 
   return createStonePending ? (
