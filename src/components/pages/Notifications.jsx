@@ -24,7 +24,10 @@ const Notifications = ({ setShowNotifications }) => {
                 .map((notification) => {
                   const date1 = notification.createdAt.toString().split("T");
                   const date = date1[0].split("-").reverse().join(".");
-                  const time = date1[1].slice(0, 5);
+                  const time1 = parseInt(date1[1].slice(0, 2)) + 1;
+                  const time2 = date1[1].slice(2, 5);
+                  const time = time1 + time2;
+
                   return (
                     <div className="mb1" key={notification._id}>
                       <p

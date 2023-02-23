@@ -60,7 +60,8 @@ const Messages = () => {
     setMsg(event.target.value);
   };
 
-  const handleSendMsg = async () => {
+  const handleSendMsg = async (event) => {
+    event.preventDefault()
     // from:userId, conversationId:conversation._id
     fetch(`${host}/messages`, {
       method: "POST",
@@ -105,7 +106,7 @@ const Messages = () => {
           </div>
 
           <div>
-            <form onSubmit={handleSendMsg}>
+            <form onSubmit={(event)=>handleSendMsg(event)}>
               <input type="text" value={msg} onChange={handleMsg} autoFocus />
               <button className={bg} type="submit">send</button>
             </form>

@@ -1,4 +1,4 @@
-import "../../styles/newsfeed.scss"
+import "../../styles/newsfeed.scss";
 import { host } from "../../api/host.jsx";
 import { useNavigate } from "react-router";
 import { useContext, useEffect, useSate, useState } from "react";
@@ -31,6 +31,7 @@ const Newsfeed = () => {
   const [category, setCategory] = useState(undefined);
   const [sortedList, setSortedList] = useState(projects);
   const [stoneswithProjects, setStoneswithProjects] = useState([]);
+  const [screen, setScreen] = useState(undefined);
   const navigate = useNavigate();
 
   const color = user?.meta?.colorTheme[0];
@@ -124,42 +125,50 @@ const Newsfeed = () => {
         >
           <div className="row">
             <div className="carousel-btn-container">
-              <ButtonBack className={`circle40 central ${bg}`}><><Back /></></ButtonBack>
+              <ButtonBack className={`circle40 central ${bg}`}>
+                <>
+                  <Back />
+                </>
+              </ButtonBack>
             </div>
-          <Slider className="w100d">
-            {category === undefined ||
-            category === "all categories" ||
-            category === "" ||
-            !category
-              ? sortedList?.map((project, i) => {
-                  return (
-                    <Slide index={i} key={project._id} className="x">
-                      <NewsCard
-                        key={project._id}
-                        user={user}
-                        project={project}
-                      />
-                    </Slide>
-                  );
-                })
-              : sortedList?.map((project, i) => {
-                  return (
-                    category === project.category && (
-                      <Slide index={i} key={project._id}>
+            <Slider className="w100d">
+              {category === undefined ||
+              category === "all categories" ||
+              category === "" ||
+              !category
+                ? sortedList?.map((project, i) => {
+                    return (
+                      <Slide index={i} key={project._id} className="x">
                         <NewsCard
                           key={project._id}
                           user={user}
                           project={project}
                         />
                       </Slide>
-                    )
-                  );
-                })}
+                    );
+                  })
+                : sortedList?.map((project, i) => {
+                    return (
+                      category === project.category && (
+                        <Slide index={i} key={project._id}>
+                          <NewsCard
+                            key={project._id}
+                            user={user}
+                            project={project}
+                          />
+                        </Slide>
+                      )
+                    );
+                  })}
             </Slider>
             <div className="carousel-btn-container">
-              <ButtonNext className={`circle40 central ${bg}`}><h3><Forward /></h3></ButtonNext>
+              <ButtonNext className={`circle40 central ${bg}`}>
+                <h3>
+                  <Forward />
+                </h3>
+              </ButtonNext>
             </div>
-            </div>
+          </div>
         </CarouselProvider>
       </div>
 
@@ -176,7 +185,9 @@ const Newsfeed = () => {
             {stoneswithProjects.map((stone) => {
               const date1 = stone.createdAt?.toString().split("T");
               const date = date1[0].split("-").reverse().join(".");
-              const time = date1[1].slice(0, 5);
+              const time1 = parseInt(date1[1].slice(0, 2)) + 1;
+              const time2 = date1[1].slice(2, 5);
+              const time = time1 + time2;
               let project = {};
               for (let i = 0; i < starProjects.length; i++) {
                 const pro = starProjects[i].stones.find(
@@ -185,7 +196,7 @@ const Newsfeed = () => {
                 if (pro !== undefined) project = starProjects[i];
               }
               console.log("project", project);
-              return ( 
+              return (
                 <div className="newsfeed-card">
                   <div>
                     <div className="flex">
