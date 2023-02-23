@@ -114,7 +114,7 @@ const Newsfeed = () => {
         <CarouselProvider
           interval={3000}
           naturalSlideWidth={100}
-          naturalSlideHeight={50}
+          naturalSlideHeight={45}
           totalSlides={sortedList.length}
           infinite={true}
           lockOnWindowScroll={true}
@@ -124,7 +124,7 @@ const Newsfeed = () => {
             <div className="carousel-btn-container">
               <ButtonBack className={`circle40 central ${bg}`}><><Back /></></ButtonBack>
             </div>
-          <Slider className="w80d">
+          <Slider className="w100d">
             {category === undefined ||
             category === "all categories" ||
             category === "" ||
