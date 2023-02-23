@@ -29,13 +29,14 @@ const Newsfeed = () => {
   const [projects, setProjects] = useState([]);
   const [starProjects, setStarProjects] = useState([]);
   const [user, setUser] = useContext(UserContext);
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(undefined);
   const [sortedList, setSortedList] = useState(projects);
   const [stoneswithProjects, setStoneswithProjects] = useState([]);
   const navigate = useNavigate();
 
   const color = user?.meta?.colorTheme[0];
   const bg = user?.meta?.colorTheme[1];
+  console.log(category);
 
   useEffect(() => {
     const sorted = projects.sort((a, b) => {
@@ -187,7 +188,8 @@ const Newsfeed = () => {
                 );
                 if (pro !== undefined) project = starProjects[i];
               }
-              return (
+              console.log("project", project);
+              return ( 
                 <div className="newsfeed-card">
                   <div>
                     <div className="flex">
