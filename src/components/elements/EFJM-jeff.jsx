@@ -40,6 +40,7 @@ const Jeff = ({ darkMode }) => {
               <a
                 href="https://www.linkedin.com/in/jeff-braun-0959091a4/"
                 target="_blank"
+                className="c-GR1"
               >
                 <LinkedIn />
               </a>
@@ -48,13 +49,18 @@ const Jeff = ({ darkMode }) => {
               <a
                 href="https://www.xing.com/profile/Jeff_Braun2/cv"
                 target="_blank"
+                className="c-GR1"
               >
                 <Xing />
               </a>
             </button>
             <button className="efjm-icon circle30">
               <div className="fs15">
-                <a href="https://github.com/BreffJaun" target="_blank">
+                <a
+                  href="https://github.com/BreffJaun"
+                  target="_blank"
+                  className="c-GR1"
+                >
                   <GitHub />
                 </a>
               </div>

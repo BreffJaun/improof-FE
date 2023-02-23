@@ -16,17 +16,17 @@ const Florian = ({ darkMode }) => {
             <h1>FM</h1>
           </div>
           <div className="mt5 col">
-            <h3 className="c-FAV center mb05">Florian Mewes</h3>
+            <h3 className="c-PU2 center mb05">Florian Mewes</h3>
             <p className="c-A60">"insert your slogan here!"</p>
           </div>
         </div>
         <div>
           <div className="col mb1">
-            <p className="c-FAV">Mein Bereich:</p>
+            <p className="c-PU2">Mein Bereich:</p>
             <p>rocks React, loves Frontend and rules JavaScript</p>
           </div>
           <div className="col mb1">
-            <p className="c-FAV">Meine Stärken</p>
+            <p className="c-PU2">Meine Stärken</p>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Asperiores magni, quibusdam omnis alias illum quos!
@@ -37,7 +37,11 @@ const Florian = ({ darkMode }) => {
           <div className="contact mt15 mb15">
             <button className="efjm-icon circle30">
               <div className="fs15">
-                <a href="https://github.com/itzFlorian" target="_blank">
+                <a
+                  href="https://github.com/itzFlorian"
+                  target="_blank"
+                  className="c-PU2"
+                >
                   <GitHub />
                 </a>
               </div>
