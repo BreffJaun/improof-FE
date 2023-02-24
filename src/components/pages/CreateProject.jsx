@@ -39,6 +39,7 @@ const CreateProject = () => {
   const [inviteEmail, setInviteEmail] = useState([]);
   const follows = user.follows;
   const [addUserToTeamTrigger, setAddUserToTeamTrigger] = useState(false);
+  const [search, setSearch] = useState("")
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
   // console.log("projectColor: ", projectColor)
@@ -112,11 +113,12 @@ const CreateProject = () => {
   }, [category]);
 
   useEffect(() => {
+    setSearch("")
     setNewProject({ ...newProject, team: team });
   }, [team]);
 
   useEffect(() => {
-    setTeam([...team, user._id]);
+    setTeam([...team, user]);
     setNewProject({ ...newProject, team: team });
   }, [addUserToTeamTrigger]);
 
@@ -133,14 +135,14 @@ const CreateProject = () => {
     event.preventDefault();
     setAddUserToTeamTrigger(true);
 
+
     // Add your own userId to the team, because your a member of the project too.
     console.log("Z 122, newProject: ", newProject);
 
     const formData = new FormData();
     formData.append("thumbnail", thumbnail);
     formData.append("data", JSON.stringify(newProject));
-
-    console.log(newProject.category);
+    
     const sendProjectData = async () => {
       setCreateProjectPending(true);
       await fetch(`${host}/projects/add`, {
@@ -171,6 +173,10 @@ const CreateProject = () => {
       sendProjectData();
     }
   };
+
+  const handleSearch = (event) => {
+    setSearch(event.target.value)
+  }
 
   return (
     <div className="max">
@@ -237,52 +243,32 @@ const CreateProject = () => {
           </div>
         </div>
 
-        {/*  - - - - - FOLLOWING COMMUNITY - - - - - */}
-        <div className="bo-DARK max"></div>
-        <h1 className={`central ${color}`}>team setup</h1>
-        <h4 className={`center ${color} mb2`}>your star talents</h4>
-        <div className="x center max mt2">
-          <div className="talent-container">
-            {user.follows.length === 0 ? (
-              <p>get inspired by the community</p>
-            ) : (
-              user.follows.map(
-                (talent) =>
-                  talent._id !== user._id && (
-                    <TalentToProjectCard
-                      team={team}
-                      setTeam={setTeam}
-                      key={talent._id}
-                      talent={talent}
-                      user={user}
-                    />
-                  )
-              )
-            )}
-          </div>
-        </div>
-
         {/*  - - - - - COMMUNITY - - - - - */}
-        <div className="mt4 central">
-          <h4 className={`central ${color} mt05`}>add new talents</h4>
+
+        <div>
+          <h1 className={`central ${color} mt05`}>your team </h1>
+          <input type="text" placeholder="search for your team..." vlaue={search} onChange={handleSearch} />
+          {team.length > 1 && 
+          team.map((talent)=> talent._id !== user._id &&
+          <TalentToProjectCard
+          team={team}
+          setTeam={setTeam}
+          key={talent._id}
+          talent={talent}
+          user={user}/>
+          )}
         </div>
-        <div className="x center max mt2">
-          <div className="talent-container">
-            {noFollows &&
-              noFollows.map(
-                (talent) =>
-                  talent._id !== user._id && (
-                    <TalentToProjectCard
-                      team={team}
-                      setTeam={setTeam}
-                      key={talent._id}
-                      talent={talent}
-                      user={user}
-                    />
-                  )
-              )}
+          <div>
+            <div>
+              {search && talents.filter(talent => talent.profile.firstName.toLowerCase().includes(search.toLowerCase()) || talent.profile.lastName.toLowerCase().includes(search.toLowerCase()) ).map(talent => <TalentToProjectCard
+          team={team}
+          setTeam={setTeam}
+          key={talent._id}
+          talent={talent}
+          user={user}/>
+          )}
+            </div>
           </div>
-        </div>
 
         {/*  - - - - - INVITATION - - - - - */}
         <div className="mb1 mt4 central">
