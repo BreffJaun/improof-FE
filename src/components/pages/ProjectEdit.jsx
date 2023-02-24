@@ -44,7 +44,7 @@ const CreateProject = () => {
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
-    theme: "dark",
+    // theme: "dark",
   };
 
   useEffect(() => {
@@ -208,18 +208,18 @@ const CreateProject = () => {
   const handleDelete = async () => {
     console.log(user._id, project._id);
     await fetch(`${host}/projects/${project._id}`, {
-      credentials:"include",
-      method: 'DELETE',
+      credentials: "include",
+      method: "DELETE",
       body: JSON.stringify({
-        userId: user._id
+        userId: user._id,
       }),
       headers: {
-        'Content-type': 'application/json; charset=UTF-8',
+        "Content-type": "application/json; charset=UTF-8",
       },
     })
-    .then((response) => response.json())
-    .then((json) => navigate("/myprojects"));
-  }
+      .then((response) => response.json())
+      .then((json) => navigate("/myprojects"));
+  };
 
   return uploadPending ? (
     <div>Loading...</div>
@@ -291,13 +291,15 @@ const CreateProject = () => {
               <CategoriesFilter setCategory={setCategory} category={category} />
             </div>
 
-
             <div>
               <p className="mb05 central">project color:</p>
-              <RadioColor className="row" user={user} setFavColor={setFavColor} />
+              <RadioColor
+                className="row"
+                user={user}
+                setFavColor={setFavColor}
+              />
             </div>
           </div>
-
 
           {/*  - - - - - TEAM - - - - - */}
           <div className="bo-DARK"></div>
@@ -334,7 +336,6 @@ const CreateProject = () => {
             )}
           </div>
 
-
           {/*  - - - - - SEARCH TALENTS - - - - - */}
           <div className="bo-DARK"></div>
           <div className="mt2">
@@ -344,9 +345,9 @@ const CreateProject = () => {
             <h4 className={`central ${color} mt05`}>discover more talents</h4>
           </div>
           <div className="mb1 central">
-            <CategoriesFilter/>
+            <CategoriesFilter />
           </div>
-          
+
           <div className="talent-container">
             {noFollows &&
               noFollows.map(
@@ -403,14 +404,11 @@ const CreateProject = () => {
             </button>
           </div>
         </form>
-
-        <div className="maxM mt2 dangerzone">
-          <button className={` ${bg}`} onClick={()=> handleDelete()}>
-            DELETE PROJECT
-          </button>
-        </div>
-
+        <button className="mt2 bg-FAV" onClick={() => handleDelete()}>
+          DELETE PROJECT BITTE BESSER KENNZEICHNEN!
+        </button>
         <ToastContainer />
+        <Footer />
       </>
     )
   );
