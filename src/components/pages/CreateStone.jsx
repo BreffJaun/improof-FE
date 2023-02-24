@@ -31,6 +31,7 @@ const CreateStone = () => {
   const [videoTrigger, setVideoTrigger] = useState(false);
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
+  const darkMode = user.meta.darkMode;
 
   useEffect(() => {
     setPending(true);
@@ -154,14 +155,14 @@ const CreateStone = () => {
   return createStonePending ? (
     <div>Loading...</div>
   ) : (
-    <>
+      
+      <div>
       <h1 className={`central ${color} mt1 mb2`}>new stone</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="central col pa1 mb2">
-          <div className="col">
-            <p>
-              title <span className={color}>*</span>
+          <div className="col maxM">
+            <p className="central mb05">title <span className={color}>*</span>
             </p>
             <input
               type="text"
@@ -171,8 +172,8 @@ const CreateStone = () => {
               onChange={handleInput}
             />
           </div>
-          <div className="col">
-            <p>description</p>
+          <div className="col maxM">
+            <p className="central mb05">description</p>
             <input
               type="text"
               name="description"
@@ -180,36 +181,44 @@ const CreateStone = () => {
               onChange={handleInput}
             />
           </div>
-          <div>
-            <input
-              type="radio"
-              name="kind"
-              value="stepstone"
-              onChange={handleInput}
-            />
-            <label>stepstone</label>
-            <input
-              type="radio"
-              name="kind"
-              value="milestone"
-              onChange={handleInput}
-            />
-            <label>milestone</label>
-            <input
-              type="radio"
-              name="kind"
-              value="endstone"
-              onChange={handleInput}
-              // talent
-            />
-            <label>endstone</label>
+          
+          
+          <div className="maxM mt2 bo-top-DARK"></div>
+          <div className="row g2">
+            <div className="g05 mb1 center">
+              <input
+                type="radio"
+                name="kind"
+                value="stepstone"
+                onChange={handleInput}
+              />
+              <label>stepstone</label>
+            </div>
+            <div className="g05 mb1 center">
+              <input
+                type="radio"
+                name="kind"
+                value="milestone"
+                onChange={handleInput}
+              />
+              <label>milestone</label>
+            </div>
+            <div className="g05 center">
+              <input
+                type="radio"
+                name="kind"
+                value="endstone"
+                onChange={handleInput}
+              />
+              <label>endstone</label>
+            </div>
           </div>
-          <div>
-            <hr width="500rem" />
-          </div>{" "}
+          
+          
+          <div className="maxM mt1 bo-top-DARK"></div>
           <div>
             <div className="col">
-              <p> add media</p>
+              <h3 className={`fw500 ${color} center mb2`}>contributors</h3>
               <div className="thumbnailS">
                 {mediaUrl && videoTrigger ? (
                   <ReactPlayer
@@ -267,16 +276,18 @@ const CreateStone = () => {
               </div>
             </div>
           </div>
-          <div>
-            <hr width="500rem" />
-          </div>
+          
+          
+          <div className="maxM mt2 bo-top-DARK"></div>
           <div className="col">
-            <p>contributors</p>
-            <div className=" card col">
+            <h3 className={`fw500 ${color} center mb2`}>contributors</h3>
+            
+            {/* HIER MUSS TALENTCARD HIN! */}
+            <div className="card col">
               {project.team?.length &&
                 project.team.map((talent) => {
                   return (
-                    <div key={talent._id}>
+                    <div key={talent._id} className="mb2 x w20">
                       <div className="t-avatar">
                         <div
                           className="bg-FAV central t-pic"
@@ -298,8 +309,7 @@ const CreateStone = () => {
                         >
                           {talent.profile?.firstName} {talent.profile?.lastName}
                         </p>
-                        <p>{talent.profile?.position}</p>
-                        <p>{talent.profile?.toolsAndSkills}</p>
+                        <p>{talent.profile?.category}</p>
                         <Switch
                           checked={contributors.includes(talent._id)}
                           onChange={() => handleContributor(talent._id)}
@@ -322,13 +332,15 @@ const CreateStone = () => {
             </div>
           </div>
         </div>
-        <button className={bg} type="submit" onClick={() => handleSubmit}>
+        
+        
+        <div className="maxM mt2 bo-top-DARK"></div>
+        <button className={`${bg} mt3 central`} type="submit" onClick={() => handleSubmit}>
           add stone
         </button>
       </form>
       <ToastContainer />
-      <Footer />
-    </>
+    </div>
   );
 };
 

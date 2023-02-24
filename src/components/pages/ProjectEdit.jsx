@@ -40,6 +40,7 @@ const CreateProject = () => {
   const [addUserIdToProjectTrigger, setAddUserIdToProjectTrigger] =
     useState(false);
   const color = user.meta.colorTheme[0];
+  const bg = user.meta.colorTheme[1];
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
@@ -225,17 +226,14 @@ const CreateProject = () => {
   ) : (
     project && (
       <>
-        <div className="mt4 mb2">
+        <div className="mt2 mb2">
           <h1 className={`central ${color}`}>edit your project</h1>
-          <h4 className={`central ${color} mt05`}>
-            It is time to amaze the world!
-          </h4>
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div className="central col pa1 mb2">
+          <div className="maxM mt2">
             <div className="col">
-              <p>
+              <p className="mt15 mb05 central">
                 project name<span className={color}>*</span>
               </p>
               <input
@@ -248,7 +246,7 @@ const CreateProject = () => {
             </div>
 
             <div className="col">
-              <p>
+              <p className="mt15 mb05 central">
                 description<span className={color}>*</span>
               </p>
               <input
@@ -261,7 +259,7 @@ const CreateProject = () => {
             </div>
 
             <div className="col">
-              <p>thumbnail</p>
+              <p className="mt15 mb05 central">thumbnail</p>
               {/* <div className="thumbnailS"> */}
               {thumbnailUrl ? (
                 <img
@@ -286,25 +284,28 @@ const CreateProject = () => {
                 accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
               />
             </div>
-            <div className="col">
-              <p>
-                Current category:<span className={color}>*</span>
-              </p>
-              <p>{project.category}</p>
-            </div>
-            <div className="col">
-              <p>Choose here to change the category:</p>
+
+            <div className="col center">
+              <p className="mt15 central">category:</p>
+              <p className="c-A50 mb05">right now: {project.category}</p>
               <CategoriesFilter setCategory={setCategory} category={category} />
             </div>
-            <div className="col">
-              <p>change your project color:</p>
-              <RadioColor user={user} setFavColor={setFavColor} />
+
+            <div>
+              <p className="mb05 central">project color:</p>
+              <RadioColor
+                className="row"
+                user={user}
+                setFavColor={setFavColor}
+              />
             </div>
           </div>
 
           {/*  - - - - - TEAM - - - - - */}
           <div className="bo-DARK"></div>
-          <h4 className={`central ${color} mt4 mb4`}>your team</h4>
+          <div className="mt2 mb2">
+            <h1 className={`central ${color}`}>edit your team</h1>
+          </div>
           <div className="talent-container">
             {project.team.map((talent) => (
               <TalentToProjectCard
@@ -317,10 +318,8 @@ const CreateProject = () => {
               />
             ))}
           </div>
-
           {/*  - - - - - NO TEAM FOLLOWING COMMUNITY - - - - - */}
-          <div className="bo-DARK"></div>
-          <h4 className={`central ${color} mt4 mb4`}>setup your team</h4>
+          <h4 className={`central ${color} mt4 mb4`}>???</h4>
           <div className="talent-container">
             {noTeamFollows.map(
               (talent) =>
@@ -337,11 +336,18 @@ const CreateProject = () => {
             )}
           </div>
 
-          {/*  - - - - - REST COMMUNITY - - - - - */}
+          {/*  - - - - - SEARCH TALENTS - - - - - */}
           <div className="bo-DARK"></div>
-          <div className="mb1 mt3 central">
-            <h4 className={`central ${color} mt05`}>add new talents</h4>
+          <div className="mt2">
+            <h1 className={`central ${color}`}>expand your team</h1>
           </div>
+          <div className="mb1 central">
+            <h4 className={`central ${color} mt05`}>discover more talents</h4>
+          </div>
+          <div className="mb1 central">
+            <CategoriesFilter />
+          </div>
+
           <div className="talent-container">
             {noFollows &&
               noFollows.map(
@@ -364,7 +370,7 @@ const CreateProject = () => {
           <div className="mb1 mt3 central">
             <h4 className={`central ${color} mt05`}>invite to improof</h4>
           </div>
-          <div className="col">
+          <div className="maxM col">
             {eMailFields.map((el, i) => (
               <input
                 type="email"
@@ -393,15 +399,15 @@ const CreateProject = () => {
           <div className="bo-DARK"></div>
           <div className="col">
             <RadioPrivacy setPrivacy={setPrivacy} />
-            <button type="submit" className="mt2 bg-FAV">
-              edit project!
+            <button type="submit" className={`mt2 ${bg}`}>
+              save changes
             </button>
           </div>
         </form>
         <button className="mt2 bg-FAV" onClick={() => handleDelete()}>
           DELETE PROJECT BITTE BESSER KENNZEICHNEN!
         </button>
-        <ToastContainer toastStyle={{ backgroundColor: "pink" }} />
+        <ToastContainer />
         <Footer />
       </>
     )

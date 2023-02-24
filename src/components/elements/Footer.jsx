@@ -17,15 +17,15 @@ const Footer = () => {
 
   return (
     <>
-    <Up />
-    <div className="logoContainer central">
-      <div 
-      className={`efjm`}
-      onClick= { ()=> navigate("/efjm")}>
-        <img src={efjm} alt="efjm" />
+    <div className="maxM bo-DARK"></div>
+      <div className="logoContainer central">
+        <div 
+        className={`efjm`}
+        onClick= { ()=> navigate("/efjm")}>
+          <img src={efjm} alt="efjm" />
+        </div>
       </div>
-      </div>
-    </>
+      </>
   );
 };
 

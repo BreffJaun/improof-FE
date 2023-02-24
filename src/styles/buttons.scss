@@ -147,3 +147,12 @@ input:checked + .slider:before {
       margin: auto;
     }
   }
+
+
+  .dangerzone{
+    height: 5rem;
+    display: flex;
+    border: 1px dashed;
+    justify-content: center;
+    align-items: center;
+  }

@@ -113,7 +113,7 @@ const Newsfeed = () => {
 
   return (
     <div>
-      <div className="x">
+      <div className="">
         <CarouselProvider
           interval={3000}
           naturalSlideWidth={100}
@@ -131,35 +131,35 @@ const Newsfeed = () => {
                 </>
               </ButtonBack>
             </div>
-            <Slider className="w100d">
-              {category === undefined ||
-              category === "all categories" ||
-              category === "" ||
-              !category
-                ? sortedList?.map((project, i) => {
-                    return (
-                      <Slide index={i} key={project._id} className="x">
+          <Slider className="w100d">
+            {category === undefined ||
+            category === "all categories" ||
+            category === "" ||
+            !category
+              ? sortedList?.map((project, i) => {
+                  return (
+                    <Slide index={i} key={project._id} className="">
+                      <NewsCard
+                        key={project._id}
+                        user={user}
+                        project={project}
+                      />
+                    </Slide>
+                  );
+                })
+              : sortedList?.map((project, i) => {
+                  return (
+                    category === project.category && (
+                      <Slide index={i} key={project._id}>
                         <NewsCard
                           key={project._id}
                           user={user}
                           project={project}
                         />
                       </Slide>
-                    );
-                  })
-                : sortedList?.map((project, i) => {
-                    return (
-                      category === project.category && (
-                        <Slide index={i} key={project._id}>
-                          <NewsCard
-                            key={project._id}
-                            user={user}
-                            project={project}
-                          />
-                        </Slide>
-                      )
-                    );
-                  })}
+                    )
+                  );
+                })}
             </Slider>
             <div className="carousel-btn-container">
               <ButtonNext className={`circle40 central ${bg}`}>
