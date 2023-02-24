@@ -12,16 +12,18 @@ const TalentToProjectCard = ({ talent, user, team, setTeam, projectEdit }) => {
   const bg = talent.meta.colorTheme[1];
   const color = talent.meta.colorTheme[0];
   const navigate = useNavigate();
+
   const addToTeam = (event) => {
     event.preventDefault();
-    setTeam([...team, talent._id]);
+    setTeam([...team, talent]);    
   };
+  
   const deleteFromTeam = (event) => {
     event.preventDefault();
-    setTeam(team.filter((member) => member !== talent._id));
+    setTeam(team.filter((member) => member._id !== talent._id));
   };
 
-  const checkTeam = team?.includes(talent._id);
+  const checkTeam = team?.find(member=> member._id === talent._id);
 
   // console.log("team: ", team)
   // console.log("talent._id: ", talent._id)

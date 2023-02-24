@@ -34,11 +34,14 @@ const CreateProject = () => {
   const [isPending, setPending] = useState(false);
   const [uploadPending, setUploadPending] = useState(false);
   const [createProjectPending, setCreateProjectPending] = useState(false);
-  const [team, setTeam] = useState([]);
+  const [team, setTeam] = useState(project?.team);
   const [inviteEmail, setInviteEmail] = useState([]);
   const follows = user.follows;
   const [addUserIdToProjectTrigger, setAddUserIdToProjectTrigger] =
     useState(false);
+  const [search, setSearch] = useState("")
+  const [trigger, setTrigger] = useState(false)
+
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
   const toastOptions = {
@@ -76,7 +79,7 @@ const CreateProject = () => {
             setProject(json.data);
             setPending(false);
             setCategory(json.data.category);
-            setTeam(json.data.team.map((member) => member._id));
+            setTeam(json.data.team)
             setThumbnail(json.data.thumbnail);
           }
         });
@@ -151,6 +154,7 @@ const CreateProject = () => {
 
   useEffect(() => {
     setNewProject({ ...newProject, team: team });
+    // setTrigger(!trigger)
   }, [team]);
 
   useEffect(() => {
@@ -181,7 +185,7 @@ const CreateProject = () => {
 
     const sendProjectData = async () => {
       setUploadPending(true);
-      await fetch(`${host}/projects/${id}`, {
+    await fetch(`${host}/projects/${id}`, {
         credentials: "include",
         method: "PATCH",
         body: formData,
@@ -220,6 +224,10 @@ const CreateProject = () => {
     .then((response) => response.json())
     .then((json) => navigate("/myprojects"));
   }
+  const handleSearch = (event) => {
+    setSearch(event.target.value)
+  }
+  console.log(team);
 
   return uploadPending ? (
     <div>Loading...</div>
@@ -304,7 +312,7 @@ const CreateProject = () => {
           <div className="mt2 mb2">
             <h1 className={`central ${color}`}>edit your team</h1>
           </div>
-          <div className="talent-container">
+          <div className="talent-container" >
             {project.team.map((talent) => (
               <TalentToProjectCard
                 team={team}
@@ -316,25 +324,7 @@ const CreateProject = () => {
               />
             ))}
           </div>
-          {/*  - - - - - NO TEAM FOLLOWING COMMUNITY - - - - - */}
-          <h4 className={`central ${color} mt4 mb4`}>???</h4>
-          <div className="talent-container">
-            {noTeamFollows.map(
-              (talent) =>
-                talent._id !== user._id && (
-                  <TalentToProjectCard
-                    team={team}
-                    setTeam={setTeam}
-                    key={talent._id}
-                    talent={talent}
-                    user={user}
-                    // projectEdit={true}
-                  />
-                )
-            )}
-          </div>
-
-
+ 
           {/*  - - - - - SEARCH TALENTS - - - - - */}
           <div className="bo-DARK"></div>
           <div className="mt2">
@@ -343,11 +333,17 @@ const CreateProject = () => {
           <div className="mb1 central">
             <h4 className={`central ${color} mt05`}>discover more talents</h4>
           </div>
-          <div className="mb1 central">
-            <CategoriesFilter/>
-          </div>
-          
-          <div className="talent-container">
+          <input type="text" placeholder="search for your team..." vlaue={search} onChange={handleSearch} />
+          <div>
+              {search && talents.filter(talent => talent.profile.firstName.toLowerCase().includes(search.toLowerCase()) || talent.profile.lastName.toLowerCase().includes(search.toLowerCase()) ).map(talent => <TalentToProjectCard
+          team={team}
+          setTeam={setTeam}
+          key={talent._id}
+          talent={talent}
+          user={user}/>
+          )}
+            </div>
+          {/* <div className="talent-container">
             {noFollows &&
               noFollows.map(
                 (talent) =>
@@ -362,7 +358,7 @@ const CreateProject = () => {
                     />
                   )
               )}
-          </div>
+          </div> */}
 
           {/*  - - - - - INVITATION - - - - - */}
           <div className="bo-DARK"></div>
