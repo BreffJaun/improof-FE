@@ -278,9 +278,6 @@ const CreateStone = () => {
           <div className="col">
             <h3 className={`fw500 ${color} center mb2`}>contributors</h3>
 
-            {/* HIER MUSS TALENTCARD HIN! */}
-
-            {/* <div className="talent-container"> */}
             {project.team?.length &&
               project.team.map((talent) => {
                 return (
@@ -292,7 +289,6 @@ const CreateStone = () => {
                   />
                 );
               })}
-            {/* </div> */}
           </div>
         </div>
 

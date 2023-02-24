@@ -12,9 +12,7 @@ import UserContext from "../../context/userContext.jsx";
 import { AiOutlineCamera as Camera } from "react-icons/ai";
 
 // ELEMENTS
-import { TalentCard } from "../elements/TalentCard.jsx";
-import Switch from "react-switch";
-// import styledEngine from "@mui/styled-engine";
+import { TalentCardStones } from "../elements/TalentCard.jsx";
 
 const EditStone = () => {
   const navigate = useNavigate();
@@ -36,7 +34,8 @@ const EditStone = () => {
   const [thumbnail, setThumbnail] = useState("");
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
-  // console.log("projectId: ", projectId)
+  const darkMode = user.meta.darkMode;
+
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
@@ -313,55 +312,18 @@ const EditStone = () => {
             <hr width="500rem" />
           </div>
           <div className="col">
-            <p>contributors</p>
-            <div className=" card col">
-              {project.team?.length &&
-                project.team.map((talent) => {
-                  return (
-                    <div key={talent._id}>
-                      <div className="t-avatar">
-                        <div
-                          className="bg-FAV central t-pic"
-                          onClick={() => navigate(`/userDetails/${talent._id}`)}
-                        >
-                          {talent?.profile?.avatar ? (
-                            <img src={talent.profile?.avatar} />
-                          ) : (
-                            <p className="initials">
-                              {talent.profile?.initials}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                      <div className="t-info">
-                        <p
-                          className={`fw500 ${color}`}
-                          onClick={() => navigate(`/userDetails/${talent._id}`)}
-                        >
-                          {talent.profile?.firstName} {talent.profile?.lastName}
-                        </p>
-                        <p>{talent.profile?.position}</p>
-                        <p>{talent.profile?.toolsAndSkills}</p>
-                        <Switch
-                          checked={contributors.includes(talent._id)}
-                          onChange={() => handleContributor(talent._id)}
-                          onColor="#86d3ff"
-                          onHandleColor="#2693e6"
-                          handleDiameter={30}
-                          uncheckedIcon={false}
-                          checkedIcon={false}
-                          boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
-                          activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
-                          height={20}
-                          width={48}
-                          className="react-switch"
-                          id="material-switch"
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-            </div>
+            <h3 className={`fw500 ${color} center mb2`}>contributors</h3>{" "}
+            {project.team?.length &&
+              project.team.map((talent) => {
+                return (
+                  <TalentCardStones
+                    user={user}
+                    talent={talent}
+                    contributors={contributors}
+                    handleContributor={handleContributor}
+                  />
+                );
+              })}
           </div>
         </div>
         <button type="submit" className={bg} onClick={() => handleSubmit}>
