@@ -47,7 +47,7 @@ const CreateProject = () => {
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
-    theme: "dark",
+    // theme: "dark",
   };
 
   useEffect(() => {
@@ -212,13 +212,13 @@ const CreateProject = () => {
   const handleDelete = async () => {
     console.log(user._id, project._id);
     await fetch(`${host}/projects/${project._id}`, {
-      credentials:"include",
-      method: 'DELETE',
+      credentials: "include",
+      method: "DELETE",
       body: JSON.stringify({
-        userId: user._id
+        userId: user._id,
       }),
       headers: {
-        'Content-type': 'application/json; charset=UTF-8',
+        "Content-type": "application/json; charset=UTF-8",
       },
     })
     .then((response) => response.json())
@@ -299,13 +299,15 @@ const CreateProject = () => {
               <CategoriesFilter setCategory={setCategory} category={category} />
             </div>
 
-
             <div>
               <p className="mb05 central">project color:</p>
-              <RadioColor className="row" user={user} setFavColor={setFavColor} />
+              <RadioColor
+                className="row"
+                user={user}
+                setFavColor={setFavColor}
+              />
             </div>
           </div>
-
 
           {/*  - - - - - TEAM - - - - - */}
           <div className="bo-DARK"></div>
@@ -399,14 +401,11 @@ const CreateProject = () => {
             </button>
           </div>
         </form>
-
-        <div className="maxM mt2 dangerzone">
-          <button className={` ${bg}`} onClick={()=> handleDelete()}>
-            DELETE PROJECT
-          </button>
-        </div>
-
+        <button className="mt2 bg-FAV" onClick={() => handleDelete()}>
+          DELETE PROJECT BITTE BESSER KENNZEICHNEN!
+        </button>
         <ToastContainer />
+        <Footer />
       </>
     )
   );

@@ -36,7 +36,7 @@ const Newsfeed = () => {
 
   const color = user?.meta?.colorTheme[0];
   const bg = user?.meta?.colorTheme[1];
-  console.log(category);
+  // console.log(category);
 
   useEffect(() => {
     const sorted = projects.sort((a, b) => {
@@ -108,7 +108,7 @@ const Newsfeed = () => {
     getStarProjects();
   }, []);
 
-  console.log(starProjects);
+  // console.log(starProjects);
   // console.log(stoneswithProjects);
 
   return (
@@ -195,7 +195,7 @@ const Newsfeed = () => {
                 );
                 if (pro !== undefined) project = starProjects[i];
               }
-              console.log("project", project);
+              // console.log("project", project);
               return (
                 <div className="newsfeed-card">
                   <div>

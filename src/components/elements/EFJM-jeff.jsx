@@ -3,6 +3,8 @@ import { FaXing as Xing } from "react-icons/fa";
 import { AiFillGithub as GitHub } from "react-icons/ai";
 import { TbWorld as Website } from "react-icons/tb";
 
+import jeff from "../../images/avatars/jeff.png";
+
 const Jeff = ({ darkMode }) => {
   return (
     <>
@@ -14,7 +16,7 @@ const Jeff = ({ darkMode }) => {
         {" "}
         <div className="central mb2">
           <div className="efjm-avatar-container bg-gGR1 central">
-            <h1>JB</h1>
+            <img src={jeff} />
           </div>
           <div className="mt5 col">
             <h3 className="c-GR1 center mb05">Jeff Braun</h3>

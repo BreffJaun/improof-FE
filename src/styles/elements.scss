@@ -238,3 +238,11 @@ input[type=file]::before {
     bottom: -0.5rem;
     outline: 2px solid var(--A100);
 }
+
+
+.shadow-s{
+  box-shadow: 0rem 0rem 1rem rgba(25,29,41, 0.2);
+}
+.shadow-l{
+  box-shadow: 0rem 0rem 1rem rgba(25,29,41, 0.5);
+}

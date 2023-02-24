@@ -13,7 +13,7 @@ import { AiOutlineCamera as Camera } from "react-icons/ai";
 // ELEMENTS
 import { host } from "../../api/host.jsx";
 import Footer from "../elements/Footer.jsx";
-import { TalentCard } from "../elements/TalentCard.jsx";
+import { TalentCardStones } from "../elements/TalentCard.jsx";
 
 const CreateStone = () => {
   const navigate = useNavigate();
@@ -120,49 +120,48 @@ const CreateStone = () => {
   useEffect(() => {
     setNewStone({ ...newStone, team: contributors });
   }, [contributors]);
-  
-  console.log("newStone: ", newStone.team?.length);
+
+  // console.log("newStone: ", newStone.team?.length);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(newStone.team.length !== 0){
-  
+    if (newStone.team.length !== 0) {
       const formData = new FormData();
       formData.append("media", media);
       formData.append("data", JSON.stringify(newStone));
-  
+
       await fetch(`${host}/stones`, {
         credentials: "include",
         method: "POST",
         body: formData,
       })
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        if (!json.status) {
-          toast.error(json.error, toastOptions);
-          // setCreateStonePending(false);
-        } else {
-          // toast.info("You just added a new stone", toastOptions);
-          // setCreateStonePending(true);
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json);
+          if (!json.status) {
+            toast.error(json.error, toastOptions);
+            // setCreateStonePending(false);
+          } else {
+            // toast.info("You just added a new stone", toastOptions);
+            // setCreateStonePending(true);
             navigate(`/projectdetails/${projectId}`);
           }
         });
-    }else{
-      toast.info("please add a contributor")
+    } else {
+      toast.info("please add a contributor");
     }
   };
 
   return createStonePending ? (
     <div>Loading...</div>
   ) : (
-      
-      <div>
+    <div>
       <h1 className={`central ${color} mt1 mb2`}>new stone</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="central col pa1 mb2">
           <div className="col maxM">
-            <p className="central mb05">title <span className={color}>*</span>
+            <p className="central mb05">
+              title <span className={color}>*</span>
             </p>
             <input
               type="text"
@@ -181,8 +180,7 @@ const CreateStone = () => {
               onChange={handleInput}
             />
           </div>
-          
-          
+
           <div className="maxM mt2 bo-top-DARK"></div>
           <div className="row g2">
             <div className="g05 mb1 center">
@@ -213,8 +211,7 @@ const CreateStone = () => {
               <label>endstone</label>
             </div>
           </div>
-          
-          
+
           <div className="maxM mt1 bo-top-DARK"></div>
           <div>
             <div className="col">
@@ -276,66 +273,35 @@ const CreateStone = () => {
               </div>
             </div>
           </div>
-          
-          
+
           <div className="maxM mt2 bo-top-DARK"></div>
           <div className="col">
             <h3 className={`fw500 ${color} center mb2`}>contributors</h3>
-            
+
             {/* HIER MUSS TALENTCARD HIN! */}
-            <div className="card col">
-              {project.team?.length &&
-                project.team.map((talent) => {
-                  return (
-                    <div key={talent._id} className="mb2 x w20">
-                      <div className="t-avatar">
-                        <div
-                          className="bg-FAV central t-pic"
-                          onClick={() => navigate(`/userDetails/${talent._id}`)}
-                        >
-                          {talent?.profile?.avatar ? (
-                            <img src={talent.profile?.avatar} />
-                          ) : (
-                            <p className="initials">
-                              {talent.profile?.initials}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                      <div className="t-info">
-                        <p
-                          className={`fw500 ${color}`}
-                          onClick={() => navigate(`/userDetails/${talent._id}`)}
-                        >
-                          {talent.profile?.firstName} {talent.profile?.lastName}
-                        </p>
-                        <p>{talent.profile?.category}</p>
-                        <Switch
-                          checked={contributors.includes(talent._id)}
-                          onChange={() => handleContributor(talent._id)}
-                          onColor="#86d3ff"
-                          onHandleColor="#2693e6"
-                          handleDiameter={30}
-                          uncheckedIcon={false}
-                          checkedIcon={false}
-                          boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
-                          activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
-                          height={20}
-                          width={48}
-                          className="react-switch"
-                          id="material-switch"
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-            </div>
+
+            {/* <div className="talent-container"> */}
+            {project.team?.length &&
+              project.team.map((talent) => {
+                return (
+                  <TalentCardStones
+                    user={user}
+                    talent={talent}
+                    contributors={contributors}
+                    handleContributor={handleContributor}
+                  />
+                );
+              })}
+            {/* </div> */}
           </div>
         </div>
-        
-        
+
         <div className="maxM mt2 bo-top-DARK"></div>
-        <button className={`${bg} mt3 central`} type="submit" onClick={() => handleSubmit}>
+        <button
+          className={`${bg} mt3 central`}
+          type="submit"
+          onClick={() => handleSubmit}
+        >
           add stone
         </button>
       </form>
