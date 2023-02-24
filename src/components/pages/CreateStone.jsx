@@ -120,7 +120,7 @@ const CreateStone = () => {
     setNewStone({ ...newStone, team: contributors });
   }, [contributors]);
   
-  console.log("newStone: ", newStone.team?.length);
+  // console.log("newStone: ", newStone.team?.length);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(newStone.team.length !== 0){
