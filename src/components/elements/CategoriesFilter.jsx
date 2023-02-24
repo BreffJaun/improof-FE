@@ -31,7 +31,8 @@ const CategoriesFilter = ({ setCategory, category, searchTrigger }) => {
       <select 
       onChange={handleCategory} 
       name="newsfeed-filter"
-      disabled={searchTrigger}
+        disabled={searchTrigger}
+        className="shadow-s"
       > 
         {/* <option value="">All categories</option> */}
         {/* TEST START */}
