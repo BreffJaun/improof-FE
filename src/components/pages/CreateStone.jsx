@@ -193,7 +193,7 @@ const CreateStone = () => {
       <form onSubmit={handleSubmit}>
         <div className="central col pa1 mb2">
           <div className="col maxM">
-            <p className="central mb05">
+            <p className="ml1 mb05">
               title <span className={color}>*</span>
             </p>
             <input
@@ -202,15 +202,17 @@ const CreateStone = () => {
               placeholder="stone's title"
               required
               onChange={handleInput}
+              className="shadow-s"
             />
           </div>
           <div className="col maxM">
-            <p className="central mb05">description</p>
+            <p className="ml1 mb05">description</p>
             <input
               type="text"
               name="description"
               placeholder="stone description"
               onChange={handleInput}
+              className="shadow-s"
             />
           </div>
 

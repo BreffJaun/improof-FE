@@ -749,7 +749,7 @@ const UserEdit = () => {
           hideProgressBar={true}
         />
       </form>
-    </>
+    </ >
   ) : null;
 };
 

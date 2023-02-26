@@ -300,11 +300,10 @@ const EditStone = () => {
   ) : (
     <>
       <h1 className={`central ${color} mt1 mb2`}>edit stone</h1>
-
       <form onSubmit={handleSubmit}>
-        <div className="central col pa1 mb2">
+        <div className="maxM col mb2">
           <div className="col">
-            <p>
+            <p className="ml1 mb05">
               title <span className={color}>*</span>
             </p>
             <input
@@ -313,50 +312,54 @@ const EditStone = () => {
               defaultValue={stone.title}
               required
               onChange={handleInput}
+              className="shadow-s"
             />
           </div>
-          <div className="col">
-            <p>description</p>
+          <div className="col mt1">
+            <p className="ml1 mb05">description</p>
             <input
               type="text"
               name="description"
               defaultValue={stone.description}
               onChange={handleInput}
+              className="shadow-s"
             />
           </div>
-          <div>
-            <input
-              type="radio"
-              name="kind"
-              value="stepstone"
-              defaultChecked={stone.kind === "stepstone" ? "on" : null}
-              onChange={handleInput}
-            />
-            <label>stepstone</label>
-            <input
-              type="radio"
-              name="kind"
-              value="milestone"
-              defaultChecked={stone.kind === "milestone" ? "on" : null}
-              onChange={handleInput}
-            />
-            <label>milestone</label>
-            <input
-              type="radio"
-              name="kind"
-              value="endstone"
-              defaultChecked={stone.kind === "endstone" ? "on" : null}
-              onChange={handleInput}
-            />
-            <label>endstone</label>
-          </div>
-          <div>
-            <hr width="500rem" />
+          <div className="central row mt4 mb2 g2">
+            <div className="central col">
+              <input
+                type="radio"
+                name="kind"
+                value="stepstone"
+                defaultChecked={stone.kind === "stepstone" ? "on" : null}
+                onChange={handleInput}
+              />
+              <label>stepstone</label>
+            </div>
+            <div className="central col">
+              <input
+                type="radio"
+                name="kind"
+                value="milestone"
+                defaultChecked={stone.kind === "milestone" ? "on" : null}
+                onChange={handleInput}
+              />
+              <label>milestone</label>
+            </div>
+            <div className="central col">
+              <input
+                type="radio"
+                name="kind"
+                value="endstone"
+                defaultChecked={stone.kind === "endstone" ? "on" : null}
+                onChange={handleInput}
+              />
+              <label>endstone</label>
+            </div>
           </div>
           <div>
             <div className="col">
-              <p> add media</p>
-
+              <p className="ml1 mb05">add media</p>
               {/* <div className="thumbnailS"> */}
               {mediaUrl && videoTrigger ? (
                 <div>
@@ -416,11 +419,8 @@ const EditStone = () => {
               </div>
             </div>
           </div>
-          <div>
-            <hr width="500rem" />
-          </div>
           <div className="col">
-            <h3 className={`fw500 ${color} center mb2`}>contributors</h3>{" "}
+            <h3 className={`fw500 ${color} center mt2`}>contributors</h3>{" "}
             {project.team?.length &&
               project.team.map((talent) => {
                 return (
@@ -431,15 +431,17 @@ const EditStone = () => {
                     handleContributor={handleContributor}
                   />
                 );
-              })}
+              })
+            }
           </div>
         </div>
-        <button type="submit" className={bg} onClick={() => handleSubmit}>
-          edit stone
-        </button>
+        <div className="maxM central">
+          <button type="submit" className={bg} onClick={() => handleSubmit}>
+            save changes
+          </button>
+        </div>
       </form>
       <ToastContainer />
-      <Footer />
     </>
   );
 };
