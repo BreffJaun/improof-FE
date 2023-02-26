@@ -110,7 +110,6 @@ const Newsfeed = () => {
 
   // console.log(starProjects);
   // console.log(stoneswithProjects);
-
   return (
     <div>
       <div className="">
@@ -176,9 +175,33 @@ const Newsfeed = () => {
         <p className="mb1">choose your topic</p>
         <CategoriesFilter category={category} setCategory={setCategory} />
       </div>
-
       <div className="bo-DARK"></div>
       <div>
+        <div className="flex">
+          {user.follows.map((member) => {
+            return (
+              <>
+                {member.profile.avatar
+                ?
+                <img
+                  className="circle50"
+                  src={member.profile.avatar}
+                  onClick={() =>
+                    navigate(`/userdetails/${member._id}`)
+                  }
+                />
+                : 
+                <div className={`circle90 ${bg} central rel initials`}>
+                  <p>{talent.profile.initials}</p>
+                </div>
+                }
+              </>
+            );
+          })}
+        </div>
+      </div>
+        
+      <div className="bo-DARK"></div>
         <h1 className={`${color} center mt1`}>newsfeed</h1>
         <div className="">
           <div>
@@ -195,7 +218,6 @@ const Newsfeed = () => {
                 );
                 if (pro !== undefined) project = starProjects[i];
               }
-              // console.log("project", project);
               return (
                 <div className="newsfeed-card">
                   <div>
@@ -210,7 +232,7 @@ const Newsfeed = () => {
                                 navigate(`/userdetails/${member._id}`)
                               }
                             />
-                            {/* <p>{member.profile.firstName}</p>                                                   */}
+                            {/* <p>{member.profile.firstName}</p>                                            */}
                           </>
                         );
                       })}
@@ -226,7 +248,6 @@ const Newsfeed = () => {
             })}
           </div>
         </div>
-      </div>
     </div>
   );
 };
