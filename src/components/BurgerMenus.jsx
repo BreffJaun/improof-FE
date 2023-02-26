@@ -218,19 +218,19 @@ const BurgerMenuRecruiter = ({
               className={`mb05 rel ${bg}`}
               onClick={() => navigate("/newsearch")}
             >
-              new search
+              <p>new search</p>
             </button>
             <button
               className={`mb05 rel ${bg}`}
               onClick={() => navigate("/community")}
             >
-              talents
+              <p>talents</p>
             </button>
             <button
               className={`mb05 rel ${bg}`}
               onClick={() => navigate("/projects")}
             >
-              projects
+              <p>projects</p>
             </button>
             {/* <button className="mb05" onClick={ ()=> navigate("/searchhistory")}>search history</button> */}
           </div>
