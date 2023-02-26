@@ -10,10 +10,21 @@ import UserContext from "../../context/userContext.jsx";
 // ICONS
 import { AiOutlineCamera as Camera } from "react-icons/ai";
 
+// LOGOS
+import logoPi from "../../images/improof_PI.png";
+import logoBl from "../../images/improof_BL.png";
+import logoPu from "../../images/improof_PU.png";
+import logoOr from "../../images/improof_OR.png";
+import logoDG from "../../images/improof_DG.png";
+import logoGR from "../../images/improof_GR.png";
+import logoLG from "../../images/improof_LG.png";
+
 // ELEMENTS
 import { host } from "../../api/host.jsx";
 import Footer from "../elements/Footer.jsx";
 import { TalentCardStones } from "../elements/TalentCard.jsx";
+
+import "../../styles/toastify.scss";
 
 const CreateStone = () => {
   const navigate = useNavigate();
@@ -32,6 +43,7 @@ const CreateStone = () => {
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
   const darkMode = user.meta.darkMode;
+  const [theme, setTheme] = useState("");
 
   useEffect(() => {
     setPending(true);
@@ -43,6 +55,7 @@ const CreateStone = () => {
         .then((json) => {
           if (json.status) {
             setProject(json.data);
+            darkMode ? setTheme("dark") : setTheme("light");
             setPending(false);
           }
         });
@@ -53,7 +66,6 @@ const CreateStone = () => {
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
-    theme: "dark",
   };
 
   const handleInput = (e) => {
@@ -141,7 +153,33 @@ const CreateStone = () => {
             toast.error(json.error, toastOptions);
             // setCreateStonePending(false);
           } else {
-            // toast.info("You just added a new stone", toastOptions);
+            toast("You just added a new stone", {
+              theme: theme,
+              hideProgressBar: "true",
+              icon: () => (
+                <img
+                  src={
+                    color === "c-PI1"
+                      ? logoPi
+                      : color === "c-O2"
+                      ? logoOr
+                      : color === "c-PU1"
+                      ? logoPu
+                      : logoBl
+                    // : color === "c-B2"
+                    // ? logoBl
+                    // : color === "c-LB2"
+                    // ? logoBl
+                    // : color === "c-GR1"
+                    // ? logoGR1
+                    // : color === "c-GR2"
+                    // ? logoGR2
+                    // : logoGR3
+                  }
+                  width="20"
+                />
+              ),
+            });
             // setCreateStonePending(true);
             navigate(`/projectdetails/${projectId}`);
           }
@@ -215,7 +253,7 @@ const CreateStone = () => {
           <div className="maxM mt1 bo-top-DARK"></div>
           <div>
             <div className="col">
-              <h3 className={`fw500 ${color} center mb2`}>contributors</h3>
+              <h3 className={`fw500 ${color} center mb2`}>add your media</h3>
               <div className="thumbnailS">
                 {mediaUrl && videoTrigger ? (
                   <ReactPlayer
@@ -301,7 +339,14 @@ const CreateStone = () => {
           add stone
         </button>
       </form>
-      <ToastContainer />
+      <ToastContainer
+        className={
+          darkMode
+            ? " Toastify__toast-theme--dark"
+            : "Toastify__toast-theme--light "
+        }
+        hideProgressBar={true}
+      />
     </div>
   );
 };

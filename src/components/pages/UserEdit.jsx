@@ -13,6 +13,15 @@ import { AiOutlineCamera } from "react-icons/ai";
 import { BiCheck } from "react-icons/bi";
 import { RxCross2 } from "react-icons/rx";
 
+// LOGOS
+import logoPi from "../../images/improof_PI.png";
+import logoBl from "../../images/improof_BL.png";
+import logoPu from "../../images/improof_PU.png";
+import logoOr from "../../images/improof_OR.png";
+import logoDG from "../../images/improof_DG.png";
+import logoGR from "../../images/improof_GR.png";
+import logoLG from "../../images/improof_LG.png";
+
 //ELEMENTS
 
 import Footer from "../elements/Footer.jsx";
@@ -31,10 +40,10 @@ const UserEdit = () => {
   const [isPending, setIsPending] = useState(true);
   const [uploadPending, setUploadPending] = useState(false);
 
-  const [favColor, setFavColor] = useState("")
+  const [favColor, setFavColor] = useState("");
   // const color = favColor[0]
-  const color = talent?.meta?.colorTheme[0]
-  const bg = talent?.meta?.colorTheme[1]
+  const color = talent?.meta?.colorTheme[0];
+  const bg = talent?.meta?.colorTheme[1];
 
   const navigate = useNavigate();
 
@@ -117,64 +126,99 @@ const UserEdit = () => {
         .then((json) => json.json())
         .then((data) => {
           if (data.status) {
-            navigate(`/userdetails/${user._id}`)
+            toast("Profile updated successfully", {
+              theme: theme,
+              hideProgressBar: "true",
+              icon: () => (
+                <img
+                  src={
+                    color === "c-PI1"
+                      ? logoPi
+                      : color === "c-O2"
+                      ? logoOr
+                      : color === "c-PU1"
+                      ? logoPu
+                      : color === "c-B2"
+                      ? logoBl
+                      : color === "c-LB2"
+                      ? logoBl
+                      : color === "c-GR1"
+                      ? logoLG
+                      : color === "c-GR3"
+                      ? logoGR
+                      : logoDG
+                  }
+                  width="20"
+                />
+              ),
+            });
+            navigate(`/userdetails/${user._id}`);
           }
           if (data.error) {
-              toast.error(err.msg, toastOptions);
+            toast.error(err.msg, toastOptions);
           }
         });
     };
     updateUserData();
   };
-  
+
   return uploadPending ? (
     <div>Loading...</div>
   ) : !isPending && user.profile.isTalent ? (
     <>
       <form onSubmit={handleSubmit} encType="multipart/form">
-      <div className="central col mt3">
-        <div className="circle90 bg-FAV central rel">
-          {avatarUrl 
-          ?
-          <img 
-          src={avatarUrl} 
-          className={`circle90 ${bg} central rel`}
-          alt="avatar" /> 
-          :          
-          user.profile.avatar 
-          ? 
-          <img 
-          src={user.profile.avatar} 
-          className={`circle90 ${bg} central rel`}
-          alt="avatar" /> 
-          :
-          <div className="initials"><p>{user.profile.initials}</p></div>
-        }
-      
-        <div
-          title="upload image"
-          className= {`circle40 ${bg} central editBtn`}>
-          {/* <p className="c-A100">image</p> */}
-          <input 
-            id="uploadAvatar"
-            onChange={avatarUploadHandler} 
-            name="avatar" 
-            type="file"
-            accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
-            hidden
-          />
-          <label 
-            for="uploadAvatar"
-            className="c-A100 pointer"
+        <div className="central col mt3">
+          <div className="circle90 bg-FAV central rel">
+            {avatarUrl ? (
+              <img
+                src={avatarUrl}
+                className={`circle90 ${bg} central rel`}
+                alt="avatar"
+              />
+            ) : user.profile.avatar ? (
+              <img
+                src={user.profile.avatar}
+                className={`circle90 ${bg} central rel`}
+                alt="avatar"
+              />
+            ) : (
+              <div className="initials">
+                <p>{user.profile.initials}</p>
+              </div>
+            )}
+
+            <div
+              title="upload image"
+              className={`circle40 ${bg} central editBtn`}
+            >
+              {/* <p className="c-A100">image</p> */}
+              <input
+                id="uploadAvatar"
+                onChange={avatarUploadHandler}
+                name="avatar"
+                type="file"
+                accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
+                hidden
+              />
+              <label for="uploadAvatar" className="c-A100 pointer">
+                <AiOutlineCamera />
+              </label>
+            </div>
+          </div>
+          <h1
+            className={`central ${
+              color ? color : user.meta.colorTheme[0]
+            } mt05`}
           >
-            <AiOutlineCamera/>
-          </label>
-      </div>
-      </div>
-        <h1 className={`central ${color ? color : user.meta.colorTheme[0] } mt05`}>Hi, {talent.profile.firstName}!</h1>
-        <p className={`central ${color ? color : user.meta.colorTheme[0]}`}>Let´s spice up your profile!</p>
-      </div>
-      <div><RadioColor user={talent} setFavColor={setFavColor}/></div>
+            Hi, {talent.profile.firstName}!
+          </h1>
+          <p className={`central ${color ? color : user.meta.colorTheme[0]}`}>
+            Let´s spice up your profile!
+          </p>
+        </div>
+        <div>
+          <RadioColor user={talent} setFavColor={setFavColor} />
+        </div>
 
         <div className="col mt2 mb1">
           <p>
@@ -325,7 +369,7 @@ const UserEdit = () => {
             )}
           </select>
         </div>
-          
+
         <div className="col mb1">
           <p>tools and skills: </p>
           <input
@@ -470,12 +514,19 @@ const UserEdit = () => {
           </button>
         </div>
         <Footer />
-        <ToastContainer />
+        <ToastContainer
+          className={
+            darkMode
+              ? " Toastify__toast-theme--dark"
+              : "Toastify__toast-theme--light "
+          }
+          hideProgressBar={true}
+        />
       </form>
     </>
-  ) : 
-  
-  uploadPending ? (<div>Loading...</div>) : !isPending && user.profile.isRecruiter ? (
+  ) : uploadPending ? (
+    <div>Loading...</div>
+  ) : !isPending && user.profile.isRecruiter ? (
     <>
       <form onSubmit={handleSubmit}>
         <div className="central col mt3">
@@ -635,7 +686,14 @@ const UserEdit = () => {
           </button>
         </div>
         <Footer />
-        <ToastContainer />
+        <ToastContainer
+          className={
+            darkMode
+              ? " Toastify__toast-theme--dark"
+              : "Toastify__toast-theme--light "
+          }
+          hideProgressBar={true}
+        />
       </form>
     </>
   ) : null;
