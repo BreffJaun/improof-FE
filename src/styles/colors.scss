@@ -78,27 +78,7 @@
     background-image: linear-gradient(135deg, var(--A30), var(--A0));
 }
 
-// BG COLORS RECRUITER
-.bg-gGR1{
-    background-image: linear-gradient(135deg, var(--GR1), var(--GR2));
-}
-.bg-gGR2{
-    background-image: linear-gradient(135deg, var(--GR2), var(--GR3));
-}
-.bg-gGR3{
-    background-image: linear-gradient(135deg, var(--GR3), var(--GR4));
-}
-.bg-gGR4{
-    background-image: linear-gradient(135deg, var(--GR4), var(--GR5));
-}
-.bg-gGR5{
-    background-image: linear-gradient(135deg, var(--GR5), var(--GR6));
-}
-
-
-
 // FONT COLORS TALENT
-
 .c-DB2{ color: var(--B2) }
 .c-LB2{ color: var(--LB15) }
 .c-O2{ color: var(--O15) }
@@ -109,10 +89,20 @@
 
 
 
+
+// BG COLORS RECRUITER
+.bg-gGR1{ background-image: linear-gradient(135deg, var(--GR1), var(--GR4)) };
+.bg-gGR2{ background-image: linear-gradient(135deg, var(--GR2), var(--GR5)) };
+.bg-gGR3{ background-image: linear-gradient(135deg, var(--GR3), var(--GR6)) };
+
 // FONT COLORS RECRUITER
 .c-GR1{ color: var(--GR1) }
 .c-GR3{ color: var(--GR3) }
 .c-GR5{ color: var(--GR5) }
+
+.bg-gGR4{ background-image: linear-gradient(135deg, var(--O1), var(--A0)) };
+.bg-gGR5{ background-image: linear-gradient(135deg, var(--O3), var(--A0)) };
+
 
 
 // FONT COLORS THEME
