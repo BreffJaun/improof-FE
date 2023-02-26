@@ -77,7 +77,7 @@ const StarProjects = () => {
         </div>
 
         <div className="bo-DARK central rel"></div>
-        <h1 className={`center ${color} mt2 mb2`}>all projects</h1>
+        <h1 className={`center ${color} mt2 mb3`}>all projects</h1>
         <div className="central">
           <CategoriesFilter setCategory={setCategory} />
         </div>

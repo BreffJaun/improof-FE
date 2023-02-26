@@ -570,7 +570,7 @@ const UserEdit = () => {
           hideProgressBar={true}
         />
       </form>
-    </>
+    </div >
   ) : uploadPending ? (
     <div>Loading...</div>
   ) : !isPending && user.profile.isRecruiter ? (
@@ -749,7 +749,7 @@ const UserEdit = () => {
           hideProgressBar={true}
         />
       </form>
-    </div >
+    </>
   ) : null;
 };
 

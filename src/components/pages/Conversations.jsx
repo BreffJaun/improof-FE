@@ -37,8 +37,7 @@ const Conversations = ({
           <p className="mb2 info center">conversations</p>
           <div className="scroll-container">
             <div className="col mr1">
-              {user?.conversations
-                ?.map((con) => {
+              {user?.conversations?.map((con) => {
                   const unread = con.message.find(
                     (msg) => !msg.isRead && msg.from !== user._id
                   );
