@@ -1,7 +1,7 @@
 .projects-container{
     display: flex;
     justify-content: center;
-    @media screen and (min-width:700px) {
+    @media screen and (min-width:50px) {
         flex-wrap: wrap;
         gap: 1.25rem;
     }
@@ -21,10 +21,10 @@
     .project-body{
         display: flex;
         position: relative;
-        padding: 0.5rem 0rem 0.5rem 1rem;
+        padding: 0.5rem 0rem 0.25rem 1rem;
         border-radius: 0 0 8px 8px;
         >*{
-            margin-top: 0.8rem;
+            margin-top: 0.75rem;
             margin-bottom: 0.5rem;
             margin-right: 1rem;
         }

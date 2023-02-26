@@ -75,8 +75,8 @@ const ProjectCard = ({ project, user, darkMode }) => {
           <div
             className={
               darkMode ?
-                "project-body card rel bgG" :
-                "project-body card rel"
+                "project-body rel card bgG" :
+                "project-body rel card"
             }
           >
             <div onClick={() => navigate(`/projectdetails/${project._id}`)}>

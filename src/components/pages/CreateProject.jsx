@@ -266,7 +266,7 @@ const CreateProject = () => {
   };
 
   return (
-    <div className="max">
+    <div className="maxM">
       <div className="mb2">
         <h1 className={`central ${color}`}>set up your project </h1>
         <h4 className={`central ${color} mt05`}>
@@ -275,9 +275,9 @@ const CreateProject = () => {
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div className="maxM mt2">
+        <div className="mt2">
           <div className="col">
-            <p className="mb05 central">
+            <p className="ml1 mb05">
               name<span className={color}>*</span>
             </p>
             <input
@@ -287,10 +287,11 @@ const CreateProject = () => {
               required
               maxLength={40}
               onChange={handleInput}
+              className="shadow-s"
             />
           </div>
           <div className="col">
-            <p className="mt15 mb05 central">
+            <p className="ml1 mb05 mt1">
               description<span className={color}>*</span>
             </p>
             <input
@@ -300,10 +301,11 @@ const CreateProject = () => {
               required
               maxLength={300}
               onChange={handleInput}
+              className="shadow-s"
             />
           </div>
           <div className="col">
-            <p className="mt15 mb05 central">thumbnail</p>
+            <p className="ml1 mb05 mt1">thumbnail</p>
             <div className="thumbnailS">
               {thumbnailUrl ? <img src={thumbnailUrl} alt="thumbnail" /> : null}
               <div title="x upload">
@@ -336,8 +338,8 @@ const CreateProject = () => {
           <h1 className={`central ${color} mt05`}>your team </h1>
           <input
             type="text"
-            placeholder="find your team..."
-            value={search}
+            placeholder="search for your team..."
+            vlaue={search}
             onChange={handleSearch}
           />
           {team.length > 1 &&
@@ -383,7 +385,7 @@ const CreateProject = () => {
         <div className="mb1 mt4 central">
           <h4 className={`${color}`}>invite to improof</h4>
         </div>
-        <div className="maxM mt2">
+        <div className="mt2">
           <div className="col">
             {eMailFields.map((el, i) => (
               <input
@@ -392,6 +394,7 @@ const CreateProject = () => {
                 onChange={inviteInputHandler}
                 placeholder="invite to improof"
                 key={i}
+                className="shadow-s"
               />
             ))}
           </div>
@@ -430,6 +433,7 @@ const CreateProject = () => {
           </div>
         </div>
 
+        {/*  - - - - - PRIVACY - - - - - */}
         <div className="bo-DARK"></div>
         <div className="col">
           <div className="mb1 central">
@@ -440,6 +444,7 @@ const CreateProject = () => {
           </div>
         </div>
 
+        <div className="bo-DARK"></div>
         <div>
           <button className={`mb2 mt3 rel ${bg}`} type="submit">
             create your project!
