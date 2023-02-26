@@ -48,38 +48,42 @@ const Login = () => {
   }
 
   return (
-    <div className="x" >
-      <div className="mb2 mt2">
-        <LogoL/>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <div className="y central col">
-          {/* <p>{loginData.email}</p>
-          <p>{loginData.password}</p> */}
-          <div className="mb2 col">
-            <input 
-              type="text" 
-              name="email" 
-              placeholder="email" 
-              onChange={handleInput}
-            />
-            <input
-              className="mt05"
-              type="password" 
-              name="password" 
-              placeholder="password" 
-              onChange={handleInput}
-            />
-          </div>
-          <button className={`bg-FAV mb2`} type="submit">login</button>
-          <div className="col central">
-            <p>Not registered yet?</p>
-            <p><NavLink to="/registration">click here</NavLink></p> 
-          </div>
+    <div className="maxHH central" >
+      <div className="">
+
+        <div className="mb2">
+          <LogoL />
         </div>
-      </form>
+
+        <form onSubmit={handleSubmit}>
+          <div className="col">
+            <div className="mb2 col">
+              <input 
+                type="text" 
+                name="email" 
+                placeholder="email" 
+                className="shadow-s"
+                onChange={handleInput}
+              />
+              <input
+                type="password" 
+                name="password" 
+                placeholder="password"
+                className="mt05 shadow-s"
+                onChange={handleInput}
+              />
+            </div>
+            <button className={`bg-FAV mb2`} type="submit">login</button>
+            <div className="col central">
+              <p>Not registered yet?</p>
+              <p><NavLink to="/registration">click here</NavLink></p> 
+            </div>
+          </div>
+        </form>
+    
       <ToastContainer />
-    </div >
+      </div>
+    </div>
   );
 };
 

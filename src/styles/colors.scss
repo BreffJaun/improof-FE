@@ -16,7 +16,8 @@
     --PU15: rgb(80, 0, 88);
     --PU2: rgb(60, 0, 75);
 
-    --PI1: rgb(250, 0, 150);
+    // --PI1: rgb(250, 0, 150);
+    --PI1:#FA0096;
     --PI15: rgb(188, 0, 125);
     --PI2: rgb(125, 0, 100);
 
@@ -154,7 +155,6 @@ color: var(--A80);
     border-bottom: 1px solid var(--A60);
     margin-bottom: 3rem;
 }
-
 .bo-top-DARK{
     border-top: 1px solid var(--A60);
 }
