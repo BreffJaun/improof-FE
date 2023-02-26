@@ -179,7 +179,7 @@ const CreateProject = () => {
   }
 
   return (
-    <div className="max">
+    <div className="maxM">
       <div className="mb2">
         <h1 className={`central ${color}`}>project setup</h1>
         <h4 className={`central ${color} mt05`}>
@@ -188,10 +188,9 @@ const CreateProject = () => {
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div className="maxM mt2">
+        <div className="mt2">
           <div className="col">
-            <p className="mb05 central">
-              name<span className={color}>*</span>
+            <p className="ml1 mb05">name<span className={color}>*</span>
             </p>
             <input
               type="text"
@@ -200,11 +199,11 @@ const CreateProject = () => {
               required
               maxLength={40}
               onChange={handleInput}
+              className="shadow-s"
             />
           </div>
           <div className="col">
-            <p className="mt15 mb05 central">
-              description<span className={color}>*</span>
+            <p className="ml1 mb05 mt1">description<span className={color}>*</span>
             </p>
             <input
               type="text"
@@ -213,10 +212,11 @@ const CreateProject = () => {
               required
               maxLength={300}
               onChange={handleInput}
+              className="shadow-s"
             />
           </div>
           <div className="col">
-            <p className="mt15 mb05 central">thumbnail</p>
+            <p className="ml1 mb05 mt1">thumbnail</p>
             <div className="thumbnailS">
               {thumbnailUrl ? <img src={thumbnailUrl} alt="thumbnail" /> : null}
               <div title="x upload">
@@ -245,9 +245,16 @@ const CreateProject = () => {
 
         {/*  - - - - - COMMUNITY - - - - - */}
 
-        <div>
-          <h1 className={`central ${color} mt05`}>your team </h1>
-          <input type="text" placeholder="search for your team..." vlaue={search} onChange={handleSearch} />
+        <div className="bo-DARK"></div>
+        <div className="central col">
+          <h1 className={`${color} mt05`}>team setup</h1>
+          <input
+            type="text"
+            placeholder="search for your team..."
+            vlaue={search}
+            onChange={handleSearch}
+            className="shadow-s"
+          />
           {team.length > 1 && 
           team.map((talent)=> talent._id !== user._id &&
           <TalentToProjectCard
@@ -261,12 +268,13 @@ const CreateProject = () => {
           <div>
             <div>
               {search && talents.filter(talent => talent.profile.firstName.toLowerCase().includes(search.toLowerCase()) || talent.profile.lastName.toLowerCase().includes(search.toLowerCase()) ).map(talent => <TalentToProjectCard
-          team={team}
-          setTeam={setTeam}
-          key={talent._id}
-          talent={talent}
-          user={user}/>
-          )}
+              team={team}
+              setTeam={setTeam}
+              key={talent._id}
+              talent={talent}
+              user={user}
+              />
+              )}
             </div>
           </div>
 
@@ -274,7 +282,7 @@ const CreateProject = () => {
         <div className="mb1 mt4 central">
           <h4 className={`${color}`}>invite to improof</h4>
         </div>
-        <div className="maxM mt2">
+        <div className="mt2">
           <div className="col">
             {eMailFields.map((el, i) => (
               <input
@@ -283,6 +291,7 @@ const CreateProject = () => {
                 onChange={inviteInputHandler}
                 placeholder="invite to improof"
                 key={i}
+                className="shadow-s"
               />
             ))}
           </div>
@@ -321,6 +330,7 @@ const CreateProject = () => {
           </div>
         </div>
 
+        {/*  - - - - - PRIVACY - - - - - */}
         <div className="bo-DARK"></div>
         <div className="col">
           <div className="mb1 central">
@@ -331,6 +341,7 @@ const CreateProject = () => {
           </div>
         </div>
 
+        <div className="bo-DARK"></div>
         <div>
           <button className={`mb2 mt3 rel ${bg}`} type="submit">
             create your project!
