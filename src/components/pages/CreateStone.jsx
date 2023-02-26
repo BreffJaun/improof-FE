@@ -15,6 +15,7 @@ import logoPi from "../../images/improof_PI.png";
 import logoBl from "../../images/improof_BL.png";
 import logoPu from "../../images/improof_PU.png";
 import logoOr from "../../images/improof_OR.png";
+import logoLB from "../../images/improof_LB.png";
 import logoDG from "../../images/improof_DG.png";
 import logoGR from "../../images/improof_GR.png";
 import logoLG from "../../images/improof_LG.png";
@@ -24,6 +25,7 @@ import { host } from "../../api/host.jsx";
 import Footer from "../elements/Footer.jsx";
 import { TalentCardStones } from "../elements/TalentCard.jsx";
 
+// STYLES
 import "../../styles/toastify.scss";
 
 const CreateStone = () => {
@@ -165,16 +167,9 @@ const CreateStone = () => {
                       ? logoOr
                       : color === "c-PU1"
                       ? logoPu
+                      : color === "c-B2"
+                      ? logoBl
                       : logoBl
-                    // : color === "c-B2"
-                    // ? logoBl
-                    // : color === "c-LB2"
-                    // ? logoBl
-                    // : color === "c-GR1"
-                    // ? logoGR1
-                    // : color === "c-GR2"
-                    // ? logoGR2
-                    // : logoGR3
                   }
                   width="20"
                 />

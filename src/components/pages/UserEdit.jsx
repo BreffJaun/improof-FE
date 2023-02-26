@@ -18,9 +18,13 @@ import logoPi from "../../images/improof_PI.png";
 import logoBl from "../../images/improof_BL.png";
 import logoPu from "../../images/improof_PU.png";
 import logoOr from "../../images/improof_OR.png";
+import logoLB from "../../images/improof_LB.png";
 import logoDG from "../../images/improof_DG.png";
 import logoGR from "../../images/improof_GR.png";
 import logoLG from "../../images/improof_LG.png";
+
+// STYLES
+import "../../styles/toastify.scss";
 
 //ELEMENTS
 
@@ -39,11 +43,13 @@ const UserEdit = () => {
   const [talent, setTalent] = useState(undefined);
   const [isPending, setIsPending] = useState(true);
   const [uploadPending, setUploadPending] = useState(false);
+  const [theme, setTheme] = useState("");
 
   const [favColor, setFavColor] = useState("");
   // const color = favColor[0]
   const color = talent?.meta?.colorTheme[0];
   const bg = talent?.meta?.colorTheme[1];
+  const darkMode = user?.meta?.darkMode;
 
   const navigate = useNavigate();
 
@@ -56,6 +62,7 @@ const UserEdit = () => {
         .then((json) => {
           if (json.status) {
             setTalent(json.userData);
+            darkMode ? setTheme("dark") : setTheme("light");
             setIsPending(false);
           }
         });
@@ -141,7 +148,7 @@ const UserEdit = () => {
                       : color === "c-B2"
                       ? logoBl
                       : color === "c-LB2"
-                      ? logoBl
+                      ? logoLB
                       : color === "c-GR1"
                       ? logoLG
                       : color === "c-GR3"
@@ -155,7 +162,32 @@ const UserEdit = () => {
             navigate(`/userdetails/${user._id}`);
           }
           if (data.error) {
-            toast.error(err.msg, toastOptions);
+            toast(err.msg, {
+              theme: theme,
+              hideProgressBar: "true",
+              icon: () => (
+                <img
+                  src={
+                    color === "c-PI1"
+                      ? logoPi
+                      : color === "c-O2"
+                      ? logoOr
+                      : color === "c-PU1"
+                      ? logoPu
+                      : color === "c-B2"
+                      ? logoBl
+                      : color === "c-LB2"
+                      ? logoBl
+                      : color === "c-GR1"
+                      ? logoLG
+                      : color === "c-GR2"
+                      ? logoGR
+                      : logoDG
+                  }
+                  width="20"
+                />
+              ),
+            });
           }
         });
     };
