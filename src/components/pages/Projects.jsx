@@ -107,7 +107,6 @@ const StarProjects = () => {
                 );
               })}
         </div>
-        <Footer />
       </div>
     )
   );

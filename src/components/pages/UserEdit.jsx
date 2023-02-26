@@ -197,7 +197,8 @@ const UserEdit = () => {
   return uploadPending ? (
     <div>Loading...</div>
   ) : !isPending && user.profile.isTalent ? (
-    <>
+      <div className="maxHH central">
+        
       <form onSubmit={handleSubmit} encType="multipart/form">
         <div className="central col mt3">
           <div className="circle90 bg-FAV central rel">
@@ -253,7 +254,7 @@ const UserEdit = () => {
         </div>
 
         <div className="col mt2 mb1">
-          <p>
+          <p className="ml1 mb05">
             first name
             <span
               className={`${color ? color : user.meta.colorTheme[0]} fw900`}
@@ -266,10 +267,11 @@ const UserEdit = () => {
             name="firstName"
             type="text"
             defaultValue={user.profile.firstName}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>
+          <p className="ml1 mb05">
             last name
             <span
               className={`${color ? color : user.meta.colorTheme[0]} fw900`}
@@ -282,20 +284,22 @@ const UserEdit = () => {
             name="lastName"
             type="text"
             defaultValue={user.profile.lastName}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>that´s me:</p>
+          <p className="ml1 mb05">that´s me:</p>
           <input
             onChange={handleInputProfile}
             name="description"
             type="text"
             defaultValue={user.profile.description}
+            className="shadow-s"
           />
         </div>
-        <div className="central">
-          <p>here i perform my best:</p>
-          <select onChange={handleCategoryProfile} name="category">
+        <div className="central col mt2 mb1">
+          <p className="mb05">here i perform my best:</p>
+          <select onChange={handleCategoryProfile} name="category" className="shadow-s">
             <option value="">All categories</option>
             {user.profile.category === "Web-Development" ? (
               <option value="Web-Development" selected>
@@ -403,31 +407,34 @@ const UserEdit = () => {
         </div>
 
         <div className="col mb1">
-          <p>tools and skills: </p>
+          <p className="ml1 mt1 mb05">tools and skills: </p>
           <input
             onChange={handleInputProfile}
             name="goal"
             type="text"
             defaultValue={user.profile.toolsAndSkills}
+            className="shadow-s"
           />
         </div>
 
         <div className="col mb1">
-          <p>current occupation:</p>
+          <p className="ml1 mb05">current occupation:</p>
           <input
             onChange={handleInputProfile}
             name="position"
             type="text"
             defaultValue={user.profile.position}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>i want to achieve: </p>
+          <p className="ml1 mb05">i want to achieve: </p>
           <input
             onChange={handleInputProfile}
             name="goal"
             type="text"
             defaultValue={user.profile.goal}
+            className="shadow-s"
           />
         </div>
 
@@ -438,48 +445,53 @@ const UserEdit = () => {
           contact:
         </h1>
         <div className="col mb1">
-          <p>mobile</p>
+          <p className="ml1 mt1 mb05">mobile</p>
           <input
             onChange={handleInputContact}
             name="mobile"
             type="text"
             defaultValue={user.contact.mobile}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>own website</p>
+          <p className="ml1 mb05">own website</p>
           <input
             onChange={handleInputContact}
             name="website"
             type="text"
             defaultValue={user.contact.website}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>1st online profile</p>
+          <p className="ml1 mb05">1st online profile</p>
           <input
             onChange={handleInputContact}
             name="online1"
             type="text"
             defaultValue={user.contact.online1}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>2nd online profile</p>
+          <p className="ml1 mb05">2nd online profile</p>
           <input
             onChange={handleInputContact}
             name="online2"
             type="text"
             defaultValue={user.contact.online2}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>3rd online profile</p>
+          <p className="ml1 mb05">3rd online profile</p>
           <input
             onChange={handleInputContact}
             name="online3"
             type="text"
             defaultValue={user.contact.online3}
+            className="shadow-s"
           />
         </div>
 
@@ -490,30 +502,33 @@ const UserEdit = () => {
           location
         </h1>
         <div className="col mb1">
-          <p>street</p>
+          <p className="ml1 mb05">street</p>
           <input
             onChange={handleInputLocation}
             name="street"
             type="text"
             defaultValue={user.location.street}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>zip</p>
+          <p className="ml1 mb05">zip code</p>
           <input
             onChange={handleInputLocation}
             name="zip"
             type="text"
             defaultValue={user.location.zip}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>city</p>
+          <p className="ml1 mb05">city</p>
           <input
             onChange={handleInputLocation}
             name="city"
             type="text"
             defaultValue={user.location.city}
+            className="shadow-s"
           />
         </div>
 
@@ -524,12 +539,12 @@ const UserEdit = () => {
           security
         </h1>
         <div className="col mb1">
-          <p>set new password</p>
-          <input name="" type="text" placeholder="new password" />
+          <p className="ml1 mb05">set new password</p>
+          <input name="" type="text" placeholder="new password" className="shadow-s"/>
         </div>
         <div className="col mb1">
-          <p>confirm new password</p>
-          <input name="" type="text" placeholder="confirm password" />
+          <p className="ml1 mb05">confirm new password</p>
+          <input name="" type="text" placeholder="confirm password" className="shadow-s"/>
         </div>
 
         <div className="bo-DARK"></div>
@@ -589,7 +604,7 @@ const UserEdit = () => {
                 onChange={avatarUploadHandler}
                 name="avatar"
                 type="file"
-                accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
+                    accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
               />
             </div>
           </div>
@@ -606,11 +621,12 @@ const UserEdit = () => {
         <div>
           <RadioColor user={talent} setFavColor={setFavColor} />
         </div>
+        
         <div className="col mt2 mb1">
-          <p>
+          <p className="ml1 mb05">
             first name
             <span
-              className={`${color ? color : user.meta.colorTheme[0]} fw900`}
+              className={`${color ? color : user.meta.colorTheme[0]}fw900`}
             >
               *
             </span>
@@ -620,10 +636,11 @@ const UserEdit = () => {
             name="firstName"
             type="text"
             defaultValue={user.profile.firstName}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>
+          <p className="ml1 mb05">
             last name
             <span
               className={`${color ? color : user.meta.colorTheme[0]} fw900`}
@@ -636,15 +653,17 @@ const UserEdit = () => {
             name="lastName"
             type="text"
             defaultValue={user.profile.lastName}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>description</p>
+          <p className="ml1 mb05">description</p>
           <input
             onChange={handleInputProfile}
             name="description"
             type="text"
             defaultValue={user.profile.description}
+            className="shadow-s"
           />
         </div>
 
@@ -656,32 +675,35 @@ const UserEdit = () => {
         </h1>
 
         <div className="col mb1">
-          <p>company</p>
+          <p className="ml1 mb05 mt05">company</p>
           <input
             onChange={handleInputContact}
             name="company"
             type="text"
             defaultValue={user.contact.company}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>position</p>
+          <p className="ml1 mb05">position</p>
           {/* WRONG INPUTHANDLER */}
           <input
             onChange={handleInputProfile}
             name="position"
             type="text"
             defaultValue={user.profile.position}
+            className="shadow-s"
           />
         </div>
 
         <div className="col mb1">
-          <p>company website</p>
+          <p className="ml1 mb05">company website</p>
           <input
             onChange={handleInputContact}
             name="website"
             type="text"
             defaultValue={user.contact.website}
+            className="shadow-s"
           />
         </div>
 
@@ -696,12 +718,12 @@ const UserEdit = () => {
           security
         </h1>
         <div className="col mb1">
-          <p>set new password</p>
-          <input type="text" placeholder="new password" />
+          <p className="ml1 mb05 mt05">set new password</p>
+          <input type="text" placeholder="new password" className="shadow-s"/>
         </div>
         <div className="col mb1">
-          <p>confirm new password</p>
-          <input type="text" placeholder="confirm password" />
+          <p className="ml1 mb05">confirm new password</p>
+          <input type="text" placeholder="confirm password" className="shadow-s"/>
         </div>
 
         <div className="bo-DARK"></div>
@@ -727,7 +749,7 @@ const UserEdit = () => {
           hideProgressBar={true}
         />
       </form>
-    </>
+    </div >
   ) : null;
 };
 
