@@ -435,7 +435,7 @@ const EditStone = () => {
             }
           </div>
         </div>
-        <div className="maxM central">
+        <div className="maxM mb2 central">
           <button type="submit" className={bg} onClick={() => handleSubmit}>
             save changes
           </button>
