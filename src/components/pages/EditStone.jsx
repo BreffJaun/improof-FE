@@ -295,6 +295,24 @@ const EditStone = () => {
       });
   };
 
+  const handleDelete = async () => {
+    console.log(user._id, project._id, stone._id);
+
+    await fetch(`${host}/stones/${stone._id}`, {
+      credentials: "include",
+      method: "DELETE",
+      body: JSON.stringify({
+        userId: user._id,
+        projectId: project._id,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => navigate(`/projectdetails/${projectId}`));
+  };
+
   return editStonePending ? (
     <div>Loading...</div>
   ) : (
@@ -317,12 +335,14 @@ const EditStone = () => {
           </div>
           <div className="col mt1">
             <p className="ml1 mb05">description</p>
-            <input
+            <textarea
+              rows="7"
               type="text"
               name="description"
               defaultValue={stone.description}
               onChange={handleInput}
               className="shadow-s"
+              id="description"
             />
           </div>
           <div className="central row mt4 mb2 g2">
@@ -431,8 +451,7 @@ const EditStone = () => {
                     handleContributor={handleContributor}
                   />
                 );
-              })
-            }
+              })}
           </div>
         </div>
         <div className="maxM mb2 central">
@@ -441,6 +460,9 @@ const EditStone = () => {
           </button>
         </div>
       </form>
+      <button className={`mt2  bg-FAV`} onClick={() => handleDelete()}>
+        delete stone
+      </button>
       <ToastContainer />
     </>
   );

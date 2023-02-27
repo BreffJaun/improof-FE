@@ -1,12 +1,18 @@
 .Toastify__toast-theme--dark {
-  background-color: rgb(35,42,61);
-  color:rgb(211,215,227);
+  background-color: black;
+  color:rgb(242,246, 245);
 }
 .Toastify__toast-theme--light {
-  background-color: rgb(234, 236, 235);
-  color:rgb(35,42,61);
+  background-color: rgb(242,246, 245);
+  color:rgb(25,29,41)
 }
 
 .progress-bar{
 background-color: rgb(109,119,144) !important
+}
+
+#description{
+  border-radius: 1rem;
+  padding:1rem;
+  outline:none;
 }

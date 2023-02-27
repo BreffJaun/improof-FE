@@ -18,6 +18,7 @@ import { AiOutlineCamera as Camera } from "react-icons/ai";
 import { RiMailAddLine as MailPlus } from "react-icons/ri";
 import { RiMailCloseLine as MailMinus } from "react-icons/ri";
 import { FiUpload as Upload } from "react-icons/fi";
+
 // LOGOS
 import logoPi from "../../images/improof_PI.png";
 import logoBl from "../../images/improof_BL.png";
@@ -56,6 +57,8 @@ const CreateProject = () => {
   const bg = user.meta.colorTheme[1];
   const darkMode = user.meta.darkMode;
   const [theme, setTheme] = useState("");
+
+  console.log(newProject.category);
 
   const noFollowsFilter = (arr1, arr2) => {
     let clean = [];
@@ -131,7 +134,7 @@ const CreateProject = () => {
   }, [team]);
 
   useEffect(() => {
-    setTeam([...team, user]);
+    setTeam([...team]);
     setNewProject({ ...newProject, team: team });
   }, [addUserToTeamTrigger]);
 
@@ -150,6 +153,9 @@ const CreateProject = () => {
 
     // Add your own userId to the team, because your a member of the project too.
     console.log("Z 122, newProject: ", newProject);
+    if(!newProject.team.includes(user)){
+      newProject.team.push(user)
+    }
 
     const formData = new FormData();
     formData.append("thumbnail", thumbnail);
@@ -256,9 +262,9 @@ const CreateProject = () => {
           />
         ),
       });
-    } else {
-      sendProjectData();
     }
+    category && category !== "" && sendProjectData();
+    
   };
 
   const handleSearch = (event) => {
@@ -349,30 +355,31 @@ const CreateProject = () => {
                       user={user}
                     />
                   )
-              )}              
+              )}
           </div>
         </div>
         <div>
           <div>
-          <div className="bo-DARK"></div>
-          <div className="mt2 central col">
-            <h1 className={`central ${color}`}>expand your team</h1>
-            <h4 className={`central ${color} mt05`}>discover more talents</h4>
-            <input 
-              type="text" 
-              placeholder="search for your team..." 
-              value={search} 
-              onChange={handleSearch}
-              className="shadow-s mt1" 
-            />
-          </div>        
+            <div className="bo-DARK"></div>
+            <div className="mt2 central col">
+              <h1 className={`central ${color}`}>expand your team</h1>
+              <h4 className={`central ${color} mt05`}>discover more talents</h4>
+              <input
+                type="text"
+                placeholder="search for your team..."
+                value={search}
+                onChange={handleSearch}
+                className="shadow-s mt1"
+              />
+            </div>
             {search &&
               talents
                 .filter(
-                  (talent) => talent._id !== user._id &&
-                    talent.profile.firstName
-                      .toLowerCase()
-                      .includes(search.toLowerCase()) ||
+                  (talent) =>
+                    (talent._id !== user._id &&
+                      talent.profile.firstName
+                        .toLowerCase()
+                        .includes(search.toLowerCase())) ||
                     talent.profile.lastName
                       .toLowerCase()
                       .includes(search.toLowerCase())

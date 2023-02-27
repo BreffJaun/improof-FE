@@ -19,6 +19,19 @@ import { RiMailAddLine as MailPlus } from "react-icons/ri";
 import { RiMailCloseLine as MailMinus } from "react-icons/ri";
 import { FiUpload as Upload } from "react-icons/fi";
 
+// LOGOS
+import logoPi from "../../images/improof_PI.png";
+import logoBl from "../../images/improof_BL.png";
+import logoPu from "../../images/improof_PU.png";
+import logoOr from "../../images/improof_OR.png";
+import logoLB from "../../images/improof_LB.png";
+import logoDG from "../../images/improof_DG.png";
+import logoGR from "../../images/improof_GR.png";
+import logoLG from "../../images/improof_LG.png";
+
+// STYLES
+import "../../styles/toastify.scss";
+
 const CreateProject = () => {
   const { id } = useParams("id");
   const navigate = useNavigate();
@@ -42,11 +55,13 @@ const CreateProject = () => {
   const follows = user.follows;
   const [addUserIdToProjectTrigger, setAddUserIdToProjectTrigger] =
     useState(false);
-  const [search, setSearch] = useState("")
-  const [trigger, setTrigger] = useState(false)
+  const [search, setSearch] = useState("");
+  const [trigger, setTrigger] = useState(false);
 
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
+  const darkMode = user.meta.darkMode;
+  const theme = darkMode ? "dark" : "light";
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
@@ -82,7 +97,7 @@ const CreateProject = () => {
             setProject(json.data);
             setPending(false);
             setCategory(json.data.category);
-            setTeam(json.data.team)
+            setTeam(json.data.team);
             setThumbnail(json.data.thumbnail);
           }
         });
@@ -157,7 +172,7 @@ const CreateProject = () => {
 
   useEffect(() => {
     setNewProject({ ...newProject, team: team });
-    setSearch("")
+    setSearch("");
     // setTrigger(!trigger)
   }, [team]);
 
@@ -189,7 +204,7 @@ const CreateProject = () => {
 
     const sendProjectData = async () => {
       setUploadPending(true);
-    await fetch(`${host}/projects/${id}`, {
+      await fetch(`${host}/projects/${id}`, {
         credentials: "include",
         method: "PATCH",
         body: formData,
@@ -198,7 +213,32 @@ const CreateProject = () => {
         .then((json) => json.json())
         .then((data) => {
           if (data.status) {
-            toast.info("Your project is saved", toastOptions);
+            toast("Your changes are saved", {
+              theme: theme,
+              hideProgressBar: "true",
+              icon: () => (
+                <img
+                  src={
+                    color === "c-PI1"
+                      ? logoPi
+                      : color === "c-O2"
+                      ? logoOr
+                      : color === "c-PU1"
+                      ? logoPu
+                      : color === "c-B2"
+                      ? logoBl
+                      : color === "c-LB2"
+                      ? logoLB
+                      : color === "c-GR1"
+                      ? logoLG
+                      : color === "c-GR2"
+                      ? logoGR
+                      : logoDG
+                  }
+                  width="20"
+                />
+              ),
+            });
             setUploadPending(false);
             if (!createProjectPending) {
               navigate(`/projectdetails/${data.data._id}`);
@@ -206,7 +246,32 @@ const CreateProject = () => {
           }
           if (data.error) {
             // setUploadPending(false);
-            toast.error(data.error, toastOptions);
+            toast(data.error, {
+              theme: theme,
+              hideProgressBar: "true",
+              icon: () => (
+                <img
+                  src={
+                    color === "c-PI1"
+                      ? logoPi
+                      : color === "c-O2"
+                      ? logoOr
+                      : color === "c-PU1"
+                      ? logoPu
+                      : color === "c-B2"
+                      ? logoBl
+                      : color === "c-LB2"
+                      ? logoLB
+                      : color === "c-GR1"
+                      ? logoLG
+                      : color === "c-GR2"
+                      ? logoGR
+                      : logoDG
+                  }
+                  width="20"
+                />
+              ),
+            });
           }
         });
     };
@@ -225,14 +290,12 @@ const CreateProject = () => {
         "Content-type": "application/json; charset=UTF-8",
       },
     })
-    .then((response) => response.json())
-    .then((json) => navigate("/myprojects"));
-  }
+      .then((response) => response.json())
+      .then((json) => navigate("/myprojects"));
+  };
   const handleSearch = (event) => {
-    setSearch(event.target.value)
-  }
-  console.log(team);
-
+    setSearch(event.target.value);
+  };
   return uploadPending ? (
     <div>Loading...</div>
   ) : (
@@ -251,8 +314,7 @@ const CreateProject = () => {
               <input
                 type="text"
                 name="name"
-                placeholder={project.name}
-                maxLength={40}
+                defaultValue={project.name}
                 onChange={handleInput}
                 className="shadow-s"
               />
@@ -262,13 +324,14 @@ const CreateProject = () => {
               <p className="ml1 mt15 mb05">
                 description<span className={color}>*</span>
               </p>
-              <input
+              <textarea
                 type="text"
+                rows="7"
                 name="description"
                 placeholder={project.description}
-                maxLength={300}
                 onChange={handleInput}
                 className="shadow-s"
+                id="description"
               />
             </div>
 
@@ -318,10 +381,10 @@ const CreateProject = () => {
           {/*  - - - - - TEAM - - - - - */}
           <div className="bo-DARK"></div>
           <div className="mt2 mb2">
-            <h1 className={`central ${color}`}>edit your team</h1>
-            <h4 className={`central ${color} mt05`}>discover more talents</h4>
+            <h1 className={`central ${color}`}>your team</h1>
+            <h1 className={`central ${color}`}>your team</h1>
           </div>
-          <div className="talent-container" >
+          <div className="talent-container">
             {team.map((talent) => (
               <TalentToProjectCard
                 team={team}
@@ -333,29 +396,43 @@ const CreateProject = () => {
               />
             ))}
           </div>
- 
+
           {/*  - - - - - SEARCH TALENTS - - - - - */}
           <div className="bo-DARK"></div>
           <div className="mt2 central col">
             <h1 className={`central ${color}`}>expand your team</h1>
             <h4 className={`central ${color} mt05`}>discover more talents</h4>
-            <input 
-              type="text" 
-              placeholder="search for your team..." 
-              value={search} 
+            <input
+              type="text"
+              placeholder="search for your team..."
+              value={search}
               onChange={handleSearch}
-              className="shadow-s mt1" 
+              className="shadow-s mt1"
             />
           </div>
           <div>
-              {search && talents.filter(talent => talent._id !== user._id && talent.profile.firstName.toLowerCase().includes(search.toLowerCase()) || talent.profile.lastName.toLowerCase().includes(search.toLowerCase()) ).map(talent => <TalentToProjectCard
-                team={team}
-                setTeam={setTeam}
-                key={talent._id}
-                talent={talent}
-                user={user}/>
-          )}
-            </div>
+            {search &&
+              talents
+                .filter(
+                  (talent) =>
+                    (talent._id !== user._id &&
+                      talent.profile.firstName
+                        .toLowerCase()
+                        .includes(search.toLowerCase())) ||
+                    talent.profile.lastName
+                      .toLowerCase()
+                      .includes(search.toLowerCase())
+                )
+                .map((talent) => (
+                  <TalentToProjectCard
+                    team={team}
+                    setTeam={setTeam}
+                    key={talent._id}
+                    talent={talent}
+                    user={user}
+                  />
+                ))}
+          </div>
           {/* <div className="talent-container">
             {noFollows &&
               noFollows.map(
@@ -373,61 +450,59 @@ const CreateProject = () => {
               )}
           </div> */}
 
-        {/*  - - - - - INVITATION - - - - - */}
-        <div className="maxM">
-          <div className="mb1 mt4 central">
-            <h4 className={`${color}`}>invite to improof</h4>
-          </div>
-          <div className="mt2">
-            <div className="col">
-              {eMailFields.map((el, i) => (
-                <input
-                  type="email"
-                  name={`inviteOthers${i}`}
-                  onChange={inviteInputHandler}
-                  placeholder="invite to improof"
-                  key={i}
-                  className="shadow-s"
-                />
-              ))}
+          {/*  - - - - - INVITATION - - - - - */}
+          <div className="maxM">
+            <div className="mb1 mt4 central">
+              <h4 className={`${color}`}>invite to improof</h4>
             </div>
-            <div className="central mt2 flex g3">
-              <div>
-                <button
-                  className={`mb05 rel ${bg} central circle40`}
-                  onClick={addEmailFields}
-                  disabled={eMailFields.length === 5}
-                >
-                  {eMailFields.length === 5 ? (
-                    "you can invite more people later in the project"
-                  ) : (
-                    <div>
-                      <h2 className="central">
-                        <MailPlus />
-                      </h2>
-                    </div>
-                  )}
-                </button>
-                <p>add an email</p>
+            <div className="mt2">
+              <div className="col">
+                {eMailFields.map((el, i) => (
+                  <input
+                    type="email"
+                    name={`inviteOthers${i}`}
+                    onChange={inviteInputHandler}
+                    placeholder="invite to improof"
+                    key={i}
+                    className="shadow-s"
+                  />
+                ))}
               </div>
+              <div className="central mt2 flex g3">
+                <div>
+                  <button
+                    className={`mb05 rel ${bg} central circle40`}
+                    onClick={addEmailFields}
+                    disabled={eMailFields.length === 5}
+                  >
+                    {eMailFields.length === 5 ? (
+                      "you can invite more people later in the project"
+                    ) : (
+                      <div>
+                        <h2 className="central">
+                          <MailPlus />
+                        </h2>
+                      </div>
+                    )}
+                  </button>
+                  <p>add an email</p>
+                </div>
 
-              <div>
-                <button
-                  className={`mb05 rel ${bg} central circle40`}
-                  onClick={subEmailFields}
-                  disabled={eMailFields.length === 1}
-                >
-                  <h2 className="central">
-                    <MailMinus />
-                  </h2>
-                </button>
-                <p>delete the mail</p>
+                <div>
+                  <button
+                    className={`mb05 rel ${bg} central circle40`}
+                    onClick={subEmailFields}
+                    disabled={eMailFields.length === 1}
+                  >
+                    <h2 className="central">
+                      <MailMinus />
+                    </h2>
+                  </button>
+                  <p>delete the mail</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-
 
           {/*  - - - - - PRIVACY - - - - - */}
           <div className="bo-DARK"></div>

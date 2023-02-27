@@ -37,14 +37,17 @@ const Conversations = ({
           <p className="mb2 info center">conversations</p>
           <div className="scroll-container">
             <div className="col mr1">
-              {user?.conversations?.map((con) => {
+              {user?.conversations
+                ?.map((con) => {
                   const unread = con.message.find(
                     (msg) => !msg.isRead && msg.from !== user._id
                   );
-                  const date1 = con.message[0].createdAt?.toString().split("T");
-                  const date = date1[0].split("-").reverse().join(".");
-                  const time1 = parseInt(date1[1].slice(0, 2)) + 1;
-                  const time2 = date1[1].slice(2, 5);
+                  const date1 = con?.message[0]?.createdAt
+                    ?.toString()
+                    .split("T");
+                  const date = date1 && date1[0].split("-").reverse().join(".");
+                  const time1 = date1 && parseInt(date1[1].slice(0, 2)) + 1;
+                  const time2 = date1 && date1[1].slice(2, 5);
                   const time = time1 + time2;
                   const participant = con.participants.find(
                     (part) => part._id !== user._id

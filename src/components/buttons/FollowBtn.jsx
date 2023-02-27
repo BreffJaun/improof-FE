@@ -24,8 +24,7 @@ import logoLG from "../../images/improof_LG.png";
 // STYLES
 import "../../styles/toastify.scss";
 
-const FollowBtn = ({ talent, user }) => {
-  const [theme, setTheme] = useState("");
+const FollowBtn = ({ talent, user, theme }) => {
   const darkMode = user.meta.darkMode;
   const color = user.meta.colorTheme[0];
 
@@ -44,7 +43,6 @@ const FollowBtn = ({ talent, user }) => {
       .then((response) => response.json())
       .then((json) => {
         if (json.status) {
-          darkMode ? setTheme("dark") : setTheme("light");
           toast(`you added ${talent.profile?.firstName}`, {
             theme: theme,
             hideProgressBar: "true",
@@ -60,7 +58,7 @@ const FollowBtn = ({ talent, user }) => {
                     : color === "c-B2"
                     ? logoBl
                     : color === "c-LB2"
-                    ? logoBl
+                    ? logoLB
                     : color === "c-GR1"
                     ? logoLG
                     : color === "c-GR2"
@@ -134,10 +132,10 @@ const FollowBtn = ({ talent, user }) => {
                     : color === "c-B2"
                     ? logoBl
                     : color === "c-LB2"
-                    ? logoBl
+                    ? logoLB
                     : color === "c-GR1"
                     ? logoLG
-                    : color === "c-GR2"
+                    : color === "c-GR3"
                     ? logoGR
                     : logoDG
                 }
@@ -162,10 +160,10 @@ const FollowBtn = ({ talent, user }) => {
                     : color === "c-B2"
                     ? logoBl
                     : color === "c-LB2"
-                    ? logoBl
+                    ? logoLB
                     : color === "c-GR1"
                     ? logoLG
-                    : color === "c-GR2"
+                    : color === "c-GR3"
                     ? logoGR
                     : logoDG
                 }

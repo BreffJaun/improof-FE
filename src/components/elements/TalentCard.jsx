@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Switch from "react-switch";
+import { ToastContainer } from "react-toastify";
 
 // STYLES
 import "../../styles/cards.scss";
@@ -7,15 +8,20 @@ import "../../styles/colors.scss";
 import "../../styles/talentcard.scss";
 
 // ICONS
-import { ToastContainer } from "react-toastify";
 
 // ELEMENTS
 import { FollowBtn } from "../buttons/FollowBtn.jsx";
 import { SendMessageBtn } from "../buttons/MessageBtn.jsx";
 
 const TalentCard = ({ talent, user }) => {
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: 8000,
+  };
   const color = talent.meta.colorTheme[0];
   const bg = talent.meta.colorTheme[1];
+  const darkMode = user.meta.darkMode;
+  const theme = darkMode ? "dark" : "light";
   const navigate = useNavigate();
   return (
     <>
@@ -50,9 +56,9 @@ const TalentCard = ({ talent, user }) => {
             </div>
             <div>
               {user.follows.find((follow) => follow._id === talent._id) ? (
-                <FollowBtn talent={talent} user={user} />
+                <FollowBtn talent={talent} user={user} theme={theme} />
               ) : (
-                <FollowBtn talent={talent} user={user} />
+                <FollowBtn talent={talent} user={user} theme={theme} />
               )}
             </div>
           </div>
@@ -63,7 +69,11 @@ const TalentCard = ({ talent, user }) => {
   );
 };
 
-const TalentCardS = ({ talent, user }) => {
+const TalentCardS = ({ talent, user, theme }) => {
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: 8000,
+  };
   const color = talent.meta.colorTheme[0];
   const bg = talent.meta.colorTheme[1];
   const navigate = useNavigate();
@@ -98,15 +108,16 @@ const TalentCardS = ({ talent, user }) => {
               </div>
               <div>
                 {user.follows.find((follow) => follow._id === talent._id) ? (
-                  <FollowBtn talent={talent} user={user} />
+                  <FollowBtn talent={talent} user={user} theme={theme} />
                 ) : (
-                  <FollowBtn talent={talent} user={user} />
+                  <FollowBtn talent={talent} user={user} theme={theme} />
                 )}
               </div>
             </div>
           )}
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };
@@ -119,6 +130,10 @@ const TalentCardStones = ({
 }) => {
   const color = talent.meta.colorTheme[0];
   const bg = talent.meta.colorTheme[1];
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: 8000,
+  };
   const navigate = useNavigate();
   return (
     <>
@@ -126,7 +141,7 @@ const TalentCardStones = ({
         <div className=" mt1 mb2 row">
           <div
             className={`${bg} t-pic`}
-            onClick={() => navigate(`/userDetails/${talent._id}`)}
+            // onClick={() => navigate(`/userDetails/${talent._id}`)}
           >
             {talent?.profile?.avatar ? (
               <img src={talent.profile?.avatar} />
@@ -138,7 +153,7 @@ const TalentCardStones = ({
           <div>
             <p
               className={`fw500 ${color}`}
-              onClick={() => navigate(`/userDetails/${talent._id}`)}
+              // onClick={() => navigate(`/userDetails/${talent._id}`)}
             >
               {talent.profile?.firstName} {talent.profile?.lastName}
             </p>
@@ -164,6 +179,7 @@ const TalentCardStones = ({
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

@@ -7,14 +7,33 @@ import logoOrange from "../../images/improof_OR.png";
 import logoPink from "../../images/improof_PI.png";
 import logoYellow from "../../images/improof_YE.png";
 import logoPurple from "../../images/improof_PU.png";
+import { host } from "../../api/host.jsx";
+
+import UserContext from "../../context/userContext.jsx";
+import { useContext } from "react";
 
 const Congrats = () => {
+  const [user, setUser] = useContext(UserContext)
   const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
+        const setFirstLogin = async () => {
+          await fetch(`${host}/users/firstlogin/${user._id}`, {
+            method: 'PATCH',
+            body: JSON.stringify({
+              userId: user._id,
+            }),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            },
+          })
+            .then((response) => response.json())
+            .then((json) => console.log(json));
+        }
+        setFirstLogin()
       navigate("/");
-    }, 7500);
+    }, 5000);
   }, []);
 
   return (

@@ -6,7 +6,6 @@ const host = "https://improof-be.onrender.com";
 
 export { host };
 
-
 // global FRONTEND
 // Daten auf GitHub
 // deployed auf VERCEL
