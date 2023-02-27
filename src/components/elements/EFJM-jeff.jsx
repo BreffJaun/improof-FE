@@ -25,11 +25,11 @@ const Jeff = ({ darkMode }) => {
         </div>
         <div>
           <div className="col mb1">
-            <p className="c-GR1">Mein Bereich:</p>
+            <p className="c-GR1">My field:</p>
             <p>rules React, loves Backend and also does Frontend</p>
           </div>
           <div className="col mb1">
-            <p className="c-GR1">Meine Stärken</p>
+            <p className="c-GR1">About me:</p>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Asperiores magni, quibusdam omnis alias illum quos!

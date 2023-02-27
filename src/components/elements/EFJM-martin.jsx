@@ -25,13 +25,13 @@ const Martin = ({ darkMode }) => {
         </div>
         <div>
           <div className="col mb1">
-            <p className="c-FAV">Mein Bereich:</p>
+            <p className="c-FAV">My field:</p>
             <p>
               UI-Designer, loves UX, knows HTML, CSS, Sass, React, Id, Ps, Ai
             </p>
           </div>
           <div className="col mb1">
-            <p className="c-FAV">Meine Stärken</p>
+            <p className="c-FAV">About me:</p>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Asperiores magni, quibusdam omnis alias illum quos!
@@ -88,7 +88,6 @@ const Martin = ({ darkMode }) => {
 };
 
 export default Martin;
-
 
 // Ich bin mit Leib und Seele Designer und
 // lebe für die Visualisierung von
