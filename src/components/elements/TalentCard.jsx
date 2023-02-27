@@ -101,7 +101,7 @@ const TalentCardS = ({ talent, user, theme }) => {
             </p>
             <p>{talent.profile?.category}</p>
           </div>
-          {user._id === talent._id ? null : (
+          {/* {user._id === talent._id ? null : (
             <div className="ml1 row">
               <div title="send message">
                 <SendMessageBtn talent={talent} user={user} />
@@ -114,7 +114,7 @@ const TalentCardS = ({ talent, user, theme }) => {
                 )}
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
       <ToastContainer />

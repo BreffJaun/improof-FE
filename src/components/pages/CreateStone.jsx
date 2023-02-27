@@ -248,8 +248,8 @@ const CreateStone = () => {
           </div>
 
           <div className="maxM mt1 bo-top-DARK"></div>
-          <div>
-            <div className="col">
+    
+            <div className="col maxM ">
               <h3 className={`fw500 ${color} center mb2`}>add your media</h3>
               <div className="thumbnailS">
                 {mediaUrl && videoTrigger ? (
@@ -267,47 +267,60 @@ const CreateStone = () => {
                     stopOnUnmount={false}
                   />
                 ) : mediaUrl && imageTrigger ? (
-                  <img src={mediaUrl} alt="media" />
+                  <img className="max" src={mediaUrl} alt="media" />
                 ) : (
                   <div title="upload">
-                    <Camera />
+                    
                   </div>
                 )}
               </div>
-              <div className="col">
-                <label htmlFor="media-pic">photos</label>
-                <input
-                  type="file"
-                  multiple
-                  id="media-pic"
-                  onChange={handleImages}
-                  accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
-                  disabled={videoTrigger}
-                />
-                {imageTrigger && (
-                  <button type="button" onClick={resetImageHandler}>
-                    reset image selection
-                  </button>
-                )}
-              </div>
-              <div className="col">
-                <label htmlFor="media-vid">videos</label>
-                <input
-                  type="file"
-                  multiple
-                  id="media-vid"
-                  onChange={handleVideos}
-                  accept=".mp4, .mov, .wmv, .avi, .mkv, .flv"
-                  disabled={imageTrigger}
-                />
-                {videoTrigger && (
-                  <button type="button" onClick={resetVideoHandler}>
-                    reset video selection
-                  </button>
-                )}
+              <div className="flex">
+                <div className="col">
+                  <div className="upload">
+                    <label for="media-pic">
+                      <Camera />
+                      photos
+                    </label>
+                    <input
+                      type="file"
+                      className="dis-none"
+                      multiple
+                      id="media-pic"
+                      onChange={handleImages}
+                      accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
+                      disabled={videoTrigger}
+                      hidden
+                    />
+                  </div>
+                  {imageTrigger && (
+                    <button className={bg} type="button" onClick={resetImageHandler}>
+                      reset image selection
+                    </button>
+                  )}
+                </div>
+                <div className="col">
+                  <label for="media-vid">
+                    <Camera />
+                    videos                
+                  </label>
+                  <input
+                    type="file"
+                    multiple
+                    id="media-vid"
+                    onChange={handleVideos}
+                    accept=".mp4, .mov, .wmv, .avi, .mkv, .flv"
+                    disabled={imageTrigger}
+                    hidden
+                  />
+                  {videoTrigger && (
+                    <button type="button" onClick={resetVideoHandler}>
+                      reset video selection
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+         
 
           <div className="maxM mt2 bo-top-DARK"></div>
           <div className="col">

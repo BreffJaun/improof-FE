@@ -48,10 +48,9 @@ const StarProjects = () => {
   return (
     !pending && (
       <div className="max">
-        <h1 className={`center ${color} mb2`}>your star projects</h1>
-        {user.starProjects.length === 0 ?
-          <p className="central"> "you have no star projects yet."</p>:
-          <p>{user.starProjects.length}</p>
+        <h1 className={`center ${color} mb2`}>your star projects({user.starProjects.length})</h1>
+        {user.starProjects.length === 0 &&
+          <p className="central"> "you have no star projects yet."</p>
         }
         <div className="projects-container">
           {category
