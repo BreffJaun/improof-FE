@@ -28,7 +28,9 @@
     flex-direction: row;
 }
 
-
+.nowrap{
+    flex-wrap: nowrap;
+}
 
 .mt015{
     margin-top: 0.15rem;
@@ -228,4 +230,9 @@
 }
 .w100d{
     width: 100%;
+}
+
+
+.oh{
+    overflow: hidden;
 }
