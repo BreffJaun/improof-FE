@@ -57,6 +57,8 @@ const CreateProject = () => {
   const darkMode = user.meta.darkMode;
   const [theme, setTheme] = useState("");
 
+  console.log(newProject.category);
+
   const noFollowsFilter = (arr1, arr2) => {
     let clean = [];
     clean = arr1.filter((el) => {
@@ -131,7 +133,7 @@ const CreateProject = () => {
   }, [team]);
 
   useEffect(() => {
-    setTeam([...team, user]);
+    setTeam([...team]);
     setNewProject({ ...newProject, team: team });
   }, [addUserToTeamTrigger]);
 
@@ -150,6 +152,9 @@ const CreateProject = () => {
 
     // Add your own userId to the team, because your a member of the project too.
     console.log("Z 122, newProject: ", newProject);
+    if(!newProject.team.includes(user)){
+      newProject.team.push(user)
+    }
 
     const formData = new FormData();
     formData.append("thumbnail", thumbnail);
@@ -256,9 +261,9 @@ const CreateProject = () => {
           />
         ),
       });
-    } else {
-      !newProject.category && newProject !== "" && sendProjectData();
     }
+    category && category !== "" && sendProjectData();
+    
   };
 
   const handleSearch = (event) => {
