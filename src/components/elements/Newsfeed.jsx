@@ -192,7 +192,7 @@ const Newsfeed = () => {
                 />
                 : 
                 <div className={`circle90 ${bg} central rel initials`}>
-                  <p>{talent.profile.initials}</p>
+                  <p>{member?.profile?.initials}</p>
                 </div>
                 }
               </>
