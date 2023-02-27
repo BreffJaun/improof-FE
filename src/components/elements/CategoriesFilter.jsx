@@ -3,7 +3,7 @@ import UserContext from "../../context/userContext.jsx";
 import TriggerContext from "../../context/triggerContext.jsx";
 import { host } from "../../api/host.jsx";
 
-const CategoriesFilter = ({ setCategory, category, searchTrigger }) => {
+const CategoriesFilter = ({ setCategory, category, searchTrigger, last }) => {
   const [user, setUser] = useContext(UserContext);
   const [trigger, setTrigger] = useContext(TriggerContext);
 
@@ -29,13 +29,12 @@ const CategoriesFilter = ({ setCategory, category, searchTrigger }) => {
   return (
     < div className="mb2">
       <select 
-      onChange={handleCategory} 
-      name="newsfeed-filter"
+        onChange={handleCategory} 
+        name="newsfeed-filter"
         disabled={searchTrigger}
         className="shadow-s"
+
       > 
-        {/* <option value="">All categories</option> */}
-        {/* TEST START */}
         {!category
         ?
         <option value="" selected>All categories</option>

@@ -179,11 +179,10 @@ const Newsfeed = () => {
       <div>
         <div className="flex">
           {user.follows.map((member) => {
-            return (
-              <>
-                {member.profile.avatar
+            return (              
+                member.profile.avatar
                 ?
-                <img
+                <img key={member._id}
                   className="circle50"
                   src={member.profile.avatar}
                   onClick={() =>
@@ -191,11 +190,10 @@ const Newsfeed = () => {
                   }
                 />
                 : 
-                <div className={`circle90 ${bg} central rel initials`}>
+                <div key={member._id} className={`circle90 ${bg} central rel initials`}>
                   <p>{talent.profile.initials}</p>
                 </div>
-                }
-              </>
+                              
             );
           })}
         </div>
@@ -219,12 +217,12 @@ const Newsfeed = () => {
                 if (pro !== undefined) project = starProjects[i];
               }
               return (
-                <div className="newsfeed-card">
+                <div key={stone._id} className="newsfeed-card">
                   <div>
                     <div className="flex">
                       {stone.team.map((member) => {
                         return (
-                          <>
+                          <div key={member._id}>
                             <img
                               className="circle50"
                               src={member.profile.avatar}
@@ -233,7 +231,7 @@ const Newsfeed = () => {
                               }
                             />
                             {/* <p>{member.profile.firstName}</p>                                            */}
-                          </>
+                          </div>
                         );
                       })}
                     </div>
