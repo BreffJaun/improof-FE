@@ -295,9 +295,6 @@ const CreateProject = () => {
   const handleSearch = (event) => {
     setSearch(event.target.value);
   };
-  console.log(team);
-  console.log(theme);
-
   return uploadPending ? (
     <div>Loading...</div>
   ) : (
