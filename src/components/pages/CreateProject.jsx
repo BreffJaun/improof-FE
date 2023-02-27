@@ -153,8 +153,8 @@ const CreateProject = () => {
 
     // Add your own userId to the team, because your a member of the project too.
     console.log("Z 122, newProject: ", newProject);
-    if(!newProject.team.includes(user)){
-      newProject.team.push(user)
+    if (!newProject.team.includes(user)) {
+      newProject.team.push(user);
     }
 
     const formData = new FormData();
@@ -264,7 +264,6 @@ const CreateProject = () => {
       });
     }
     category && category !== "" && sendProjectData();
-    
   };
 
   const handleSearch = (event) => {
@@ -291,7 +290,6 @@ const CreateProject = () => {
               name="name"
               placeholder="Give your project a catchy name!"
               required
-              maxLength={40}
               onChange={handleInput}
               className="shadow-s"
             />
@@ -300,14 +298,14 @@ const CreateProject = () => {
             <p className="ml1 mb05 mt1">
               description<span className={color}>*</span>
             </p>
-            <input
+            <textarea
               type="text"
               name="description"
               placeholder="what are your goals with this project?"
               required
-              maxLength={300}
               onChange={handleInput}
               className="shadow-s"
+              id="description"
             />
           </div>
           <div className="col">

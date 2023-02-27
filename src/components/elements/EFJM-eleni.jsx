@@ -31,7 +31,7 @@ const Eleni = ({ darkMode }) => {
             </p>
           </div>
           <div className="col mb1">
-            <p className="c-PI15">Meine Stärken</p>
+            <p className="c-PI15">About me:</p>
             <p>
               Hi, I’m Eleni
               <br />
