@@ -27,7 +27,6 @@ const MyProjects = () => {
     };
     getUser();
   }, [trigger]);
-  console.log(darkMode);
 
   return (
     <div className="max">

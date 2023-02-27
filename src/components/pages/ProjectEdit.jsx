@@ -238,6 +238,7 @@ const CreateProject = () => {
   ) : (
     project && (
       <>
+      <div></div>
         <div className="mt2 mb2">
           <h1 className={`central ${color}`}>edit your project</h1>
         </div>
@@ -318,8 +319,7 @@ const CreateProject = () => {
           {/*  - - - - - TEAM - - - - - */}
           <div className="bo-DARK"></div>
           <div className="mt2 mb2">
-            <h1 className={`central ${color}`}>edit your team</h1>
-            <h4 className={`central ${color} mt05`}>discover more talents</h4>
+            <h1 className={`central ${color}`}>your team</h1>
           </div>
           <div className="talent-container" >
             {team.map((talent) => (
