@@ -15,6 +15,9 @@ import { TalentToProjectCard } from "../elements/TalentToProjectCard.jsx";
 
 // ICONS
 import { AiOutlineCamera as Camera } from "react-icons/ai";
+import { RiMailAddLine as MailPlus } from "react-icons/ri";
+import { RiMailCloseLine as MailMinus } from "react-icons/ri";
+import { FiUpload as Upload } from "react-icons/fi";
 
 const CreateProject = () => {
   const { id } = useParams("id");
@@ -154,6 +157,7 @@ const CreateProject = () => {
 
   useEffect(() => {
     setNewProject({ ...newProject, team: team });
+    setSearch("")
     // setTrigger(!trigger)
   }, [team]);
 
@@ -241,7 +245,7 @@ const CreateProject = () => {
         <form onSubmit={handleSubmit}>
           <div className="maxM mt2">
             <div className="col">
-              <p className="mt15 mb05 central">
+              <p className="ml1 mt15 mb05">
                 project name<span className={color}>*</span>
               </p>
               <input
@@ -250,11 +254,12 @@ const CreateProject = () => {
                 placeholder={project.name}
                 maxLength={40}
                 onChange={handleInput}
+                className="shadow-s"
               />
             </div>
 
             <div className="col">
-              <p className="mt15 mb05 central">
+              <p className="ml1 mt15 mb05">
                 description<span className={color}>*</span>
               </p>
               <input
@@ -263,11 +268,12 @@ const CreateProject = () => {
                 placeholder={project.description}
                 maxLength={300}
                 onChange={handleInput}
+                className="shadow-s"
               />
             </div>
 
             <div className="col">
-              <p className="mt15 mb05 central">thumbnail</p>
+              <p className="ml1 mt15 mb05">thumbnail</p>
               {/* <div className="thumbnailS"> */}
               {thumbnailUrl ? (
                 <img
@@ -294,8 +300,8 @@ const CreateProject = () => {
             </div>
 
             <div className="col center">
-              <p className="mt15 central">category:</p>
-              <p className="c-A50 mb05">right now: {project.category}</p>
+              <p className="mt15 central mb05">category:</p>
+              {/* <p className="c-A50 mb05">right now: {project.category}</p> */}
               <CategoriesFilter setCategory={setCategory} category={category} />
             </div>
 
@@ -313,9 +319,10 @@ const CreateProject = () => {
           <div className="bo-DARK"></div>
           <div className="mt2 mb2">
             <h1 className={`central ${color}`}>edit your team</h1>
+            <h4 className={`central ${color} mt05`}>discover more talents</h4>
           </div>
           <div className="talent-container" >
-            {project.team.map((talent) => (
+            {team.map((talent) => (
               <TalentToProjectCard
                 team={team}
                 setTeam={setTeam}
@@ -329,20 +336,24 @@ const CreateProject = () => {
  
           {/*  - - - - - SEARCH TALENTS - - - - - */}
           <div className="bo-DARK"></div>
-          <div className="mt2">
+          <div className="mt2 central col">
             <h1 className={`central ${color}`}>expand your team</h1>
-          </div>
-          <div className="mb1 central">
             <h4 className={`central ${color} mt05`}>discover more talents</h4>
+            <input 
+              type="text" 
+              placeholder="search for your team..." 
+              value={search} 
+              onChange={handleSearch}
+              className="shadow-s mt1" 
+            />
           </div>
-          <input type="text" placeholder="search for your team..." vlaue={search} onChange={handleSearch} />
           <div>
-              {search && talents.filter(talent => talent.profile.firstName.toLowerCase().includes(search.toLowerCase()) || talent.profile.lastName.toLowerCase().includes(search.toLowerCase()) ).map(talent => <TalentToProjectCard
-          team={team}
-          setTeam={setTeam}
-          key={talent._id}
-          talent={talent}
-          user={user}/>
+              {search && talents.filter(talent => talent._id !== user._id && talent.profile.firstName.toLowerCase().includes(search.toLowerCase()) || talent.profile.lastName.toLowerCase().includes(search.toLowerCase()) ).map(talent => <TalentToProjectCard
+                team={team}
+                setTeam={setTeam}
+                key={talent._id}
+                talent={talent}
+                user={user}/>
           )}
             </div>
           {/* <div className="talent-container">
@@ -362,37 +373,63 @@ const CreateProject = () => {
               )}
           </div> */}
 
-          {/*  - - - - - INVITATION - - - - - */}
-          <div className="bo-DARK"></div>
-          <div className="mb1 mt3 central">
-            <h4 className={`central ${color} mt05`}>invite to improof</h4>
+        {/*  - - - - - INVITATION - - - - - */}
+        <div className="maxM">
+          <div className="mb1 mt4 central">
+            <h4 className={`${color}`}>invite to improof</h4>
           </div>
-          <div className="maxM col">
-            {eMailFields.map((el, i) => (
-              <input
-                type="email"
-                name={`inviteOthers${i}`}
-                onChange={inviteInputHandler}
-                key={i}
-              />
-            ))}
+          <div className="mt2">
+            <div className="col">
+              {eMailFields.map((el, i) => (
+                <input
+                  type="email"
+                  name={`inviteOthers${i}`}
+                  onChange={inviteInputHandler}
+                  placeholder="invite to improof"
+                  key={i}
+                  className="shadow-s"
+                />
+              ))}
+            </div>
+            <div className="central mt2 flex g3">
+              <div>
+                <button
+                  className={`mb05 rel ${bg} central circle40`}
+                  onClick={addEmailFields}
+                  disabled={eMailFields.length === 5}
+                >
+                  {eMailFields.length === 5 ? (
+                    "you can invite more people later in the project"
+                  ) : (
+                    <div>
+                      <h2 className="central">
+                        <MailPlus />
+                      </h2>
+                    </div>
+                  )}
+                </button>
+                <p>add an email</p>
+              </div>
 
-            <button
-              onClick={addEmailFields}
-              disabled={eMailFields.length === 5}
-            >
-              {eMailFields.length === 5
-                ? "you can invite more people later in the project"
-                : "+ email"}
-            </button>
-            <button
-              onClick={subEmailFields}
-              disabled={eMailFields.length === 1}
-            >
-              - email
-            </button>
+              <div>
+                <button
+                  className={`mb05 rel ${bg} central circle40`}
+                  onClick={subEmailFields}
+                  disabled={eMailFields.length === 1}
+                >
+                  <h2 className="central">
+                    <MailMinus />
+                  </h2>
+                </button>
+                <p>delete the mail</p>
+              </div>
+            </div>
           </div>
+        </div>
 
+
+
+          {/*  - - - - - PRIVACY - - - - - */}
           <div className="bo-DARK"></div>
           <div className="col">
             <RadioPrivacy setPrivacy={setPrivacy} />
@@ -405,7 +442,6 @@ const CreateProject = () => {
           DELETE PROJECT BITTE BESSER KENNZEICHNEN!
         </button>
         <ToastContainer />
-        <Footer />
       </>
     )
   );

@@ -1,10 +1,9 @@
 .projects-container{
     display: flex;
-    flex-direction: column;
-    @media screen and (min-width:700px) {
-        flex-direction: row;
+    justify-content: center;
+    @media screen and (min-width:50px) {
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 1.25rem;
     }
 }
 
@@ -12,21 +11,20 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
-    width: 320px;
+    width: 310px;
+    
     .project-banner{
-        width: 100%;
         height: 150px;
         border-radius: 8px 8px 0 0;
+        object-fit: cover;
     };
     .project-body{
         display: flex;
         position: relative;
-        width: 100%;
-        // height: 100px;
-        padding: 0.5rem 0rem 0.5rem 1rem;
+        padding: 0.5rem 0rem 0.25rem 1rem;
         border-radius: 0 0 8px 8px;
         >*{
-            margin-top: 0.8rem;
+            margin-top: 0.75rem;
             margin-bottom: 0.5rem;
             margin-right: 1rem;
         }
@@ -115,8 +113,8 @@
                 outline: 3px solid white;
                 >img{
                     object-fit: cover;
-                    width: 110%;
-                    height: 110%;
+                    width: 105%;
+                    height: 105%;
                 }
             }
         }
