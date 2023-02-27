@@ -136,6 +136,7 @@ const NewSearch = () => {
             latitude: lat,
             longitude: lon,
           };
+          setSearchData(newSearchData);
           // SET SEARCH DATA & ADD LONG.- & LATITUDE END //
           // CALCULATE & FILTER DISTANCE WITH GEOCODES START //
           filteredTalents = talents.map((talent, i) => {
@@ -160,9 +161,8 @@ const NewSearch = () => {
           console.log("filteredTalents: ", filteredTalents);
           // CATEGORY FILTER
           if (category) {
-            filteredTalents = talentsSortedByDistance.filter((talent) =>
-              talent.profile.category.includes(category)
-            );
+            filteredTalents = filteredTalents.filter((talent) =>
+              talent.profile.category.includes(category));
             // console.log("CATEGORY IF");
           }
 
@@ -249,6 +249,8 @@ const NewSearch = () => {
   };
   console.log("searchTrigger: ", searchTrigger);
   console.log("redMarker: ", redMarker);
+  console.log("searchData LAT: ", searchData.latitude);
+  console.log("searchData LON: ", searchData.longitude);
 
   // RESET SEARCH END //
 

@@ -419,6 +419,14 @@ const CreateProject = () => {
                   />
                 ))}
           </div>
+              {search && talents.filter(talent => talent._id !== user._id && talent.profile.firstName.toLowerCase().includes(search.toLowerCase()) || talent.profile.lastName.toLowerCase().includes(search.toLowerCase()) ).map(talent => <TalentToProjectCard
+                team={team}
+                setTeam={setTeam}
+                key={talent._id}
+                talent={talent}
+                user={user}/>
+          )}
+            </div>
           {/* <div className="talent-container">
             {noFollows &&
               noFollows.map(

@@ -336,12 +336,6 @@ const CreateProject = () => {
 
         <div>
           <h1 className={`central ${color} mt05`}>your team </h1>
-          <input
-            type="text"
-            placeholder="search for your team..."
-            value={search}
-            onChange={handleSearch}
-          />
           <div className="flex">
             {team.length > 1 &&
               team.map(
@@ -360,11 +354,22 @@ const CreateProject = () => {
         </div>
         <div>
           <div>
-
+          <div className="bo-DARK"></div>
+          <div className="mt2 central col">
+            <h1 className={`central ${color}`}>expand your team</h1>
+            <h4 className={`central ${color} mt05`}>discover more talents</h4>
+            <input 
+              type="text" 
+              placeholder="search for your team..." 
+              value={search} 
+              onChange={handleSearch}
+              className="shadow-s mt1" 
+            />
+          </div>        
             {search &&
               talents
                 .filter(
-                  (talent) =>
+                  (talent) => talent._id !== user._id &&
                     talent.profile.firstName
                       .toLowerCase()
                       .includes(search.toLowerCase()) ||
