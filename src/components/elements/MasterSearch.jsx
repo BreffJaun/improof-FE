@@ -12,7 +12,6 @@ const MasterSearch = ({ projects, talents, setShowSearch, showSearch }) => {
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
   const darkMode = user.meta.darkMode;
-  // console.log(darkMode);
 
   return (
     <div className="burger-container rel ">

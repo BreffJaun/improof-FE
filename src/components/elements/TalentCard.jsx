@@ -43,18 +43,20 @@ const TalentCard = ({ talent, user }) => {
           <p>{talent.profile?.toolsAndSkills}</p>
         </div>
 
-        <div className="t-community">
-          <div title="send message">
-            <SendMessageBtn talent={talent} user={user} />
+        {user._id === talent._id ? null : (
+          <div className="t-community">
+            <div title="send message">
+              <SendMessageBtn talent={talent} user={user} />
+            </div>
+            <div>
+              {user.follows.find((follow) => follow._id === talent._id) ? (
+                <FollowBtn talent={talent} user={user} />
+              ) : (
+                <FollowBtn talent={talent} user={user} />
+              )}
+            </div>
           </div>
-          <div>
-            {user.follows.find((follow) => follow._id === talent._id) ? (
-              <FollowBtn talent={talent} user={user} />
-            ) : (
-              <FollowBtn talent={talent} user={user} />
-            )}
-          </div>
-        </div>
+        )}
       </div>
       <ToastContainer />
     </>
@@ -89,19 +91,20 @@ const TalentCardS = ({ talent, user }) => {
             </p>
             <p>{talent.profile?.category}</p>
           </div>
-
-          <div className="ml1 row">
-            <div title="send message">
-              <SendMessageBtn talent={talent} user={user} />
+          {user._id === talent._id ? null : (
+            <div className="ml1 row">
+              <div title="send message">
+                <SendMessageBtn talent={talent} user={user} />
+              </div>
+              <div>
+                {user.follows.find((follow) => follow._id === talent._id) ? (
+                  <FollowBtn talent={talent} user={user} />
+                ) : (
+                  <FollowBtn talent={talent} user={user} />
+                )}
+              </div>
             </div>
-            <div>
-              {user.follows.find((follow) => follow._id === talent._id) ? (
-                <FollowBtn talent={talent} user={user} />
-              ) : (
-                <FollowBtn talent={talent} user={user} />
-              )}
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </>

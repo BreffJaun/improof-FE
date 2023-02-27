@@ -2,12 +2,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import {
-  Map,
-  Marker,
-  ZoomControl,
-  Overlay,
-} from "pigeon-maps";
+import { Map, Marker, ZoomControl, Overlay } from "pigeon-maps";
 // import Geocode from "react-geocode";
 
 // I M P O R T:  F I L E S   &   F U N C T I O N S
@@ -23,6 +18,14 @@ import {
   MAP_BOX_ENDPOINT,
   MAP_BOX_KEY,
 } from "../../api/mapBoxApiKeys.jsx";
+
+// LOGOS
+import logoDG from "../../images/improof_DG.png";
+import logoGR from "../../images/improof_GR.png";
+import logoLG from "../../images/improof_LG.png";
+
+// STYLES
+import "../../styles/toastify.scss";
 
 const NewSearch = () => {
   const navigate = useNavigate();
@@ -42,14 +45,15 @@ const NewSearch = () => {
   const [searchTrigger, setSearchTrigger] = useState(false);
   const [redMarker, setRedMarker] = useState(false);
   const [category, setCategory] = useState(undefined);
-  
+  const [theme, setTheme] = useState("");
+
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
+  const darkMode = user.meta.darkMode;
 
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
-    theme: "dark",
   };
   let talentsToMap;
 
@@ -106,9 +110,8 @@ const NewSearch = () => {
   };
 
   useEffect(() => {
-    setSearchData({...searchData, category: category})
-  }, [category])
-
+    setSearchData({ ...searchData, category: category });
+  }, [category]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -141,60 +144,65 @@ const NewSearch = () => {
               talent.location.longitude,
               newSearchData.latitude,
               newSearchData.longitude
-              );
-              return {
-                ...talent,
-                location: { ...talent.location, distance: dist },
-              };
-            });
-            
-            // FILTER TALENTS ON DISTANCE
-            filteredTalents = filteredTalents
+            );
+            return {
+              ...talent,
+              location: { ...talent.location, distance: dist },
+            };
+          });
+
+          // FILTER TALENTS ON DISTANCE
+          filteredTalents = filteredTalents
             .filter((talent) => !Object.is(talent.location.distance, NaN))
             .filter((talent) => talent.location.distance < radius)
             .sort((a, b) => a.location.distance - b.location.distance);
-            
-            console.log("filteredTalents: ", filteredTalents)
+
+          console.log("filteredTalents: ", filteredTalents);
           // CATEGORY FILTER
           if (category) {
             filteredTalents = talentsSortedByDistance.filter((talent) =>
-              talent.profile.category.includes(category));
+              talent.profile.category.includes(category)
+            );
             // console.log("CATEGORY IF");
-          } 
-        
+          }
+
           // TOOLS & SKILLS FILTER
           if (toolsAndSkills) {
             filteredTalents = filteredTalents.filter((talent) =>
-              talent.profile.toolsAndSkills.includes(toolsAndSkills));
-          } 
+              talent.profile.toolsAndSkills.includes(toolsAndSkills)
+            );
+          }
           setSearchTrigger(true);
           setRedMarker(true);
-          console.log("filteredTalents: ", filteredTalents)
-          setUpdatedTalents(filteredTalents)
+          console.log("filteredTalents: ", filteredTalents);
+          setUpdatedTalents(filteredTalents);
         })
         .catch((error) => console.log(searchData, error));
-    } 
+    }
     if (!zip && !radius) {
       // CATEGORY FILTER
       if (category) {
         filteredTalents = talents.filter((talent) =>
-          talent.profile.category.includes(category));
-      } 
-    
+          talent.profile.category.includes(category)
+        );
+      }
+
       // TOOLS & SKILLS FILTER
       if (toolsAndSkills) {
-        if(category) {
+        if (category) {
           filteredTalents = filteredTalents.filter((talent) =>
-            talent.profile.toolsAndSkills.includes(toolsAndSkills));
+            talent.profile.toolsAndSkills.includes(toolsAndSkills)
+          );
         } else {
           filteredTalents = talents.filter((talent) =>
-            talent.profile.toolsAndSkills.includes(toolsAndSkills));
+            talent.profile.toolsAndSkills.includes(toolsAndSkills)
+          );
         }
-      } 
+      }
       setSearchTrigger(true);
       setRedMarker(true);
-      console.log("filteredTalents: ", filteredTalents)
-      setUpdatedTalents(filteredTalents)
+      console.log("filteredTalents: ", filteredTalents);
+      setUpdatedTalents(filteredTalents);
     }
   };
 
@@ -234,7 +242,7 @@ const NewSearch = () => {
   const resetHandler = () => {
     setUpdatedTalents(undefined);
     setSearchData(search);
-    setCategory(undefined)
+    setCategory(undefined);
     setCurrTalent(undefined);
     setSearchTrigger(false);
     setRedMarker(false);
@@ -260,9 +268,9 @@ const NewSearch = () => {
               disabled={searchTrigger}
               value={searchData.position}
             /> */}
-            <CategoriesFilter 
+            <CategoriesFilter
               category={category}
-              setCategory={setCategory} 
+              setCategory={setCategory}
               searchTrigger={searchTrigger}
             />
 
@@ -390,29 +398,26 @@ const NewSearch = () => {
         <Footer />
         <ToastContainer />
       </div>
-    ))
+    )
+  );
 };
 
 export default NewSearch;
 
-
-
-
-
-  // POSITION FILTER
-    // if (updatedTalents && position) {
-    //   setSearchTrigger(true);
-    //   setUpdatedTalents(
-    //     updatedTalents.filter((talent) =>
-    //     talent.profile.position.includes(position)));
-    //     // talentsToMap = updatedTalents.filter((talent) => talent.profile.position.includes(position));
-    //   console.log("POSITION IF");
-    //   console.log(talentsToMap);
-    // } else if (position) {
-    //   setSearchTrigger(true);
-    //   setUpdatedTalents(
-    //     talents.filter((talent) => talent.profile.position.includes(position))
-    //     );
-    //   console.log("POSITION ELSE");
-    //   // console.log(talentsToMap)
-    // }
+// POSITION FILTER
+// if (updatedTalents && position) {
+//   setSearchTrigger(true);
+//   setUpdatedTalents(
+//     updatedTalents.filter((talent) =>
+//     talent.profile.position.includes(position)));
+//     // talentsToMap = updatedTalents.filter((talent) => talent.profile.position.includes(position));
+//   console.log("POSITION IF");
+//   console.log(talentsToMap);
+// } else if (position) {
+//   setSearchTrigger(true);
+//   setUpdatedTalents(
+//     talents.filter((talent) => talent.profile.position.includes(position))
+//     );
+//   console.log("POSITION ELSE");
+//   // console.log(talentsToMap)
+// }

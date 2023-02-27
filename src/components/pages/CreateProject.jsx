@@ -18,6 +18,18 @@ import { AiOutlineCamera as Camera } from "react-icons/ai";
 import { RiMailAddLine as MailPlus } from "react-icons/ri";
 import { RiMailCloseLine as MailMinus } from "react-icons/ri";
 import { FiUpload as Upload } from "react-icons/fi";
+// LOGOS
+import logoPi from "../../images/improof_PI.png";
+import logoBl from "../../images/improof_BL.png";
+import logoPu from "../../images/improof_PU.png";
+import logoOr from "../../images/improof_OR.png";
+import logoLB from "../../images/improof_LB.png";
+import logoDG from "../../images/improof_DG.png";
+import logoGR from "../../images/improof_GR.png";
+import logoLG from "../../images/improof_LG.png";
+
+// STYLES
+import "../../styles/toastify.scss";
 
 const CreateProject = () => {
   const [eMailFields, setEmailFields] = useState([1]);
@@ -39,10 +51,11 @@ const CreateProject = () => {
   const [inviteEmail, setInviteEmail] = useState([]);
   const follows = user.follows;
   const [addUserToTeamTrigger, setAddUserToTeamTrigger] = useState(false);
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
-  // console.log("projectColor: ", projectColor)
+  const darkMode = user.meta.darkMode;
+  const [theme, setTheme] = useState("");
 
   const noFollowsFilter = (arr1, arr2) => {
     let clean = [];
@@ -58,7 +71,6 @@ const CreateProject = () => {
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
-    theme: "dark",
   };
 
   useEffect(() => {
@@ -69,6 +81,7 @@ const CreateProject = () => {
         .then((json) => {
           const onlyTalents = json.filter((user) => user.profile.isTalent);
           setTalents(onlyTalents);
+          darkMode ? setTheme("dark") : setTheme("light");
           setPending(false);
         });
     };
@@ -113,7 +126,7 @@ const CreateProject = () => {
   }, [category]);
 
   useEffect(() => {
-    setSearch("")
+    setSearch("");
     setNewProject({ ...newProject, team: team });
   }, [team]);
 
@@ -135,14 +148,13 @@ const CreateProject = () => {
     event.preventDefault();
     setAddUserToTeamTrigger(true);
 
-
     // Add your own userId to the team, because your a member of the project too.
     console.log("Z 122, newProject: ", newProject);
 
     const formData = new FormData();
     formData.append("thumbnail", thumbnail);
     formData.append("data", JSON.stringify(newProject));
-    
+
     const sendProjectData = async () => {
       setCreateProjectPending(true);
       await fetch(`${host}/projects/add`, {
@@ -154,7 +166,32 @@ const CreateProject = () => {
         .then((json) => json.json())
         .then((data) => {
           if (data.status) {
-            toast.info("Your project is save!", toastOptions);
+            toast("Great! Your started a new project", {
+              theme: theme,
+              hideProgressBar: "true",
+              icon: () => (
+                <img
+                  src={
+                    color === "c-PI1"
+                      ? logoPi
+                      : color === "c-O2"
+                      ? logoOr
+                      : color === "c-PU1"
+                      ? logoPu
+                      : color === "c-B2"
+                      ? logoBl
+                      : color === "c-LB2"
+                      ? logoBl
+                      : color === "c-GR1"
+                      ? logoLG
+                      : color === "c-GR2"
+                      ? logoGR
+                      : logoDG
+                  }
+                  width="20"
+                />
+              ),
+            });
             setAddUserToTeamTrigger(false);
             setCreateProjectPending(false);
             if (!createProjectPending) {
@@ -163,60 +200,112 @@ const CreateProject = () => {
           }
           if (data.error) {
             setCreateProjectPending(false);
-            toast.error(data.error, toastOptions);
+            toast(data.error, {
+              theme: theme,
+              hideProgressBar: "true",
+              icon: () => (
+                <img
+                  src={
+                    color === "c-PI1"
+                      ? logoPi
+                      : color === "c-O2"
+                      ? logoOr
+                      : color === "c-PU1"
+                      ? logoPu
+                      : color === "c-B2"
+                      ? logoBl
+                      : color === "c-LB2"
+                      ? logoBl
+                      : color === "c-GR1"
+                      ? logoLG
+                      : color === "c-GR2"
+                      ? logoGR
+                      : logoDG
+                  }
+                  width="20"
+                />
+              ),
+            });
           }
         });
     };
     if (!newProject.category && newProject !== "") {
-      toast.info("set category");
+      toast("please choose a category", {
+        theme: theme,
+        hideProgressBar: "true",
+        icon: () => (
+          <img
+            src={
+              color === "c-PI1"
+                ? logoPi
+                : color === "c-O2"
+                ? logoOr
+                : color === "c-PU1"
+                ? logoPu
+                : color === "c-B2"
+                ? logoBl
+                : color === "c-LB2"
+                ? logoBl
+                : color === "c-GR1"
+                ? logoLG
+                : color === "c-GR2"
+                ? logoGR
+                : logoDG
+            }
+            width="20"
+          />
+        ),
+      });
     } else {
       sendProjectData();
     }
   };
 
   const handleSearch = (event) => {
-    setSearch(event.target.value)
-  }
+    setSearch(event.target.value);
+  };
 
   return (
-    <div className="max">
+    <div className="maxM">
       <div className="mb2">
-        <h1 className={`central ${color}`}>project setup</h1>
+        <h1 className={`central ${color}`}>set up your project </h1>
         <h4 className={`central ${color} mt05`}>
           It is time to amaze the world!
         </h4>
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div className="maxM mt2">
+        <div className="mt2">
           <div className="col">
-            <p className="mb05 central">
+            <p className="ml1 mb05">
               name<span className={color}>*</span>
             </p>
             <input
               type="text"
               name="name"
-              placeholder="Give it a catchy name!"
+              placeholder="Give your project a catchy name!"
               required
               maxLength={40}
               onChange={handleInput}
+              className="shadow-s"
             />
           </div>
           <div className="col">
-            <p className="mt15 mb05 central">
+            <p className="ml1 mb05 mt1">
               description<span className={color}>*</span>
             </p>
             <input
               type="text"
               name="description"
-              placeholder="what is your project about?"
+              placeholder="what are your goals with this project?"
               required
               maxLength={300}
               onChange={handleInput}
+              className="shadow-s"
             />
           </div>
           <div className="col">
-            <p className="mt15 mb05 central">thumbnail</p>
+            <p className="ml1 mb05 mt1">thumbnail</p>
             <div className="thumbnailS">
               {thumbnailUrl ? <img src={thumbnailUrl} alt="thumbnail" /> : null}
               <div title="x upload">
@@ -247,34 +336,56 @@ const CreateProject = () => {
 
         <div>
           <h1 className={`central ${color} mt05`}>your team </h1>
-          <input type="text" placeholder="search for your team..." vlaue={search} onChange={handleSearch} />
-          <div>
-            {search && talents.filter(talent => talent.profile.firstName.toLowerCase().includes(search.toLowerCase()) || talent.profile.lastName.toLowerCase().includes(search.toLowerCase()) ).map(talent => <TalentToProjectCard
-        team={team}
-        setTeam={setTeam}
-        key={talent._id}
-        talent={talent}
-        user={user}/>
-        )}
-          </div>
-          {team.length > 1 && 
-          team.map((talent)=> talent._id !== user._id &&
-          <TalentToProjectCard
-          team={team}
-          setTeam={setTeam}
-          key={talent._id}
-          talent={talent}
-          user={user}/>
-          )}
+          <input
+            type="text"
+            placeholder="search for your team..."
+            vlaue={search}
+            onChange={handleSearch}
+          />
+          {team.length > 1 &&
+            team.map(
+              (talent) =>
+                talent._id !== user._id && (
+                  <TalentToProjectCard
+                    team={team}
+                    setTeam={setTeam}
+                    key={talent._id}
+                    talent={talent}
+                    user={user}
+                  />
+                )
+            )}
         </div>
+        <div>
           <div>
+            {search &&
+              talents
+                .filter(
+                  (talent) =>
+                    talent.profile.firstName
+                      .toLowerCase()
+                      .includes(search.toLowerCase()) ||
+                    talent.profile.lastName
+                      .toLowerCase()
+                      .includes(search.toLowerCase())
+                )
+                .map((talent) => (
+                  <TalentToProjectCard
+                    team={team}
+                    setTeam={setTeam}
+                    key={talent._id}
+                    talent={talent}
+                    user={user}
+                  />
+                ))}
           </div>
+        </div>
 
         {/*  - - - - - INVITATION - - - - - */}
         <div className="mb1 mt4 central">
           <h4 className={`${color}`}>invite to improof</h4>
         </div>
-        <div className="maxM mt2">
+        <div className="mt2">
           <div className="col">
             {eMailFields.map((el, i) => (
               <input
@@ -283,6 +394,7 @@ const CreateProject = () => {
                 onChange={inviteInputHandler}
                 placeholder="invite to improof"
                 key={i}
+                className="shadow-s"
               />
             ))}
           </div>
@@ -321,6 +433,7 @@ const CreateProject = () => {
           </div>
         </div>
 
+        {/*  - - - - - PRIVACY - - - - - */}
         <div className="bo-DARK"></div>
         <div className="col">
           <div className="mb1 central">
@@ -331,6 +444,7 @@ const CreateProject = () => {
           </div>
         </div>
 
+        <div className="bo-DARK"></div>
         <div>
           <button className={`mb2 mt3 rel ${bg}`} type="submit">
             create your project!

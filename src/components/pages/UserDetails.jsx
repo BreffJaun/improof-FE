@@ -20,6 +20,19 @@ import Up from "../elements/Up.jsx";
 import Footer from "../elements/Footer.jsx";
 import UserEdit from "./UserEdit.jsx";
 
+// STYLES
+import "../../styles/toastify.scss";
+
+// LOGOS
+import logoPi from "../../images/improof_PI.png";
+import logoBl from "../../images/improof_BL.png";
+import logoPu from "../../images/improof_PU.png";
+import logoOr from "../../images/improof_OR.png";
+import logoLB from "../../images/improof_LB.png";
+import logoDG from "../../images/improof_DG.png";
+import logoGR from "../../images/improof_GR.png";
+import logoLG from "../../images/improof_LG.png";
+
 const TalentDetails = () => {
   const navigate = useNavigate();
 
@@ -31,6 +44,7 @@ const TalentDetails = () => {
 
   const [showContact, setShowContact] = useState(false);
   const [showInfos, setShowInfos] = useState(false);
+  const [theme, setTheme] = useState("");
 
   const color = talent?.meta?.colorTheme[0];
   const bg = talent?.meta?.colorTheme[1];
@@ -47,6 +61,7 @@ const TalentDetails = () => {
           setIsPending(false);
           if (json.status) {
             setUser(json.user);
+            darkMode ? setTheme("dark") : setTheme("light");
             setIsPending(false);
           } else {
             navigate("/login");
@@ -69,12 +84,11 @@ const TalentDetails = () => {
           if (json.status) {
             setTalent(json.userData);
             setIsPending(false);
-            }
+          }
         });
     };
     getUser();
   }, [id]);
-
 
   return (
     talent && (
@@ -284,7 +298,14 @@ const TalentDetails = () => {
           </button>
         </div>
         <Footer />
-        <ToastContainer />
+        <ToastContainer
+        // className={
+        //   darkMode
+        //     ? " Toastify__toast-theme--dark"
+        //     : "Toastify__toast-theme--light "
+        // }
+        // hideProgressBar={true}
+        />
       </>
     )
   );

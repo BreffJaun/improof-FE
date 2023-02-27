@@ -16,14 +16,14 @@
             display: flex;
             overflow: hidden;
             .news-image-container{
-                border: 2px solid rgb(255, 0, 255);
+                // border: 2px solid rgb(255, 0, 255);
                 display: flex;
                 width: 100%;
                 justify-content: center;
                 object-fit: contain;
                 >img{
                     width: 100%;
-                    border: 2px solid greenyellow;
+                    // border: 2px solid greenyellow;
                 }
             }
         };

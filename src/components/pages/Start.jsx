@@ -26,8 +26,6 @@ const Start = () => {
         <h1 className={`central ${color}`}>What´s new?</h1>
       </div>
       <Newsfeed />
-      <div className="bo-DARK"></div>
-      <Footer />
     </>
   );
 };

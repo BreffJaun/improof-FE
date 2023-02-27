@@ -13,6 +13,19 @@ import { AiOutlineCamera } from "react-icons/ai";
 import { BiCheck } from "react-icons/bi";
 import { RxCross2 } from "react-icons/rx";
 
+// LOGOS
+import logoPi from "../../images/improof_PI.png";
+import logoBl from "../../images/improof_BL.png";
+import logoPu from "../../images/improof_PU.png";
+import logoOr from "../../images/improof_OR.png";
+import logoLB from "../../images/improof_LB.png";
+import logoDG from "../../images/improof_DG.png";
+import logoGR from "../../images/improof_GR.png";
+import logoLG from "../../images/improof_LG.png";
+
+// STYLES
+import "../../styles/toastify.scss";
+
 //ELEMENTS
 
 import Footer from "../elements/Footer.jsx";
@@ -30,11 +43,13 @@ const UserEdit = () => {
   const [talent, setTalent] = useState(undefined);
   const [isPending, setIsPending] = useState(true);
   const [uploadPending, setUploadPending] = useState(false);
+  const [theme, setTheme] = useState("");
 
-  const [favColor, setFavColor] = useState("")
+  const [favColor, setFavColor] = useState("");
   // const color = favColor[0]
-  const color = talent?.meta?.colorTheme[0]
-  const bg = talent?.meta?.colorTheme[1]
+  const color = talent?.meta?.colorTheme[0];
+  const bg = talent?.meta?.colorTheme[1];
+  const darkMode = user?.meta?.darkMode;
 
   const navigate = useNavigate();
 
@@ -47,6 +62,7 @@ const UserEdit = () => {
         .then((json) => {
           if (json.status) {
             setTalent(json.userData);
+            darkMode ? setTheme("dark") : setTheme("light");
             setIsPending(false);
           }
         });
@@ -117,67 +133,128 @@ const UserEdit = () => {
         .then((json) => json.json())
         .then((data) => {
           if (data.status) {
-            navigate(`/userdetails/${user._id}`)
+            toast("Profile updated successfully", {
+              theme: theme,
+              hideProgressBar: "true",
+              icon: () => (
+                <img
+                  src={
+                    color === "c-PI1"
+                      ? logoPi
+                      : color === "c-O2"
+                      ? logoOr
+                      : color === "c-PU1"
+                      ? logoPu
+                      : color === "c-B2"
+                      ? logoBl
+                      : color === "c-LB2"
+                      ? logoLB
+                      : color === "c-GR1"
+                      ? logoLG
+                      : color === "c-GR3"
+                      ? logoGR
+                      : logoDG
+                  }
+                  width="20"
+                />
+              ),
+            });
+            navigate(`/userdetails/${user._id}`);
           }
           if (data.error) {
-              toast.error(err.msg, toastOptions);
+            toast(err.msg, {
+              theme: theme,
+              hideProgressBar: "true",
+              icon: () => (
+                <img
+                  src={
+                    color === "c-PI1"
+                      ? logoPi
+                      : color === "c-O2"
+                      ? logoOr
+                      : color === "c-PU1"
+                      ? logoPu
+                      : color === "c-B2"
+                      ? logoBl
+                      : color === "c-LB2"
+                      ? logoBl
+                      : color === "c-GR1"
+                      ? logoLG
+                      : color === "c-GR2"
+                      ? logoGR
+                      : logoDG
+                  }
+                  width="20"
+                />
+              ),
+            });
           }
         });
     };
     updateUserData();
   };
-  
+
   return uploadPending ? (
     <div>Loading...</div>
   ) : !isPending && user.profile.isTalent ? (
-    <>
+      <div className="maxHH central">
+        
       <form onSubmit={handleSubmit} encType="multipart/form">
-      <div className="central col mt3">
-        <div className="circle90 bg-FAV central rel">
-          {avatarUrl 
-          ?
-          <img 
-          src={avatarUrl} 
-          className={`circle90 ${bg} central rel`}
-          alt="avatar" /> 
-          :          
-          user.profile.avatar 
-          ? 
-          <img 
-          src={user.profile.avatar} 
-          className={`circle90 ${bg} central rel`}
-          alt="avatar" /> 
-          :
-          <div className="initials"><p>{user.profile.initials}</p></div>
-        }
-      
-        <div
-          title="upload image"
-          className= {`circle40 ${bg} central editBtn`}>
-          {/* <p className="c-A100">image</p> */}
-          <input 
-            id="uploadAvatar"
-            onChange={avatarUploadHandler} 
-            name="avatar" 
-            type="file"
-            accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
-            hidden
-          />
-          <label 
-            for="uploadAvatar"
-            className="c-A100 pointer"
+        <div className="central col mt3">
+          <div className="circle90 bg-FAV central rel">
+            {avatarUrl ? (
+              <img
+                src={avatarUrl}
+                className={`circle90 ${bg} central rel`}
+                alt="avatar"
+              />
+            ) : user.profile.avatar ? (
+              <img
+                src={user.profile.avatar}
+                className={`circle90 ${bg} central rel`}
+                alt="avatar"
+              />
+            ) : (
+              <div className="initials">
+                <p>{user.profile.initials}</p>
+              </div>
+            )}
+
+            <div
+              title="upload image"
+              className={`circle40 ${bg} central editBtn`}
+            >
+              {/* <p className="c-A100">image</p> */}
+              <input
+                id="uploadAvatar"
+                onChange={avatarUploadHandler}
+                name="avatar"
+                type="file"
+                accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
+                hidden
+              />
+              <label for="uploadAvatar" className="c-A100 pointer">
+                <AiOutlineCamera />
+              </label>
+            </div>
+          </div>
+          <h1
+            className={`central ${
+              color ? color : user.meta.colorTheme[0]
+            } mt05`}
           >
-            <AiOutlineCamera/>
-          </label>
-      </div>
-      </div>
-        <h1 className={`central ${color ? color : user.meta.colorTheme[0] } mt05`}>Hi, {talent.profile.firstName}!</h1>
-        <p className={`central ${color ? color : user.meta.colorTheme[0]}`}>Let´s spice up your profile!</p>
-      </div>
-      <div><RadioColor user={talent} setFavColor={setFavColor}/></div>
+            Hi, {talent.profile.firstName}!
+          </h1>
+          <p className={`central ${color ? color : user.meta.colorTheme[0]}`}>
+            Let´s spice up your profile!
+          </p>
+        </div>
+        <div>
+          <RadioColor user={talent} setFavColor={setFavColor} />
+        </div>
 
         <div className="col mt2 mb1">
-          <p>
+          <p className="ml1 mb05">
             first name
             <span
               className={`${color ? color : user.meta.colorTheme[0]} fw900`}
@@ -190,10 +267,11 @@ const UserEdit = () => {
             name="firstName"
             type="text"
             defaultValue={user.profile.firstName}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>
+          <p className="ml1 mb05">
             last name
             <span
               className={`${color ? color : user.meta.colorTheme[0]} fw900`}
@@ -206,20 +284,22 @@ const UserEdit = () => {
             name="lastName"
             type="text"
             defaultValue={user.profile.lastName}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>that´s me:</p>
+          <p className="ml1 mb05">that´s me:</p>
           <input
             onChange={handleInputProfile}
             name="description"
             type="text"
             defaultValue={user.profile.description}
+            className="shadow-s"
           />
         </div>
-        <div className="central">
-          <p>here i perform my best:</p>
-          <select onChange={handleCategoryProfile} name="category">
+        <div className="central col mt2 mb1">
+          <p className="mb05">here i perform my best:</p>
+          <select onChange={handleCategoryProfile} name="category" className="shadow-s">
             <option value="">All categories</option>
             {user.profile.category === "Web-Development" ? (
               <option value="Web-Development" selected>
@@ -325,33 +405,36 @@ const UserEdit = () => {
             )}
           </select>
         </div>
-          
+
         <div className="col mb1">
-          <p>tools and skills: </p>
+          <p className="ml1 mt1 mb05">tools and skills: </p>
           <input
             onChange={handleInputProfile}
             name="goal"
             type="text"
             defaultValue={user.profile.toolsAndSkills}
+            className="shadow-s"
           />
         </div>
 
         <div className="col mb1">
-          <p>current occupation:</p>
+          <p className="ml1 mb05">current occupation:</p>
           <input
             onChange={handleInputProfile}
             name="position"
             type="text"
             defaultValue={user.profile.position}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>i want to achieve: </p>
+          <p className="ml1 mb05">i want to achieve: </p>
           <input
             onChange={handleInputProfile}
             name="goal"
             type="text"
             defaultValue={user.profile.goal}
+            className="shadow-s"
           />
         </div>
 
@@ -362,48 +445,53 @@ const UserEdit = () => {
           contact:
         </h1>
         <div className="col mb1">
-          <p>mobile</p>
+          <p className="ml1 mt1 mb05">mobile</p>
           <input
             onChange={handleInputContact}
             name="mobile"
             type="text"
             defaultValue={user.contact.mobile}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>own website</p>
+          <p className="ml1 mb05">own website</p>
           <input
             onChange={handleInputContact}
             name="website"
             type="text"
             defaultValue={user.contact.website}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>1st online profile</p>
+          <p className="ml1 mb05">1st online profile</p>
           <input
             onChange={handleInputContact}
             name="online1"
             type="text"
             defaultValue={user.contact.online1}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>2nd online profile</p>
+          <p className="ml1 mb05">2nd online profile</p>
           <input
             onChange={handleInputContact}
             name="online2"
             type="text"
             defaultValue={user.contact.online2}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>3rd online profile</p>
+          <p className="ml1 mb05">3rd online profile</p>
           <input
             onChange={handleInputContact}
             name="online3"
             type="text"
             defaultValue={user.contact.online3}
+            className="shadow-s"
           />
         </div>
 
@@ -414,30 +502,33 @@ const UserEdit = () => {
           location
         </h1>
         <div className="col mb1">
-          <p>street</p>
+          <p className="ml1 mb05">street</p>
           <input
             onChange={handleInputLocation}
             name="street"
             type="text"
             defaultValue={user.location.street}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>zip</p>
+          <p className="ml1 mb05">zip code</p>
           <input
             onChange={handleInputLocation}
             name="zip"
             type="text"
             defaultValue={user.location.zip}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>city</p>
+          <p className="ml1 mb05">city</p>
           <input
             onChange={handleInputLocation}
             name="city"
             type="text"
             defaultValue={user.location.city}
+            className="shadow-s"
           />
         </div>
 
@@ -448,12 +539,12 @@ const UserEdit = () => {
           security
         </h1>
         <div className="col mb1">
-          <p>set new password</p>
-          <input name="" type="text" placeholder="new password" />
+          <p className="ml1 mb05">set new password</p>
+          <input name="" type="text" placeholder="new password" className="shadow-s"/>
         </div>
         <div className="col mb1">
-          <p>confirm new password</p>
-          <input name="" type="text" placeholder="confirm password" />
+          <p className="ml1 mb05">confirm new password</p>
+          <input name="" type="text" placeholder="confirm password" className="shadow-s"/>
         </div>
 
         <div className="bo-DARK"></div>
@@ -470,12 +561,19 @@ const UserEdit = () => {
           </button>
         </div>
         <Footer />
-        <ToastContainer />
+        <ToastContainer
+          className={
+            darkMode
+              ? " Toastify__toast-theme--dark"
+              : "Toastify__toast-theme--light "
+          }
+          hideProgressBar={true}
+        />
       </form>
-    </>
-  ) : 
-  
-  uploadPending ? (<div>Loading...</div>) : !isPending && user.profile.isRecruiter ? (
+    </div >
+  ) : uploadPending ? (
+    <div>Loading...</div>
+  ) : !isPending && user.profile.isRecruiter ? (
     <>
       <form onSubmit={handleSubmit}>
         <div className="central col mt3">
@@ -506,7 +604,7 @@ const UserEdit = () => {
                 onChange={avatarUploadHandler}
                 name="avatar"
                 type="file"
-                accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
+                    accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
               />
             </div>
           </div>
@@ -523,11 +621,12 @@ const UserEdit = () => {
         <div>
           <RadioColor user={talent} setFavColor={setFavColor} />
         </div>
+        
         <div className="col mt2 mb1">
-          <p>
+          <p className="ml1 mb05">
             first name
             <span
-              className={`${color ? color : user.meta.colorTheme[0]} fw900`}
+              className={`${color ? color : user.meta.colorTheme[0]}fw900`}
             >
               *
             </span>
@@ -537,10 +636,11 @@ const UserEdit = () => {
             name="firstName"
             type="text"
             defaultValue={user.profile.firstName}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>
+          <p className="ml1 mb05">
             last name
             <span
               className={`${color ? color : user.meta.colorTheme[0]} fw900`}
@@ -553,15 +653,17 @@ const UserEdit = () => {
             name="lastName"
             type="text"
             defaultValue={user.profile.lastName}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>description</p>
+          <p className="ml1 mb05">description</p>
           <input
             onChange={handleInputProfile}
             name="description"
             type="text"
             defaultValue={user.profile.description}
+            className="shadow-s"
           />
         </div>
 
@@ -573,32 +675,35 @@ const UserEdit = () => {
         </h1>
 
         <div className="col mb1">
-          <p>company</p>
+          <p className="ml1 mb05 mt05">company</p>
           <input
             onChange={handleInputContact}
             name="company"
             type="text"
             defaultValue={user.contact.company}
+            className="shadow-s"
           />
         </div>
         <div className="col mb1">
-          <p>position</p>
+          <p className="ml1 mb05">position</p>
           {/* WRONG INPUTHANDLER */}
           <input
             onChange={handleInputProfile}
             name="position"
             type="text"
             defaultValue={user.profile.position}
+            className="shadow-s"
           />
         </div>
 
         <div className="col mb1">
-          <p>company website</p>
+          <p className="ml1 mb05">company website</p>
           <input
             onChange={handleInputContact}
             name="website"
             type="text"
             defaultValue={user.contact.website}
+            className="shadow-s"
           />
         </div>
 
@@ -613,12 +718,12 @@ const UserEdit = () => {
           security
         </h1>
         <div className="col mb1">
-          <p>set new password</p>
-          <input type="text" placeholder="new password" />
+          <p className="ml1 mb05 mt05">set new password</p>
+          <input type="text" placeholder="new password" className="shadow-s"/>
         </div>
         <div className="col mb1">
-          <p>confirm new password</p>
-          <input type="text" placeholder="confirm password" />
+          <p className="ml1 mb05">confirm new password</p>
+          <input type="text" placeholder="confirm password" className="shadow-s"/>
         </div>
 
         <div className="bo-DARK"></div>
@@ -635,9 +740,16 @@ const UserEdit = () => {
           </button>
         </div>
         <Footer />
-        <ToastContainer />
+        <ToastContainer
+          className={
+            darkMode
+              ? " Toastify__toast-theme--dark"
+              : "Toastify__toast-theme--light "
+          }
+          hideProgressBar={true}
+        />
       </form>
-    </>
+    </ >
   ) : null;
 };
 

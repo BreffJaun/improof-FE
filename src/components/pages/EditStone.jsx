@@ -11,10 +11,21 @@ import UserContext from "../../context/userContext.jsx";
 // ICONS
 import { AiOutlineCamera as Camera } from "react-icons/ai";
 
+// LOGOS
+import logoPi from "../../images/improof_PI.png";
+import logoBl from "../../images/improof_BL.png";
+import logoPu from "../../images/improof_PU.png";
+import logoOr from "../../images/improof_OR.png";
+import logoLB from "../../images/improof_LB.png";
+import logoDG from "../../images/improof_DG.png";
+import logoGR from "../../images/improof_GR.png";
+import logoLG from "../../images/improof_LG.png";
+
+// STYLES
+import "../../styles/toastify.scss";
+
 // ELEMENTS
-import { TalentCard } from "../elements/TalentCard.jsx";
-import Switch from "react-switch";
-// import styledEngine from "@mui/styled-engine";
+import { TalentCardStones } from "../elements/TalentCard.jsx";
 
 const EditStone = () => {
   const navigate = useNavigate();
@@ -34,15 +45,15 @@ const EditStone = () => {
   const [editStonePending, setEditStonePending] = useState(false);
   const [adIdsTrigger, setIdsTrigger] = useState(false);
   const [thumbnail, setThumbnail] = useState("");
+  const [theme, setTheme] = useState("");
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
-  // console.log("projectId: ", projectId)
+  const darkMode = user.meta.darkMode;
+
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
-    theme: "dark",
   };
-  // console.log(stone);
 
   useEffect(() => {
     document.body.scrollTop = 0;
@@ -58,6 +69,7 @@ const EditStone = () => {
             setStone(json.data);
             const newCon = json.data.team.map((con) => con._id);
             setContributors(newCon);
+            darkMode ? setTheme("dark") : setTheme("light");
             setPending(false);
             console.log("STONE GEZOGEN");
           }
@@ -89,10 +101,32 @@ const EditStone = () => {
   const handleImages = (event) => {
     if (event.target.files[0]?.size > 8000000) {
       document.getElementById("media-pic").value = "";
-      toast.error(
-        "Upload failed! Max file size for images is 8MB",
-        toastOptions
-      );
+      toast("Upload failed! Max file size for images is 8MB", {
+        theme: theme,
+        hideProgressBar: "true",
+        icon: () => (
+          <img
+            src={
+              color === "c-PI1"
+                ? logoPi
+                : color === "c-O2"
+                ? logoOr
+                : color === "c-PU1"
+                ? logoPu
+                : color === "c-B2"
+                ? logoBl
+                : color === "c-LB2"
+                ? logoBl
+                : color === "c-GR1"
+                ? logoLG
+                : color === "c-GR2"
+                ? logoGR
+                : logoDG
+            }
+            width="20"
+          />
+        ),
+      });
     }
     setImageTrigger(true);
     setMedia(event.target.files[0]);
@@ -112,10 +146,32 @@ const EditStone = () => {
     // ca. 3min Video length => should be enough!
     if (event.target.files[0]?.size > 10000000) {
       document.getElementById("media-vid").value = "";
-      toast.error(
-        "Upload failed! Max file size for videos is 10MB",
-        toastOptions
-      );
+      toast("Upload failed! Max file size for videos is 10MB", {
+        theme: theme,
+        hideProgressBar: "true",
+        icon: () => (
+          <img
+            src={
+              color === "c-PI1"
+                ? logoPi
+                : color === "c-O2"
+                ? logoOr
+                : color === "c-PU1"
+                ? logoPu
+                : color === "c-B2"
+                ? logoBl
+                : color === "c-LB2"
+                ? logoBl
+                : color === "c-GR1"
+                ? logoLG
+                : color === "c-GR2"
+                ? logoGR
+                : logoDG
+            }
+            width="20"
+          />
+        ),
+      });
     } else {
       setVideoTrigger(true);
       setMedia(event.target.files[0]);
@@ -179,10 +235,61 @@ const EditStone = () => {
       .then((data) => {
         if (!data.status) {
           // console.log("ICH HÄNGE IM IF");
-          toast.error(json.error, toastOptions);
+          toast(json.error, {
+            theme: theme,
+            hideProgressBar: "true",
+            icon: () => (
+              <img
+                src={
+                  color === "c-PI1"
+                    ? logoPi
+                    : color === "c-O2"
+                    ? logoOr
+                    : color === "c-PU1"
+                    ? logoPu
+                    : color === "c-B2"
+                    ? logoBl
+                    : color === "c-LB2"
+                    ? logoBl
+                    : color === "c-GR1"
+                    ? logoLG
+                    : color === "c-GR2"
+                    ? logoGR
+                    : logoDG
+                }
+                width="20"
+              />
+            ),
+          });
           setEditStonePending(false);
         } else {
           // console.log("ICH HÄNGE IM ELSE");
+          toast("Your stone is updated", {
+            theme: theme,
+            hideProgressBar: "true",
+            icon: () => (
+              <img
+                src={
+                  color === "c-PI1"
+                    ? logoPi
+                    : color === "c-O2"
+                    ? logoOr
+                    : color === "c-PU1"
+                    ? logoPu
+                    : color === "c-B2"
+                    ? logoBl
+                    : color === "c-LB2"
+                    ? logoBl
+                    : color === "c-GR1"
+                    ? logoLG
+                    : color === "c-GR2"
+                    ? logoGR
+                    : logoDG
+                }
+                width="20"
+              />
+            ),
+          });
           navigate(`/projectdetails/${projectId}`);
         }
       });
@@ -193,11 +300,10 @@ const EditStone = () => {
   ) : (
     <>
       <h1 className={`central ${color} mt1 mb2`}>edit stone</h1>
-
       <form onSubmit={handleSubmit}>
-        <div className="central col pa1 mb2">
+        <div className="maxM col mb2">
           <div className="col">
-            <p>
+            <p className="ml1 mb05">
               title <span className={color}>*</span>
             </p>
             <input
@@ -206,50 +312,54 @@ const EditStone = () => {
               defaultValue={stone.title}
               required
               onChange={handleInput}
+              className="shadow-s"
             />
           </div>
-          <div className="col">
-            <p>description</p>
+          <div className="col mt1">
+            <p className="ml1 mb05">description</p>
             <input
               type="text"
               name="description"
               defaultValue={stone.description}
               onChange={handleInput}
+              className="shadow-s"
             />
           </div>
-          <div>
-            <input
-              type="radio"
-              name="kind"
-              value="stepstone"
-              defaultChecked={stone.kind === "stepstone" ? "on" : null}
-              onChange={handleInput}
-            />
-            <label>stepstone</label>
-            <input
-              type="radio"
-              name="kind"
-              value="milestone"
-              defaultChecked={stone.kind === "milestone" ? "on" : null}
-              onChange={handleInput}
-            />
-            <label>milestone</label>
-            <input
-              type="radio"
-              name="kind"
-              value="endstone"
-              defaultChecked={stone.kind === "endstone" ? "on" : null}
-              onChange={handleInput}
-            />
-            <label>endstone</label>
-          </div>
-          <div>
-            <hr width="500rem" />
+          <div className="central row mt4 mb2 g2">
+            <div className="central col">
+              <input
+                type="radio"
+                name="kind"
+                value="stepstone"
+                defaultChecked={stone.kind === "stepstone" ? "on" : null}
+                onChange={handleInput}
+              />
+              <label>stepstone</label>
+            </div>
+            <div className="central col">
+              <input
+                type="radio"
+                name="kind"
+                value="milestone"
+                defaultChecked={stone.kind === "milestone" ? "on" : null}
+                onChange={handleInput}
+              />
+              <label>milestone</label>
+            </div>
+            <div className="central col">
+              <input
+                type="radio"
+                name="kind"
+                value="endstone"
+                defaultChecked={stone.kind === "endstone" ? "on" : null}
+                onChange={handleInput}
+              />
+              <label>endstone</label>
+            </div>
           </div>
           <div>
             <div className="col">
-              <p> add media</p>
-
+              <p className="ml1 mb05">add media</p>
               {/* <div className="thumbnailS"> */}
               {mediaUrl && videoTrigger ? (
                 <div>
@@ -309,67 +419,29 @@ const EditStone = () => {
               </div>
             </div>
           </div>
-          <div>
-            <hr width="500rem" />
-          </div>
           <div className="col">
-            <p>contributors</p>
-            <div className=" card col">
-              {project.team?.length &&
-                project.team.map((talent) => {
-                  return (
-                    <div key={talent._id}>
-                      <div className="t-avatar">
-                        <div
-                          className="bg-FAV central t-pic"
-                          onClick={() => navigate(`/userDetails/${talent._id}`)}
-                        >
-                          {talent?.profile?.avatar ? (
-                            <img src={talent.profile?.avatar} />
-                          ) : (
-                            <p className="initials">
-                              {talent.profile?.initials}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                      <div className="t-info">
-                        <p
-                          className={`fw500 ${color}`}
-                          onClick={() => navigate(`/userDetails/${talent._id}`)}
-                        >
-                          {talent.profile?.firstName} {talent.profile?.lastName}
-                        </p>
-                        <p>{talent.profile?.position}</p>
-                        <p>{talent.profile?.toolsAndSkills}</p>
-                        <Switch
-                          checked={contributors.includes(talent._id)}
-                          onChange={() => handleContributor(talent._id)}
-                          onColor="#86d3ff"
-                          onHandleColor="#2693e6"
-                          handleDiameter={30}
-                          uncheckedIcon={false}
-                          checkedIcon={false}
-                          boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
-                          activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
-                          height={20}
-                          width={48}
-                          className="react-switch"
-                          id="material-switch"
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-            </div>
+            <h3 className={`fw500 ${color} center mt2`}>contributors</h3>{" "}
+            {project.team?.length &&
+              project.team.map((talent) => {
+                return (
+                  <TalentCardStones
+                    user={user}
+                    talent={talent}
+                    contributors={contributors}
+                    handleContributor={handleContributor}
+                  />
+                );
+              })
+            }
           </div>
         </div>
-        <button type="submit" className={bg} onClick={() => handleSubmit}>
-          edit stone
-        </button>
+        <div className="maxM mb2 central">
+          <button type="submit" className={bg} onClick={() => handleSubmit}>
+            save changes
+          </button>
+        </div>
       </form>
       <ToastContainer />
-      <Footer />
     </>
   );
 };

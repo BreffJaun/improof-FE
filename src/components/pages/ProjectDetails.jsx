@@ -207,7 +207,7 @@ const ProjectDetails = () => {
         </Chrono>
 
         <div className="bo-DARK"></div>
-        <div className="center">
+        <div className="center mb2">
           <h4 className={color}>project members</h4>
           <div className="central mt2 g1">
             {project.team.map((member) => (
@@ -215,7 +215,6 @@ const ProjectDetails = () => {
             ))}
           </div>
         </div>
-        <Footer />
       </div>
     )
   );
