@@ -49,7 +49,11 @@ const CategoriesFilter = ({ setCategory, category, searchTrigger, last }) => {
         <option value="Gardening">Gardening</option>
         <option value="Gastronomy/Cooking">Gastronomy/Cooking</option>
         <option value="Pedagogy">Pedagogy</option>
-        <option value="Science">Science</option>
+        <option value="Art">Art</option>
+        <option value="Design">Design</option>
+        <option value="Travel">Travel</option>
+        <option value="Photography">Photography</option>
+        <option value="Events">Events</option>
         <option value="others">others</option>
       </select>
     </ div>
