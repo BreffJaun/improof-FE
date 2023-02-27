@@ -39,13 +39,14 @@ const TalentCard = ({ talent, user }) => {
           </div>
         </div>
         <div className="t-info">
-          <p
-            className={`fw500 ${color}`}
+          <h4
+            className={`fw900 ${color}`}
             onClick={() => navigate(`/userDetails/${talent._id}`)}
           >
             {talent.profile?.firstName} {talent.profile?.lastName}
-          </p>
+          </h4>
           <p>{talent.profile?.category}</p>
+          <p className={`mt1 info c-A50`}>tools and skills </p>
           <p>{talent.profile?.toolsAndSkills}</p>
         </div>
 
