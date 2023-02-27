@@ -60,6 +60,8 @@ const CreateProject = () => {
 
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
+  const darkMode = user.meta.darkMode;
+  const theme = darkMode ? "dark" : "light";
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
@@ -96,7 +98,6 @@ const CreateProject = () => {
             setPending(false);
             setCategory(json.data.category);
             setTeam(json.data.team);
-            darkMode ? setTheme("dark") : setTheme("light");
             setThumbnail(json.data.thumbnail);
           }
         });
