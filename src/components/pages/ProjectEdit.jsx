@@ -25,6 +25,9 @@ import logoBl from "../../images/improof_BL.png";
 import logoPu from "../../images/improof_PU.png";
 import logoOr from "../../images/improof_OR.png";
 import logoLB from "../../images/improof_LB.png";
+import logoDG from "../../images/improof_DG.png";
+import logoGR from "../../images/improof_GR.png";
+import logoLG from "../../images/improof_LG.png";
 
 // STYLES
 import "../../styles/toastify.scss";
@@ -72,7 +75,6 @@ const CreateProject = () => {
         .then((json) => {
           const onlyTalents = json.filter((user) => user.profile.isTalent);
           setTalents(onlyTalents);
-          darkMode ? setTheme("dark") : setTheme("light");
           setPending(false);
         });
     };
@@ -95,6 +97,7 @@ const CreateProject = () => {
             setPending(false);
             setCategory(json.data.category);
             setTeam(json.data.team);
+            darkMode ? setTheme("dark") : setTheme("light");
             setThumbnail(json.data.thumbnail);
           }
         });
@@ -224,7 +227,13 @@ const CreateProject = () => {
                       ? logoPu
                       : color === "c-B2"
                       ? logoBl
-                      : logoLB
+                      : color === "c-LB2"
+                      ? logoLB
+                      : color === "c-GR1"
+                      ? logoLG
+                      : color === "c-GR2"
+                      ? logoGR
+                      : logoDG
                   }
                   width="20"
                 />
@@ -251,7 +260,13 @@ const CreateProject = () => {
                       ? logoPu
                       : color === "c-B2"
                       ? logoBl
-                      : logoLB
+                      : color === "c-LB2"
+                      ? logoLB
+                      : color === "c-GR1"
+                      ? logoLG
+                      : color === "c-GR2"
+                      ? logoGR
+                      : logoDG
                   }
                   width="20"
                 />
@@ -282,6 +297,7 @@ const CreateProject = () => {
     setSearch(event.target.value);
   };
   console.log(team);
+  console.log(theme);
 
   return uploadPending ? (
     <div>Loading...</div>
@@ -302,7 +318,6 @@ const CreateProject = () => {
                 type="text"
                 name="name"
                 placeholder={project.name}
-                maxLength={40}
                 onChange={handleInput}
                 className="shadow-s"
               />
@@ -312,11 +327,11 @@ const CreateProject = () => {
               <p className="ml1 mt15 mb05">
                 description<span className={color}>*</span>
               </p>
-              <input
+              <textarea
                 type="text"
+                rows="7"
                 name="description"
                 placeholder={project.description}
-                maxLength={300}
                 onChange={handleInput}
                 className="shadow-s"
               />
@@ -368,8 +383,7 @@ const CreateProject = () => {
           {/*  - - - - - TEAM - - - - - */}
           <div className="bo-DARK"></div>
           <div className="mt2 mb2">
-            <h1 className={`central ${color}`}>edit your team</h1>
-            <h4 className={`central ${color} mt05`}>discover more talents</h4>
+            <h1 className={`central ${color}`}>your team</h1>
           </div>
           <div className="talent-container">
             {team.map((talent) => (
@@ -402,9 +416,10 @@ const CreateProject = () => {
               talents
                 .filter(
                   (talent) =>
-                    talent.profile.firstName
-                      .toLowerCase()
-                      .includes(search.toLowerCase()) ||
+                    (talent._id !== user._id &&
+                      talent.profile.firstName
+                        .toLowerCase()
+                        .includes(search.toLowerCase())) ||
                     talent.profile.lastName
                       .toLowerCase()
                       .includes(search.toLowerCase())
@@ -419,14 +434,6 @@ const CreateProject = () => {
                   />
                 ))}
           </div>
-              {search && talents.filter(talent => talent._id !== user._id && talent.profile.firstName.toLowerCase().includes(search.toLowerCase()) || talent.profile.lastName.toLowerCase().includes(search.toLowerCase()) ).map(talent => <TalentToProjectCard
-                team={team}
-                setTeam={setTeam}
-                key={talent._id}
-                talent={talent}
-                user={user}/>
-          )}
-            </div>
           {/* <div className="talent-container">
             {noFollows &&
               noFollows.map(

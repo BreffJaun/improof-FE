@@ -35,6 +35,7 @@ const ProjectDetails = () => {
   const darkMode = user?.meta?.darkMode;
   const [openStoneCard, setOpenStoneCard] = useState();
   const [stone, setStone] = useState({});
+  const [theme, setTheme] = useState("");
 
   // const []
   // FETCH CURR PROJECT
@@ -49,6 +50,7 @@ const ProjectDetails = () => {
         .then((response) => response.json())
         .then((json) => {
           if (json.status) {
+            darkMode ? setTheme("dark") : setTheme("light");
             setProject(json.data);
             setPending(false);
           }
@@ -176,7 +178,11 @@ const ProjectDetails = () => {
                       {openStoneCard === stone._id ? "close" : "read more"}
                     </button>
                     {openStoneCard === stone._id && (
-                      <StoneCard stone={stone} project={project} />
+                      <StoneCard
+                        stone={stone}
+                        project={project}
+                        theme={theme}
+                      />
                     )}
                   </div>
                 );
@@ -211,7 +217,12 @@ const ProjectDetails = () => {
           <h4 className={color}>project members</h4>
           <div className="central mt2 g1">
             {project.team.map((member) => (
-              <TalentCard key={member._id} talent={member} user={user} />
+              <TalentCard
+                key={member._id}
+                talent={member}
+                user={user}
+                theme={theme}
+              />
             ))}
           </div>
         </div>

@@ -299,12 +299,12 @@ const TalentDetails = () => {
         </div>
         <Footer />
         <ToastContainer
-        // className={
-        //   darkMode
-        //     ? " Toastify__toast-theme--dark"
-        //     : "Toastify__toast-theme--light "
-        // }
-        // hideProgressBar={true}
+          className={
+            darkMode
+              ? " Toastify__toast-theme--dark"
+              : "Toastify__toast-theme--light "
+          }
+          hideProgressBar={true}
         />
       </>
     )

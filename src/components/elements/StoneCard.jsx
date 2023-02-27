@@ -5,7 +5,7 @@ import UserContext from "../../context/userContext.jsx";
 import { useNavigate } from "react-router-dom";
 import ReactPlayer from "react-player";
 
-const StoneCard = ({ stone, project }) => {
+const StoneCard = ({ stone, project, theme }) => {
   const navigate = useNavigate();
 
   const [user, setUser] = useContext(UserContext);
@@ -28,7 +28,12 @@ const StoneCard = ({ stone, project }) => {
         <p className="center">{stone.description}</p>
         <div>
           {stone.team.map((member) => (
-            <TalentCardS key={member._id} talent={member} user={user} />
+            <TalentCardS
+              key={member._id}
+              talent={member}
+              user={user}
+              theme={theme}
+            />
           ))}
         </div>
         {teamMember && (

@@ -336,7 +336,7 @@ const EditStone = () => {
           <div className="col mt1">
             <p className="ml1 mb05">description</p>
             <textarea
-              rows="10"
+              rows="7"
               type="text"
               name="description"
               defaultValue={stone.description}

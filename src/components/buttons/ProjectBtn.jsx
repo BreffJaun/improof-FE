@@ -23,12 +23,12 @@ import logoGR from "../../images/improof_GR.png";
 import logoLG from "../../images/improof_LG.png";
 
 const ProjectBtn = ({ project }) => {
-  const [theme, setTheme] = useState("");
   const [user, setUser] = useContext(UserContext);
   const [trigger, setTrigger] = useContext(TriggerContext);
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
   const darkMode = user.meta.darkMode;
+  const theme = darkMode ? "dark" : "light";
 
   const handleAddFollow = async (
     project,
@@ -52,8 +52,6 @@ const ProjectBtn = ({ project }) => {
       .then((json) => {
         if (json.status) {
           setUser(json.data);
-          darkMode ? setTheme("dark") : setTheme("light");
-
           toast(`you added ${project.name} to you favorite projects`, {
             theme: theme,
             hideProgressBar: "true",
@@ -122,8 +120,6 @@ const ProjectBtn = ({ project }) => {
       .then((json) => {
         if (json.status) {
           setUser(json.data);
-          darkMode ? setTheme("dark") : setTheme("light");
-
           toast(`you deleted ${project.name} from you favorite projects`, {
             theme: theme,
             hideProgressBar: "true",
