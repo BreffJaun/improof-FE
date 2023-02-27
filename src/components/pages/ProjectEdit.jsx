@@ -57,14 +57,13 @@ const CreateProject = () => {
     useState(false);
   const [search, setSearch] = useState("");
   const [trigger, setTrigger] = useState(false);
-  const [theme, setTheme] = useState("");
 
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
-  const darkMode = user.meta.darkMode;
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
+    // theme: "dark",
   };
 
   useEffect(() => {
@@ -317,7 +316,8 @@ const CreateProject = () => {
               <input
                 type="text"
                 name="name"
-                placeholder={project.name}
+                defaultValue={project.name}
+                maxLength={40}
                 onChange={handleInput}
                 className="shadow-s"
               />
@@ -332,6 +332,7 @@ const CreateProject = () => {
                 rows="7"
                 name="description"
                 placeholder={project.description}
+                maxLength={300}
                 onChange={handleInput}
                 className="shadow-s"
               />
@@ -383,6 +384,7 @@ const CreateProject = () => {
           {/*  - - - - - TEAM - - - - - */}
           <div className="bo-DARK"></div>
           <div className="mt2 mb2">
+            <h1 className={`central ${color}`}>your team</h1>
             <h1 className={`central ${color}`}>your team</h1>
           </div>
           <div className="talent-container">
