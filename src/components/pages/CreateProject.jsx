@@ -257,7 +257,7 @@ const CreateProject = () => {
         ),
       });
     } else {
-      sendProjectData();
+      !newProject.category && newProject !== "" && sendProjectData();
     }
   };
 
