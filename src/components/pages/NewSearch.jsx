@@ -257,14 +257,14 @@ const NewSearch = () => {
   return (
     !isLoading && (
       <div> 
-        <h1 className={`${color} mt2 mb2`}>new search</h1>
+        <h1 className={`${color} mt1 mb1`}>new search</h1>
 
-        <div className="splitscreen mb2">
+        <div className="splitscreen">
           <div className="oh card left mt15">
             <div>
             {talents && (
             <Map
-              height={400}
+              height={380}
               width={1000}
               defaultCenter={[51.165691, 10.451526]} // MIDDLE OF GERMANY
               center={[searchData?.latitude, searchData?.longitude]}
@@ -317,7 +317,7 @@ const NewSearch = () => {
               )}
           </div>
         </div>
-          <div className="right">
+        <div className="right">
             <form onSubmit={handleSubmit}>
               <div className="col">
                   <p className="ml1 mb05">category</p>
@@ -396,25 +396,30 @@ const NewSearch = () => {
           </div>
         </div>
         
+
+        <div className="bo-DARK"></div>
         <div>
         {/* CURR TALENT */}
         {currTalent && (
           <div>
             <TalentCard talent={currTalent} user={user} key={currTalent._id} />
-            <div className="bo-DARK"></div>
           </div>
         )}
         {/* SEARCHED TALENTS (OR ALL TALENTS) */}
         <div className="max mb2">
           {updatedTalents ?
             <h1 className={`${color} mt2 mb2`}>filtered talents</h1> :
-              <h1 className={`${color} mt2 mb2`}>all talents</h1>}
-            <div className="row g1 nowrap">
+            <h1 className={`${color} mt2 mb2`}>all talents</h1>}
+            
+            <div className="y talent-container center mb2">
               {talentsToMap.map((talent) => {
-              return <TalentCard talent={talent} user={user} key={talent._id} />;
+                return <div className="t-card">
+                  <TalentCard talent={talent} user={user} key={talent._id} />
+                  </div>;
               })}
+                </div>
             </div>
-          </div>
+          
           <ToastContainer />
         </div>
       </div>

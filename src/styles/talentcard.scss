@@ -1,6 +1,7 @@
 .talent-container{
     display: flex;
-    gap: 0.75rem;
+    flex-wrap: wrap;
+    gap: 2.5rem 1rem;
 }
 
 .t-card{
@@ -8,11 +9,11 @@
     position: relative;
     flex-direction: column;
     align-items: center;
-    width: 175px;
+    width: 185px;
     height: 280px;
     padding: 1rem;
     border-radius: 8px;
-    box-shadow: 0.4rem 0.4rem 1rem rgba(0,0,0,0.3);;
+    box-shadow: 0.4rem 0.4rem 1rem rgba(0,0,0,0.3);
     overflow:hidden;
     &:hover{
         transition: 100ms;
