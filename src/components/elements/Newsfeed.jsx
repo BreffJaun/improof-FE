@@ -114,7 +114,7 @@ const Newsfeed = () => {
     <div>
       <div className="">
         <CarouselProvider
-          interval={3000}
+          interval={5000}
           naturalSlideWidth={100}
           naturalSlideHeight={45}
           totalSlides={sortedList.length}
