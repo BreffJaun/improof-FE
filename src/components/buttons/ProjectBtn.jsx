@@ -26,9 +26,9 @@ const ProjectBtn = ({ project }) => {
   const [theme, setTheme] = useState("");
   const [user, setUser] = useContext(UserContext);
   const [trigger, setTrigger] = useContext(TriggerContext);
-  const color = user.meta.colorTheme[0];
-  const bg = user.meta.colorTheme[1];
-  const darkMode = user.meta.darkMode;
+  const color = user?.meta?.colorTheme[0];
+  const bg = user?.meta?.colorTheme[1];
+  const darkMode = user?.meta?.darkMode;
 
   const handleAddFollow = async (
     project,

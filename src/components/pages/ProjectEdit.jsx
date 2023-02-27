@@ -251,7 +251,7 @@ const CreateProject = () => {
               <input
                 type="text"
                 name="name"
-                placeholder={project.name}
+                defaultValue={project.name}
                 maxLength={40}
                 onChange={handleInput}
                 className="shadow-s"
@@ -265,7 +265,7 @@ const CreateProject = () => {
               <input
                 type="text"
                 name="description"
-                placeholder={project.description}
+                defaultValue={project.description}
                 maxLength={300}
                 onChange={handleInput}
                 className="shadow-s"

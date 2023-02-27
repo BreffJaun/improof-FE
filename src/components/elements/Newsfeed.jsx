@@ -178,7 +178,7 @@ const Newsfeed = () => {
       <div className="bo-DARK"></div>
       <div>
         <div className="flex">
-          {user.follows.map((member) => {
+          {user?.follows?.map((member) => {
             return (              
                 member.profile.avatar
                 ?
