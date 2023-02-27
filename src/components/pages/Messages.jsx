@@ -94,7 +94,7 @@ const Messages = () => {
               <Sender user={user} sender={sender} />
             </div>
 
-            <div className="wide col mb2">
+            <div className="col mb2">
               <div className="scroll-container">
                 <div className="col mr2">
                   {conversation?.message?.map((msg) => {
@@ -105,14 +105,21 @@ const Messages = () => {
             </div>
           </div>
 
-          <div>
+          <div className="wide col mb2">
             <form onSubmit={(event)=>handleSendMsg(event)}>
-              <input type="text" value={msg} onChange={handleMsg} autoFocus />
-              <button className={bg} type="submit">send</button>
+              <input
+                type="text"
+                value={msg}
+                onChange={handleMsg}
+                autoFocus
+                className="shadow-s max mb1"
+              />
+              <div className="center">
+                <button className={bg} type="submit">send</button>
+              </div>
             </form>
           </div>
         </div>
-        <Footer />
       </>
     )
   );

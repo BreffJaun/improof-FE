@@ -158,9 +158,8 @@ input:checked + .slider:before {
 
 
 .dangerzone{
-  height: 5rem;
   display: flex;
-  border: 1px dashed;
+  border: 2px solid var(--ALERT1);
   justify-content: center;
   align-items: center;
 }

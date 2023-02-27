@@ -18,6 +18,7 @@ import { AiOutlineCamera as Camera } from "react-icons/ai";
 import { RiMailAddLine as MailPlus } from "react-icons/ri";
 import { RiMailCloseLine as MailMinus } from "react-icons/ri";
 import { FiUpload as Upload } from "react-icons/fi";
+import { CgDanger as Danger} from "react-icons/cg"
 
 // LOGOS
 import logoPi from "../../images/improof_PI.png";
@@ -514,10 +515,15 @@ const CreateProject = () => {
               save changes
             </button>
           </div>
-        </form>
-        <button className="mt2 bg-FAV" onClick={() => handleDelete()}>
-          DELETE PROJECT BITTE BESSER KENNZEICHNEN!
-        </button>
+          </form>
+          
+          <div className="bo-DARK"></div>
+          <div className="flex center">
+            <h1 className="c-alert"><Danger/></h1>
+            <button className="dangerzone bg-alert" onClick={() => handleDelete()}>
+              <p>delete project?</p>
+            </button>
+          </div>
         <ToastContainer />
       </>
     )

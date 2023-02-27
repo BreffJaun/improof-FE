@@ -95,7 +95,7 @@
         align-items: center;
         margin-bottom: 1rem;
     }
-    .t-pic{
+    .t-picS{
         display: flex;
         overflow: hidden;
         width: 65px;
@@ -103,12 +103,12 @@
         border-radius: 50%;
         margin-right: 0.7rem;
         img{
-            width: 100%;
-            height: 100%;
+            width: 105%;
+            height: 105%;
             object-fit: cover;
         }
     }
-    .t-community{
+    .t-communityS{
         margin-top: -0.8rem;
         display: flex;
         flex-direction: row;

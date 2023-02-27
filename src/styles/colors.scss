@@ -28,7 +28,8 @@
     --O3: rgb(250, 35, 0);
 
     
-    --ALERT: rgb(255, 0, 55);
+    --ALERT1: rgb(255, 0, 55);
+    --ALERT2: rgb(87, 0, 19);
 
 
     // RECRUITER
@@ -79,6 +80,14 @@
 }
 .bg-gA{
     background-image: linear-gradient(135deg, var(--A30), var(--A0));
+}
+
+
+.bg-alert{
+    background-image: linear-gradient(135deg, var(--ALERT1), var(--ALERT2));
+}
+.c-alert{
+    color: var(--ALERT1)
 }
 
 // FONT COLORS TALENT

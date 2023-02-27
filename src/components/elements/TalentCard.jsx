@@ -80,19 +80,19 @@ const TalentCardS = ({ talent, user, theme }) => {
   return (
     <>
       <div className="t-cardS col mt1">
-        <div className=" mt1 mb2 row">
+        <div className="mt1 mb2 row">
           <div
-            className={`${bg} t-pic`}
+            className={`${bg} t-picS`}
             onClick={() => navigate(`/userDetails/${talent._id}`)}
           >
             {talent?.profile?.avatar ? (
               <img src={talent.profile?.avatar} />
             ) : (
-              <p className="initials">{talent.profile?.initials}</p>
+                  <p className="initials">{talent.profile?.initials}</p>
             )}
           </div>
 
-          <div>
+          <div className="">
             <p
               className={`fw500 ${color}`}
               onClick={() => navigate(`/userDetails/${talent._id}`)}
