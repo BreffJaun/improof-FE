@@ -48,7 +48,7 @@ const TalentDetails = () => {
 
   const color = talent?.meta?.colorTheme[0];
   const bg = talent?.meta?.colorTheme[1];
-  const darkMode = talent?.meta?.darkMode;
+  const darkMode = user?.meta?.darkMode;
 
   useEffect(() => {
     setIsPending(true);
