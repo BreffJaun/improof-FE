@@ -339,25 +339,28 @@ const CreateProject = () => {
           <input
             type="text"
             placeholder="search for your team..."
-            vlaue={search}
+            value={search}
             onChange={handleSearch}
           />
-          {team.length > 1 &&
-            team.map(
-              (talent) =>
-                talent._id !== user._id && (
-                  <TalentToProjectCard
-                    team={team}
-                    setTeam={setTeam}
-                    key={talent._id}
-                    talent={talent}
-                    user={user}
-                  />
-                )
-            )}
+          <div className="flex">
+            {team.length > 1 &&
+              team.map(
+                (talent) =>
+                  talent._id !== user._id && (
+                    <TalentToProjectCard
+                      team={team}
+                      setTeam={setTeam}
+                      key={talent._id}
+                      talent={talent}
+                      user={user}
+                    />
+                  )
+              )}              
+          </div>
         </div>
         <div>
           <div>
+
             {search &&
               talents
                 .filter(

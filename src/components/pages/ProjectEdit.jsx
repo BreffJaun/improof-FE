@@ -157,6 +157,7 @@ const CreateProject = () => {
 
   useEffect(() => {
     setNewProject({ ...newProject, team: team });
+    setSearch("")
     // setTrigger(!trigger)
   }, [team]);
 
@@ -321,7 +322,7 @@ const CreateProject = () => {
             <h4 className={`central ${color} mt05`}>discover more talents</h4>
           </div>
           <div className="talent-container" >
-            {project.team.map((talent) => (
+            {team.map((talent) => (
               <TalentToProjectCard
                 team={team}
                 setTeam={setTeam}
