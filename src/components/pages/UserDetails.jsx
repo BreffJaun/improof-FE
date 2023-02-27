@@ -297,7 +297,6 @@ const TalentDetails = () => {
             {showContact ? "close" : "show me"}
           </button>
         </div>
-        <Footer />
         <ToastContainer
           className={
             darkMode
