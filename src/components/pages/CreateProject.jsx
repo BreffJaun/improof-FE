@@ -248,6 +248,15 @@ const CreateProject = () => {
         <div>
           <h1 className={`central ${color} mt05`}>your team </h1>
           <input type="text" placeholder="search for your team..." vlaue={search} onChange={handleSearch} />
+          <div>
+            {search && talents.filter(talent => talent.profile.firstName.toLowerCase().includes(search.toLowerCase()) || talent.profile.lastName.toLowerCase().includes(search.toLowerCase()) ).map(talent => <TalentToProjectCard
+        team={team}
+        setTeam={setTeam}
+        key={talent._id}
+        talent={talent}
+        user={user}/>
+        )}
+          </div>
           {team.length > 1 && 
           team.map((talent)=> talent._id !== user._id &&
           <TalentToProjectCard
@@ -259,15 +268,6 @@ const CreateProject = () => {
           )}
         </div>
           <div>
-            <div>
-              {search && talents.filter(talent => talent.profile.firstName.toLowerCase().includes(search.toLowerCase()) || talent.profile.lastName.toLowerCase().includes(search.toLowerCase()) ).map(talent => <TalentToProjectCard
-          team={team}
-          setTeam={setTeam}
-          key={talent._id}
-          talent={talent}
-          user={user}/>
-          )}
-            </div>
           </div>
 
         {/*  - - - - - INVITATION - - - - - */}
