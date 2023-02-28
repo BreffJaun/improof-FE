@@ -162,9 +162,9 @@ const Newsfeed = () => {
             </Slider>
             <div className="carousel-btn-container">
               <ButtonNext className={`circle40 central ${bg}`}>
-                <h3>
+                <>
                   <Forward />
-                </h3>
+                </>
               </ButtonNext>
             </div>
           </div>

@@ -69,7 +69,7 @@ const Conversations = ({
                             {participant?.profile?.avatar ? (
                               <img src={participant.profile?.avatar} />
                             ) : (
-                              <p className="initials">
+                              <p className="initials central">
                                 {participant.profile?.initials}
                               </p>
                             )}
