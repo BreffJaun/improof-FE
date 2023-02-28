@@ -154,7 +154,7 @@ const ProjectCardS = ({ project, user, darkMode }) => {
             }
           >
             <div onClick={() => navigate(`/projectdetails/${project._id}`)}>
-              <h3 className="mt035 fw900">{project?.name}</h3>
+              <h3 className="mt035 fw900 overflowHeader">{project?.name}</h3>
             </div>
           </div>
         </div>
