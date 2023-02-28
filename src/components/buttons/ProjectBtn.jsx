@@ -12,7 +12,10 @@ import { HiPlus } from "react-icons/hi";
 import { AiOutlineStar as OLstar } from "react-icons/ai";
 import { AiFillStar as FIstar } from "react-icons/ai";
 
-//LOGOS
+// STYLES
+import "../../styles/toastify.scss";
+
+// LOGOS
 import logoPi from "../../images/improof_PI.png";
 import logoBl from "../../images/improof_BL.png";
 import logoPu from "../../images/improof_PU.png";
@@ -21,7 +24,6 @@ import logoLB from "../../images/improof_LB.png";
 import logoDG from "../../images/improof_DG.png";
 import logoGR from "../../images/improof_GR.png";
 import logoLG from "../../images/improof_LG.png";
-
 const ProjectBtn = ({ project }) => {
   const [user, setUser] = useContext(UserContext);
   const [trigger, setTrigger] = useContext(TriggerContext);
@@ -66,7 +68,13 @@ const ProjectBtn = ({ project }) => {
                     ? logoPu
                     : color === "c-B2"
                     ? logoBl
-                    : logoBl
+                    : color === "c-LB2"
+                    ? logoLB
+                    : color === "c-GR1"
+                    ? logoLG
+                    : color === "c-GR3"
+                    ? logoGR
+                    : logoDG
                 }
                 width="20"
               />
@@ -88,7 +96,13 @@ const ProjectBtn = ({ project }) => {
                     ? logoPu
                     : color === "c-B2"
                     ? logoBl
-                    : logoBl
+                    : color === "c-LB2"
+                    ? logoLB
+                    : color === "c-GR1"
+                    ? logoLG
+                    : color === "c-GR3"
+                    ? logoGR
+                    : logoDG
                 }
                 width="20"
               />
@@ -135,10 +149,10 @@ const ProjectBtn = ({ project }) => {
                     : color === "c-B2"
                     ? logoBl
                     : color === "c-LB2"
-                    ? logoBl
+                    ? logoLB
                     : color === "c-GR1"
                     ? logoLG
-                    : color === "c-GR2"
+                    : color === "c-GR3"
                     ? logoGR
                     : logoDG
                 }
@@ -163,10 +177,10 @@ const ProjectBtn = ({ project }) => {
                     : color === "c-B2"
                     ? logoBl
                     : color === "c-LB2"
-                    ? logoBl
+                    ? logoLB
                     : color === "c-GR1"
                     ? logoLG
-                    : color === "c-GR2"
+                    : color === "c-GR3"
                     ? logoGR
                     : logoDG
                 }
