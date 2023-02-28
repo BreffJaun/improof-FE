@@ -292,7 +292,9 @@ const UserEdit = () => {
         </div>
         <div className="col mb1">
           <p className="ml1 mb05">that´s me:</p>
-          <input
+          <textarea
+            rows="7"
+            id="description"
             onChange={handleInputProfile}
             name="description"
             type="text"

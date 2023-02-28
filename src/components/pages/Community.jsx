@@ -9,6 +9,7 @@ import Footer from "../elements/Footer.jsx";
 // CONTEXT
 import TriggerContext from "../../context/triggerContext.jsx";
 import UserContext from "../../context/userContext.jsx";
+import { ToastContainer } from "react-toastify";
 
 const Community = () => {
   const [category, setCategory] = useState(undefined);
