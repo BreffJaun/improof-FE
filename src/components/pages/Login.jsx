@@ -44,7 +44,7 @@ const Login = () => {
         .then((json) => {
           console.log(json);
           if (!json.status) {
-            toast("invalid password", {
+            toast("invalid password or email", {
               hideProgressBar: "true",
               icon: () => <img src={logoOr} width="20" />,
             });

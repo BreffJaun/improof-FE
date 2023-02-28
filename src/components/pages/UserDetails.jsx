@@ -49,6 +49,7 @@ const TalentDetails = () => {
   const color = talent?.meta?.colorTheme[0];
   const bg = talent?.meta?.colorTheme[1];
   const darkMode = user?.meta?.darkMode;
+  const talentIsRecruiter = talent?.profile?.isRecruiter;
 
   useEffect(() => {
     setIsPending(true);
@@ -106,8 +107,8 @@ const TalentDetails = () => {
                     }
                     className={`${bg} rel head-pic`}
                     alt="avatar"
-                    />
-                  </div>
+                  />
+                </div>
               ) : (
                 <div className={`circle90 ${bg} central rel initials`}>
                   <p>{talent.profile.initials}</p>
@@ -134,44 +135,44 @@ const TalentDetails = () => {
           {/* <p className="mt05 mb1">{talent.profile.description ? talent.profile.description : "You could add some info to your profile."}</p> */}
           {showInfos ? (
             <div className="max1300">
-            <div className="col mt05 mb1 maxM">
-              {/* ----------------------------------------------- */}
-              {talent.profile.description && (
-                <div className="mb1">
-                  <p className={color}>that´s me:</p>
-                  <p>{talent.profile.description}</p>
-                </div>
-              )}
-              {/* ----------------------------------------------- */}
-              {talent.profile.goal && (
-                <div className="mb1">
-                  <p className={color}>tools and skills:</p>
-                  <p>{talent.profile.goal}</p>
-                </div>
-              )}
-              {/* ----------------------------------------------- */}
-              {talent.profile.position && (
-                <div className="mb1">
-                  <p className={color}>current occupation:</p>
-                  <p>{talent.profile.position}</p>
-                </div>
-              )}
-              {/* ----------------------------------------------- */}
-              {talent.profile.category && (
-                <div className="mb1">
-                  <p className={color}>here i perform my best: </p>
-                  <p>{talent.profile.category}</p>
-                </div>
-              )}
-              {/* ----------------------------------------------- */}
-              {talent.profile.toolsAndSkills && (
-                <div className="mb1">
-                  <p className={color}>tools and skills: </p>
-                  <p>{talent.profile.toolsAndSkills}</p>
-                </div>
-              )}
-              {/* ----------------------------------------------- */}
-            </div>
+              <div className="col mt05 mb1 maxM">
+                {/* ----------------------------------------------- */}
+                {talent.profile.description && (
+                  <div className="mb1">
+                    <p className={color}>that´s me:</p>
+                    <p>{talent.profile.description}</p>
+                  </div>
+                )}
+                {/* ----------------------------------------------- */}
+                {talent.profile.goal && (
+                  <div className="mb1">
+                    <p className={color}>tools and skills:</p>
+                    <p>{talent.profile.goal}</p>
+                  </div>
+                )}
+                {/* ----------------------------------------------- */}
+                {talent.profile.position && (
+                  <div className="mb1">
+                    <p className={color}>current occupation:</p>
+                    <p>{talent.profile.position}</p>
+                  </div>
+                )}
+                {/* ----------------------------------------------- */}
+                {talent.profile.category && (
+                  <div className="mb1">
+                    <p className={color}>here i perform my best: </p>
+                    <p>{talent.profile.category}</p>
+                  </div>
+                )}
+                {/* ----------------------------------------------- */}
+                {talent.profile.toolsAndSkills && (
+                  <div className="mb1">
+                    <p className={color}>tools and skills: </p>
+                    <p>{talent.profile.toolsAndSkills}</p>
+                  </div>
+                )}
+                {/* ----------------------------------------------- */}
+              </div>
             </div>
           ) : (
             ""
@@ -198,25 +199,45 @@ const TalentDetails = () => {
           </div>
         </div>
 
-        <div className="bo-DARK"></div>
-        <div className="central col">
-          <h1 className={color}>projects</h1>
-          <p className={`${color} mb2`}>({talent.myProjects.length})</p>
-          <div className="projects-container g1">
-            {talent.myProjects.length ? (
-              talent.myProjects.map((project) => (
-                <ProjectCard
-                  key={project._id}
-                  project={project}
-                  user={user}
-                  darkMode={darkMode}
-                />
-              ))
-            ) : (
-              <p>It is time for your first project.</p>
-            )}
+        {talentIsRecruiter ? (
+          <div className="central col">
+            <h1 className={color}>my favorite projects</h1>
+            <p className={`${color} mb2`}>({talent.starProjects.length})</p>
+            <div className="projects-container g1">
+              {talent.starProjects.length ? (
+                talent.starProjects.map((project) => (
+                  <ProjectCard
+                    key={project._id}
+                    project={project}
+                    user={user}
+                    darkMode={darkMode}
+                  />
+                ))
+              ) : (
+                <p>It is time to discover some projects</p>
+              )}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="central col">
+            <h1 className={color}>projects</h1>
+            <p className={`${color} mb2`}>({talent.myProjects.length})</p>
+            <div className="projects-container g1">
+              {talent.myProjects.length ? (
+                talent.myProjects.map((project) => (
+                  <ProjectCard
+                    key={project._id}
+                    project={project}
+                    user={user}
+                    darkMode={darkMode}
+                  />
+                ))
+              ) : (
+                <p>It is time for your first project.</p>
+              )}
+            </div>
+          </div>
+        )}
 
         <div className="bo-DARK"></div>
         <div className="central col">
@@ -315,5 +336,3 @@ const TalentDetails = () => {
 };
 
 export default TalentDetails;
-
-// gespeichert wird
