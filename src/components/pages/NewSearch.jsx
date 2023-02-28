@@ -411,11 +411,10 @@ const NewSearch = () => {
             <h1 className={`${color} mt2 mb2`}>filtered talents</h1> :
             <h1 className={`${color} mt2 mb2`}>all talents</h1>}
             
-            <div className="y talent-container center mb2">
+            <div className="talent-container  mb2 row">
               {talentsToMap.map((talent) => {
-                return <div className="t-card">
-                  <TalentCard talent={talent} user={user} key={talent._id} />
-                  </div>;
+                return <TalentCard talent={talent} user={user} key={talent._id} />
+                  
               })}
                 </div>
             </div>
