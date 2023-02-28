@@ -65,7 +65,7 @@ const TalentCard = ({ talent, user }) => {
           </div>
         )}
       </div>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </>
   );
 };

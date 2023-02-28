@@ -322,14 +322,7 @@ const TalentDetails = () => {
             {showContact ? "close" : "show me"}
           </button>
         </div>
-        <ToastContainer
-          className={
-            darkMode
-              ? " Toastify__toast-theme--dark"
-              : "Toastify__toast-theme--light "
-          }
-          hideProgressBar={true}
-        />
+        {/* <ToastContainer limit={1} /> */}
       </>
     )
   );

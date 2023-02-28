@@ -44,7 +44,6 @@ const StarProjects = () => {
     getProjects();
   }, [trigger]);
 
-  // console.log(category)
   return (
     !pending && (
       <div className="max">
