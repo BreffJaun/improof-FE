@@ -198,16 +198,17 @@ const Newsfeed = () => {
                 <div>
                   <div className="flex">
                     {stone.team.map((member) => {
-                      return (                        
+                      return (  
+                        <div className="head shadow-l mr-08">
                           <img
                             key={member._id}
-                            className="circle50"
+                            className="head-pic"
                             src={member.profile.avatar}
                             onClick={() =>
                               navigate(`/userdetails/${member._id}`)
                             }
                           />                                                          
-                      
+                        </div>
                       );
                     })}
                   </div>
