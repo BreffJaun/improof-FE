@@ -71,3 +71,10 @@ h3{
     width: 100%;
     height: 2.6rem;
 }
+
+.overflowHeader{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    width: 60%;
+}

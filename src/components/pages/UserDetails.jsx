@@ -118,7 +118,7 @@ const TalentDetails = () => {
                 className={`circle40 ${bg} central editBtn`}
                 onClick={() => navigate(`/useredit/${user._id}`)}
               >
-                <p className="c-A100">
+                <p className="c-A100 central">
                   <AiFillEdit />
                 </p>
               </div>
