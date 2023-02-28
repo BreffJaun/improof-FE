@@ -55,7 +55,7 @@ const StarProjects = () => {
           {category
             ? user?.starProjects.map(
                 (project) =>
-                  project.category === category && (
+                  project.category === category && !project.private && (
                     <ProjectCard
                       key={project._id}
                       user={user}
