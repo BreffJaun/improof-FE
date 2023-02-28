@@ -39,7 +39,10 @@ const Notifications = ({ setShowNotifications }) => {
                       <p className="rel">
                         <span className="fw700">{time}</span> - {date}
                         {!notification.isRead && (
-                          <div className={`dot abs circle15 bg-gO`}></div>
+                          // <div className={`dot abs circle15 bg-gO`}></div>
+                          <div >
+                            <GoPrimitiveDot className={`red-dot`}/>
+                          </div>
                         )}
                       </p>
                     </div>
