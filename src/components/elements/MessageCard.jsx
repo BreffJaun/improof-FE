@@ -38,7 +38,7 @@ const Sender = ({ sender }) => {
           {sender?.profile?.avatar ? (
             <img src={sender.profile?.avatar} />
           ) : (
-            <p className="initials">{sender.profile?.initials}</p>
+            <p className="initials central">{sender.profile?.initials}</p>
           )}
         </div>
         <div className="col">
