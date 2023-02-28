@@ -122,7 +122,7 @@ const ProjectCardS = ({ project, user, darkMode }) => {
               onClick={() => navigate(`/projectdetails/${project._id}`)}
             />
           )}
-          <div>
+          {/* <div>
             {project?.team?.length && (
               <div className="contributors-containerS col rel">
                 <div className="contributors">
@@ -147,7 +147,7 @@ const ProjectCardS = ({ project, user, darkMode }) => {
                 </div>
               </div>
             )}
-          </div>
+          </div> */}
           <div
             className={
               darkMode ? "project-body w100d col rel bgG" : "project-body w100d col rel"
