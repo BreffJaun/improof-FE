@@ -80,7 +80,7 @@ const ProjectCard = ({ project, user, darkMode }) => {
             }
           >
             <div onClick={() => navigate(`/projectdetails/${project._id}`)}>
-              <h3 className="fw900">{project?.name}</h3>
+              <h3 className="fw900 overflowHeader">{project?.name}</h3>
               <p className="mt035 overflow">{project?.description}</p>
             </div>
             <div className="star central">
@@ -122,7 +122,7 @@ const ProjectCardS = ({ project, user, darkMode }) => {
               onClick={() => navigate(`/projectdetails/${project._id}`)}
             />
           )}
-          <div>
+          {/* <div>
             {project?.team?.length && (
               <div className="contributors-containerS col rel">
                 <div className="contributors">
@@ -147,7 +147,7 @@ const ProjectCardS = ({ project, user, darkMode }) => {
                 </div>
               </div>
             )}
-          </div>
+          </div> */}
           <div
             className={
               darkMode ? "project-body w100d col rel bgG" : "project-body w100d col rel"

@@ -416,33 +416,33 @@ const CreateProject = () => {
                 onChange={inviteInputHandler}
                 placeholder="invite to improof"
                 key={i}
-                className="shadow-s"
+                className="shadow-s mb1"
               />
             ))}
           </div>
           <div className="central mt2 flex g3">
             <div>
               <button
-                className={`mb05 rel ${bg} central circle40`}
+                className={eMailFields.length === 5 ? `opacity mb05 rel ${bg} central circle40` :`mb05 rel ${bg} central circle40`}
                 onClick={addEmailFields}
                 disabled={eMailFields.length === 5}
               >
-                {eMailFields.length === 5 ? (
+                {/* {eMailFields.length === 5 ? (
                   "you can invite more people later in the project"
-                ) : (
+                ) : ( */}
                   <div>
                     <h2 className="central">
                       <MailPlus />
                     </h2>
                   </div>
-                )}
+                {/* )} */}
               </button>
               <p>add an email</p>
             </div>
 
             <div>
               <button
-                className={`mb05 rel ${bg} central circle40`}
+                className={eMailFields.length === 1 ? `opacity mb05 rel ${bg} central circle40` : `mb05 rel ${bg} central circle40`}
                 onClick={subEmailFields}
                 disabled={eMailFields.length === 1}
               >

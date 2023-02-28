@@ -373,7 +373,7 @@ const NewSearch = () => {
                   <button
                     style={{ cursor: "pointer" }}
                     type="submit"
-                    className={bg}
+                    className={searchTrigger ? `opacity ${bg}` :  `${bg}`}
                     disabled={searchTrigger}
                   >
                     get result
@@ -383,7 +383,7 @@ const NewSearch = () => {
                   <button
                     style={{ cursor: "pointer" }}
                     type="reset"
-                    className={bg}
+                    className={!searchTrigger ? `opacity ${bg}` :  `${bg}`}
                     disabled={!searchTrigger}
                     onClick={resetHandler}
                   >
