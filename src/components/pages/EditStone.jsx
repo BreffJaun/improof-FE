@@ -400,13 +400,15 @@ const EditStone = () => {
               ) : mediaUrl && imageTrigger ? (
                 <img src={mediaUrl} alt="media" />
               ) : (
-                <div className="thumbnailS">
-                  <Camera />
+                <div className="thumbnailS">                  
                 </div>
               )}
               {/* </div> */}
               <div className="col">
-                <label htmlFor="media-pic">photos</label>
+                <label for="media-pic">
+                  <Camera />
+                  photos
+                </label>
                 <input
                   type="file"
                   multiple
@@ -414,15 +416,15 @@ const EditStone = () => {
                   onChange={handleImages}
                   accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
                   disabled={videoTrigger}
+                  hidden
                 />
-                {imageTrigger && (
-                  <button type="button" onClick={resetImageHandler}>
-                    reset image selection
-                  </button>
-                )}
+
               </div>
               <div className="col">
-                <label htmlFor="media-vid">videos</label>
+                <label for="media-vid">
+                  <Camera />
+                  videos
+                </label>
                 <input
                   type="file"
                   multiple
@@ -430,10 +432,16 @@ const EditStone = () => {
                   onChange={handleVideos}
                   accept=".mp4, .mov, .wmv, .avi, .mkv, .flv"
                   disabled={imageTrigger}
+                  hidden
                 />
                 {videoTrigger && (
-                  <button type="button" onClick={resetVideoHandler}>
+                  <button className={bg} type="button" onClick={resetVideoHandler}>
                     reset video selection
+                  </button>
+                )}
+                {imageTrigger && (
+                  <button className={bg} type="button" onClick={resetImageHandler}>
+                    reset image selection
                   </button>
                 )}
               </div>

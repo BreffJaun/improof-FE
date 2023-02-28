@@ -256,82 +256,16 @@ const NewSearch = () => {
 
   return (
     !isLoading && (
-      <div className="componente">
-        <div className="mb2 mt2"></div>
-        <p className={`central ${color} mb2`}>new search</p>
-        <form onSubmit={handleSubmit}>
-          <div className="central col">
-            <p>category</p>
-            {/* <input
-              type="text"
-              name="position"
-              placeholder="what do you want to achieve"
-              onChange={handleInput}
-              disabled={searchTrigger}
-              value={searchData.position}
-            /> */}
-            <CategoriesFilter
-              category={category}
-              setCategory={setCategory}
-              searchTrigger={searchTrigger}
-            />
+      <div> 
+        <h1 className={`${color} mt1 mb1`}>new search</h1>
 
-            <p>tools & skills</p>
-            <input
-              type="text"
-              name="toolsAndSkills"
-              placeholder="what is the talents set"
-              onChange={handleInput}
-              disabled={searchTrigger}
-              value={searchData.toolsAndSkills}
-            />
-            <p>ZIP-Code</p>
-            <input
-              type="text"
-              name="zip"
-              placeholder="type in a number"
-              onChange={handleInput}
-              disabled={searchTrigger}
-              value={searchData.zip}
-            />
-            <p>search radius (km)</p>
-            <input
-              style={{ cursor: "pointer" }}
-              type="text"
-              name="radius"
-              placeholder="type in a number"
-              onChange={handleInput}
-              disabled={searchTrigger}
-              value={searchData.radius}
-            />
-          </div>
-          <div className="central mb2 mt2">
-            <button
-              style={{ cursor: "pointer" }}
-              type="submit"
-              className={bg}
-              disabled={searchTrigger}
-            >
-              get result
-            </button>
-          </div>
-          <div className="central mb2 mt2">
-            <button
-              style={{ cursor: "pointer" }}
-              type="reset"
-              className={bg}
-              disabled={!searchTrigger}
-              onClick={resetHandler}
-            >
-              reset search
-            </button>
-          </div>
-        </form>
-        <div>
-          {talents && (
+        <div className="splitscreen">
+          <div className="oh card left mt15">
+            <div>
+            {talents && (
             <Map
-              height={280}
-              width={800}
+              height={380}
+              width={1000}
               defaultCenter={[51.165691, 10.451526]} // MIDDLE OF GERMANY
               center={[searchData?.latitude, searchData?.longitude]}
               defaultZoom={5} // je größer die Zahl, desto weiter rein gezoomt
@@ -380,25 +314,114 @@ const NewSearch = () => {
               )}
               <ZoomControl />
             </Map>
-          )}
+              )}
+          </div>
         </div>
+        <div className="right">
+            <form onSubmit={handleSubmit}>
+              <div className="col">
+                  <p className="ml1 mb05">category</p>
+                  {/* <input
+                    type="text"
+                    name="position"
+                    placeholder="what do you want to achieve"
+                    onChange={handleInput}
+                    disabled={searchTrigger}
+                    value={searchData.position}
+                  /> */}
+                  <CategoriesFilter
+                    category={category}
+                    setCategory={setCategory}
+                    searchTrigger={searchTrigger}
+                  />
+
+                <p className="ml1 mb05">tools & skills</p>
+                <input
+                  type="text"
+                  name="toolsAndSkills"
+                  placeholder="what is the talents set"
+                  onChange={handleInput}
+                  disabled={searchTrigger}
+                  value={searchData.toolsAndSkills}
+                  className="shadow-s"
+                />
+                <p className="ml1 mt1 mb05">ZIP-Code</p>
+                <input
+                  type="text"
+                  name="zip"
+                  placeholder="type in a number"
+                  onChange={handleInput}
+                  disabled={searchTrigger}
+                  value={searchData.zip}
+                  className="shadow-s"
+                />
+                <p className="ml1 mt1 mb05">search radius (km)</p>
+                <input
+                  style={{ cursor: "pointer" }}
+                  type="text"
+                  name="radius"
+                  placeholder="type in a number"
+                  onChange={handleInput}
+                  disabled={searchTrigger}
+                  value={searchData.radius}
+                  className="shadow-s"
+                />
+              </div>
+
+              <div className="row central g1">
+                <div className="central mb2 mt2">
+                  <button
+                    style={{ cursor: "pointer" }}
+                    type="submit"
+                    className={bg}
+                    disabled={searchTrigger}
+                  >
+                    get result
+                  </button>
+                </div>
+                <div className="central mb2 mt2">
+                  <button
+                    style={{ cursor: "pointer" }}
+                    type="reset"
+                    className={bg}
+                    disabled={!searchTrigger}
+                    onClick={resetHandler}
+                  >
+                    reset search
+                  </button>
+                  </div>
+              </div>
+              
+            </form>
+          </div>
+        </div>
+        
+
+        <div className="bo-DARK"></div>
+        <div>
         {/* CURR TALENT */}
         {currTalent && (
           <div>
-            <h1>SELECTED TALENT</h1>
             <TalentCard talent={currTalent} user={user} key={currTalent._id} />
-            <div className="bo-DARK"></div>
           </div>
         )}
         {/* SEARCHED TALENTS (OR ALL TALENTS) */}
-        <div>
-          {updatedTalents ? <h1>FILTERED TALENTS</h1> : <h1>TALENTS</h1>}
-          {talentsToMap.map((talent) => {
-            return <TalentCard talent={talent} user={user} key={talent._id} />;
-          })}
+        <div className="max mb2">
+          {updatedTalents ?
+            <h1 className={`${color} mt2 mb2`}>filtered talents</h1> :
+            <h1 className={`${color} mt2 mb2`}>all talents</h1>}
+            
+            <div className="y talent-container center mb2">
+              {talentsToMap.map((talent) => {
+                return <div className="t-card">
+                  <TalentCard talent={talent} user={user} key={talent._id} />
+                  </div>;
+              })}
+                </div>
+            </div>
+          
+          <ToastContainer />
         </div>
-        <Footer />
-        <ToastContainer />
       </div>
     )
   );

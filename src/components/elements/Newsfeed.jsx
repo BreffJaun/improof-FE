@@ -114,7 +114,7 @@ const Newsfeed = () => {
     <div>
       <div className="">
         <CarouselProvider
-          interval={3000}
+          interval={5000}
           naturalSlideWidth={100}
           naturalSlideHeight={45}
           totalSlides={sortedList.length}
@@ -174,33 +174,7 @@ const Newsfeed = () => {
       <div className="central col">
         <p className="mb1">choose your topic</p>
         <CategoriesFilter category={category} setCategory={setCategory} />
-      </div>
-      <div className="bo-DARK"></div>
-      <div>
-        <div className="flex">
-          {user?.follows?.map((member) => {
-            return (
-              <>
-                {member.profile.avatar ? (
-                  <img
-                    key={member._id}
-                    className="circle50"
-                    src={member.profile.avatar}
-                    onClick={() => navigate(`/userdetails/${member._id}`)}
-                  />
-                ) : (
-                  <div
-                    key={member._id}
-                    className={`circle90 ${bg} central rel initials`}
-                  >
-                    <p>{member.profile.initials}</p>
-                  </div>
-                )}
-              </>
-            );
-          })}
-        </div>
-      </div>
+      </div> 
 
       <div className="bo-DARK"></div>
       <h1 className={`${color} center mt1`}>newsfeed</h1>
@@ -235,52 +209,6 @@ const Newsfeed = () => {
                           />
                           {/* <p>{member.profile.firstName}</p>                                            */}
                         </>
-                      );
-                    })}
-                  </div>
-                  <h3>
-                    New {stone.kind.toUpperCase()} in {project?.name} <br />
-                    {date} {time}
-                  </h3>
-                  <NewsfeedCard stone={stone} projectId={project._id} />
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      <h1 className={`${color} center mt1`}>newsfeed</h1>
-      <div className="">
-        <div>
-          {stoneswithProjects.map((stone) => {
-            const date1 = stone.createdAt?.toString().split("T");
-            const date = date1[0].split("-").reverse().join(".");
-            const time1 = parseInt(date1[1].slice(0, 2)) + 1;
-            const time2 = date1[1].slice(2, 5);
-            const time = time1 + time2;
-            let project = {};
-            for (let i = 0; i < starProjects.length; i++) {
-              const pro = starProjects[i].stones.find(
-                (findStone) => findStone._id === stone._id && starProjects[i]
-              );
-              if (pro !== undefined) project = starProjects[i];
-            }
-            return (
-              <div key={stone._id} className="newsfeed-card">
-                <div>
-                  <div className="flex">
-                    {stone.team.map((member) => {
-                      return (
-                        <div key={member._id}>
-                          <img
-                            className="circle50"
-                            src={member.profile.avatar}
-                            onClick={() =>
-                              navigate(`/userdetails/${member._id}`)
-                            }
-                          />
-                          {/* <p>{member.profile.firstName}</p>                                            */}
-                        </div>
                       );
                     })}
                   </div>

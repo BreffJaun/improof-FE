@@ -310,19 +310,25 @@ const CreateProject = () => {
           </div>
           <div className="col">
             <p className="ml1 mb05 mt1">thumbnail</p>
-            <div className="thumbnailS">
-              {thumbnailUrl ? <img src={thumbnailUrl} alt="thumbnail" /> : null}
-              <div title="x upload">
-                <Upload className="y" />
-                <input
-                  className="z"
-                  type="file"
-                  name="thumbnail"
-                  onChange={handleFile}
-                  accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
-                />
-              </div>
+            <div className="thumbnailS dis-none">
+              {thumbnailUrl ? <img src={thumbnailUrl} alt="thumbnail" /> : null}         
             </div>
+          </div>
+          <div className="center">
+            <label for="thumbnail">
+              <Upload className="fs2 mt1" />
+              upload image
+            </label>
+            <input
+              className="dis-none"
+              type="file"
+              id="thumbnail"
+              name="thumbnail"
+              onChange={handleFile}
+              accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
+              hidden
+            />
+
           </div>
           <div className="col central">
             <p className="mt15 mb05">
@@ -341,7 +347,7 @@ const CreateProject = () => {
         <div>
           <h1 className={`central ${color} mt05`}>your team </h1>
           <div className="flex">
-            {team.length > 1 &&
+            {team.length > 0 &&
               team.map(
                 (talent) =>
                   talent._id !== user._id && (
@@ -370,27 +376,29 @@ const CreateProject = () => {
                 className="shadow-s mt1"
               />
             </div>
-            {search &&
-              talents
-                .filter(
-                  (talent) =>
-                    (talent._id !== user._id &&
-                      talent.profile.firstName
+            <div className="flex g1">
+              {search &&
+                talents
+                  .filter(
+                    (talent) =>
+                      (talent._id !== user._id &&
+                        talent.profile.firstName
+                          .toLowerCase()
+                          .includes(search.toLowerCase())) ||
+                      talent.profile.lastName
                         .toLowerCase()
-                        .includes(search.toLowerCase())) ||
-                    talent.profile.lastName
-                      .toLowerCase()
-                      .includes(search.toLowerCase())
-                )
-                .map((talent) => (
-                  <TalentToProjectCard
-                    team={team}
-                    setTeam={setTeam}
-                    key={talent._id}
-                    talent={talent}
-                    user={user}
-                  />
-                ))}
+                        .includes(search.toLowerCase())
+                  )
+                  .map((talent) => (
+                    <TalentToProjectCard
+                      team={team}
+                      setTeam={setTeam}
+                      key={talent._id}
+                      talent={talent}
+                      user={user}
+                    />
+                  ))}
+            </div>
           </div>
         </div>
 

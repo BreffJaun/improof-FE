@@ -22,6 +22,21 @@
     // border: 4px solid rgb(89, 143, 9);
 }
 
+.splitscreen{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 410px;
+    >.left{
+        width: 64%;
+    }
+    >.right{
+        width: 34%;
+    }
+}
+
+
+
 .maxHH{
     min-height: 100vh;
     >*{

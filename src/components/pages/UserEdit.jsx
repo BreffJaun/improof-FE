@@ -560,7 +560,6 @@ const UserEdit = () => {
             <RxCross2 />
           </button>
         </div>
-        <Footer />
         <ToastContainer
           className={
             darkMode
@@ -739,7 +738,6 @@ const UserEdit = () => {
             <RxCross2 />
           </button>
         </div>
-        <Footer />
         <ToastContainer
           className={
             darkMode

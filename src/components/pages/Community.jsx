@@ -83,10 +83,11 @@ const Community = () => {
           )}
       </div>
 
-      <div className="mb1 mt3 central">
+      <div className="bo-DARK"></div>
+      <div className="mb1 central">
         <h4 className={`central ${color} mt05`}>discover new talents</h4>
       </div>
-      <div className="talent-container">
+      <div className="talent-container mb2">
         {talents &&
           talents.map(
             (talent) =>
@@ -106,7 +107,6 @@ const Community = () => {
               )
           )}
       </div>
-      <Footer />
     </>
   );
 };

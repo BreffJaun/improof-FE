@@ -23,7 +23,7 @@ const ProjectCard = ({ project, user, darkMode }) => {
           {/* project banner */}
           {!project.thumbnail && (
             <div
-              className="card project-banner bg-gA central col"
+              className="shadow-s project-banner bg-gA central col"
               onClick={() => navigate(`/projectdetails/${project._id}`)}
             >
               <h1>
@@ -34,7 +34,7 @@ const ProjectCard = ({ project, user, darkMode }) => {
           )}
           {project.thumbnail && (
             <img
-              className="project-banner bg-FAV"
+              className="shadow-s project-banner bg-FAV"
               src={project.thumbnail}
               alt=""
               onClick={() => navigate(`/projectdetails/${project._id}`)}
@@ -51,7 +51,7 @@ const ProjectCard = ({ project, user, darkMode }) => {
                       project?.team?.map((member) => (
                         <div
                           key={member._id}
-                          className="contributor-image-container bg-FAV central"
+                          className="contributor-image-container bg-FAV central shadow-l"
                           onClick={() =>
                             navigate(`/userDetails/${member._id}`)
                           }
@@ -126,12 +126,12 @@ const ProjectCardS = ({ project, user, darkMode }) => {
             {project?.team?.length && (
               <div className="contributors-containerS col rel">
                 <div className="contributors">
-                  <div className="flex">
+                  <div>
                     {project?.team?.length &&
                       project?.team?.map((member) => (
                         <div
                           key={member._id}
-                          className="contributor-image-container bg-FAV central"
+                          className="contributor-image-container bg-FAV"
                           onClick={() => navigate(`/userDetails/${member._id}`)}
                         >
                           {member?.profile?.avatar ? (
@@ -150,7 +150,7 @@ const ProjectCardS = ({ project, user, darkMode }) => {
           </div>
           <div
             className={
-              darkMode ? "project-body col rel bgG" : "project-body col rel"
+              darkMode ? "project-body w100d col rel bgG" : "project-body w100d col rel"
             }
           >
             <div onClick={() => navigate(`/projectdetails/${project._id}`)}>

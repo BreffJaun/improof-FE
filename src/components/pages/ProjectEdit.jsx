@@ -18,6 +18,7 @@ import { AiOutlineCamera as Camera } from "react-icons/ai";
 import { RiMailAddLine as MailPlus } from "react-icons/ri";
 import { RiMailCloseLine as MailMinus } from "react-icons/ri";
 import { FiUpload as Upload } from "react-icons/fi";
+import { CgDanger as Danger} from "react-icons/cg"
 
 // LOGOS
 import logoPi from "../../images/improof_PI.png";
@@ -328,38 +329,41 @@ const CreateProject = () => {
                 type="text"
                 rows="7"
                 name="description"
-                placeholder={project.description}
+                defaultValue={project.description}
                 onChange={handleInput}
                 className="shadow-s"
                 id="description"
               />
             </div>
 
-            <div className="col">
               <p className="ml1 mt15 mb05">thumbnail</p>
+            <div className="col max">
               {/* <div className="thumbnailS"> */}
               {thumbnailUrl ? (
                 <img
                   className="center"
-                  width={200}
+                  // width={300}
                   src={thumbnailUrl}
                   alt="thumbnail"
                 />
               ) : project.thumbnail ? (
                 <img width={200} src={project.thumbnail} alt="thumbnail" />
               ) : (
-                <div className="central">PLATZHALTER</div>
+                <div className="central"></div>
               )}
               <div title="upload">
-                <Camera />
+                <label for="thumbnail">
+                  <Camera /> edit image
+                </label>
+                <input
+                  id="thumbnail"
+                  type="file"
+                  name="thumbnail"
+                  onChange={handleFile}
+                  accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp" 
+                  hidden
+                  />
               </div>
-              {/* </div> */}
-              <input
-                type="file"
-                name="thumbnail"
-                onChange={handleFile}
-                accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
-              />
             </div>
 
             <div className="col center">
@@ -381,7 +385,6 @@ const CreateProject = () => {
           {/*  - - - - - TEAM - - - - - */}
           <div className="bo-DARK"></div>
           <div className="mt2 mb2">
-            <h1 className={`central ${color}`}>your team</h1>
             <h1 className={`central ${color}`}>your team</h1>
           </div>
           <div className="talent-container">
@@ -512,10 +515,15 @@ const CreateProject = () => {
               save changes
             </button>
           </div>
-        </form>
-        <button className="mt2 bg-FAV" onClick={() => handleDelete()}>
-          DELETE PROJECT BITTE BESSER KENNZEICHNEN!
-        </button>
+          </form>
+          
+          <div className="bo-DARK"></div>
+          <div className="flex center">
+            <h1 className="c-alert"><Danger/></h1>
+            <button className="dangerzone bg-alert" onClick={() => handleDelete()}>
+              <p>delete project?</p>
+            </button>
+          </div>
         <ToastContainer />
       </>
     )

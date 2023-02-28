@@ -39,13 +39,14 @@ const TalentCard = ({ talent, user }) => {
           </div>
         </div>
         <div className="t-info">
-          <p
-            className={`fw500 ${color}`}
+          <h4
+            className={`fw900 ${color}`}
             onClick={() => navigate(`/userDetails/${talent._id}`)}
           >
             {talent.profile?.firstName} {talent.profile?.lastName}
-          </p>
+          </h4>
           <p>{talent.profile?.category}</p>
+          <p className={`mt1 info c-A50`}>tools and skills </p>
           <p>{talent.profile?.toolsAndSkills}</p>
         </div>
 
@@ -80,19 +81,19 @@ const TalentCardS = ({ talent, user, theme }) => {
   return (
     <>
       <div className="t-cardS col mt1">
-        <div className=" mt1 mb2 row">
+        <div className="mt1 mb2 row">
           <div
-            className={`${bg} t-pic`}
+            className={`${bg} t-picS`}
             onClick={() => navigate(`/userDetails/${talent._id}`)}
           >
             {talent?.profile?.avatar ? (
               <img src={talent.profile?.avatar} />
             ) : (
-              <p className="initials">{talent.profile?.initials}</p>
+                  <p className="initials">{talent.profile?.initials}</p>
             )}
           </div>
 
-          <div>
+          <div className="">
             <p
               className={`fw500 ${color}`}
               onClick={() => navigate(`/userDetails/${talent._id}`)}
@@ -101,7 +102,7 @@ const TalentCardS = ({ talent, user, theme }) => {
             </p>
             <p>{talent.profile?.category}</p>
           </div>
-          {user._id === talent._id ? null : (
+          {/* {user._id === talent._id ? null : (
             <div className="ml1 row">
               <div title="send message">
                 <SendMessageBtn talent={talent} user={user} />
@@ -114,7 +115,7 @@ const TalentCardS = ({ talent, user, theme }) => {
                 )}
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
       <ToastContainer />

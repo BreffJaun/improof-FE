@@ -33,8 +33,11 @@ const Martin = ({ darkMode }) => {
           <div className="col mb1">
             <p className="c-FAV">About me:</p>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Asperiores magni, quibusdam omnis alias illum quos!
+              I am a designer with heart and soul and live for the visualization
+              of ideas. I have been able to do this for over 16 years at
+              magazines and newspapers in Europe's largest publishing house.
+              Currently I am learning WebDev, so I can let off steam creatively
+              in UI and frontend. And that's going to be fascinating.
             </p>
           </div>
         </div>
@@ -74,9 +77,10 @@ const Martin = ({ darkMode }) => {
                 <a
                   href="https://grossesbewirken.de/news.html"
                   target="_blank"
-                  // className="c-FAV"
-                ></a>
-                <Website />
+                  className="c-FAV"
+                >
+                  <Website />
+                </a>
               </div>
             </button>
           </div>

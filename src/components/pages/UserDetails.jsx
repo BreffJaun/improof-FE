@@ -131,7 +131,8 @@ const TalentDetails = () => {
           </h1>
           {/* <p className="mt05 mb1">{talent.profile.description ? talent.profile.description : "You could add some info to your profile."}</p> */}
           {showInfos ? (
-            <div className="col mt05 mb1">
+            <div className="max1300">
+            <div className="col mt05 mb1 maxM">
               {/* ----------------------------------------------- */}
               {talent.profile.description && (
                 <div className="mb1">
@@ -142,7 +143,7 @@ const TalentDetails = () => {
               {/* ----------------------------------------------- */}
               {talent.profile.goal && (
                 <div className="mb1">
-                  <p className={color}>i want to achieve:</p>
+                  <p className={color}>tools and skills:</p>
                   <p>{talent.profile.goal}</p>
                 </div>
               )}
@@ -168,6 +169,7 @@ const TalentDetails = () => {
                 </div>
               )}
               {/* ----------------------------------------------- */}
+            </div>
             </div>
           ) : (
             ""
@@ -297,7 +299,6 @@ const TalentDetails = () => {
             {showContact ? "close" : "show me"}
           </button>
         </div>
-        <Footer />
         <ToastContainer
           className={
             darkMode
