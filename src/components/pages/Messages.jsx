@@ -87,7 +87,7 @@ const Messages = () => {
     sender && (
       <>
         <div className="center">
-          <h1 className={`${color} mt1 mb2`}>messages</h1>
+          <h1 className={`${color} mb2`}>messages</h1>
 
           <div className="wide col">
             <div className="center">

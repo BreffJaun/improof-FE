@@ -42,7 +42,7 @@ const Conversations = ({
                   const unread = con.message.find(
                     (msg) => !msg.isRead && msg.from !== user._id
                   );
-                  const date1 = con?.message[0]?.createdAt
+                  const date1 = con?.message[con?.message.length -1]?.createdAt
                     ?.toString()
                     .split("T");
                   const date = date1 && date1[0].split("-").reverse().join(".");
@@ -80,7 +80,7 @@ const Conversations = ({
                               {participant.profile.lastName}
                             </p>
                             <p>
-                              <span className="fw700">{time && time}</span> -{" "}
+                              <span className="fw700">{time  ? time : ""}</span> -{" "}
                               {date && date}
                             </p>
                               {unread && (
@@ -91,8 +91,7 @@ const Conversations = ({
                       </div>
                     )
                   );
-                })
-                .reverse()}
+                })}
               <div
                 className="central"
                 onClick={() => setShowConversations(!showConversations)}
