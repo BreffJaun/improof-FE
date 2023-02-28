@@ -89,7 +89,7 @@ const TalentCardS = ({ talent, user, theme }) => {
             {talent?.profile?.avatar ? (
               <img src={talent.profile?.avatar} />
             ) : (
-              <p className="initials  central">{talent.profile?.initials}</p>
+              <p className="initials central">{talent.profile?.initials}</p>
             )}
           </div>
 
@@ -100,7 +100,7 @@ const TalentCardS = ({ talent, user, theme }) => {
             >
               {talent.profile?.firstName} {talent.profile?.lastName}
             </p>
-            <p>{talent.profile?.category}</p>
+            <p className="info fw500">{talent.profile?.category}</p>
           </div>
           {/* {user._id === talent._id ? null : (
             <div className="ml1 row">
