@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { host } from "../../api/host.jsx";
-import { TalentCard, TalentCardS } from "./TalentCard.jsx";
+import { TalentCard, TalentCardContact, TalentCardS } from "./TalentCard.jsx";
 import UserContext from "../../context/userContext.jsx";
 import { useNavigate } from "react-router-dom";
 import ReactPlayer from "react-player";
@@ -28,7 +28,7 @@ const StoneCard = ({ stone, project, theme }) => {
         <p className="center">{stone.description}</p>
         <div>
           {stone.team.map((member) => (
-            <TalentCardS
+            <TalentCardContact
               key={member._id}
               talent={member}
               user={user}
