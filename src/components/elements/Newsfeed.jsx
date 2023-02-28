@@ -199,7 +199,7 @@ const Newsfeed = () => {
                   <div className="flex">
                     {stone.team.map((member) => {
                       return (  
-                        <div className="head shadow-l mr-08">
+                        <div className="head50 shadow-l mr-08">
                           <img
                             key={member._id}
                             className="head-pic"
