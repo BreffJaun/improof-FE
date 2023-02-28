@@ -80,7 +80,7 @@ const Conversations = ({
                               {participant.profile.lastName}
                             </p>
                             <p>
-                              <span className="fw700">{time && time}</span> -{" "}
+                              <span className="fw700">{time  ? time : ""}</span> -{" "}
                               {date && date}
                             </p>
                               {unread && (
