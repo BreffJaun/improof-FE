@@ -246,3 +246,32 @@ input[type=file]::before {
 .shadow-l{
   box-shadow: 0rem 0rem 1rem rgba(25,29,41, 0.5);
 }
+
+
+.head90{
+    border: 3px solid var(--A100);
+    display: flex;
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 50%;
+    .head-pic{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.head50{
+    border: 3px solid var(--A100);
+    display: flex;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+    .head-pic{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}

@@ -97,15 +97,17 @@ const TalentDetails = () => {
           <div className="rel">
             <div className="circle90 central">
               {talent.profile.avatar ? (
-                <img
-                  src={
-                    user._id === talent._id
-                      ? user.profile.avatar
-                      : talent.profile.avatar
-                  }
-                  className={`circle90 ${bg} central rel`}
-                  alt="avatar"
-                />
+                <div className="head90 shadow-s">
+                  <img
+                    src={
+                      user._id === talent._id
+                        ? user.profile.avatar
+                        : talent.profile.avatar
+                    }
+                    className={`${bg} rel head-pic`}
+                    alt="avatar"
+                    />
+                  </div>
               ) : (
                 <div className={`circle90 ${bg} central rel initials`}>
                   <p>{talent.profile.initials}</p>
