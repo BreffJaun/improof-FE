@@ -123,6 +123,66 @@ const TalentCardS = ({ talent, user, theme }) => {
   );
 };
 
+
+
+const TalentCardContact = ({ talent, user, theme }) => {
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: 8000,
+  };
+  const color = talent.meta.colorTheme[0];
+  const bg = talent.meta.colorTheme[1];
+  const navigate = useNavigate();
+  return (
+    <>
+      <div className="t-cardS col mt1">
+        <div className="mt1 mb2 row">
+          <div
+            className={`${bg} t-picS  central`}
+            onClick={() => navigate(`/userDetails/${talent._id}`)}
+          >
+            {talent?.profile?.avatar ? (
+              <img src={talent.profile?.avatar} />
+            ) : (
+              <p className="initials central">{talent.profile?.initials}</p>
+            )}
+          </div>
+
+          <div className="">
+            <p
+              className={`fw500 ${color}`}
+              onClick={() => navigate(`/userDetails/${talent._id}`)}
+            >
+              {talent.profile?.firstName} {talent.profile?.lastName}
+            </p>
+            <p className="info fw500">{talent.profile?.category}</p>
+          </div>
+          {user._id === talent._id ? null : (
+            <div className="ml1 row">
+              <div title="send message">
+                <SendMessageBtn talent={talent} user={user} />
+              </div>
+              <div>
+                {user.follows.find((follow) => follow._id === talent._id) ? (
+                  <FollowBtn talent={talent} user={user} theme={theme} />
+                ) : (
+                  <FollowBtn talent={talent} user={user} theme={theme} />
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+      <ToastContainer />
+    </>
+  );
+};
+
+
+
+
+
+
 const TalentCardStones = ({
   talent,
   user,
@@ -185,4 +245,4 @@ const TalentCardStones = ({
   );
 };
 
-export { TalentCard, TalentCardS, TalentCardStones };
+export { TalentCard, TalentCardS, TalentCardStones, TalentCardContact };
