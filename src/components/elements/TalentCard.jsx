@@ -123,8 +123,6 @@ const TalentCardS = ({ talent, user, theme }) => {
   );
 };
 
-
-
 const TalentCardContact = ({ talent, user, theme }) => {
   const toastOptions = {
     position: "bottom-right",
@@ -177,11 +175,6 @@ const TalentCardContact = ({ talent, user, theme }) => {
     </>
   );
 };
-
-
-
-
-
 
 const TalentCardStones = ({
   talent,

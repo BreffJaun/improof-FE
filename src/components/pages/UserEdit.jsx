@@ -227,7 +227,6 @@ const UserEdit = () => {
               title="upload image"
               className={`circle40 ${bg} central editBtn`}
             >
-              {/* <p className="c-A100">image</p> */}
               <input
                 id="uploadAvatar"
                 onChange={avatarUploadHandler}
@@ -240,6 +239,7 @@ const UserEdit = () => {
                 <AiOutlineCamera />
               </label>
             </div>
+            
           </div>
           <h1
             className={`central ${
@@ -292,7 +292,9 @@ const UserEdit = () => {
         </div>
         <div className="col mb1">
           <p className="ml1 mb05">that´s me:</p>
-          <input
+          <textarea
+            rows="7"
+            id="description"
             onChange={handleInputProfile}
             name="description"
             type="text"
@@ -503,22 +505,24 @@ const UserEdit = () => {
                 <p>{user.profile.initials}</p>
               </div>
             )}
+
             <div
               title="upload image"
               className={`circle40 ${bg} central editBtn`}
             >
-              {/* <p className="c-A100">image</p> */}
               <input
                 id="uploadAvatar"
                 onChange={avatarUploadHandler}
                 name="avatar"
                 type="file"
                 accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
+                hidden
               />
               <label htmlFor="uploadAvatar" className="c-A100 pointer central">
                 <AiOutlineCamera />
               </label>
             </div>
+
           </div>
           <h1
             className={`central ${
