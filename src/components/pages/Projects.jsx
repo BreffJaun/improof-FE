@@ -109,6 +109,7 @@ const StarProjects = () => {
                 );
               }).reverse()}
         </div>
+        <Footer/>
       </div>
     )
   );

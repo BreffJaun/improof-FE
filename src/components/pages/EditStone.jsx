@@ -471,7 +471,8 @@ const EditStone = () => {
       <button className={`mt2  bg-FAV`} onClick={() => handleDelete()}>
         delete stone
       </button>
-      <ToastContainer />
+        <ToastContainer />
+        <Footer/>
     </>
   );
 };

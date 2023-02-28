@@ -479,6 +479,7 @@ const UserEdit = () => {
           }
           hideProgressBar={true}
         />
+      <Footer/>
       </form>
     </div>
   ) : uploadPending ? (
@@ -665,6 +666,7 @@ const UserEdit = () => {
           }
           hideProgressBar={true}
         />
+      <Footer/>
       </form>
     </>
   ) : null;

@@ -327,6 +327,7 @@ const TalentDetails = () => {
           </button>
         </div>
         {/* <ToastContainer limit={1} /> */}
+        <Footer/>
       </>
     )
   );
