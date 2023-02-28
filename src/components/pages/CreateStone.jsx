@@ -251,7 +251,7 @@ const CreateStone = () => {
     
             <div className="col maxM ">
               <h3 className={`fw500 ${color} center mb2`}>add your media</h3>
-              <div className="thumbnailS">
+              <div className={mediaUrl ? "central" : "thumbnailS central"}>
                 {mediaUrl && videoTrigger ? (
                   <ReactPlayer
                     url={mediaUrl}
@@ -267,7 +267,7 @@ const CreateStone = () => {
                     stopOnUnmount={false}
                   />
                 ) : mediaUrl && imageTrigger ? (
-                  <img className="max" src={mediaUrl} alt="media" />
+                  <img className="central w100d" src={mediaUrl} alt="media" />
                 ) : (
                   <div title="upload">
                     

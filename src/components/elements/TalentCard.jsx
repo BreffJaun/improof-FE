@@ -83,13 +83,13 @@ const TalentCardS = ({ talent, user, theme }) => {
       <div className="t-cardS col mt1">
         <div className="mt1 mb2 row">
           <div
-            className={`${bg} t-picS`}
+            className={`${bg} t-picS  central`}
             onClick={() => navigate(`/userDetails/${talent._id}`)}
           >
             {talent?.profile?.avatar ? (
               <img src={talent.profile?.avatar} />
             ) : (
-              <p className="initials">{talent.profile?.initials}</p>
+              <p className="initials  central">{talent.profile?.initials}</p>
             )}
           </div>
 
@@ -141,13 +141,13 @@ const TalentCardStones = ({
       <div className="t-cardS  col mt1">
         <div className=" mt1 mb2 row">
           <div
-            className={`${bg} t-picS`}
+            className={`${bg} t-picS central`}
             // onClick={() => navigate(`/userDetails/${talent._id}`)}
           >
             {talent?.profile?.avatar ? (
               <img src={talent.profile?.avatar} />
             ) : (
-              <p className="initials">{talent.profile?.initials}</p>
+              <p className="initials central">{talent.profile?.initials}</p>
             )}
           </div>
 

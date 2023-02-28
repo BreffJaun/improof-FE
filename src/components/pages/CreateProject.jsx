@@ -5,6 +5,7 @@ import { host } from "../../api/host.jsx";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserContext from "../../context/userContext.jsx";
+import "../../styles/create-project.scss"
 
 // COMPONENTS
 import CategoriesFilter from "../elements/CategoriesFilter.jsx";
@@ -310,8 +311,8 @@ const CreateProject = () => {
           </div>
           <div className="col">
             <p className="ml1 mb05 mt1">thumbnail</p>
-            <div className="thumbnailS dis-none">
-              {thumbnailUrl ? <img src={thumbnailUrl} alt="thumbnail" /> : null}         
+            <div className={!thumbnailUrl ? `thumbnailS central` : `central`}>
+              {thumbnailUrl ? <img className="w100d" src={thumbnailUrl} alt="thumbnail" /> : null}         
             </div>
           </div>
           <div className="center">
