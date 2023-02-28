@@ -67,10 +67,10 @@ const News = ({ project, user }) => {
                                 </p>
                               )}
                               </div>
-                              <div className="center">
+                              {/* <div className="center">
                                 <p>{member.profile.firstName}</p>
                                 <p>{member.profile.lastName}</p>
-                                </div>
+                              </div> */}
                             </div>
                           </div>
                         ))}
