@@ -194,21 +194,20 @@ const Newsfeed = () => {
               if (pro !== undefined) project = starProjects[i];
             }
             return (
-              <div className="newsfeed-card">
+              <div key={stone._id} className="newsfeed-card">
                 <div>
                   <div className="flex">
                     {stone.team.map((member) => {
-                      return (
-                        <>
+                      return (                        
                           <img
+                            key={member._id}
                             className="circle50"
                             src={member.profile.avatar}
                             onClick={() =>
                               navigate(`/userdetails/${member._id}`)
                             }
-                          />
-                          {/* <p>{member.profile.firstName}</p>                                            */}
-                        </>
+                          />                                                          
+                      
                       );
                     })}
                   </div>

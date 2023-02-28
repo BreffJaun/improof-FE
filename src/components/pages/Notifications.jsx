@@ -28,7 +28,7 @@ const Notifications = ({ setShowNotifications }) => {
                   const time2 = date1[1].slice(2, 5);
                   const time = time1 + time2;
 
-                  return (
+                  return ( !notification.notText.includes(user.profile.firstName) && !notification.notText.includes(user.profile.lastName) &&
                     <div className="mb1" key={notification._id}>
                       <p
                         // className={notification.isRead ? { color } : "bg-gGR1"}
