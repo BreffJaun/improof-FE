@@ -16,9 +16,9 @@ const MasterSearch = ({ projects, talents, setShowSearch, showSearch }) => {
   return (
     <div className="burger-container rel ">
       <div id={darkMode && "bgG"}>
-        <p className="mb2 info center">search results</p>
+        <p className="info center">search results</p>
         <div className="scroll-container">
-          <div className="col mr1">
+          <div className="mr15">
             {talents.length > 0 && (
               <>
                 {/* <p className={`${color} fw700 mb1 central`}>talents</p> */}
@@ -26,7 +26,7 @@ const MasterSearch = ({ projects, talents, setShowSearch, showSearch }) => {
                   (talent, i) =>
                     talent.profile.isTalent &&
                     talent._id !== user._id && (
-                      <div onClick={() => setShowSearch(false)} key={i}>
+                      <div className="flex y" onClick={() => setShowSearch(false)} key={i}>
                         <TalentCardS
                           talent={talent}
                           user={user}
