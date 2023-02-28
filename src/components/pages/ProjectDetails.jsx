@@ -22,6 +22,7 @@ import StoneCard from "../elements/StoneCard.jsx";
 // ICONS
 import { AiOutlineEdit as Edit } from "react-icons/ai";
 import { AiOutlinePlus as Plus } from "react-icons/ai";
+import ProjectBtn from "../buttons/ProjectBtn.jsx";
 
 const ProjectDetails = () => {
   const navigate = useNavigate();
@@ -94,6 +95,7 @@ const ProjectDetails = () => {
           )}
           <h1 className={color}>"{project.name}"</h1>
           <h4 className={color}>{project.description}</h4>
+          <ProjectBtn project={project} user={user}/>
         </div>
         {project.team.find((member) => member._id === user._id) && (
           <div className="center">
