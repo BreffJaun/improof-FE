@@ -188,7 +188,11 @@ const TalentDetails = () => {
             </div>
             <div>
               {user?._id !== talent._id && (
-                <FollowBtn talent={talent} user={user} />
+                <FollowBtn
+                  talent={talent}
+                  user={user}
+                  theme={talent.meta.darkMode ? "dark" : "light"}
+                />
               )}
             </div>
             <div>

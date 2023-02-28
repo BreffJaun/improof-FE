@@ -174,7 +174,7 @@ const Newsfeed = () => {
       <div className="central col">
         <p className="mb1">choose your topic</p>
         <CategoriesFilter category={category} setCategory={setCategory} />
-      </div> 
+      </div>
 
       <div className="bo-DARK"></div>
       <h1 className={`${color} center mt1`}>newsfeed</h1>
@@ -198,22 +198,29 @@ const Newsfeed = () => {
                 <div>
                   <div className="flex">
                     {stone.team.map((member) => {
-                      return (  
-                        member.profile.avatar ?
+                      return member.profile.avatar ? (
                         <div key={member._id} className="head50 shadow-l mr-08">
-                          <img                                          
+                          <img
                             className="head-pic"
                             src={member.profile.avatar}
                             onClick={() =>
                               navigate(`/userdetails/${member._id}`)
                             }
-                          />                                                          
-                        </div> 
-                        :
-                        <div key={member._id} className={`${bg} central head50 shadow-l mr-08`}>
-                          <p className="central" onClick={() =>
+                          />
+                        </div>
+                      ) : (
+                        <div
+                          key={member._id}
+                          className={`${bg} central head50 shadow-l mr-08`}
+                        >
+                          <p
+                            className="central"
+                            onClick={() =>
                               navigate(`/userdetails/${member._id}`)
-                            }>{member.profile.initials}</p>
+                            }
+                          >
+                            {member.profile.initials}
+                          </p>
                         </div>
                       );
                     })}
