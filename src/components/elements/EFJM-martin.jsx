@@ -74,7 +74,7 @@ const Martin = ({ darkMode }) => {
                 <a
                   href="https://grossesbewirken.de/news.html"
                   target="_blank"
-                  className="c-FAV"
+                  // className="c-FAV"
                 ></a>
                 <Website />
               </div>

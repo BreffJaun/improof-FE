@@ -9,6 +9,8 @@ import Footer from "../elements/Footer.jsx";
 // COMPONENTS
 import { LogoL } from "../Logo.jsx";
 
+import logoOr from "../../images/improof_OR.png";
+
 const Login = () => {
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({});
@@ -42,7 +44,10 @@ const Login = () => {
         .then((json) => {
           console.log(json);
           if (!json.status) {
-            toast("invalid password");
+            toast("invalid password", {
+              hideProgressBar: "true",
+              icon: () => <img src={logoOr} width="20" />,
+            });
           } else {
             navigate("/");
           }
