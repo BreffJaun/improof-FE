@@ -69,7 +69,7 @@ const UserEdit = () => {
     };
     getUser();
   }, [id, favColor]);
-  console.log(user.profile.category);
+  // console.log(user.profile.category);
 
   const avatarUploadHandler = (e) => {
     setAvatar(e.target.files[0]);
@@ -232,7 +232,7 @@ const UserEdit = () => {
                 accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
                 hidden
               />
-              <label for="uploadAvatar" className="c-A100 pointer central">
+              <label htmlFor="uploadAvatar" className="c-A100 pointer central">
                 <AiOutlineCamera />
               </label>
             </div>
@@ -647,7 +647,7 @@ const UserEdit = () => {
                 type="file"
                 accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
               />
-              <label for="uploadAvatar" className="c-A100 pointer central">
+              <label htmlFor="uploadAvatar" className="c-A100 pointer central">
                 <AiOutlineCamera />
               </label>
             </div>
