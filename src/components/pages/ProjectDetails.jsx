@@ -15,7 +15,7 @@ import UserContext from "../../context/userContext.jsx";
 import TriggerContext from "../../context/triggerContext.jsx";
 
 //ELEMENTS
-import { TalentCard } from "../elements/TalentCard.jsx";
+import { TalentCard, TalentCardContact } from "../elements/TalentCard.jsx";
 import Footer from "../elements/Footer.jsx";
 import StoneCard from "../elements/StoneCard.jsx";
 

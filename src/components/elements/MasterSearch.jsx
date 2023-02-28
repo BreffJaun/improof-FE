@@ -26,7 +26,7 @@ const MasterSearch = ({ projects, talents, setShowSearch, showSearch }) => {
                   (talent, i) =>
                     talent.profile.isTalent &&
                     talent._id !== user._id && (
-                      <div className="ml025 flex" onClick={() => setShowSearch(false)} key={i}>
+                      <div className="flex" onClick={() => setShowSearch(false)} key={i}>
                         <TalentCardS
                           talent={talent}
                           user={user}
