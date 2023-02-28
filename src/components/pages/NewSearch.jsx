@@ -9,7 +9,7 @@ import { Map, Marker, ZoomControl, Overlay } from "pigeon-maps";
 import Footer from "../elements/Footer.jsx";
 import { host } from "../../api/host.jsx";
 import UserContext from "../../context/userContext.jsx";
-import { TalentCard } from "../elements/TalentCard.jsx";
+import { TalentCard, TalentCardS } from "../elements/TalentCard.jsx";
 import CategoriesFilter from "../elements/CategoriesFilter.jsx";
 
 // I M P O R T:  K E Y S
@@ -158,7 +158,7 @@ const NewSearch = () => {
             .filter((talent) => talent.location.distance < radius)
             .sort((a, b) => a.location.distance - b.location.distance);
 
-          console.log("filteredTalents: ", filteredTalents);
+          // console.log("filteredTalents: ", filteredTalents);
           // CATEGORY FILTER
           if (category) {
             filteredTalents = filteredTalents.filter((talent) =>
@@ -174,7 +174,7 @@ const NewSearch = () => {
           }
           setSearchTrigger(true);
           setRedMarker(true);
-          console.log("filteredTalents: ", filteredTalents);
+          // console.log("filteredTalents: ", filteredTalents);
           setUpdatedTalents(filteredTalents);
         })
         .catch((error) => console.log(searchData, error));
@@ -200,8 +200,7 @@ const NewSearch = () => {
         }
       }
       setSearchTrigger(true);
-      setRedMarker(true);
-      console.log("filteredTalents: ", filteredTalents);
+      // console.log("filteredTalents: ", filteredTalents);
       setUpdatedTalents(filteredTalents);
     }
   };
@@ -247,10 +246,10 @@ const NewSearch = () => {
     setSearchTrigger(false);
     setRedMarker(false);
   };
-  console.log("searchTrigger: ", searchTrigger);
-  console.log("redMarker: ", redMarker);
-  console.log("searchData LAT: ", searchData.latitude);
-  console.log("searchData LON: ", searchData.longitude);
+  // console.log("searchTrigger: ", searchTrigger);
+  // console.log("redMarker: ", redMarker);
+  // console.log("searchData LAT: ", searchData.latitude);
+  // console.log("searchData LON: ", searchData.longitude);
 
   // RESET SEARCH END //
 
@@ -297,7 +296,7 @@ const NewSearch = () => {
                   );
                 }
               })}
-              {currTalent && (
+              {/* {currTalent && (
                 <Overlay
                   anchor={[
                     +currTalent.location.latitude,
@@ -311,7 +310,7 @@ const NewSearch = () => {
                       currTalent.profile.lastName}
                   </div>
                 </Overlay>
-              )}
+              )} */}
               <ZoomControl />
             </Map>
               )}
@@ -397,14 +396,15 @@ const NewSearch = () => {
         </div>
         
 
-        <div className="bo-DARK"></div>
-        <div>
         {/* CURR TALENT */}
         {currTalent && (
-          <div>
-            <TalentCard talent={currTalent} user={user} key={currTalent._id} />
+          <div className="ass">
+            <h1 className={`${color} mt2 mb2 center`}>selected talent</h1>
+            <TalentCardS talent={currTalent} user={user} key={currTalent._id} />
           </div>
         )}
+        <div className="bo-DARK"></div>
+        <div>
         {/* SEARCHED TALENTS (OR ALL TALENTS) */}
         <div className="max mb2">
           {updatedTalents ?

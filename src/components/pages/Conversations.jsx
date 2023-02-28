@@ -82,10 +82,10 @@ const Conversations = ({
                             <p>
                               <span className="fw700">{time && time}</span> -{" "}
                               {date && date}
+                            </p>
                               {unread && (
                                 <div className={`dot abs circle15 ${bg}`}></div>
                               )}
-                            </p>
                           </div>
                         </div>
                       </div>
