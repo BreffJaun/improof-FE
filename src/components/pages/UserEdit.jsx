@@ -197,8 +197,7 @@ const UserEdit = () => {
   return uploadPending ? (
     <div>Loading...</div>
   ) : !isPending && user.profile.isTalent ? (
-      <div className="maxHH central">
-        
+    <div className="maxHH central">
       <form onSubmit={handleSubmit} encType="multipart/form">
         <div className="central col mt3">
           <div className="circle90 bg-FAV central rel">
@@ -299,7 +298,11 @@ const UserEdit = () => {
         </div>
         <div className="central col mt2 mb1">
           <p className="mb05">here i perform my best:</p>
-          <select onChange={handleCategoryProfile} name="category" className="shadow-s">
+          <select
+            onChange={handleCategoryProfile}
+            name="category"
+            className="shadow-s"
+          >
             <option value="">All categories</option>
             {user.profile.category === "Web-Development" ? (
               <option value="Web-Development" selected>
@@ -389,12 +392,40 @@ const UserEdit = () => {
             ) : (
               <option value="Pedagogy">Pedagogy</option>
             )}
-            {user.profile.category === "Science" ? (
-              <option value="Science" selected>
-                Science
+            {user.profile.category === "Art" ? (
+              <option value="Art" selected>
+                Art
               </option>
             ) : (
-              <option value="Science">Science</option>
+              <option value="Art">Art</option>
+            )}
+            {user.profile.category === "Design" ? (
+              <option value="Design" selected>
+                Design
+              </option>
+            ) : (
+              <option value="Design">Design</option>
+            )}{" "}
+            {user.profile.category === "Travel" ? (
+              <option value="Travel" selected>
+                Travel
+              </option>
+            ) : (
+              <option value="Travel">Travel</option>
+            )}{" "}
+            {user.profile.category === "Photography" ? (
+              <option value="Photography" selected>
+                Photography
+              </option>
+            ) : (
+              <option value="Photography">Photography</option>
+            )}
+            {user.profile.category === "Events" ? (
+              <option value="Events" selected>
+                Events
+              </option>
+            ) : (
+              <option value="Events">Events</option>
             )}
             {user.profile.category === "others" ? (
               <option value="others" selected>
@@ -540,11 +571,21 @@ const UserEdit = () => {
         </h1>
         <div className="col mb1">
           <p className="ml1 mb05">set new password</p>
-          <input name="" type="text" placeholder="new password" className="shadow-s"/>
+          <input
+            name=""
+            type="text"
+            placeholder="new password"
+            className="shadow-s"
+          />
         </div>
         <div className="col mb1">
           <p className="ml1 mb05">confirm new password</p>
-          <input name="" type="text" placeholder="confirm password" className="shadow-s"/>
+          <input
+            name=""
+            type="text"
+            placeholder="confirm password"
+            className="shadow-s"
+          />
         </div>
 
         <div className="bo-DARK"></div>
@@ -569,7 +610,7 @@ const UserEdit = () => {
           hideProgressBar={true}
         />
       </form>
-    </div >
+    </div>
   ) : uploadPending ? (
     <div>Loading...</div>
   ) : !isPending && user.profile.isRecruiter ? (
@@ -603,7 +644,7 @@ const UserEdit = () => {
                 onChange={avatarUploadHandler}
                 name="avatar"
                 type="file"
-                    accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
+                accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
               />
             </div>
           </div>
@@ -620,13 +661,11 @@ const UserEdit = () => {
         <div>
           <RadioColor user={talent} setFavColor={setFavColor} />
         </div>
-        
+
         <div className="col mt2 mb1">
           <p className="ml1 mb05">
             first name
-            <span
-              className={`${color ? color : user.meta.colorTheme[0]}fw900`}
-            >
+            <span className={`${color ? color : user.meta.colorTheme[0]}fw900`}>
               *
             </span>
           </p>
@@ -718,11 +757,15 @@ const UserEdit = () => {
         </h1>
         <div className="col mb1">
           <p className="ml1 mb05 mt05">set new password</p>
-          <input type="text" placeholder="new password" className="shadow-s"/>
+          <input type="text" placeholder="new password" className="shadow-s" />
         </div>
         <div className="col mb1">
           <p className="ml1 mb05">confirm new password</p>
-          <input type="text" placeholder="confirm password" className="shadow-s"/>
+          <input
+            type="text"
+            placeholder="confirm password"
+            className="shadow-s"
+          />
         </div>
 
         <div className="bo-DARK"></div>
@@ -747,7 +790,7 @@ const UserEdit = () => {
           hideProgressBar={true}
         />
       </form>
-    </ >
+    </>
   ) : null;
 };
 
