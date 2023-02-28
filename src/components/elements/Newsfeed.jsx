@@ -199,15 +199,21 @@ const Newsfeed = () => {
                   <div className="flex">
                     {stone.team.map((member) => {
                       return (  
+                        member.profile.avatar ?
                         <div key={member._id} className="head50 shadow-l mr-08">
-                          <img
-                            key={member._id}
+                          <img                                          
                             className="head-pic"
                             src={member.profile.avatar}
                             onClick={() =>
                               navigate(`/userdetails/${member._id}`)
                             }
                           />                                                          
+                        </div> 
+                        :
+                        <div key={member._id} className={`${bg} central head50 shadow-l mr-08`}>
+                          <p className="central" onClick={() =>
+                              navigate(`/userdetails/${member._id}`)
+                            }>{member.profile.initials}</p>
                         </div>
                       );
                     })}
