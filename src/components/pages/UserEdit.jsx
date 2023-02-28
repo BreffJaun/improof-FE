@@ -30,6 +30,7 @@ import "../../styles/toastify.scss";
 
 import Footer from "../elements/Footer.jsx";
 import { RadioColor } from "../buttons/RadioColor.jsx";
+import CategoriesFilter from "../elements/CategoriesFilter.jsx";
 
 const UserEdit = () => {
   const { id } = useParams("id");
@@ -44,6 +45,7 @@ const UserEdit = () => {
   const [isPending, setIsPending] = useState(true);
   const [uploadPending, setUploadPending] = useState(false);
   const [theme, setTheme] = useState("");
+  const [category, setCategory] = useState("");
 
   const [favColor, setFavColor] = useState("");
   // const color = favColor[0]
@@ -63,6 +65,7 @@ const UserEdit = () => {
           if (json.status) {
             setTalent(json.userData);
             darkMode ? setTheme("dark") : setTheme("light");
+            setCategory(userData.profile.category);
             setIsPending(false);
           }
         });
@@ -70,6 +73,7 @@ const UserEdit = () => {
     getUser();
   }, [id, favColor]);
   // console.log(user.profile.category);
+  // console.log(category);
 
   const avatarUploadHandler = (e) => {
     setAvatar(e.target.files[0]);
@@ -101,12 +105,12 @@ const UserEdit = () => {
     });
   };
 
-  const handleCategoryProfile = (event) => {
+  useEffect(() => {
     setUserData({
       ...userData,
-      profile: { ...userData.profile, [event.target.name]: event.target.value },
+      profile: { ...userData.profile, category: category },
     });
-  };
+  }, [category]);
 
   useEffect(() => {
     setUserData({
@@ -298,143 +302,7 @@ const UserEdit = () => {
         </div>
         <div className="central col mt2 mb1">
           <p className="mb05">here i perform my best:</p>
-          <select
-            onChange={handleCategoryProfile}
-            name="category"
-            className="shadow-s"
-          >
-            <option value="">All categories</option>
-            {user.profile.category === "Web-Development" ? (
-              <option value="Web-Development" selected>
-                Web-Development
-              </option>
-            ) : (
-              <option value="Web-Development">Web-Development</option>
-            )}
-            {user.profile.category === "Software-Development" ? (
-              <option value="Software-Development" selected>
-                Software-Development
-              </option>
-            ) : (
-              <option value="Software-Development">Software-Development</option>
-            )}
-            {user.profile.category === "Online-Marketing" ? (
-              <option value="Online-Marketing" selected>
-                Online-Marketing
-              </option>
-            ) : (
-              <option value="Online-Marketing">Online-Marketing</option>
-            )}
-            {user.profile.category === "Social-Media-Management" ? (
-              <option value="Social-Media-Management" selected>
-                Social-Media-Management
-              </option>
-            ) : (
-              <option value="Social-Media-Management">
-                Social-Media-Management
-              </option>
-            )}
-            {user.profile.category === "UX-UI" ? (
-              <option value="UX-UI" selected>
-                UX-UI
-              </option>
-            ) : (
-              <option value="UX-UI">UX-UI</option>
-            )}
-            {user.profile.category === "Electrical Engineering" ? (
-              <option value="Electrical Engineering" selected>
-                Electrical Engineering
-              </option>
-            ) : (
-              <option value="Electrical Engineering">
-                Electrical Engineering
-              </option>
-            )}
-            {user.profile.category === "Metalworking" ? (
-              <option value="Metalworking" selected>
-                Metalworking
-              </option>
-            ) : (
-              <option value="Metalworking">Metalworking</option>
-            )}
-            {user.profile.category === "Woodworking" ? (
-              <option value="Woodworking" selected>
-                Woodworking
-              </option>
-            ) : (
-              <option value="Woodworking">Woodworking</option>
-            )}
-            {user.profile.category === "Handworking" ? (
-              <option value="Handworking" selected>
-                Handworking
-              </option>
-            ) : (
-              <option value="Handworking">Handworking</option>
-            )}
-            {user.profile.category === "Gardening" ? (
-              <option value="Gardening" selected>
-                Gardening
-              </option>
-            ) : (
-              <option value="Gardening">Gardening</option>
-            )}
-            {user.profile.category === "Gastronomy/Cooking" ? (
-              <option value="Gastronomy/Cooking" selected>
-                Gastronomy/Cooking
-              </option>
-            ) : (
-              <option value="Gastronomy/Cooking">Gastronomy/Cooking</option>
-            )}
-            {user.profile.category === "Pedagogy" ? (
-              <option value="Pedagogy" selected>
-                Pedagogy
-              </option>
-            ) : (
-              <option value="Pedagogy">Pedagogy</option>
-            )}
-            {user.profile.category === "Art" ? (
-              <option value="Art" selected>
-                Art
-              </option>
-            ) : (
-              <option value="Art">Art</option>
-            )}
-            {user.profile.category === "Design" ? (
-              <option value="Design" selected>
-                Design
-              </option>
-            ) : (
-              <option value="Design">Design</option>
-            )}{" "}
-            {user.profile.category === "Travel" ? (
-              <option value="Travel" selected>
-                Travel
-              </option>
-            ) : (
-              <option value="Travel">Travel</option>
-            )}{" "}
-            {user.profile.category === "Photography" ? (
-              <option value="Photography" selected>
-                Photography
-              </option>
-            ) : (
-              <option value="Photography">Photography</option>
-            )}
-            {user.profile.category === "Events" ? (
-              <option value="Events" selected>
-                Events
-              </option>
-            ) : (
-              <option value="Events">Events</option>
-            )}
-            {user.profile.category === "others" ? (
-              <option value="others" selected>
-                others
-              </option>
-            ) : (
-              <option value="others">others</option>
-            )}
-          </select>
+          <CategoriesFilter category={category} setCategory={setCategory} />
         </div>
 
         <div className="col mb1">

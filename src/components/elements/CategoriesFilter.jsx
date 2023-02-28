@@ -28,14 +28,14 @@ const CategoriesFilter = ({ setCategory, category, searchTrigger, last }) => {
   }, [category]);
 
   return (
-    < div className="mb2">
-      <select 
-        onChange={handleCategory} 
+    <div className="mb2">
+      <select
+        onChange={handleCategory}
         name="newsfeed-filter"
         disabled={searchTrigger}
         className="shadow-s"
         defaultValue={category}
-      > 
+      >
         <option value="">Select category</option>
         <option value="Web-Development">Web-Development</option>
         <option value="Software-Development">Software-Development</option>
@@ -56,7 +56,7 @@ const CategoriesFilter = ({ setCategory, category, searchTrigger, last }) => {
         <option value="Events">Events</option>
         <option value="others">others</option>
       </select>
-    </ div>
+    </div>
   );
 };
 
