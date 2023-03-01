@@ -1,6 +1,6 @@
 # Improof 
 
-![logo](../src/img/LogoSpiel.png)
+![logo](./src/images/improof_A100.png)
 
 **Improof** schließt die Lücke zwischen „Social Media“ und „professional Network“. Das Ziel ist es vor allem Quereinsteigern den Einstieg in die Berufswelt leichter machen. Auch Recruitern soll die Arbeit mit Berufsfeldern die stark von Quereinsteigern geprägt sind, die Suche nach Kandidaten mit passenden Fähigkeiten erleichtern.
 **Improof** ermöglicht eine direkte Darstellung des aktuellen Kenntnisstandes eines Users, sowie deren Entwicklung im Laufe der Zeit. Außerdem kann anhand der Projekte die Arbeitsweise eines Users Schritt für Schritt nachvollzogen werden. Mediale Inhalte machen es zudem einfacher einen detaillierten Einblick zu erhalten.
@@ -98,7 +98,3 @@ Für das Design wird durchgehend **SASS** verwendet.
 Für das Backend verwenden wir **Node.js** mit dem Webframework **Express.JS**. Das Speichern und Abrufen der Daten wird in **MongoDB** über **Mongoose** gemacht.
 Außerdem benutzen wir  **Sendgrid** für die Erstellung automatisierter E-Mails (zum Beispiel bei der Registration). Für die Validatoren benutzen wir **Express-Validator**, welche zum Beispiel bei der Eingabe/Änderung der Benutzerdaten oder Projektdaten zum Einsatz kommen. Als Webtoken benutzen wir **Jsonwebtoken**. Zur Speicherung von Medieninhalten verwenden wir **Multer** in Kombination mit **Cloudinary**. 
 
-
-
-
-=================================
