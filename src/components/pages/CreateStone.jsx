@@ -356,7 +356,8 @@ const CreateStone = () => {
             : "Toastify__toast-theme--light "
         }
         hideProgressBar={true}
-      />
+        />
+        <Footer/>
     </div>
   );
 };

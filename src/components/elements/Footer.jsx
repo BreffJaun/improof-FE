@@ -17,7 +17,7 @@ const Footer = () => {
 
   return (
     <>
-    <div className="maxM bo-DARK"></div>
+    <div className="max bo-DARK"></div>
       <div className="logoContainer central">
         <div 
         className={`efjm`}

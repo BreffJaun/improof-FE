@@ -40,6 +40,7 @@ const MyProjects = () => {
           ))}
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

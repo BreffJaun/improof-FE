@@ -228,6 +228,7 @@ const ProjectDetails = () => {
             ))}
           </div>
         </div>
+        <Footer/>
       </div>
     )
   );

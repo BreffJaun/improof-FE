@@ -3,11 +3,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { host } from "../../api/host.jsx";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Footer from "../elements/Footer.jsx";
+
 
 // COMPONENTS
 import { LogoL } from "../../components/Logo";
 import logoOr from "../../images/improof_OR.png";
+import Footer from "../elements/Footer.jsx";
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -189,6 +190,7 @@ const Registration = () => {
           </div>
         </form>
         <ToastContainer />
+        <Footer/>
       </div>
     </div>
   );

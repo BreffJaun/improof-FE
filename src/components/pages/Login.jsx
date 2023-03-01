@@ -58,6 +58,7 @@ const Login = () => {
 
   return (
     <div className="maxHH central">
+      <div className="col">
       <div className="">
         <div className="mb2">
           <LogoL />
@@ -94,7 +95,9 @@ const Login = () => {
         </form>
 
         <ToastContainer />
-      </div>
+        </div>
+      <Footer/>
+        </div>
     </div>
   );
 };

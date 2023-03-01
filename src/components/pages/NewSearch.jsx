@@ -421,6 +421,7 @@ const NewSearch = () => {
           
           <ToastContainer />
         </div>
+        <Footer/>
       </div>
     )
   );

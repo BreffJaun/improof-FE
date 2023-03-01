@@ -203,6 +203,8 @@ const TalentDetails = () => {
           </div>
         </div>
 
+        <div className="bo-DARK"></div>
+
         {talentIsRecruiter ? (
           <div className="central col">
             <h1 className={color}>my favorite projects</h1>
@@ -327,6 +329,7 @@ const TalentDetails = () => {
           </button>
         </div>
         {/* <ToastContainer limit={1} /> */}
+        <Footer/>
       </>
     )
   );
