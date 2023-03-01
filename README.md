@@ -1,6 +1,6 @@
 # Improof 
 
-![logo](./src/img/LogoSpiel.png)
+![logo](../src/img/LogoSpiel.png)
 
 **Improof** schließt die Lücke zwischen „Social Media“ und „professional Network“. Das Ziel ist es vor allem Quereinsteigern den Einstieg in die Berufswelt leichter machen. Auch Recruitern soll die Arbeit mit Berufsfeldern die stark von Quereinsteigern geprägt sind, die Suche nach Kandidaten mit passenden Fähigkeiten erleichtern.
 **Improof** ermöglicht eine direkte Darstellung des aktuellen Kenntnisstandes eines Users, sowie deren Entwicklung im Laufe der Zeit. Außerdem kann anhand der Projekte die Arbeitsweise eines Users Schritt für Schritt nachvollzogen werden. Mediale Inhalte machen es zudem einfacher einen detaillierten Einblick zu erhalten.
