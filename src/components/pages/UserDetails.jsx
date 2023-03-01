@@ -251,7 +251,7 @@ const TalentDetails = () => {
             {talent.follows.length ? (
               talent.follows.map(
                 (follow) =>
-                  follow._id !== user._id && (
+                  follow._id !== id && (
                     <TalentCard key={follow._id} talent={follow} user={user} />
                   )
               )
