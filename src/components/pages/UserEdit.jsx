@@ -98,8 +98,6 @@ const UserEdit = () => {
     };
     getUser();
   }, [id, favColor]);
-  // console.log(user.profile.category);
-  // console.log(category);
 
   const avatarUploadHandler = (e) => {
     setAvatar(e.target.files[0]);
@@ -171,9 +169,15 @@ const UserEdit = () => {
           }
         });
     };
-    const allowed = ["jpeg", "jpg", "png", "gif", "tiff", "bmp"]
-    const avatarFormat = avatar?.name?.split(".")[1]
-    !avatar || allowed.includes(avatarFormat) ? updateUserData() : toast.info("please choose a image in one of the following formats: jpeg, jpg, png, gif, tiff, bmp", toastOptions);
+
+    const allowed = ["jpeg", "jpg", "png", "gif", "tiff", "bmp"];
+    const avatarFormat = avatar?.name?.split(".")[1];
+    !avatar || allowed.includes(avatarFormat)
+      ? updateUserData()
+      : toast.info(
+          "please choose a image in one of the following formats: jpeg, jpg, png, gif, tiff, bmp",
+          toastOptions
+        );
   };
 
   return uploadPending ? (
