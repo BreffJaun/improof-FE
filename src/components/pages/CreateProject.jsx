@@ -474,6 +474,7 @@ const CreateProject = () => {
         </div>
       </form>
       <ToastContainer />
+      <Footer/>
     </div>
   );
 };

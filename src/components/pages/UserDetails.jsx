@@ -203,6 +203,8 @@ const TalentDetails = () => {
           </div>
         </div>
 
+        <div className="bo-DARK"></div>
+
         {talentIsRecruiter ? (
           <div className="central col">
             <h1 className={color}>my favorite projects</h1>
@@ -251,7 +253,7 @@ const TalentDetails = () => {
             {talent.follows.length ? (
               talent.follows.map(
                 (follow) =>
-                  follow._id !== user._id && (
+                  follow._id !== id && (
                     <TalentCard key={follow._id} talent={follow} user={user} />
                   )
               )
@@ -327,6 +329,7 @@ const TalentDetails = () => {
           </button>
         </div>
         {/* <ToastContainer limit={1} /> */}
+        <Footer/>
       </>
     )
   );

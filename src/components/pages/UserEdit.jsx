@@ -205,24 +205,26 @@ const UserEdit = () => {
     <div className="maxHH central">
       <form onSubmit={handleSubmit} encType="multipart/form">
         <div className="central col mt3">
-          <div className="circle90 bg-FAV central rel">
+            <div className="circle90 bg-FAV central rel">
+              <div className="head90 shadow-s">
             {avatarUrl ? (
               <img
                 src={avatarUrl}
-                className={`circle90 ${bg} central rel`}
+                className={`central rel head-pic`}
                 alt="avatar"
               />
             ) : user.profile.avatar ? (
               <img
                 src={user.profile.avatar}
-                className={`circle90 ${bg} central rel`}
+                className={`central rel head-pic`}
                 alt="avatar"
               />
             ) : (
               <div className="initials">
                 <p>{user.profile.initials}</p>
               </div>
-            )}
+                )}
+                </div>
 
             <div
               title="upload image"
@@ -480,6 +482,7 @@ const UserEdit = () => {
           }
           hideProgressBar={true}
         />
+      <Footer/>
       </form>
     </div>
   ) : uploadPending ? (
@@ -666,6 +669,7 @@ const UserEdit = () => {
           }
           hideProgressBar={true}
         />
+      <Footer/>
       </form>
     </>
   ) : null;
