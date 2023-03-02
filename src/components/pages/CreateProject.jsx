@@ -315,6 +315,7 @@ const CreateProject = () => {
               {thumbnailUrl ? <img className="w100d" src={thumbnailUrl} alt="thumbnail" /> : null}         
             </div>
           </div>
+          
           <div className="center">
             <label for="thumbnail">
               <Upload className="fs2 mt1" />
