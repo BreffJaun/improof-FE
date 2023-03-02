@@ -85,42 +85,39 @@ const Messages = () => {
   return (
     conversation &&
     sender && (
-      <>
-        <div className="center">
-          <h1 className={`${color} mb2`}>messages</h1>
-
-          <div className="wide col">
-            <div className="center">
-              <Sender user={user} sender={sender} />
-            </div>
-
-            <div className="col mb2">
-              <div className="scroll-container">
-                <div className="col mr2">
-                  {conversation?.message?.map((msg) => {
-                    return <Message key={msg._id} user={user} msg={msg} />
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="wide col mb2">
-            <form onSubmit={(event)=>handleSendMsg(event)}>
-              <input
-                type="text"
-                value={msg}
-                onChange={handleMsg}
-                autoFocus
-                className="shadow-s max mb1"
-              />
-              <div className="center">
-                <button className={bg} type="submit">send</button>
-              </div>
-            </form>
+      <div className="x center">
+        <div className="y w90d">
+          <h1 className={`${color} mb1`}>messages</h1>
+          <div className="center">
+            <Sender user={user} sender={sender} />
           </div>
         </div>
-      </>
+
+        <div className="y w90d">
+          <div className="col mb2">
+            <div className="message-container">
+              <div className="col mr2">
+                {conversation?.message?.map((msg) => {
+                  return <Message key={msg._id} user={user} msg={msg} />
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="y w90d">
+          <form onSubmit={(event)=>handleSendMsg(event)}>
+            <input
+              type="text"
+              value={msg}
+              onChange={handleMsg}
+              autoFocus
+              className="shadow-s max mb1"
+            />
+            <button className={bg} type="submit">send</button>
+          </form>
+        </div>
+      </div>
     )
   );
 };
