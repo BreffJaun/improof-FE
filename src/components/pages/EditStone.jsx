@@ -189,26 +189,32 @@ const EditStone = () => {
     e.preventDefault();
     setIdsTrigger(true);
 
-    const formData = new FormData();
-    formData.append("media", media);
-    formData.append("data", JSON.stringify(editedStone));
-
-    setEditStonePending(true);
-    await fetch(`${host}/stones/${stoneId}`, {
-      credentials: "include",
-      method: "PATCH",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (!data.status) {
-          toast(json.error, toastOptions);
-          setEditStonePending(false);
-        } else {
-          toast("Your stone is updated", toastOptions);
-          navigate(`/projectdetails/${projectId}`);
-        }
-      });
+    const allowed = ["jpeg", "jpg", "png", "gif", "tiff", "bmp", "mp4", "mov", "wmv", "avi", "mkv", "flv"]
+    const avatarFormat = media?.name?.split(".")[1]
+    if(media && !allowed.includes(avatarFormat)){
+      toast.info("please choose a image in one of the following formats: jpeg, jpg, png, gif, tiff, bmp", toastOptions);
+    } else{      
+      const formData = new FormData();
+      formData.append("media", media);
+      formData.append("data", JSON.stringify(editedStone));
+      
+      setEditStonePending(true);
+      await fetch(`${host}/stones/${stoneId}`, {
+        credentials: "include",
+        method: "PATCH",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (!data.status) {
+            toast(json.error, toastOptions);
+            setEditStonePending(false);
+          } else {
+            toast("Your stone is updated", toastOptions);
+            navigate(`/projectdetails/${projectId}`);
+          }
+        });
+    }
   };
 
   const handleDelete = async () => {
