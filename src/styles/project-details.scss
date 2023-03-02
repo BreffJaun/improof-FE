@@ -3,6 +3,10 @@
   width: fit-content;
 
 }
+.absolute{
+  width:100%;
+  min-height:100vh
+}
 .my-timeline{
 color:red
 }
@@ -24,4 +28,19 @@ color:red
   img{
     width: 100%;
   }
+}
+
+.image-container-other{
+  position: sticky;
+  top:10px;
+  left:20px;
+  width:90%;
+  max-height:600px;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.img-other{
+  width: 100%;
+  height: 100%;
 }

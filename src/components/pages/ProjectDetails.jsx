@@ -1,7 +1,7 @@
 // STYLE
 import "../../styles/project-details.scss";
 import "../../styles/chrono.scss";
-// import "../../styles/project-details.scss"
+import "../../styles/project-details.scss"
 
 import React from "react";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -97,11 +97,12 @@ const ProjectDetails = () => {
   return (
     !isPending &&
     user && (
-      <div>
+      <div className="absolute">
         {/* MARTIN STYLEN */}
         {imageViewer &&
-        <div onClick={() => setImageViewer(false)}>
-          <img src={stoneImage} alt="stoneImage" />
+        <div className="image-container-other" 
+        onClick={() => setImageViewer(false)}>
+          <img className="y img-other" src={stoneImage} alt="stoneImage" />
         </div>
         }
         <div className="central col mb1">
@@ -149,6 +150,8 @@ const ProjectDetails = () => {
             titleColorActive: "red",
           }}
         >
+           {/* MARTIN STYLEN */}
+
           {!isPending &&
             project.stones
               .map((stone) => {
@@ -212,8 +215,11 @@ const ProjectDetails = () => {
             {project?.stones.map((stone) => {
               return (
                 (stone.kind === "stepstone" && (
-                  <img src={<MileStone/>} alt="" key={stone._id} width="200"
-                  />
+                  <h1>
+                    <div className="c-FAV">
+                      <MileStone key={stone._id}/>
+                    </div>
+                  </h1>
                 )) ||
                 (stone.kind === "milestone" && (
                   <h1>
