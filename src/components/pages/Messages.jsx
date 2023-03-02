@@ -85,15 +85,15 @@ const Messages = () => {
   return (
     conversation &&
     sender && (
-      <div className="x center">
-        <div className="y w90d">
+      <div className="center">
+        <div className="w90d">
           <h1 className={`${color} mb1`}>messages</h1>
           <div className="center">
             <Sender user={user} sender={sender} />
           </div>
         </div>
 
-        <div className="y w90d">
+        <div className="w90d">
           <div className="col mb2">
             <div className="message-container">
               <div className="col mr2">
@@ -105,7 +105,7 @@ const Messages = () => {
           </div>
         </div>
 
-        <div className="y w90d">
+        <div className="w90d">
           <form onSubmit={(event)=>handleSendMsg(event)}>
             <input
               type="text"
