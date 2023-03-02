@@ -171,6 +171,7 @@ const UserEdit = () => {
           }
         });
     };
+    const allowed = [".jpeg, .jpg, .png, .gif, .tiff, .bmp"]
     updateUserData();
   };
 
