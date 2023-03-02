@@ -211,7 +211,7 @@ const ProjectDetails = () => {
                 );
               })
           }
-          <div className="chrono-icons" id="icons">
+          {/* <div className="chrono-icons" id="icons">
             {project?.stones.map((stone) => {
               return (
                 (stone.kind === "stepstone" && (
@@ -234,7 +234,7 @@ const ProjectDetails = () => {
                 ))
               );
             })}
-          </div>
+          </div> */}
         </Chrono>
 
         <div className="bo-DARK"></div>
