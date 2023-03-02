@@ -5,7 +5,7 @@ import { host } from "../../api/host.jsx";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserContext from "../../context/userContext.jsx";
-import "../../styles/create-project.scss"
+import "../../styles/create-project.scss";
 
 // COMPONENTS
 import CategoriesFilter from "../elements/CategoriesFilter.jsx";
@@ -59,8 +59,6 @@ const CreateProject = () => {
   const darkMode = user.meta.darkMode;
   const [theme, setTheme] = useState("");
 
-  console.log(newProject.category);
-
   const noFollowsFilter = (arr1, arr2) => {
     let clean = [];
     clean = arr1.filter((el) => {
@@ -73,8 +71,30 @@ const CreateProject = () => {
   const noFollows = noFollowsFilter(talents, follows);
 
   const toastOptions = {
-    position: "bottom-right",
-    autoClose: 8000,
+    theme: theme,
+    hideProgressBar: "true",
+    icon: () => (
+      <img
+        src={
+          color === "c-PI1"
+            ? logoPi
+            : color === "c-O2"
+            ? logoOr
+            : color === "c-PU1"
+            ? logoPu
+            : color === "c-B2"
+            ? logoBl
+            : color === "c-LB2"
+            ? logoLB
+            : color === "c-GR1"
+            ? logoLG
+            : color === "c-GR3"
+            ? logoGR
+            : logoDG
+        }
+        width="20"
+      />
+    ),
   };
 
   useEffect(() => {
@@ -173,32 +193,7 @@ const CreateProject = () => {
         .then((json) => json.json())
         .then((data) => {
           if (data.status) {
-            toast("Great! Your started a new project", {
-              theme: theme,
-              hideProgressBar: "true",
-              icon: () => (
-                <img
-                  src={
-                    color === "c-PI1"
-                      ? logoPi
-                      : color === "c-O2"
-                      ? logoOr
-                      : color === "c-PU1"
-                      ? logoPu
-                      : color === "c-B2"
-                      ? logoBl
-                      : color === "c-LB2"
-                      ? logoBl
-                      : color === "c-GR1"
-                      ? logoLG
-                      : color === "c-GR2"
-                      ? logoGR
-                      : logoDG
-                  }
-                  width="20"
-                />
-              ),
-            });
+            toast("Great! Your started a new project", toastOptions);
             setAddUserToTeamTrigger(false);
             setCreateProjectPending(false);
             if (!createProjectPending) {
@@ -207,62 +202,12 @@ const CreateProject = () => {
           }
           if (data.error) {
             setCreateProjectPending(false);
-            toast(data.error, {
-              theme: theme,
-              hideProgressBar: "true",
-              icon: () => (
-                <img
-                  src={
-                    color === "c-PI1"
-                      ? logoPi
-                      : color === "c-O2"
-                      ? logoOr
-                      : color === "c-PU1"
-                      ? logoPu
-                      : color === "c-B2"
-                      ? logoBl
-                      : color === "c-LB2"
-                      ? logoBl
-                      : color === "c-GR1"
-                      ? logoLG
-                      : color === "c-GR2"
-                      ? logoGR
-                      : logoDG
-                  }
-                  width="20"
-                />
-              ),
-            });
+            toast(data.error, toastOptions);
           }
         });
     };
     if (!newProject.category && newProject !== "") {
-      toast("please choose a category", {
-        theme: theme,
-        hideProgressBar: "true",
-        icon: () => (
-          <img
-            src={
-              color === "c-PI1"
-                ? logoPi
-                : color === "c-O2"
-                ? logoOr
-                : color === "c-PU1"
-                ? logoPu
-                : color === "c-B2"
-                ? logoBl
-                : color === "c-LB2"
-                ? logoBl
-                : color === "c-GR1"
-                ? logoLG
-                : color === "c-GR2"
-                ? logoGR
-                : logoDG
-            }
-            width="20"
-          />
-        ),
-      });
+      toast("please choose a category", toastOptions);
     }
     category && category !== "" && sendProjectData();
   };
@@ -312,7 +257,9 @@ const CreateProject = () => {
           <div className="col">
             <p className="ml1 mb05 mt1">thumbnail</p>
             <div className={!thumbnailUrl ? `thumbnailS central` : `central`}>
-              {thumbnailUrl ? <img className="w100d" src={thumbnailUrl} alt="thumbnail" /> : null}         
+              {thumbnailUrl ? (
+                <img className="w100d" src={thumbnailUrl} alt="thumbnail" />
+              ) : null}
             </div>
           </div>
           <div className="center">
@@ -329,7 +276,6 @@ const CreateProject = () => {
               accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
               hidden
             />
-
           </div>
           <div className="col central">
             <p className="mt15 mb05">
@@ -423,26 +369,33 @@ const CreateProject = () => {
           <div className="central mt2 flex g3">
             <div>
               <button
-                className={eMailFields.length === 5 ? `opacity mb05 rel ${bg} central circle40` :`mb05 rel ${bg} central circle40`}
+                className={
+                  eMailFields.length === 5
+                    ? `opacity mb05 rel ${bg} central circle40`
+                    : `mb05 rel ${bg} central circle40`
+                }
                 onClick={addEmailFields}
                 disabled={eMailFields.length === 5}
               >
                 {/* {eMailFields.length === 5 ? (
                   "you can invite more people later in the project"
                 ) : ( */}
-                  <div>
-                    <h2 className="central">
-                      <MailPlus />
-                    </h2>
-                  </div>
-                {/* )} */}
+                <div>
+                  <h2 className="central">
+                    <MailPlus />
+                  </h2>
+                </div>
               </button>
               <p>add an email</p>
             </div>
 
             <div>
               <button
-                className={eMailFields.length === 1 ? `opacity mb05 rel ${bg} central circle40` : `mb05 rel ${bg} central circle40`}
+                className={
+                  eMailFields.length === 1
+                    ? `opacity mb05 rel ${bg} central circle40`
+                    : `mb05 rel ${bg} central circle40`
+                }
                 onClick={subEmailFields}
                 disabled={eMailFields.length === 1}
               >
@@ -473,8 +426,8 @@ const CreateProject = () => {
           </button>
         </div>
       </form>
-      <ToastContainer />
-      <Footer/>
+      {/* <ToastContainer /> */}
+      <Footer />
     </div>
   );
 };

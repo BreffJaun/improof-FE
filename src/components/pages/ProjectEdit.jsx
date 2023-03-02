@@ -524,7 +524,6 @@ const CreateProject = () => {
               <p>delete project?</p>
             </button>
           </div>
-          <ToastContainer />
           <Footer/>
       </>
     )
