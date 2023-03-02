@@ -29,7 +29,7 @@ const Florian = ({ darkMode }) => {
           <div className="col mb1">
             <p className="c-PU2">About me:</p>
             <p>
-              Im her´e im there. Im everywhere...
+              Im here im there. Im everywhere...
             </p>
           </div>
         </div>
