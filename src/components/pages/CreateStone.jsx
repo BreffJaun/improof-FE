@@ -330,6 +330,7 @@ const CreateStone = () => {
               project.team.map((talent) => {
                 return (
                   <TalentCardStones
+                    key={talent._id}
                     user={user}
                     talent={talent}
                     contributors={contributors}
