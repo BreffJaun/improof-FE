@@ -98,8 +98,6 @@ const UserEdit = () => {
     };
     getUser();
   }, [id, favColor]);
-  // console.log(user.profile.category);
-  // console.log(category);
 
   const avatarUploadHandler = (e) => {
     setAvatar(e.target.files[0]);
@@ -171,7 +169,7 @@ const UserEdit = () => {
           }
         });
     };
-    const allowed = [".jpeg, .jpg, .png, .gif, .tiff, .bmp"]
+    const allowed = [".jpeg, .jpg, .png, .gif, .tiff, .bmp"];
     updateUserData();
   };
 
