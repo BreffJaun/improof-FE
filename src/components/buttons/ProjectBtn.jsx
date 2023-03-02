@@ -32,6 +32,33 @@ const ProjectBtn = ({ project }) => {
   const darkMode = user.meta.darkMode;
   const theme = darkMode ? "dark" : "light";
 
+  const toastOptions = {
+    theme: theme,
+    hideProgressBar: "true",
+    icon: () => (
+      <img
+        src={
+          color === "c-PI1"
+            ? logoPi
+            : color === "c-O2"
+            ? logoOr
+            : color === "c-PU1"
+            ? logoPu
+            : color === "c-B2"
+            ? logoBl
+            : color === "c-LB2"
+            ? logoLB
+            : color === "c-GR1"
+            ? logoLG
+            : color === "c-GR3"
+            ? logoGR
+            : logoDG
+        }
+        width="20"
+      />
+    ),
+  };
+
   const handleAddFollow = async (
     project,
     user,
@@ -54,60 +81,13 @@ const ProjectBtn = ({ project }) => {
       .then((json) => {
         if (json.status) {
           setUser(json.data);
-          toast(`you added ${project.name} to you favorite projects`, {
-            theme: theme,
-            hideProgressBar: "true",
-            icon: () => (
-              <img
-                src={
-                  color === "c-PI1"
-                    ? logoPi
-                    : color === "c-O2"
-                    ? logoOr
-                    : color === "c-PU1"
-                    ? logoPu
-                    : color === "c-B2"
-                    ? logoBl
-                    : color === "c-LB2"
-                    ? logoLB
-                    : color === "c-GR1"
-                    ? logoLG
-                    : color === "c-GR3"
-                    ? logoGR
-                    : logoDG
-                }
-                width="20"
-              />
-            ),
-          });
+          toast(
+            `you added ${project.name} to your favorite projects`,
+            toastOptions
+          );
           setTrigger(!trigger);
         } else {
-          toast(`something went wrong`, {
-            theme: theme,
-            hideProgressBar: "true",
-            icon: () => (
-              <img
-                src={
-                  color === "c-PI1"
-                    ? logoPi
-                    : color === "c-O2"
-                    ? logoOr
-                    : color === "c-PU1"
-                    ? logoPu
-                    : color === "c-B2"
-                    ? logoBl
-                    : color === "c-LB2"
-                    ? logoLB
-                    : color === "c-GR1"
-                    ? logoLG
-                    : color === "c-GR3"
-                    ? logoGR
-                    : logoDG
-                }
-                width="20"
-              />
-            ),
-          });
+          toast(`something went wrong`, toastOptions);
         }
       });
   };
@@ -134,60 +114,13 @@ const ProjectBtn = ({ project }) => {
       .then((json) => {
         if (json.status) {
           setUser(json.data);
-          toast(`you deleted ${project.name} from you favorite projects`, {
-            theme: theme,
-            hideProgressBar: "true",
-            icon: () => (
-              <img
-                src={
-                  color === "c-PI1"
-                    ? logoPi
-                    : color === "c-O2"
-                    ? logoOr
-                    : color === "c-PU1"
-                    ? logoPu
-                    : color === "c-B2"
-                    ? logoBl
-                    : color === "c-LB2"
-                    ? logoLB
-                    : color === "c-GR1"
-                    ? logoLG
-                    : color === "c-GR3"
-                    ? logoGR
-                    : logoDG
-                }
-                width="20"
-              />
-            ),
-          });
+          toast(
+            `you deleted ${project.name} from you favorite projects`,
+            toastOptions
+          );
           setTrigger(!trigger);
         } else {
-          toast(`something went wrong`, {
-            theme: theme,
-            hideProgressBar: "true",
-            icon: () => (
-              <img
-                src={
-                  color === "c-PI1"
-                    ? logoPi
-                    : color === "c-O2"
-                    ? logoOr
-                    : color === "c-PU1"
-                    ? logoPu
-                    : color === "c-B2"
-                    ? logoBl
-                    : color === "c-LB2"
-                    ? logoLB
-                    : color === "c-GR1"
-                    ? logoLG
-                    : color === "c-GR3"
-                    ? logoGR
-                    : logoDG
-                }
-                width="20"
-              />
-            ),
-          });
+          toast(`something went wrong`, toastOptions);
         }
       });
   };

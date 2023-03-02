@@ -18,7 +18,7 @@ const Florian = ({ darkMode }) => {
           </div>
           <div className="mt5 col">
             <h3 className="c-PU2 center mb05">Florian Mewes</h3>
-            <p className="c-A60">"insert your slogan here!"</p>
+            <p className="c-A60">"Jesus loves coding"</p>
           </div>
         </div>
         <div>
@@ -29,8 +29,7 @@ const Florian = ({ darkMode }) => {
           <div className="col mb1">
             <p className="c-PU2">About me:</p>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Asperiores magni, quibusdam omnis alias illum quos!
+              Im here im there. Im everywhere...
             </p>
           </div>
         </div>

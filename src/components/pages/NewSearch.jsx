@@ -45,16 +45,12 @@ const NewSearch = () => {
   const [searchTrigger, setSearchTrigger] = useState(false);
   const [redMarker, setRedMarker] = useState(false);
   const [category, setCategory] = useState(undefined);
-  const [theme, setTheme] = useState("");
 
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
   const darkMode = user.meta.darkMode;
+  const theme = darkMode ? "dark" : "light";
 
-  const toastOptions = {
-    position: "bottom-right",
-    autoClose: 8000,
-  };
   let talentsToMap;
 
   useEffect(() => {
@@ -162,7 +158,8 @@ const NewSearch = () => {
           // CATEGORY FILTER
           if (category) {
             filteredTalents = filteredTalents.filter((talent) =>
-              talent.profile.category.includes(category));
+              talent.profile.category.includes(category)
+            );
             // console.log("CATEGORY IF");
           }
 
@@ -255,48 +252,48 @@ const NewSearch = () => {
 
   return (
     !isLoading && (
-      <div> 
+      <div>
         <h1 className={`${color} mt1 mb1`}>new search</h1>
 
         <div className="splitscreen">
           <div className="oh card left mt15">
             <div>
-            {talents && (
-            <Map
-              height={380}
-              width={1000}
-              defaultCenter={[51.165691, 10.451526]} // MIDDLE OF GERMANY
-              center={[searchData?.latitude, searchData?.longitude]}
-              defaultZoom={5} // je größer die Zahl, desto weiter rein gezoomt
-            >
-              {/* RED MARKER FOR ZIP */}
-              {redMarker ? (
-                <Marker
-                  width={30}
-                  color={"red"} // SET HERE RECRUITER COLOR ! ! !
-                  anchor={[searchData.latitude, searchData.longitude]}
-                />
-              ) : (
-                <></>
-              )}
-
-              {/* MAP ABOUT UPDATED TALENTS => IF THEY AREN´T SET, MAP ABOUT TALENTS */}
-              {talentsToMap.map((talent) => {
-                if (talent.location.latitude) {
-                  return (
+              {talents && (
+                <Map
+                  height={380}
+                  width={1000}
+                  defaultCenter={[51.165691, 10.451526]} // MIDDLE OF GERMANY
+                  center={[searchData?.latitude, searchData?.longitude]}
+                  defaultZoom={5} // je größer die Zahl, desto weiter rein gezoomt
+                >
+                  {/* RED MARKER FOR ZIP */}
+                  {redMarker ? (
                     <Marker
                       width={30}
-                      anchor={[
-                        +talent.location.latitude,
-                        +talent.location.longitude,
-                      ]}
-                      key={talent._id}
-                      onClick={(e) => overlayHandler(e, talent)}
+                      color={"red"} // SET HERE RECRUITER COLOR ! ! !
+                      anchor={[searchData.latitude, searchData.longitude]}
                     />
-                  );
-                }
-              })}
-              {/* {currTalent && (
+                  ) : (
+                    <></>
+                  )}
+
+                  {/* MAP ABOUT UPDATED TALENTS => IF THEY AREN´T SET, MAP ABOUT TALENTS */}
+                  {talentsToMap.map((talent) => {
+                    if (talent.location.latitude) {
+                      return (
+                        <Marker
+                          width={30}
+                          anchor={[
+                            +talent.location.latitude,
+                            +talent.location.longitude,
+                          ]}
+                          key={talent._id}
+                          onClick={(e) => overlayHandler(e, talent)}
+                        />
+                      );
+                    }
+                  })}
+                  {/* {currTalent && (
                 <Overlay
                   anchor={[
                     +currTalent.location.latitude,
@@ -311,16 +308,16 @@ const NewSearch = () => {
                   </div>
                 </Overlay>
               )} */}
-              <ZoomControl />
-            </Map>
+                  <ZoomControl />
+                </Map>
               )}
+            </div>
           </div>
-        </div>
-        <div className="right">
+          <div className="right">
             <form onSubmit={handleSubmit}>
               <div className="col">
-                  <p className="ml1 mb05">category</p>
-                  {/* <input
+                <p className="ml1 mb05">category</p>
+                {/* <input
                     type="text"
                     name="position"
                     placeholder="what do you want to achieve"
@@ -328,11 +325,11 @@ const NewSearch = () => {
                     disabled={searchTrigger}
                     value={searchData.position}
                   /> */}
-                  <CategoriesFilter
-                    category={category}
-                    setCategory={setCategory}
-                    searchTrigger={searchTrigger}
-                  />
+                <CategoriesFilter
+                  category={category}
+                  setCategory={setCategory}
+                  searchTrigger={searchTrigger}
+                />
 
                 <p className="ml1 mb05">tools & skills</p>
                 <input
@@ -372,7 +369,7 @@ const NewSearch = () => {
                   <button
                     style={{ cursor: "pointer" }}
                     type="submit"
-                    className={searchTrigger ? `opacity ${bg}` :  `${bg}`}
+                    className={searchTrigger ? `opacity ${bg}` : `${bg}`}
                     disabled={searchTrigger}
                   >
                     get result
@@ -382,19 +379,17 @@ const NewSearch = () => {
                   <button
                     style={{ cursor: "pointer" }}
                     type="reset"
-                    className={!searchTrigger ? `opacity ${bg}` :  `${bg}`}
+                    className={!searchTrigger ? `opacity ${bg}` : `${bg}`}
                     disabled={!searchTrigger}
                     onClick={resetHandler}
                   >
                     reset search
                   </button>
-                  </div>
+                </div>
               </div>
-              
             </form>
           </div>
         </div>
-        
 
         {/* CURR TALENT */}
         {currTalent && (
@@ -405,23 +400,31 @@ const NewSearch = () => {
         )}
         <div className="bo-DARK"></div>
         <div>
-        {/* SEARCHED TALENTS (OR ALL TALENTS) */}
-        <div className="max mb2">
-          {updatedTalents ?
-            <h1 className={`${color} mt2 mb2`}>filtered talents</h1> :
-            <h1 className={`${color} mt2 mb2`}>all talents</h1>}
-            
+          {/* SEARCHED TALENTS (OR ALL TALENTS) */}
+          <div className="max mb2">
+            {updatedTalents ? (
+              <h1 className={`${color} mt2 mb2`}>filtered talents</h1>
+            ) : (
+              <h1 className={`${color} mt2 mb2`}>all talents</h1>
+            )}
+
             <div className="talent-container  mb2 row">
               {talentsToMap.map((talent) => {
-                return <TalentCard talent={talent} user={user} key={talent._id} />
-                  
+                return (
+                  <TalentCard
+                    talent={talent}
+                    user={user}
+                    key={talent._id}
+                    theme={theme}
+                  />
+                );
               })}
-                </div>
             </div>
-          
+          </div>
+
           <ToastContainer />
         </div>
-        <Footer/>
+        <Footer />
       </div>
     )
   );

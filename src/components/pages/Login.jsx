@@ -42,7 +42,6 @@ const Login = () => {
       })
         .then((response) => response.json())
         .then((json) => {
-          console.log(json);
           if (!json.status) {
             toast("invalid password or email", {
               hideProgressBar: "true",
@@ -59,45 +58,45 @@ const Login = () => {
   return (
     <div className="maxHH central">
       <div className="col">
-      <div className="">
-        <div className="mb2">
-          <LogoL />
-        </div>
-
-        <form onSubmit={handleSubmit}>
-          <div className="col">
-            <div className="mb2 col">
-              <input
-                type="text"
-                name="email"
-                placeholder="email"
-                className="shadow-s"
-                onChange={handleInput}
-              />
-              <input
-                type="password"
-                name="password"
-                placeholder="password"
-                className="mt05 shadow-s"
-                onChange={handleInput}
-              />
-            </div>
-            <button className={`bg-FAV mb2`} type="submit">
-              login
-            </button>
-            <div className="col central">
-              <p>Not registered yet?</p>
-              <p>
-                <NavLink to="/registration">click here</NavLink>
-              </p>
-            </div>
+        <div className="">
+          <div className="mb2">
+            <LogoL />
           </div>
-        </form>
 
-        <ToastContainer />
+          <form onSubmit={handleSubmit}>
+            <div className="col">
+              <div className="mb2 col">
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="email"
+                  className="shadow-s"
+                  onChange={handleInput}
+                />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                  className="mt05 shadow-s"
+                  onChange={handleInput}
+                />
+              </div>
+              <button className={`bg-FAV mb2`} type="submit">
+                login
+              </button>
+              <div className="col central">
+                <p>Not registered yet?</p>
+                <p>
+                  <NavLink to="/registration">click here</NavLink>
+                </p>
+              </div>
+            </div>
+          </form>
+
+          <ToastContainer />
         </div>
-      <Footer/>
-        </div>
+        <Footer />
+      </div>
     </div>
   );
 };

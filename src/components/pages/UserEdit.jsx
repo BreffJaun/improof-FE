@@ -52,6 +52,32 @@ const UserEdit = () => {
   const color = talent?.meta?.colorTheme[0];
   const bg = talent?.meta?.colorTheme[1];
   const darkMode = user?.meta?.darkMode;
+  const toastOptions = {
+    theme: theme,
+    hideProgressBar: "true",
+    icon: () => (
+      <img
+        src={
+          color === "c-PI1"
+            ? logoPi
+            : color === "c-O2"
+            ? logoOr
+            : color === "c-PU1"
+            ? logoPu
+            : color === "c-B2"
+            ? logoBl
+            : color === "c-LB2"
+            ? logoLB
+            : color === "c-GR1"
+            ? logoLG
+            : color === "c-GR3"
+            ? logoGR
+            : logoDG
+        }
+        width="20"
+      />
+    ),
+  };
 
   const navigate = useNavigate();
 
@@ -72,8 +98,6 @@ const UserEdit = () => {
     };
     getUser();
   }, [id, favColor]);
-  // console.log(user.profile.category);
-  // console.log(category);
 
   const avatarUploadHandler = (e) => {
     setAvatar(e.target.files[0]);
@@ -137,65 +161,23 @@ const UserEdit = () => {
         .then((json) => json.json())
         .then((data) => {
           if (data.status) {
-            toast("Profile updated successfully", {
-              theme: theme,
-              hideProgressBar: "true",
-              icon: () => (
-                <img
-                  src={
-                    color === "c-PI1"
-                      ? logoPi
-                      : color === "c-O2"
-                      ? logoOr
-                      : color === "c-PU1"
-                      ? logoPu
-                      : color === "c-B2"
-                      ? logoBl
-                      : color === "c-LB2"
-                      ? logoLB
-                      : color === "c-GR1"
-                      ? logoLG
-                      : color === "c-GR3"
-                      ? logoGR
-                      : logoDG
-                  }
-                  width="20"
-                />
-              ),
-            });
+            toast("Profile updated successfully", toastOptions);
             navigate(`/userdetails/${user._id}`);
           }
           if (data.error) {
-            toast(err.msg, {
-              theme: theme,
-              hideProgressBar: "true",
-              icon: () => (
-                <img
-                  src={
-                    color === "c-PI1"
-                      ? logoPi
-                      : color === "c-O2"
-                      ? logoOr
-                      : color === "c-PU1"
-                      ? logoPu
-                      : color === "c-B2"
-                      ? logoBl
-                      : color === "c-LB2"
-                      ? logoBl
-                      : color === "c-GR1"
-                      ? logoLG
-                      : color === "c-GR2"
-                      ? logoGR
-                      : logoDG
-                  }
-                  width="20"
-                />
-              ),
-            });
+            toast(err.msg, toastOptions);
           }
         });
     };
-    updateUserData();
+
+    const allowed = ["jpeg", "jpg", "png", "gif", "tiff", "bmp"];
+    const avatarFormat = avatar?.name?.split(".")[1];
+    !avatar || allowed.includes(avatarFormat)
+      ? updateUserData()
+      : toast.info(
+          "please choose a image in one of the following formats: jpeg, jpg, png, gif, tiff, bmp",
+          toastOptions
+        );
   };
 
   return uploadPending ? (
@@ -204,26 +186,26 @@ const UserEdit = () => {
     <div className="maxHH central">
       <form onSubmit={handleSubmit} encType="multipart/form">
         <div className="central col mt3">
-            <div className="circle90 bg-FAV central rel">
-              <div className="head90 shadow-s">
-            {avatarUrl ? (
-              <img
-                src={avatarUrl}
-                className={`central rel head-pic`}
-                alt="avatar"
-              />
-            ) : user.profile.avatar ? (
-              <img
-                src={user.profile.avatar}
-                className={`central rel head-pic`}
-                alt="avatar"
-              />
-            ) : (
-              <div className="initials">
-                <p>{user.profile.initials}</p>
-              </div>
-                )}
+          <div className="circle90 bg-FAV central rel">
+            <div className="head90 shadow-s">
+              {avatarUrl ? (
+                <img
+                  src={avatarUrl}
+                  className={`central rel head-pic`}
+                  alt="avatar"
+                />
+              ) : user.profile.avatar ? (
+                <img
+                  src={user.profile.avatar}
+                  className={`central rel head-pic`}
+                  alt="avatar"
+                />
+              ) : (
+                <div className="initials">
+                  <p>{user.profile.initials}</p>
                 </div>
+              )}
+            </div>
 
             <div
               title="upload image"
@@ -241,7 +223,6 @@ const UserEdit = () => {
                 <AiOutlineCamera />
               </label>
             </div>
-            
           </div>
           <h1
             className={`central ${
@@ -473,15 +454,7 @@ const UserEdit = () => {
             <RxCross2 />
           </button>
         </div>
-        <ToastContainer
-          className={
-            darkMode
-              ? " Toastify__toast-theme--dark"
-              : "Toastify__toast-theme--light "
-          }
-          hideProgressBar={true}
-        />
-      <Footer/>
+        <Footer />
       </form>
     </div>
   ) : uploadPending ? (
@@ -525,7 +498,6 @@ const UserEdit = () => {
                 <AiOutlineCamera />
               </label>
             </div>
-
           </div>
           <h1
             className={`central ${
@@ -660,15 +632,7 @@ const UserEdit = () => {
             <RxCross2 />
           </button>
         </div>
-        <ToastContainer
-          className={
-            darkMode
-              ? " Toastify__toast-theme--dark"
-              : "Toastify__toast-theme--light "
-          }
-          hideProgressBar={true}
-        />
-      <Footer/>
+        <Footer />
       </form>
     </>
   ) : null;

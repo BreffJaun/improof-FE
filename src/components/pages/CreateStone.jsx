@@ -66,8 +66,30 @@ const CreateStone = () => {
   }, []);
 
   const toastOptions = {
-    position: "bottom-right",
-    autoClose: 8000,
+    theme: theme,
+    hideProgressBar: "true",
+    icon: () => (
+      <img
+        src={
+          color === "c-PI1"
+            ? logoPi
+            : color === "c-O2"
+            ? logoOr
+            : color === "c-PU1"
+            ? logoPu
+            : color === "c-B2"
+            ? logoBl
+            : color === "c-LB2"
+            ? logoLB
+            : color === "c-GR1"
+            ? logoLG
+            : color === "c-GR3"
+            ? logoGR
+            : logoDG
+        }
+        width="20"
+      />
+    ),
   };
 
   const handleInput = (e) => {
@@ -137,51 +159,37 @@ const CreateStone = () => {
 
   // console.log("newStone: ", newStone.team?.length);
   const handleSubmit = async (e) => {
+    const allowed = ["jpeg", "jpg", "png", "gif", "tiff", "bmp", "mp4", "mov", "wmv", "avi", "mkv", "flv"]
+    const avatarFormat = media?.name?.split(".")[1]
     e.preventDefault();
-    if (newStone.team.length !== 0) {
-      const formData = new FormData();
-      formData.append("media", media);
-      formData.append("data", JSON.stringify(newStone));
-
-      await fetch(`${host}/stones`, {
-        credentials: "include",
-        method: "POST",
-        body: formData,
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          console.log(json);
-          if (!json.status) {
-            toast.error(json.error, toastOptions);
-            // setCreateStonePending(false);
-          } else {
-            toast("You just added a new stone", {
-              theme: theme,
-              hideProgressBar: "true",
-              icon: () => (
-                <img
-                  src={
-                    color === "c-PI1"
-                      ? logoPi
-                      : color === "c-O2"
-                      ? logoOr
-                      : color === "c-PU1"
-                      ? logoPu
-                      : color === "c-B2"
-                      ? logoBl
-                      : logoBl
-                  }
-                  width="20"
-                />
-              ),
-            });
-            // setCreateStonePending(true);
-            navigate(`/projectdetails/${projectId}`);
-          }
-        });
-    } else {
-      toast.info("please add a contributor");
-    }
+    if(media && !allowed.includes(avatarFormat)){
+      toast.info("please choose a image in one of the following formats: jpeg, jpg, png, gif, tiff, bmp", toastOptions);
+    } else{
+      if (newStone.team.length !== 0) {
+        const formData = new FormData();
+        formData.append("media", media);
+        formData.append("data", JSON.stringify(newStone));
+  
+        await fetch(`${host}/stones`, {
+          credentials: "include",
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((json) => {
+            console.log(json);
+            if (!json.status) {
+              toast.error(json.error, toastOptions);
+            } else {
+              toast("You just added a new stone", toastOptions);
+              // setCreateStonePending(true);
+              navigate(`/projectdetails/${projectId}`);
+            }
+          });
+      } else {
+        toast.info("please add a contributor");
+      }
+    }  
   };
 
   return createStonePending ? (
@@ -248,79 +256,80 @@ const CreateStone = () => {
           </div>
 
           <div className="maxM mt1 bo-top-DARK"></div>
-    
-            <div className="col maxM ">
-              <h3 className={`fw500 ${color} center mb2`}>add your media</h3>
-              <div className={mediaUrl ? "central" : "thumbnailS central"}>
-                {mediaUrl && videoTrigger ? (
-                  <ReactPlayer
-                    url={mediaUrl}
-                    playing={true}
-                    controls={true}
-                    light={true} // for video thumbnail
-                    // playIcon={martinsPlayIcon}
-                    volume={null}
-                    muted={true}
-                    // width={"640px"}
-                    // height={"360px"}
-                    pip={true}
-                    stopOnUnmount={false}
-                  />
-                ) : mediaUrl && imageTrigger ? (
-                  <img className="central w100d" src={mediaUrl} alt="media" />
-                ) : (
-                  <div title="upload">
-                    
-                  </div>
-                )}
-              </div>
-              <div className="flex">
-                <div className="col">
-                  <div className="upload">
-                    <label for="media-pic">
-                      <Camera />
-                      photos
-                    </label>
-                    <input
-                      type="file"
-                      className="dis-none"
-                      multiple
-                      id="media-pic"
-                      onChange={handleImages}
-                      accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
-                      disabled={videoTrigger}
-                      hidden
-                    />
-                  </div>
-                  {imageTrigger && (
-                    <button className={bg} type="button" onClick={resetImageHandler}>
-                      reset image selection
-                    </button>
-                  )}
-                </div>
-                <div className="col">
-                  <label for="media-vid">
+
+          <div className="col maxM ">
+            <h3 className={`fw500 ${color} center mb2`}>add your media</h3>
+            <div className={mediaUrl ? "central" : "thumbnailS central"}>
+              {mediaUrl && videoTrigger ? (
+                <ReactPlayer
+                  url={mediaUrl}
+                  playing={true}
+                  controls={true}
+                  light={true} // for video thumbnail
+                  // playIcon={martinsPlayIcon}
+                  volume={null}
+                  muted={true}
+                  // width={"640px"}
+                  // height={"360px"}
+                  pip={true}
+                  stopOnUnmount={false}
+                />
+              ) : mediaUrl && imageTrigger ? (
+                <img className="central w100d" src={mediaUrl} alt="media" />
+              ) : (
+                <div title="upload"></div>
+              )}
+            </div>
+            <div className="flex">
+              <div className="col">
+                <div className="upload">
+                  <label for="media-pic">
                     <Camera />
-                    videos                
+                    photos
                   </label>
                   <input
                     type="file"
+                    className="dis-none"
                     multiple
-                    id="media-vid"
-                    onChange={handleVideos}
-                    accept=".mp4, .mov, .wmv, .avi, .mkv, .flv"
-                    disabled={imageTrigger}
+                    id="media-pic"
+                    onChange={handleImages}
+                    accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
+                    disabled={videoTrigger}
                     hidden
                   />
-                  {videoTrigger && (
-                    <button type="button" onClick={resetVideoHandler}>
-                      reset video selection
-                    </button>
-                  )}
                 </div>
+                {imageTrigger && (
+                  <button
+                    className={bg}
+                    type="button"
+                    onClick={resetImageHandler}
+                  >
+                    reset image selection
+                  </button>
+                )}
+              </div>
+              <div className="col">
+                <label for="media-vid">
+                  <Camera />
+                  videos
+                </label>
+                <input
+                  type="file"
+                  multiple
+                  id="media-vid"
+                  onChange={handleVideos}
+                  accept=".mp4, .mov, .wmv, .avi, .mkv, .flv"
+                  disabled={imageTrigger}
+                  hidden
+                />
+                {videoTrigger && (
+                  <button className={bg} type="button" onClick={resetVideoHandler}>
+                    reset video selection
+                  </button>
+                )}
               </div>
             </div>
-         
+          </div>
 
           <div className="maxM mt2 bo-top-DARK"></div>
           <div className="col">
@@ -330,6 +339,7 @@ const CreateStone = () => {
               project.team.map((talent) => {
                 return (
                   <TalentCardStones
+                    key={talent._id}
                     user={user}
                     talent={talent}
                     contributors={contributors}
@@ -349,15 +359,7 @@ const CreateStone = () => {
           add stone
         </button>
       </form>
-      <ToastContainer
-        className={
-          darkMode
-            ? " Toastify__toast-theme--dark"
-            : "Toastify__toast-theme--light "
-        }
-        hideProgressBar={true}
-        />
-        <Footer/>
+      <Footer />
     </div>
   );
 };

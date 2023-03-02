@@ -14,10 +14,6 @@ import { FollowBtn } from "../buttons/FollowBtn.jsx";
 import { SendMessageBtn } from "../buttons/MessageBtn.jsx";
 
 const TalentCard = ({ talent, user }) => {
-  const toastOptions = {
-    position: "bottom-right",
-    autoClose: 8000,
-  };
   const color = talent.meta.colorTheme[0];
   const bg = talent.meta.colorTheme[1];
   const darkMode = user.meta.darkMode;
@@ -71,10 +67,6 @@ const TalentCard = ({ talent, user }) => {
 };
 
 const TalentCardS = ({ talent, user, theme }) => {
-  const toastOptions = {
-    position: "bottom-right",
-    autoClose: 8000,
-  };
   const color = talent.meta.colorTheme[0];
   const bg = talent.meta.colorTheme[1];
   const navigate = useNavigate();
@@ -102,32 +94,13 @@ const TalentCardS = ({ talent, user, theme }) => {
             </p>
             <p className="info fw500">{talent.profile?.category}</p>
           </div>
-          {/* {user._id === talent._id ? null : (
-            <div className="ml1 row">
-              <div title="send message">
-                <SendMessageBtn talent={talent} user={user} />
-              </div>
-              <div>
-                {user.follows.find((follow) => follow._id === talent._id) ? (
-                  <FollowBtn talent={talent} user={user} theme={theme} />
-                ) : (
-                  <FollowBtn talent={talent} user={user} theme={theme} />
-                )}
-              </div>
-            </div>
-          )} */}
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 };
 
 const TalentCardContact = ({ talent, user, theme }) => {
-  const toastOptions = {
-    position: "bottom-right",
-    autoClose: 8000,
-  };
   const color = talent.meta.colorTheme[0];
   const bg = talent.meta.colorTheme[1];
   const navigate = useNavigate();
@@ -171,7 +144,6 @@ const TalentCardContact = ({ talent, user, theme }) => {
           )}
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 };
@@ -195,7 +167,6 @@ const TalentCardStones = ({
         <div className=" mt1 mb2 row">
           <div
             className={`${bg} t-picS central`}
-            // onClick={() => navigate(`/userDetails/${talent._id}`)}
           >
             {talent?.profile?.avatar ? (
               <img src={talent.profile?.avatar} />
@@ -207,7 +178,6 @@ const TalentCardStones = ({
           <div>
             <p
               className={`fw500 ${color}`}
-              // onClick={() => navigate(`/userDetails/${talent._id}`)}
             >
               {talent.profile?.firstName} {talent.profile?.lastName}
             </p>
@@ -233,7 +203,6 @@ const TalentCardStones = ({
           </div>
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 };

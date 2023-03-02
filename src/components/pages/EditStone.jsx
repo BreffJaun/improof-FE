@@ -10,6 +10,7 @@ import UserContext from "../../context/userContext.jsx";
 
 // ICONS
 import { AiOutlineCamera as Camera } from "react-icons/ai";
+import { CgDanger as Danger } from "react-icons/cg";
 
 // LOGOS
 import logoPi from "../../images/improof_PI.png";
@@ -51,8 +52,30 @@ const EditStone = () => {
   const darkMode = user.meta.darkMode;
 
   const toastOptions = {
-    position: "bottom-right",
-    autoClose: 8000,
+    theme: theme,
+    hideProgressBar: "true",
+    icon: () => (
+      <img
+        src={
+          color === "c-PI1"
+            ? logoPi
+            : color === "c-O2"
+            ? logoOr
+            : color === "c-PU1"
+            ? logoPu
+            : color === "c-B2"
+            ? logoBl
+            : color === "c-LB2"
+            ? logoLB
+            : color === "c-GR1"
+            ? logoLG
+            : color === "c-GR3"
+            ? logoGR
+            : logoDG
+        }
+        width="20"
+      />
+    ),
   };
 
   useEffect(() => {
@@ -101,32 +124,7 @@ const EditStone = () => {
   const handleImages = (event) => {
     if (event.target.files[0]?.size > 8000000) {
       document.getElementById("media-pic").value = "";
-      toast("Upload failed! Max file size for images is 8MB", {
-        theme: theme,
-        hideProgressBar: "true",
-        icon: () => (
-          <img
-            src={
-              color === "c-PI1"
-                ? logoPi
-                : color === "c-O2"
-                ? logoOr
-                : color === "c-PU1"
-                ? logoPu
-                : color === "c-B2"
-                ? logoBl
-                : color === "c-LB2"
-                ? logoBl
-                : color === "c-GR1"
-                ? logoLG
-                : color === "c-GR2"
-                ? logoGR
-                : logoDG
-            }
-            width="20"
-          />
-        ),
-      });
+      toast("Upload failed! Max file size for images is 8MB", toastOptions);
     }
     setImageTrigger(true);
     setMedia(event.target.files[0]);
@@ -146,32 +144,7 @@ const EditStone = () => {
     // ca. 3min Video length => should be enough!
     if (event.target.files[0]?.size > 10000000) {
       document.getElementById("media-vid").value = "";
-      toast("Upload failed! Max file size for videos is 10MB", {
-        theme: theme,
-        hideProgressBar: "true",
-        icon: () => (
-          <img
-            src={
-              color === "c-PI1"
-                ? logoPi
-                : color === "c-O2"
-                ? logoOr
-                : color === "c-PU1"
-                ? logoPu
-                : color === "c-B2"
-                ? logoBl
-                : color === "c-LB2"
-                ? logoBl
-                : color === "c-GR1"
-                ? logoLG
-                : color === "c-GR2"
-                ? logoGR
-                : logoDG
-            }
-            width="20"
-          />
-        ),
-      });
+      toast("Upload failed! Max file size for videos is 10MB", toastOptions);
     } else {
       setVideoTrigger(true);
       setMedia(event.target.files[0]);
@@ -212,87 +185,36 @@ const EditStone = () => {
     });
   }, [adIdsTrigger]);
 
-  // console.log("projectId: ", projectId)
-  // console.log("stoneId: ", stoneId)
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIdsTrigger(true);
-    console.log("editedStone: ", editedStone);
-    console.log("stoneId: ", stoneId);
 
-    const formData = new FormData();
-    formData.append("media", media);
-    formData.append("data", JSON.stringify(editedStone));
-
-    setEditStonePending(true);
-    await fetch(`${host}/stones/${stoneId}`, {
-      credentials: "include",
-      method: "PATCH",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (!data.status) {
-          // console.log("ICH HÄNGE IM IF");
-          toast(json.error, {
-            theme: theme,
-            hideProgressBar: "true",
-            icon: () => (
-              <img
-                src={
-                  color === "c-PI1"
-                    ? logoPi
-                    : color === "c-O2"
-                    ? logoOr
-                    : color === "c-PU1"
-                    ? logoPu
-                    : color === "c-B2"
-                    ? logoBl
-                    : color === "c-LB2"
-                    ? logoBl
-                    : color === "c-GR1"
-                    ? logoLG
-                    : color === "c-GR2"
-                    ? logoGR
-                    : logoDG
-                }
-                width="20"
-              />
-            ),
-          });
-          setEditStonePending(false);
-        } else {
-          // console.log("ICH HÄNGE IM ELSE");
-          toast("Your stone is updated", {
-            theme: theme,
-            hideProgressBar: "true",
-            icon: () => (
-              <img
-                src={
-                  color === "c-PI1"
-                    ? logoPi
-                    : color === "c-O2"
-                    ? logoOr
-                    : color === "c-PU1"
-                    ? logoPu
-                    : color === "c-B2"
-                    ? logoBl
-                    : color === "c-LB2"
-                    ? logoBl
-                    : color === "c-GR1"
-                    ? logoLG
-                    : color === "c-GR2"
-                    ? logoGR
-                    : logoDG
-                }
-                width="20"
-              />
-            ),
-          });
-          navigate(`/projectdetails/${projectId}`);
-        }
-      });
+    const allowed = ["jpeg", "jpg", "png", "gif", "tiff", "bmp", "mp4", "mov", "wmv", "avi", "mkv", "flv"]
+    const avatarFormat = media?.name?.split(".")[1]
+    if(media && !allowed.includes(avatarFormat)){
+      toast.info("please choose a image in one of the following formats: jpeg, jpg, png, gif, tiff, bmp", toastOptions);
+    } else{      
+      const formData = new FormData();
+      formData.append("media", media);
+      formData.append("data", JSON.stringify(editedStone));
+      
+      setEditStonePending(true);
+      await fetch(`${host}/stones/${stoneId}`, {
+        credentials: "include",
+        method: "PATCH",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (!data.status) {
+            toast(json.error, toastOptions);
+            setEditStonePending(false);
+          } else {
+            toast("Your stone is updated", toastOptions);
+            navigate(`/projectdetails/${projectId}`);
+          }
+        });
+    }
   };
 
   const handleDelete = async () => {
@@ -400,8 +322,7 @@ const EditStone = () => {
               ) : mediaUrl && imageTrigger ? (
                 <img src={mediaUrl} alt="media" />
               ) : (
-                <div className="thumbnailS">                  
-                </div>
+                <div className="thumbnailS"></div>
               )}
               {/* </div> */}
               <div className="col">
@@ -418,7 +339,6 @@ const EditStone = () => {
                   disabled={videoTrigger}
                   hidden
                 />
-
               </div>
               <div className="col">
                 <label for="media-vid">
@@ -435,12 +355,20 @@ const EditStone = () => {
                   hidden
                 />
                 {videoTrigger && (
-                  <button className={bg} type="button" onClick={resetVideoHandler}>
+                  <button
+                    className={bg}
+                    type="button"
+                    onClick={resetVideoHandler}
+                  >
                     reset video selection
                   </button>
                 )}
                 {imageTrigger && (
-                  <button className={bg} type="button" onClick={resetImageHandler}>
+                  <button
+                    className={bg}
+                    type="button"
+                    onClick={resetImageHandler}
+                  >
                     reset image selection
                   </button>
                 )}
@@ -468,11 +396,16 @@ const EditStone = () => {
           </button>
         </div>
       </form>
-      <button className={`mt2  bg-FAV`} onClick={() => handleDelete()}>
-        delete stone
-      </button>
-        <ToastContainer />
-        <Footer/>
+      <div className="bo-DARK"></div>
+      <div className="flex center">
+        <h1 className="c-alert">
+          <Danger />
+        </h1>
+        <button className="dangerzone bg-alert" onClick={() => handleDelete()}>
+          <p>delete stone?</p>
+        </button>
+      </div>
+      <Footer />
     </>
   );
 };

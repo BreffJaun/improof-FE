@@ -25,6 +25,33 @@ import logoLG from "../../images/improof_LG.png";
 import "../../styles/toastify.scss";
 
 const FollowBtn = ({ talent, user, theme }) => {
+  const toastOptions = {
+    theme: theme,
+    hideProgressBar: "true",
+    icon: () => (
+      <img
+        src={
+          color === "c-PI1"
+            ? logoPi
+            : color === "c-O2"
+            ? logoOr
+            : color === "c-PU1"
+            ? logoPu
+            : color === "c-B2"
+            ? logoBl
+            : color === "c-LB2"
+            ? logoLB
+            : color === "c-GR1"
+            ? logoLG
+            : color === "c-GR3"
+            ? logoGR
+            : logoDG
+        }
+        width="20"
+      />
+    ),
+  };
+
   const darkMode = user.meta.darkMode;
   const color = user.meta.colorTheme[0];
 
@@ -43,60 +70,10 @@ const FollowBtn = ({ talent, user, theme }) => {
       .then((response) => response.json())
       .then((json) => {
         if (json.status) {
-          toast(`you added ${talent.profile?.firstName}`, {
-            theme: theme,
-            hideProgressBar: "true",
-            icon: () => (
-              <img
-                src={
-                  color === "c-PI1"
-                    ? logoPi
-                    : color === "c-O2"
-                    ? logoOr
-                    : color === "c-PU1"
-                    ? logoPu
-                    : color === "c-B2"
-                    ? logoBl
-                    : color === "c-LB2"
-                    ? logoLB
-                    : color === "c-GR1"
-                    ? logoLG
-                    : color === "c-GR2"
-                    ? logoGR
-                    : logoDG
-                }
-                width="20"
-              />
-            ),
-          });
+          toast(`you added ${talent.profile?.firstName}`, toastOptions);
           setTrigger(!trigger);
         } else {
-          toast(`something went wrong!`, {
-            theme: theme,
-            hideProgressBar: "true",
-            icon: () => (
-              <img
-                src={
-                  color === "c-PI1"
-                    ? logoPi
-                    : color === "c-O2"
-                    ? logoOr
-                    : color === "c-PU1"
-                    ? logoPu
-                    : color === "c-B2"
-                    ? logoBl
-                    : color === "c-LB2"
-                    ? logoBl
-                    : color === "c-GR1"
-                    ? logoLG
-                    : color === "c-GR2"
-                    ? logoGR
-                    : logoDG
-                }
-                width="20"
-              />
-            ),
-          });
+          toast(`something went wrong!`, toastOptions);
         }
       });
   };
@@ -117,60 +94,10 @@ const FollowBtn = ({ talent, user, theme }) => {
       .then((response) => response.json())
       .then((json) => {
         if (json.status) {
-          toast(`you deleted ${talent?.profile?.firstName}`, {
-            theme: theme,
-            hideProgressBar: "true",
-            icon: () => (
-              <img
-                src={
-                  color === "c-PI1"
-                    ? logoPi
-                    : color === "c-O2"
-                    ? logoOr
-                    : color === "c-PU1"
-                    ? logoPu
-                    : color === "c-B2"
-                    ? logoBl
-                    : color === "c-LB2"
-                    ? logoLB
-                    : color === "c-GR1"
-                    ? logoLG
-                    : color === "c-GR3"
-                    ? logoGR
-                    : logoDG
-                }
-                width="20"
-              />
-            ),
-          });
+          toast(`you deleted ${talent?.profile?.firstName}`, toastOptions);
           setTrigger(!trigger);
         } else {
-          toast(`something went wrong!`, {
-            theme: theme,
-            hideProgressBar: "true",
-            icon: () => (
-              <img
-                src={
-                  color === "c-PI1"
-                    ? logoPi
-                    : color === "c-O2"
-                    ? logoOr
-                    : color === "c-PU1"
-                    ? logoPu
-                    : color === "c-B2"
-                    ? logoBl
-                    : color === "c-LB2"
-                    ? logoLB
-                    : color === "c-GR1"
-                    ? logoLG
-                    : color === "c-GR3"
-                    ? logoGR
-                    : logoDG
-                }
-                width="20"
-              />
-            ),
-          });
+          toast(`something went wrong!`, toastOptions);
         }
       });
   };
