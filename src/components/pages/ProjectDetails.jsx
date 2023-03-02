@@ -102,12 +102,12 @@ const ProjectDetails = () => {
         {imageViewer &&
         <div className="image-container-other" 
         onClick={() => setImageViewer(false)}>
-          <img className="y img-other" src={stoneImage} alt="stoneImage" />
+          <img className="img-other" src={stoneImage} alt="stoneImage" />
         </div>
         }
         <div className="central col mb1">
           {project.thumbnail && (
-            <img src={project.thumbnail} alt="Thumbnail" width="350" />
+            <img src={project.thumbnail} alt="Thumbnail" width="350"  onClick={() => showImage(project.thumbnail)}/>
           )}
           <h1 className={color}>"{project.name}"</h1>
           <h4 className={color}>{project.description}</h4>
