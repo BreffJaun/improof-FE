@@ -209,7 +209,9 @@ const CreateProject = () => {
     if (!newProject.category && newProject !== "") {
       toast("please choose a category", toastOptions);
     }
-    category && category !== "" && sendProjectData();
+    const allowed = ["jpeg", "jpg", "png", "gif", "tiff", "bmp"]
+    const avatarFormat = thumbnail?.name?.split(".")[1]
+    category && category !== "" && !thumbnail || allowed.includes(avatarFormat) ? sendProjectData() : toast.info("please choose a image in one of the following formats: jpeg, jpg, png, gif, tiff, bmp", toastOptions);
   };
 
   const handleSearch = (event) => {
@@ -263,7 +265,7 @@ const CreateProject = () => {
             </div>
           </div>
           <div className="center">
-            <label for="thumbnail">
+            <label htmlFor="thumbnail">
               <Upload className="fs2 mt1" />
               upload image
             </label>

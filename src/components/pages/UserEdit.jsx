@@ -175,7 +175,6 @@ const UserEdit = () => {
     const avatarFormat = avatar?.name?.split(".")[1]
     !avatar || allowed.includes(avatarFormat) ? updateUserData() : toast.info("please choose a image in one of the following formats: jpeg, jpg, png, gif, tiff, bmp", toastOptions);
   };
-  console.log(avatar?.name?.split(".")[1]);
 
   return uploadPending ? (
     <div>Loading...</div>

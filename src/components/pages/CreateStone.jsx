@@ -159,31 +159,37 @@ const CreateStone = () => {
 
   // console.log("newStone: ", newStone.team?.length);
   const handleSubmit = async (e) => {
+    const allowed = ["jpeg", "jpg", "png", "gif", "tiff", "bmp", "mp4", "mov", "wmv", "avi", "mkv", "flv"]
+    const avatarFormat = media?.name?.split(".")[1]
     e.preventDefault();
-    if (newStone.team.length !== 0) {
-      const formData = new FormData();
-      formData.append("media", media);
-      formData.append("data", JSON.stringify(newStone));
-
-      await fetch(`${host}/stones`, {
-        credentials: "include",
-        method: "POST",
-        body: formData,
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          console.log(json);
-          if (!json.status) {
-            toast.error(json.error, toastOptions);
-          } else {
-            toast("You just added a new stone", toastOptions);
-            // setCreateStonePending(true);
-            navigate(`/projectdetails/${projectId}`);
-          }
-        });
-    } else {
-      toast.info("please add a contributor");
-    }
+    if(media && !allowed.includes(avatarFormat)){
+      toast.info("please choose a image in one of the following formats: jpeg, jpg, png, gif, tiff, bmp", toastOptions);
+    } else{
+      if (newStone.team.length !== 0) {
+        const formData = new FormData();
+        formData.append("media", media);
+        formData.append("data", JSON.stringify(newStone));
+  
+        await fetch(`${host}/stones`, {
+          credentials: "include",
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((json) => {
+            console.log(json);
+            if (!json.status) {
+              toast.error(json.error, toastOptions);
+            } else {
+              toast("You just added a new stone", toastOptions);
+              // setCreateStonePending(true);
+              navigate(`/projectdetails/${projectId}`);
+            }
+          });
+      } else {
+        toast.info("please add a contributor");
+      }
+    }  
   };
 
   return createStonePending ? (
@@ -317,7 +323,7 @@ const CreateStone = () => {
                   hidden
                 />
                 {videoTrigger && (
-                  <button type="button" onClick={resetVideoHandler}>
+                  <button className={bg} type="button" onClick={resetVideoHandler}>
                     reset video selection
                   </button>
                 )}
