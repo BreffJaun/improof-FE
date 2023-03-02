@@ -38,6 +38,13 @@ const ProjectDetails = () => {
   const [openStoneCard, setOpenStoneCard] = useState();
   const [stone, setStone] = useState({});
   const [theme, setTheme] = useState("");
+  const [imageViewer, setImageViewer] = useState(false);
+  const [stoneImage, setStoneImage] = useState("");
+
+  const showImage = (stoneImg) => {
+    setImageViewer(true);
+    setStoneImage(stoneImg);
+  }
   const width = window.innerWidth
   
   // const []
@@ -91,6 +98,12 @@ const ProjectDetails = () => {
     !isPending &&
     user && (
       <div>
+        {/* MARTIN STYLEN */}
+        {imageViewer &&
+        <div onClick={() => setImageViewer(false)}>
+          <img src={stoneImage} alt="stoneImage" />
+        </div>
+        }
         <div className="central col mb1">
           {project.thumbnail && (
             <img src={project.thumbnail} alt="Thumbnail" width="350" />
@@ -145,7 +158,9 @@ const ProjectDetails = () => {
                       {!stone.media ? null : stone.contentType.includes(
                           "image"
                         ) ? (
-                        <img src={stone.media} />
+                        <img src={stone.media} 
+                        onClick={() => showImage(stone.media)}/>
+                        
                       ) : (
                         <ReactPlayer
                           url={stone.media}

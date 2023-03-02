@@ -264,6 +264,7 @@ const CreateProject = () => {
               ) : null}
             </div>
           </div>
+          
           <div className="center">
             <label htmlFor="thumbnail">
               <Upload className="fs2 mt1" />
