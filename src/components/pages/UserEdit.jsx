@@ -108,7 +108,10 @@ const UserEdit = () => {
   const handleInputProfile = (event) => {
     setUserData({
       ...userData,
-      profile: { ...userData.profile, [event.target.name]: event.target.value },
+      profile: {
+        ...userData.profile,
+        [event.target.name]: event.target.value,
+      },
     });
   };
 
@@ -179,7 +182,6 @@ const UserEdit = () => {
           toastOptions
         );
   };
-  console.log(avatar?.name?.split(".")[1]);
 
   return uploadPending ? (
     <div>Loading...</div>
@@ -279,6 +281,7 @@ const UserEdit = () => {
           <textarea
             rows="7"
             id="description"
+            placeholder="tell us few thing about yourself..."
             onChange={handleInputProfile}
             name="description"
             type="text"
@@ -332,7 +335,8 @@ const UserEdit = () => {
         <div className="col mb1">
           <p className="ml1 mt1 mb05">mobile</p>
           <input
-            onChange={handleInputContact}
+            onChange={handleInputProfile}
+            placeholder="please give a valid telephone number"
             name="mobile"
             type="text"
             defaultValue={user.contact.mobile}
@@ -359,6 +363,7 @@ const UserEdit = () => {
             className="shadow-s"
           />
         </div>
+        <button type="button">+</button>
         <div className="col mb1">
           <p className="ml1 mb05">2nd online profile</p>
           <input
@@ -386,6 +391,16 @@ const UserEdit = () => {
         >
           location
         </h1>
+        <h5
+          className={`central ${color ? color : user.meta.colorTheme[0]} mt05`}
+        >
+          Giving your address will help recruiters discover you
+        </h5>
+        <h5
+          className={`central ${color ? color : user.meta.colorTheme[0]} mt05`}
+        >
+          but only your city is visible to other users{" "}
+        </h5>
         <div className="col mb1">
           <p className="ml1 mb05">street</p>
           <input
