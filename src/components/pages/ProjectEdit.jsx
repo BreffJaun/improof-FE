@@ -18,7 +18,7 @@ import { AiOutlineCamera as Camera } from "react-icons/ai";
 import { RiMailAddLine as MailPlus } from "react-icons/ri";
 import { RiMailCloseLine as MailMinus } from "react-icons/ri";
 import { FiUpload as Upload } from "react-icons/fi";
-import { CgDanger as Danger} from "react-icons/cg"
+import { CgDanger as Danger } from "react-icons/cg";
 
 // LOGOS
 import logoPi from "../../images/improof_PI.png";
@@ -64,11 +64,31 @@ const CreateProject = () => {
   const darkMode = user.meta.darkMode;
   const theme = darkMode ? "dark" : "light";
   const toastOptions = {
-    position: "bottom-right",
-    autoClose: 8000,
-    // theme: "dark",
+    theme: theme,
+    hideProgressBar: "true",
+    icon: () => (
+      <img
+        src={
+          color === "c-PI1"
+            ? logoPi
+            : color === "c-O2"
+            ? logoOr
+            : color === "c-PU1"
+            ? logoPu
+            : color === "c-B2"
+            ? logoBl
+            : color === "c-LB2"
+            ? logoLB
+            : color === "c-GR1"
+            ? logoLG
+            : color === "c-GR2"
+            ? logoGR
+            : logoDG
+        }
+        width="20"
+      />
+    ),
   };
-
   useEffect(() => {
     setPending(true);
     const getUsers = async () => {
@@ -214,32 +234,7 @@ const CreateProject = () => {
         .then((json) => json.json())
         .then((data) => {
           if (data.status) {
-            toast("Your changes are saved", {
-              theme: theme,
-              hideProgressBar: "true",
-              icon: () => (
-                <img
-                  src={
-                    color === "c-PI1"
-                      ? logoPi
-                      : color === "c-O2"
-                      ? logoOr
-                      : color === "c-PU1"
-                      ? logoPu
-                      : color === "c-B2"
-                      ? logoBl
-                      : color === "c-LB2"
-                      ? logoLB
-                      : color === "c-GR1"
-                      ? logoLG
-                      : color === "c-GR2"
-                      ? logoGR
-                      : logoDG
-                  }
-                  width="20"
-                />
-              ),
-            });
+            toast("Your changes are saved", toastOptions);
             setUploadPending(false);
             if (!createProjectPending) {
               navigate(`/projectdetails/${data.data._id}`);
@@ -247,54 +242,40 @@ const CreateProject = () => {
           }
           if (data.error) {
             // setUploadPending(false);
-            toast(data.error, {
-              theme: theme,
-              hideProgressBar: "true",
-              icon: () => (
-                <img
-                  src={
-                    color === "c-PI1"
-                      ? logoPi
-                      : color === "c-O2"
-                      ? logoOr
-                      : color === "c-PU1"
-                      ? logoPu
-                      : color === "c-B2"
-                      ? logoBl
-                      : color === "c-LB2"
-                      ? logoLB
-                      : color === "c-GR1"
-                      ? logoLG
-                      : color === "c-GR2"
-                      ? logoGR
-                      : logoDG
-                  }
-                  width="20"
-                />
-              ),
-            });
+            toast(data.error, toastOptions);
           }
         });
     };
-    const allowed = ["jpeg", "jpg", "png", "gif", "tiff", "bmp"]
-    const avatarFormat = thumbnail?.name?.split(".")[1]
-    !thumbnail || allowed.includes(avatarFormat) ? sendProjectData() : toast.info("please choose a image in one of the following formats: jpeg, jpg, png, gif, tiff, bmp", toastOptions);
+    const allowed = ["jpeg", "jpg", "png", "gif", "tiff", "bmp"];
+    const avatarFormat = thumbnail?.name?.split(".")[1];
+    !thumbnail || allowed.includes(avatarFormat)
+      ? sendProjectData()
+      : toast.info(
+          "please choose a image in one of the following formats: jpeg, jpg, png, gif, tiff, bmp",
+          toastOptions
+        );
   };
   // project && console.log(project.team)
   const handleDelete = async () => {
-    console.log(user._id, project._id);
-    await fetch(`${host}/projects/${project._id}`, {
-      credentials: "include",
-      method: "DELETE",
-      body: JSON.stringify({
-        userId: user._id,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => navigate("/myprojects"));
+    if (confirm("are you sure you want to delete your project?")) {
+      await fetch(`${host}/projects/${project._id}`, {
+        credentials: "include",
+        method: "DELETE",
+        body: JSON.stringify({
+          userId: user._id,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then(
+          (json) => toast(`you deleted ${project.title}`, toastOptions),
+          navigate("/myprojects")
+        );
+    } else {
+      navigate(`/projectedit/${project._id}`);
+    }
   };
   const handleSearch = (event) => {
     setSearch(event.target.value);
@@ -338,7 +319,7 @@ const CreateProject = () => {
               />
             </div>
 
-              <p className="ml1 mt15 mb05">thumbnail</p>
+            <p className="ml1 mt15 mb05">thumbnail</p>
             <div className="col max">
               {/* <div className="thumbnailS"> */}
               {thumbnailUrl ? (
@@ -362,9 +343,9 @@ const CreateProject = () => {
                   type="file"
                   name="thumbnail"
                   onChange={handleFile}
-                  accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp" 
+                  accept=".jpeg, .jpg, .png, .gif, .tiff, .bmp"
                   hidden
-                  />
+                />
               </div>
             </div>
 
@@ -517,16 +498,21 @@ const CreateProject = () => {
               save changes
             </button>
           </div>
-          </form>
-          
-          <div className="bo-DARK"></div>
-          <div className="flex center">
-            <h1 className="c-alert"><Danger/></h1>
-            <button className="dangerzone bg-alert" onClick={() => handleDelete()}>
-              <p>delete project?</p>
-            </button>
-          </div>
-          <Footer/>
+        </form>
+
+        <div className="bo-DARK"></div>
+        <div className="flex center">
+          <h1 className="c-alert">
+            <Danger />
+          </h1>
+          <button
+            className="dangerzone bg-alert"
+            onClick={() => handleDelete()}
+          >
+            <p>delete project?</p>
+          </button>
+        </div>
+        <Footer />
       </>
     )
   );
