@@ -178,7 +178,7 @@ const UserEdit = () => {
     !avatar || allowed.includes(avatarFormat)
       ? updateUserData()
       : toast.info(
-          "please choose a image in one of the following formats: jpeg, jpg, png, gif, tiff, bmp",
+          "We love: jpeg, jpg, png, gif, tiff, bmp!",
           toastOptions
         );
   };
@@ -234,11 +234,13 @@ const UserEdit = () => {
           >
             Hi, {talent.profile.firstName}!
           </h1>
-          <p className={`central ${color ? color : user.meta.colorTheme[0]}`}>
-            Let´s spice up your profile!
-          </p>
-        </div>
-        <div>
+        <h5 className={`central ${color ? color : user.meta.colorTheme[0]} mt05`} >
+          Let´s spice up your profile!
+        </h5>
+          </div>
+          
+        <div className="bo-DARK"></div>
+        <div className="central">
           <RadioColor user={talent} setFavColor={setFavColor} />
         </div>
 
@@ -391,15 +393,8 @@ const UserEdit = () => {
         >
           location
         </h1>
-        <h5
-          className={`central ${color ? color : user.meta.colorTheme[0]} mt05`}
-        >
-          Giving your address will help recruiters discover you
-        </h5>
-        <h5
-          className={`central ${color ? color : user.meta.colorTheme[0]} mt05`}
-        >
-          but only your city is visible to other users{" "}
+        <h5 className={`central ${color ? color : user.meta.colorTheme[0]} mt05`} >
+          It´s just for the recruiters to find you!
         </h5>
         <div className="col mb1">
           <p className="ml1 mb05">street</p>
@@ -458,16 +453,18 @@ const UserEdit = () => {
         </div>
 
         <div className="bo-DARK"></div>
-        <div className="central">
-          <button type="submit" title="save changes" className="bg-FAV">
-            <BiCheck />
+        <div className="flex">
+          <button type="submit" title="save changes" className={bg}>
+            <BiCheck className="mb-025 mr05"/>save
           </button>
           <button
             onClick={() => navigate(`/userdetails/${user._id}`)}
             title="cancel"
-            className="bg-FAV"
-          >
-            <RxCross2 />
+            className={bg}
+            >
+              <div className="central">
+                <RxCross2 className="mb-025 mr05"/>cancel
+              </div>
           </button>
         </div>
         <Footer />
