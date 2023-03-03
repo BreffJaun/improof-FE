@@ -113,7 +113,7 @@ const Newsfeed = () => {
   // console.log(starProjects);
   // console.log(stoneswithProjects);
   return (
-    <div>
+    <>
       <div className="">
         <CarouselProvider
           interval={5000}
@@ -179,7 +179,12 @@ const Newsfeed = () => {
       </div>
 
       <div className="bo-DARK"></div>
-      <h1 className={`${color} center mt1`}>newsfeed</h1>
+
+      <div className="maxS">
+        <h1 className={`${color} center mt1`}>newsfeed</h1>
+        <h5 className={`central ${color ? color : user.meta.colorTheme[0]} mt05`} >
+          Stay updated on your star projects!
+        </h5>
       <div className="">
         <div>
           {stoneswithProjects.map((stone) => {
@@ -197,48 +202,47 @@ const Newsfeed = () => {
             }
             return (
               <div key={stone._id} className="newsfeed-card">
-                <div>
-                  <div className="flex">
-                    {stone.team.map((member) => {
-                      return member.profile.avatar ? (
-                        <div key={member._id} className="head50 shadow-l mr-08">
-                          <img
-                            className="head-pic"
-                            src={member.profile.avatar}
-                            onClick={() =>
-                              navigate(`/userdetails/${member._id}`)
-                            }
-                          />
-                        </div>
-                      ) : (
-                        <div
-                          key={member._id}
-                          className={`${bg} central head50 shadow-l mr-08`}
+                <h5 className={`${color} mgleft`}>new {stone.kind}:</h5>
+                <h2 className={`${color} mgleft`}>{project?.name}</h2>
+                <p className={`${color} mt05`}><span className="fw700">{time}</span> - {date}</p>
+
+                <div className="flex mt1">
+                  {stone.team.map((member) => {
+                    return member.profile.avatar ? (
+                      <div key={member._id} className="head50 shadow-l mr-08">
+                        <img
+                          className="head-pic"
+                          src={member.profile.avatar}
+                          onClick={() =>
+                            navigate(`/userdetails/${member._id}`)
+                          }
+                        />
+                      </div>
+                    ) : (
+                      <div
+                        key={member._id}
+                        className={`${bg} central head50 shadow-l mr-08`}
+                      >
+                        <p
+                          className="central c-A100"
+                          onClick={() =>
+                            navigate(`/userdetails/${member._id}`)
+                          }
                         >
-                          <p
-                            className="central"
-                            onClick={() =>
-                              navigate(`/userdetails/${member._id}`)
-                            }
-                          >
-                            {member.profile.initials}
-                          </p>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <h3>
-                    New {stone.kind.toUpperCase()} in {project?.name} <br />
-                    {date} {time}
-                  </h3>
-                  <NewsfeedCard stone={stone} projectId={project._id} />
+                          {member.profile.initials}
+                        </p>
+                      </div>
+                    );
+                  })}
                 </div>
+                <NewsfeedCard stone={stone} projectId={project._id} />
               </div>
             );
           })}
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 
