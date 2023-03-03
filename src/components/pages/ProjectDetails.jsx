@@ -1,7 +1,7 @@
 // STYLE
 import "../../styles/project-details.scss";
 import "../../styles/chrono.scss";
-import "../../styles/project-details.scss"
+
 
 import React from "react";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -100,7 +100,7 @@ const ProjectDetails = () => {
       <div className="absolute">
         {/* MARTIN STYLEN */}
         {imageViewer &&
-        <div className="image-container-other" 
+        <div className="image-container-other shadow-xl" 
         onClick={() => setImageViewer(false)}>
           <img className="img-other" src={stoneImage} alt="stoneImage" />
         </div>

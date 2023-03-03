@@ -30,14 +30,14 @@ color:red
   }
 }
 
-.image-container-other{
+.image-container-other {
   position: sticky;
   top:10px;
   left:20px;
   max-width:90%;
-  max-height:600px;
+  max-height:750px;
   z-index: 2;
-  overflow: scroll;
+  overflow: auto;
   border-radius: 6px;
 }
 
