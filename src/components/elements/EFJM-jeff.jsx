@@ -10,28 +10,28 @@ const Jeff = ({ darkMode }) => {
     <>
       <div
         className={
-          darkMode ? "card efjm-card rel col bgG" : "card efjm-card rel col"
+          darkMode ? "card efjm-card rel col bgG" : "card efjm-card rel col bgL"
         }
       >
         {" "}
         <div className="central mb2">
-          <div className="efjm-avatar-container bg-gGR1 central">
+          <div className="efjm-avatar-container central">
             <img src={jeff} />
           </div>
-          <div className="mt5 col">
+          <div className="mt5 col mb2">
             <h3 className="c-GR1 center mb05">Jeff Braun</h3>
             <p className="c-A60">"Learning from my own and especially from the mistakes of others"</p>
           </div>
         </div>
-        <div>
+        <div className="efjm-body">
           <div className="col mb1">
-            <p className="c-GR1">My field:</p>
+            <p className="fw700 c-GR1">My field:</p>
             <p>In this project my main task was the structuring and programming of the backend from scratch. For this we used my backend template, which already served us well in our project "coffy paste". Together with Eleni we programmed the backend with all its components within one week. After that we only had to add changes or extensions to a stable running backend.
 
             After the completion of the backend I supported the frontend team around Martin and Florian. Among other things, I created the "new Search" on the recruiter page, as well as various other components.</p>
           </div>
           <div className="col mb1">
-            <p className="c-GR1">About me:</p>
+            <p className="fw700 c-GR1">About me:</p>
             <p>
             I'm Jeff Braun, 32 years old and I'm a full stack developer (MERN stack) from Germany with a soft spot for the backend.
 
@@ -48,6 +48,7 @@ const Jeff = ({ darkMode }) => {
                 href="https://www.linkedin.com/in/jeff-braun-0959091a4/"
                 target="_blank"
                 className="c-GR1"
+
               >
                 <LinkedIn />
               </a>

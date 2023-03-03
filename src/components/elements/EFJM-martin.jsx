@@ -10,12 +10,12 @@ const Martin = ({ darkMode }) => {
     <>
       <div
         className={
-          darkMode ? "card efjm-card rel col bgG" : "card efjm-card rel col"
+          darkMode ? "card efjm-card rel col bgG" : "card efjm-card rel col bgL"
         }
       >
         {" "}
         <div className="central mb2">
-          <div className="efjm-avatar-container bg-gPU central">
+          <div className="efjm-avatar-container central">
             <img src={Maddin} />
           </div>
           <div className="mt5 col">
@@ -23,15 +23,15 @@ const Martin = ({ darkMode }) => {
             <p className="c-A60">"Everything is design!"</p>
           </div>
         </div>
-        <div>
+        <div className="efjm-body">
           <div className="col mb1">
-            <p className="c-FAV">My field:</p>
+            <p className="fw700 c-FAV">My field:</p>
             <p>
               UI-Designer, loves UX, knows HTML, CSS, Sass, React, Id, Ps, Ai
             </p>
           </div>
           <div className="col mb1">
-            <p className="c-FAV">About me:</p>
+            <p className="fw700 c-FAV">About me:</p>
             <p>
               I am a designer with heart and soul and live for the visualization
               of ideas. I have been able to do this for over 16 years at

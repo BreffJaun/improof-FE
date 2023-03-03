@@ -97,7 +97,7 @@
 .c-PI1{ color: var(--PI1) }
 .c-PI15{ color: var(--PI15) }
 .c-PU1{ color: var(--PU1) }
-.c-PU2{ color: var(--PU2) }
+.c-PU2{ color: var(--PI2) }
 
 // BG COLORS RECRUITER
 .bg-gGR1{ background-image: linear-gradient(135deg, var(--GR1), var(--GR4)) };
@@ -130,8 +130,11 @@
 
 
 
-.bg-FAV{background-image: linear-gradient(135deg, var(--A30), var(--A0));}
+.bg-FAV{background-image: linear-gradient(135deg, var(--A30), var(--A0))}
 .c-FAV{color: var(--O15);}
+
+.bgL{background-image: linear-gradient(135deg, var(--A100)50%, var(--A80))};
+
 
 
 .b1-FAV{border: 1px solid var(--O15)}

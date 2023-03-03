@@ -22,8 +22,8 @@ const EFJM = () => {
   const darkMode = user.meta.darkMode;
 
   return (
-    <div className="max1300">
-      <div className="maxM mb2">
+    <div className="max650">
+      <div className="max mb2">
         <div>
           <h1 className={`central ${color}`}>Hello, nice to meet you!</h1>
           <h4 className={`central ${color}`}>We are EFJM</h4>

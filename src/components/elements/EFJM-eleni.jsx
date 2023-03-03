@@ -10,11 +10,11 @@ const Eleni = ({ darkMode }) => {
     <>
       <div
         className={
-          darkMode ? "card efjm-card rel col bgG" : "card efjm-card rel col"
+          darkMode ? "card efjm-card rel col bgG" : "card efjm-card rel col bgL"
         }
       >
         <div className="central mb2">
-          <div className="efjm-avatar-container bg-FAV central">
+          <div className="efjm-avatar-container central">
             <img src={eleni} />
           </div>
           <div className="mt5 col">
@@ -22,16 +22,16 @@ const Eleni = ({ darkMode }) => {
             <p className="c-A60">"Life is not static, life is ecstatic!"</p>
           </div>
         </div>
-        <div>
+        <div className="efjm-body">
           <div className="col mb1">
-            <p className="c-PI15">My field:</p>
+            <p className="fw700 c-PI15">My field:</p>
             <p>
               {" "}
               HTML | CSS3 | JavaScript | React.js | MongoDB | Express | Node.js
             </p>
           </div>
           <div className="col mb1">
-            <p className="c-PI15">About me:</p>
+            <p className="fw700 c-PI15">About me:</p>
             <p>
               Hi, I’m Eleni
               <br />

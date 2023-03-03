@@ -9,11 +9,11 @@ const Florian = ({ darkMode }) => {
     <>
       <div
         className={
-          darkMode ? "card efjm-card rel col bgG" : "card efjm-card rel col"
+          darkMode ? "card efjm-card rel col bgG" : "card efjm-card rel col bgL"
         }
       >
-        <div className="central mb2">
-          <div className="efjm-avatar-container bg-FAV central">
+        <div className="mb2">
+          <div className="efjm-avatar-container central">
             <img src={img} alt="avatar" />
           </div>
           <div className="mt5 col">
@@ -21,13 +21,13 @@ const Florian = ({ darkMode }) => {
             <p className="c-A60">"Jesus loves coding"</p>
           </div>
         </div>
-        <div>
-          <div className="col mb1">
-            <p className="c-PU2">My field:</p>
+        <div className="efjm-body">
+          <div className="co l mb1">
+            <p className="fw700 c-PU2">My field:</p>
             <p>rocks React, loves Frontend and rules JavaScript</p>
           </div>
           <div className="col mb1">
-            <p className="c-PU2">About me:</p>
+            <p className="fw700 c-PU2">About me:</p>
             <p>
               Im here im there. Im everywhere...
             </p>
