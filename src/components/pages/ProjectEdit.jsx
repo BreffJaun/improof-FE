@@ -336,7 +336,7 @@ const CreateProject = () => {
               )}
               <div title="upload">
                 <label for="thumbnail">
-                  <Camera /> edit image
+                  <Camera className="fs2 mt1 pointer"/> edit image
                 </label>
                 <input
                   id="thumbnail"
@@ -419,22 +419,6 @@ const CreateProject = () => {
                   />
                 ))}
           </div>
-          {/* <div className="talent-container">
-            {noFollows &&
-              noFollows.map(
-                (talent) =>
-                  talent._id !== user._id && (
-                    <TalentToProjectCard
-                      team={team}
-                      setTeam={setTeam}
-                      key={talent._id}
-                      talent={talent}
-                      user={user}
-                      // projectEdit={true}
-                    />
-                  )
-              )}
-          </div> */}
 
           {/*  - - - - - INVITATION - - - - - */}
           <div className="maxM">

@@ -327,7 +327,7 @@ const EditStone = () => {
               {/* </div> */}
               <div className="col">
                 <label for="media-pic">
-                  <Camera />
+                  <Camera className="fs2 mt1 pointer"/>
                   photos
                 </label>
                 <input
@@ -342,7 +342,7 @@ const EditStone = () => {
               </div>
               <div className="col">
                 <label for="media-vid">
-                  <Camera />
+                  <Camera className="fs2 mt1 pointer"/>
                   videos
                 </label>
                 <input
