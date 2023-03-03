@@ -456,7 +456,9 @@ const UserEdit = () => {
         <div className="bo-DARK"></div>
         <div className="flex sticky-bottom">
           <button type="submit" title="save changes" className={bg}>
-            <BiCheck className="mb-025 mr05"/>save
+            <div className="central">
+              <BiCheck className="mb-025 mr05"/>save
+            </div>
           </button>
           <button
             onClick={() => navigate(`/userdetails/${user._id}`)}
