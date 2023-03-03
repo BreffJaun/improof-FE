@@ -270,14 +270,24 @@ const TalentDetails = () => {
                 ))
               ) : (
                 <div >
-                  <p className="mb2">It is time for your first project.</p>
-                  <button
-                    className={`mb05 rel ${bg}`}
-                    onClick={() => navigate("/createproject")}
-                  >
-                    <NewProject className="burger-icon" />
-                    <p className="ml2">new project</p>
-                  </button>
+                  {user?._id !== talent._id ? 
+                    (
+                      null
+                    )
+                    : 
+                    (
+                      <>
+                        <p className="mb2">It is time for your first project.</p>
+                        <button
+                          className={`mb05 rel ${bg}`}
+                          onClick={() => navigate("/createproject")}
+                        >
+                          <NewProject className="burger-icon" />
+                          <p className="ml2">new project</p>
+                        </button>
+                      </>
+                    )
+                  }
                 </div>
               )}
             </div>
@@ -298,17 +308,27 @@ const TalentDetails = () => {
               )
             ) : (
               <div>
-                <p className="mb2">
-                  {talent.profile.firstName} {talent.profile.lastName} is not
-                  following anybody!
-                </p>
-                <button
-                  className={`mb05 rel ${bg}`}
-                  onClick={() => navigate("/community")}
-                >
-                  <Community className="burger-icon" />
-                  <p className="ml2">community</p>
-                </button>
+                {user?._id !== talent._id ?
+                  (
+                    null
+                  )
+                  : 
+                  (
+                    <>
+                      <p className="mb2">
+                        {talent.profile.firstName} {talent.profile.lastName} is not
+                        following anybody!
+                      </p>
+                      <button
+                        className={`mb05 rel ${bg}`}
+                        onClick={() => navigate("/community")}
+                      >
+                        <Community className="burger-icon" />
+                        <p className="ml2">community</p>
+                      </button>                  
+                    </>
+                  )
+                }
               </div>
             )}
           </div>
