@@ -4,8 +4,10 @@
 }
 
 .message-container{
+    margin: auto;
     border: 2px solid green;
-    height: 300px;
+    max-width: 600px;
+    height: 350px;
     overflow-y: scroll;
 }
 
