@@ -6,6 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 import UserContext from "../../context/userContext.jsx";
 import "../../styles/colors.scss";
+import "../../styles/user-edit.scss"
 
 //ICONS
 import { AiOutlineCamera } from "react-icons/ai";
@@ -337,7 +338,7 @@ const UserEdit = () => {
         <div className="col mb1">
           <p className="ml1 mt1 mb05">mobile</p>
           <input
-            onChange={handleInputProfile}
+            onChange={handleInputContact}
             placeholder="please give a valid telephone number"
             name="mobile"
             type="text"
@@ -453,9 +454,11 @@ const UserEdit = () => {
         </div>
 
         <div className="bo-DARK"></div>
-        <div className="flex">
+        <div className="flex sticky-bottom">
           <button type="submit" title="save changes" className={bg}>
-            <BiCheck className="mb-025 mr05"/>save
+            <div className="central">
+              <BiCheck className="mb-025 mr05"/>save
+            </div>
           </button>
           <button
             onClick={() => navigate(`/userdetails/${user._id}`)}
@@ -633,7 +636,7 @@ const UserEdit = () => {
         </div>
 
         <div className="bo-DARK"></div>
-        <div className="central">
+        <div className="central sticky-bottom">
           <button type="submit" title="save changes" className="bg-FAV">
             <BiCheck />
           </button>
