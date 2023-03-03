@@ -24,17 +24,11 @@ const Messages = () => {
     scrollBottom.current?.scrollIntoView({ behavior: "smooth" })
   }
 
-  useEffect(() => {
-    scrollToBottom()
-  }, [reload, trigger]);
-
   setTimeout(() => {
     setReload(!reload);
   }, "3000");
 
   useEffect(() => {
-    // document.body.scrollTop = 0;
-    // document.documentElement.scrollTop = 0;
     const getConversation = async () => {
       await fetch(`${host}/conversations/${id}`)
         .then((response) => response.json())
@@ -49,7 +43,25 @@ const Messages = () => {
         });
     };
     getConversation();
-  }, [trigger, id, reload]);
+  }, [reload]);
+
+  useEffect(() => {
+    const getConversation = async () => {
+      await fetch(`${host}/conversations/${id}`)
+        .then((response) => response.json())
+        .then((json) => {
+          if (json.status) {
+            setConversation(json.data);
+            const other = json.data.participants.find(
+              (part) => part._id !== user._id
+            );
+            setParticipant(other);
+            scrollToBottom()
+          }
+        });
+    };
+    getConversation();
+  }, [id, trigger]);
 
   useEffect(() => {
     const getUser = async () => {
