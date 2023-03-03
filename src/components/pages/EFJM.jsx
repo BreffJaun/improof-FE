@@ -44,12 +44,13 @@ const EFJM = () => {
         </div>
       </div>
       <div className="logoContainer">
-        <div className={`efjm rel ${bg} center`} onClick={() => navigate("/")}>
-          <div className="whity central center">
-            <p>
-              <X />
-            </p>
-          </div>
+        <div onClick={() => navigate("/")}>
+          <button
+            className={`circle40 ${bg} central`}
+            title="close"
+          >
+            <X />
+          </button>
         </div>
       </div>
     </div>
