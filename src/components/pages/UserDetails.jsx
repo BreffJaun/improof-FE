@@ -12,6 +12,8 @@ import TriggerContext from "../../context/triggerContext.jsx";
 import { FollowBtn } from "../buttons/FollowBtn.jsx";
 import { SendMessageBtn } from "../buttons/MessageBtn.jsx";
 import { AiFillEdit } from "react-icons/ai";
+import { AiOutlinePlusSquare as NewProject } from "react-icons/ai";
+import { MdPeopleOutline as Community } from "react-icons/md";
 
 //ELEMENTS
 import { ProjectCard } from "../elements/ProjectCard.jsx";
@@ -19,6 +21,7 @@ import { TalentCard } from "../elements/TalentCard.jsx";
 import Up from "../elements/Up.jsx";
 import Footer from "../elements/Footer.jsx";
 import UserEdit from "./UserEdit.jsx";
+
 
 // STYLES
 import "../../styles/toastify.scss";
@@ -173,7 +176,7 @@ const TalentDetails = () => {
                 {/* ----------------------------------------------- */}
                 {talent.profile.goal && (
                   <div className="mb1">
-                    <p className={color}>tools and skills:</p>
+                    <p className={color}>goals:</p>
                     <p>{talent.profile.goal}</p>
                   </div>
                 )}
@@ -266,7 +269,16 @@ const TalentDetails = () => {
                   />
                 ))
               ) : (
-                <p>It is time for your first project.</p>
+                <div >
+                  <p className="mb2">It is time for your first project.</p>
+                  <button
+                    className={`mb05 rel ${bg}`}
+                    onClick={() => navigate("/createproject")}
+                  >
+                    <NewProject className="burger-icon" />
+                    <p className="ml2">new project</p>
+                  </button>
+                </div>
               )}
             </div>
           </div>
@@ -285,10 +297,19 @@ const TalentDetails = () => {
                   )
               )
             ) : (
-              <p>
-                {talent.profile.firstName} {talent.profile.lastName} is not
-                following anybody!
-              </p>
+              <div>
+                <p className="mb2">
+                  {talent.profile.firstName} {talent.profile.lastName} is not
+                  following anybody!
+                </p>
+                <button
+                  className={`mb05 rel ${bg}`}
+                  onClick={() => navigate("/community")}
+                >
+                  <Community className="burger-icon" />
+                  <p className="ml2">community</p>
+                </button>
+              </div>
             )}
           </div>
         </div>
