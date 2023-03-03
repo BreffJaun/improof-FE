@@ -16,7 +16,6 @@ const News = ({ project, user }) => {
   const navigate = useNavigate();
   return Object.keys(project).length &&
     <>
-    <div className="max">
       <div className="central">
         <div className="news-container">
           <div className="news">
@@ -87,7 +86,6 @@ const News = ({ project, user }) => {
             </div>
           </div>
         </div>
-      </div>
       </div>
     </>
 };
