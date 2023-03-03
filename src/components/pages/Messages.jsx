@@ -1,7 +1,7 @@
 import Footer from "../elements/Footer.jsx";
 import { Message, Sender } from "../elements/MessageCard.jsx";
 import { useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { host } from "../../api/host.jsx";
 
 
@@ -17,7 +17,16 @@ const Messages = () => {
   const [msg, setMsg] = useState("");
   const [trigger, setTrigger] = useState(false);
   const [reload, setReload] = useState(false);
+  const scrollBottom = useRef(null)
   const color = user.meta.colorTheme[0];
+
+  const scrollToBottom = () => {
+    scrollBottom.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [reload, trigger]);
 
   setTimeout(() => {
     setReload(!reload);
@@ -102,6 +111,7 @@ const Messages = () => {
                   return <Message key={msg._id} user={user} msg={msg} />
                 })}
               </div>
+              <div ref={scrollBottom} />
             </div>
           </div>
         </div>
