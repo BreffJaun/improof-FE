@@ -1,7 +1,7 @@
 // STYLE
 import "../../styles/project-details.scss";
 import "../../styles/chrono.scss";
-// import "../../styles/project-details.scss"
+import "../../styles/project-details.scss"
 
 import React from "react";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -20,6 +20,7 @@ import Footer from "../elements/Footer.jsx";
 import StoneCard from "../elements/StoneCard.jsx";
 
 // ICONS
+import { GiPartyPopper as MileStone } from "react-icons/gi"
 import { AiOutlineEdit as Edit } from "react-icons/ai";
 import { AiOutlinePlus as Plus } from "react-icons/ai";
 import ProjectBtn from "../buttons/ProjectBtn.jsx";
@@ -37,7 +38,15 @@ const ProjectDetails = () => {
   const [openStoneCard, setOpenStoneCard] = useState();
   const [stone, setStone] = useState({});
   const [theme, setTheme] = useState("");
+  const [imageViewer, setImageViewer] = useState(false);
+  const [stoneImage, setStoneImage] = useState("");
 
+  const showImage = (stoneImg) => {
+    setImageViewer(true);
+    setStoneImage(stoneImg);
+  }
+  const width = window.innerWidth
+  
   // const []
   // FETCH CURR PROJECT
   useEffect(() => {
@@ -88,10 +97,17 @@ const ProjectDetails = () => {
   return (
     !isPending &&
     user && (
-      <div>
+      <div className="absolute">
+        {/* MARTIN STYLEN */}
+        {imageViewer &&
+        <div className="image-container-other" 
+        onClick={() => setImageViewer(false)}>
+          <img className="img-other" src={stoneImage} alt="stoneImage" />
+        </div>
+        }
         <div className="central col mb1">
           {project.thumbnail && (
-            <img src={project.thumbnail} alt="Thumbnail" width="350" />
+            <img src={project.thumbnail} alt="Thumbnail" width="350"  onClick={() => showImage(project.thumbnail)}/>
           )}
           <h1 className={color}>"{project.name}"</h1>
           <h4 className={color}>{project.description}</h4>
@@ -124,15 +140,18 @@ const ProjectDetails = () => {
           </div>
         )}
         <Chrono
+          mode= {width < 750 ? "VERTICAL" : "VERTICAL_ALTERNATING" }
           theme={{
             primary: darkMode ? "var(--A40)" : "var(--A40)",
-            secondary: darkMode ? "var(--A15)" : "var(--A100)",
+            secondary: darkMode ? "transparent" : "transparent",
             cardBgColor: darkMode ? "var(--A15)" : "var(--A100)",
             cardForeColor: "black",
             titleColor: darkMode ? "#fff" : "#333",
             titleColorActive: "red",
           }}
         >
+           {/* MARTIN STYLEN */}
+
           {!isPending &&
             project.stones
               .map((stone) => {
@@ -142,7 +161,9 @@ const ProjectDetails = () => {
                       {!stone.media ? null : stone.contentType.includes(
                           "image"
                         ) ? (
-                        <img src={stone.media} />
+                        <img src={stone.media} 
+                        onClick={() => showImage(stone.media)}/>
+                        
                       ) : (
                         <ReactPlayer
                           url={stone.media}
@@ -193,18 +214,20 @@ const ProjectDetails = () => {
           {/* <div className="chrono-icons" id="icons">
             {project?.stones.map((stone) => {
               return (
-                (stone.kind === "flintstone" && (
-                  <img src="" alt="" key={stone._id} />
-                )) ||
                 (stone.kind === "stepstone" && (
-                  <img
-                    src=""
-                    alt=""
-                    key={stone._id}
-                  />
+                  <h1>
+                    <div className="c-FAV">
+                      <MileStone key={stone._id}/>
+                    </div>
+                  </h1>
                 )) ||
                 (stone.kind === "milestone" && (
-                  <img src="" alt="" key={stone._id} />
+                  <h1>
+                    <div className="c-FAV">
+                      <MileStone key={stone._id}/>
+                    </div>
+                  </h1>
+                
                 )) ||
                 (stone.kind === "endstone" && (
                   <img src="" alt="" key={stone._id} />

@@ -32,7 +32,9 @@ const Newsfeed = () => {
   const [sortedList, setSortedList] = useState(projects);
   const [stoneswithProjects, setStoneswithProjects] = useState([]);
   const [screen, setScreen] = useState(undefined);
+  const width = window.innerWidth
   const navigate = useNavigate();
+
 
   const color = user?.meta?.colorTheme[0];
   const bg = user?.meta?.colorTheme[1];
@@ -115,8 +117,8 @@ const Newsfeed = () => {
       <div className="">
         <CarouselProvider
           interval={5000}
-          naturalSlideWidth={100}
-          naturalSlideHeight={45}
+          naturalSlideWidth={width * 0.75}
+          naturalSlideHeight={width * 0.35}
           totalSlides={sortedList.length}
           infinite={true}
           lockOnWindowScroll={true}
