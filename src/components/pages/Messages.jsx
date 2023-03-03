@@ -1,7 +1,7 @@
 import Footer from "../elements/Footer.jsx";
 import { Message, Sender } from "../elements/MessageCard.jsx";
 import { useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { host } from "../../api/host.jsx";
 
 
@@ -17,15 +17,18 @@ const Messages = () => {
   const [msg, setMsg] = useState("");
   const [trigger, setTrigger] = useState(false);
   const [reload, setReload] = useState(false);
+  const scrollBottom = useRef(null)
   const color = user.meta.colorTheme[0];
+
+  const scrollToBottom = () => {
+    scrollBottom.current?.scrollIntoView({ behavior: "smooth" })
+  }
 
   setTimeout(() => {
     setReload(!reload);
   }, "3000");
 
   useEffect(() => {
-    // document.body.scrollTop = 0;
-    // document.documentElement.scrollTop = 0;
     const getConversation = async () => {
       await fetch(`${host}/conversations/${id}`)
         .then((response) => response.json())
@@ -40,7 +43,25 @@ const Messages = () => {
         });
     };
     getConversation();
-  }, [trigger, id, reload]);
+  }, [reload]);
+
+  useEffect(() => {
+    const getConversation = async () => {
+      await fetch(`${host}/conversations/${id}`)
+        .then((response) => response.json())
+        .then((json) => {
+          if (json.status) {
+            setConversation(json.data);
+            const other = json.data.participants.find(
+              (part) => part._id !== user._id
+            );
+            setParticipant(other);
+            scrollToBottom()
+          }
+        });
+    };
+    getConversation();
+  }, [id, trigger]);
 
   useEffect(() => {
     const getUser = async () => {
@@ -102,6 +123,7 @@ const Messages = () => {
                   return <Message key={msg._id} user={user} msg={msg} />
                 })}
               </div>
+              <div ref={scrollBottom} />
             </div>
           </div>
         </div>

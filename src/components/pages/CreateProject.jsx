@@ -267,7 +267,7 @@ const CreateProject = () => {
           
           <div className="center">
             <label htmlFor="thumbnail">
-              <Upload className="fs2 mt1" />
+              <Upload className="fs2 mt1 pointer" />
               upload image
             </label>
             <input
