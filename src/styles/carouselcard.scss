@@ -1,0 +1,87 @@
+.carousel-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    width: 70%;
+    border-radius: 8px;
+    box-shadow: 0.4rem 0.4rem 1rem rgba(0,0,0,0.3);
+
+    .optic-container{
+        // border: 2px solid black;
+        border-radius: 8px 8px 0 0;
+        overflow: hidden;
+        width: 100%;
+        height: 22vw;
+        .no-image-container{
+            // border: 1px solid rgb(255, 0, 255)
+        };
+        .image-container{
+            .image{
+                // border: 2px solid rgb(255, 0, 255);
+                display: flex;
+                object-fit: contain;
+                >img{
+                    width: 100%;
+                }
+            }
+        };
+    }
+
+    .text-container{
+        display: flex;
+        position: relative;
+        width: 100%;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        >*{
+            margin-top: 0.8rem;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        .star{
+            display: flex;
+            position: absolute;
+            width: 100%;
+            bottom: -2.75rem;
+            >*{
+                background-color: white;
+                box-shadow: 0.4rem 0.4rem 1rem rgba(0,0,0,0.3);
+            }
+        }
+    }
+}
+
+
+.members-container{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    .members{
+        display: flex;
+        position: absolute;
+        right: 2rem;
+        top: -1.8rem;
+        >*{
+            cursor: pointer;
+            display: flex;
+            gap: 2rem;
+            .members-image-container{
+                display: flex;
+                overflow: hidden;
+                height: 55px;
+                width: 55px;
+                border-radius: 40px;
+                outline: 4px solid white;
+                margin-bottom: 1rem;
+                box-shadow: 0.4rem 0.4rem 1rem rgba(0,0,0,0.3);
+                >img{
+                    object-fit: cover;
+                    width: 110%;
+                    height: 110%;
+                }
+            }
+        }
+    }
+}

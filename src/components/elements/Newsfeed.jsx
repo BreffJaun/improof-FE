@@ -240,7 +240,7 @@ const Newsfeed = () => {
             );
           })}
         </div>
-      </div>
+        </div>
       </div>
     </>
   );
