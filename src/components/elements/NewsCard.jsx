@@ -17,12 +17,14 @@ const News = ({ project, user }) => {
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
   const darkMode = user.meta.darkMode;
+  const width = window.innerWidth
 
   const navigate = useNavigate();
   return Object.keys(project).length &&
     <>
-      <div className="central">
-        <div className="carousel-card">
+    <div className="central">
+      {/* style={{height: `${width * 0.35}px`}} */}
+        <div className="y carousel-card" >
           <div className="optic-container central col bg-gA">
             {!project.thumbnail && (
             <div

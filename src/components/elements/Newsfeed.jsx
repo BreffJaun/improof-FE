@@ -114,7 +114,7 @@ const Newsfeed = () => {
   // console.log(stoneswithProjects);
   return (
     <>
-      <div className="">
+      <div className="x">
         <CarouselProvider
           interval={5000}
           naturalSlideWidth={width * 0.75}
