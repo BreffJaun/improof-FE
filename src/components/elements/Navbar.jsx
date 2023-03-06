@@ -36,8 +36,6 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
   const width = window.innerWidth
 
   const navigate = useNavigate();
-  console.log(width);
-  console.log(showSearch);
 
   const unreadNots = user?.notifications?.filter((not) => !not.isRead);
   const unreadMsgsSTEPONE = user?.conversations?.map((con) =>

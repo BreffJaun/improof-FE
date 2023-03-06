@@ -25,7 +25,7 @@ const StoneCard = ({ stone, project, theme }) => {
     <div className="bo-top-DARK mt15">
       <div className="mt2">
         <p className={`${color} center`}>achievement:</p>
-        <p className="center">{stone.description}</p>
+        <p>{stone.description}</p>
         <div>
           {stone.team.map((member) => (
             <TalentCardContact
