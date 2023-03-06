@@ -96,7 +96,7 @@ const EditStone = () => {
             setContributors(newCon);
             darkMode ? setTheme("dark") : setTheme("light");
             setPending(false);
-            console.log("STONE GEZOGEN");
+
           }
         });
     };
@@ -109,7 +109,7 @@ const EditStone = () => {
           if (json.status) {
             setProject(json.data);
             setPending(false);
-            console.log("PROJECT GEZOGEN");
+
           }
         });
     };
@@ -117,7 +117,7 @@ const EditStone = () => {
     fetchProject();
   }, []); // warum auf editedStone?
 
-  // console.log(stone);
+
   const handleInput = (e) => {
     setEditedStone({ ...editedStone, [e.target.name]: e.target.value });
   };
@@ -236,8 +236,6 @@ const EditStone = () => {
   };
 
   const handleDelete = async () => {
-    console.log(user._id, project._id, stone._id);
-
     await fetch(`${host}/stones/${stone._id}`, {
       credentials: "include",
       method: "DELETE",

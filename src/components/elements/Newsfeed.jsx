@@ -38,7 +38,7 @@ const Newsfeed = () => {
 
   const color = user?.meta?.colorTheme[0];
   const bg = user?.meta?.colorTheme[1];
-  // console.log(category);
+
 
   useEffect(() => {
     const sorted = projects.sort((a, b) => {
@@ -110,15 +110,14 @@ const Newsfeed = () => {
     getStarProjects();
   }, []);
 
-  // console.log(starProjects);
-  // console.log(stoneswithProjects);
+
   return (
     <>
       <div className="mr1">
         <CarouselProvider
           interval={5000}
           naturalSlideWidth={width * 0.75}
-          naturalSlideHeight={width> 700 ? width * 0.35 : width * 0.35}
+          naturalSlideHeight={width> 700 ? width * 0.35 : width * 0.5}
           totalSlides={sortedList.length}
           infinite={true}
           lockOnWindowScroll={true}

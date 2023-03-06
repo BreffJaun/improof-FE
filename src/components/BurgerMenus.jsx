@@ -54,12 +54,12 @@ const BurgerMenuTalent = ({
   };
 
   const handleLogout = async () => {
-    console.log("hallo");
+
     await fetch(`${host}/users/logout`,
     {credentials:"include"})
     .then((response) => response.json())
     .then((json) => {
-      console.log(json)
+
       navigate("/login")
     });
   }
@@ -193,12 +193,12 @@ const BurgerMenuRecruiter = ({
   };
 
   const handleLogout = async () => {
-    console.log("hallo");
+
     await fetch(`${host}/users/logout`,
     {credentials:"include"})
     .then((response) => response.json())
     .then((json) => {
-      console.log(json)
+
       navigate("/login")
     });
   }
