@@ -117,7 +117,7 @@ const Messages = () => {
 
         <div className="w90d">
           <div className="col mb2">
-            <div className="message-container">
+            <div className="">
               <div className="col mr2">
                 {conversation?.message?.map((msg) => {
                   return <Message key={msg._id} user={user} msg={msg} />
@@ -137,7 +137,7 @@ const Messages = () => {
               autoFocus
               className="shadow-s max mb1"
             />
-            <button className={bg} type="submit">send</button>
+            <button className={`${bg} central`} type="submit">send</button>
           </form>
         </div>
       </div>
