@@ -1,7 +1,17 @@
-.sticky-bottom{
-  padding:0.4rem 0 0 0.2rem;
+.sticky-container{
+  display: flex;
+  align-items: center;
   position:sticky;
-  bottom: 0;
-  background-color: yellow;
-  border-radius: 6px;
+  bottom: 1rem;
+  justify-content: center;
+  align-items: center;
+  .sticky-buttons{
+    display: flex;
+    padding: 0.75rem;
+    border-radius: 50px;
+    gap: 0.5rem;
+    button{
+      margin-bottom: 0;
+    }
+  }
 }

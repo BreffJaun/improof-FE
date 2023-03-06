@@ -33,7 +33,7 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
   const darkMode = user?.meta?.darkMode;
   const color = user?.meta?.colorTheme[0];
   const bg = user?.meta?.colorTheme[1];
-
+  const width = window.innerWidth
   const navigate = useNavigate();
 
   const unreadNots = user?.notifications?.filter((not) => !not.isRead);
@@ -102,43 +102,46 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
       <div onClick={() => navigate("/")} className="navbar-left">
         <div className={`logo-container ${bg}`}>
           <img src={logo} alt="improof-logo" />
-          <h1 className={`${user?.meta?.colorTheme[0]}`}>improof</h1>
         </div>
-        <h1 className={`logo-HL ${user?.meta?.colorTheme[0]}`}>improof</h1>
+        {width >= 580 && <h1 className={`logo-HL ${user?.meta?.colorTheme[0]}`}>improof</h1>}
       </div>
 
       <div>
         <div className="navbar-right">
-          <div className="bell rel">
-            <Bell
-              onClick={() => {
-                setShowNotifications(!showNotifications);
-                setShowMenu(false);
-                setShowSearch(false);
-                setShowConversations(undefined);
-              }}
-            />
-            {unreadNots?.length > 0 && (
-              <div className={`signal circle15 ${bg} central`}>
-                <div className="c-A100">{unreadNots.length}</div>
-              </div>
-            )}
-          </div>
-          <div className="rel">
-            <Message
-              onClick={() => {
-                setShowConversations(!showConversations);
-                setShowNotifications(undefined);
-                setShowSearch(false);
-                setShowMenu(false);
-              }}
-            />
-            {unreadMsgs > 0 && (
-              <div className={`signal circle15 ${bg} central`}>
-                <div className="c-A100">{unreadMsgs}</div>
-              </div>
-            )}
-          </div>
+          { width >= 500 || width < 500 && !showSearch ? 
+          <>
+            <div className="bell rel">
+              <Bell
+                onClick={() => {
+                  setShowNotifications(!showNotifications);
+                  setShowMenu(false);
+                  setShowSearch(false);
+                  setShowConversations(undefined);
+                }}
+              />
+              {unreadNots?.length > 0 && (
+                <div className={`signal circle15 ${bg} central`}>
+                  <div className="c-A100">{unreadNots.length}</div>
+                </div>
+              )}
+            </div>
+            <div className="rel">
+              <Message
+                onClick={() => {
+                  setShowConversations(!showConversations);
+                  setShowNotifications(undefined);
+                  setShowSearch(false);
+                  setShowMenu(false);
+                }}
+              />
+              {unreadMsgs > 0 && (
+                <div className={`signal circle15 ${bg} central`}>
+                  <div className="c-A100">{unreadMsgs}</div>
+                </div>
+              )}
+            </div>
+          </> : null
+          }
           <div>
             {showSearch && (
               <input
@@ -156,9 +159,9 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
               }}
             />
           </div>
-          <div onClick={() => navigate("/")} className="rel">
+         { width >= 500 && <div onClick={() => navigate("/")} className="rel">
             <Home />
-          </div>
+          </div>}
           <div
             onClick={() => {
               setShowMenu(!showMenu);

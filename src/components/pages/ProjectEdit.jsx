@@ -244,7 +244,7 @@ const CreateProject = () => {
     };
     const allowed = ["jpeg", "jpg", "png", "gif", "tiff", "bmp"];
     const avatarFormat = thumbnail?.name?.split(".")[1];
-    !thumbnail || allowed.includes(avatarFormat)
+    !thumbnail.name || allowed.includes(avatarFormat)
       ? sendProjectData()
       : toast.info(
           "please choose a image in one of the following formats: jpeg, jpg, png, gif, tiff, bmp",
