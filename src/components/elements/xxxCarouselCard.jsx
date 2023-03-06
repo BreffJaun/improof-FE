@@ -3,8 +3,8 @@ import "../../styles/colors.scss";
 import "../../styles/banner.scss";
 import "../../styles/carouselcard.scss"
 
+
 import { useNavigate } from "react-router-dom";
-import UserContext from "../../context/userContext.jsx";
 
 // ELEMENTS
 import ProjectBtn from "../buttons/ProjectBtn.jsx";
@@ -13,42 +13,36 @@ import { FiCameraOff as Camera} from "react-icons/fi"
 
 
 
-const News = ({ project, user }) => {
-  const color = user.meta.colorTheme[0];
-  const bg = user.meta.colorTheme[1];
-  const darkMode = user.meta.darkMode;
-  const width = window.innerWidth
-
+const CarouselCard = ({ project, user }) => {
   const navigate = useNavigate();
   return Object.keys(project).length &&
     <>
-    <div className="central">
-      {/* style={{height: `${width * 0.35}px`}} */}
-        <div className="y carousel-card" >
-          <div className="optic-container central col bg-gA">
-            {!project.thumbnail && (
+      <div className="central">
+        <div className="news-container">
+          <div className="news">
+          {!project.thumbnail && (
             <div
-                className="no-image-container"
-                onClick={() => navigate(`/projectdetails/${project._id}`)}>
-                <h1><Camera /></h1>
-                <p>i have no photo for you today!</p>
-              </div>
-            )}
-            {project.thumbnail && (
-              <div
-                className="image-container"
-                onClick={() => navigate(`/projectdetails/${project._id}`)}>
-                  <div className="image">
-                    <img src={project.thumbnail} alt="" />
-                  </div>
-              </div>
-            )}
+              className="news-banner bg-gA central col"
+              onClick={() => navigate(`/projectdetails/${project._id}`)}>
+              <h1><Camera /></h1>
+              <p>i have no photo for you today!</p>
+            </div>
+          )}
+          {project.thumbnail && (
+            <div
+              className="news-banner bg-gA central"
+              onClick={() => navigate(`/projectdetails/${project._id}`)}>
+                <div className="news-image-container">
+                  <img src={project.thumbnail} alt="" />
+                </div>
+            </div>
+          )}
         </div>
-        <div className="text-container">
+        <div className="news-body">
           <div>
             <div onClick={() => navigate(`/projectdetails/${project._id}`)}>
               <h3>{project?.name}</h3>
-              <p className="c-A60">{project.description.length > 80 ? project?.description.slice(0,80) + "..." : project?.description }</p>
+              <p className="mt05 c-A60">{project.description.length > 80 ? project?.description.slice(0,80) + "..." : project?.description }</p>
             </div>
             <div>
               {project?.team?.length && (
@@ -83,7 +77,7 @@ const News = ({ project, user }) => {
               </div>
             </div>
             <div className="central star">
-            <div className={`circle50 central`}>
+              <div className="circle50 central">
                 <ProjectBtn project={project} user={user} />
               </div>
             </div>
@@ -97,4 +91,4 @@ const News = ({ project, user }) => {
 
 
 
-export default News;
+export default CarouselCard;

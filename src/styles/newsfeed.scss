@@ -1,6 +1,10 @@
 .newsfeed-card{
   border-bottom: 1px solid rgba(0 0 0 /0.3);
-  padding:2rem 0;  
+  padding:2rem 0;
+  h2{
+    margin-top: -1rem;
+    margin-bottom: -1rem;
+  }
 }
 
 .head{
