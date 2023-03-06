@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 // COMPONENTS
-import { LogoL } from "../../components/Logo";
+import { LogoM } from "../../components/Logo";
 import logoOr from "../../images/improof_OR.png";
 import Footer from "../elements/Footer.jsx";
 
@@ -101,11 +101,11 @@ const Registration = () => {
 
   return (
     <div className="maxHH central">
-      <div className="">
-        <div className="mb2 mt2">
-          <LogoL />
+      <div>
+        <div className="mb2">
+          <LogoM />
         </div>
-        <p className="central c-FAV mb1">create your account</p>
+        <p className="central c-FAV mb05">create your account</p>
 
         <form onSubmit={handleSubmit}>
           <div className="col">
@@ -134,7 +134,7 @@ const Registration = () => {
               onChange={handleInput}
             />
           </div>
-          <div className="col mb2 mt3">
+          <div className="col mb2 mt2">
             <input
               title="min. 8 characters & at least 1 lowercase, 1 uppercase, 1 special character & 1 number"
               type="password"
@@ -189,7 +189,6 @@ const Registration = () => {
           </div>
         </form>
         <ToastContainer />
-        <Footer/>
       </div>
     </div>
   );

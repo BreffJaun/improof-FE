@@ -16,6 +16,19 @@
 }
 
 
+.logoM{
+    align-items: center;
+    >img{
+        width: 6rem;
+    }
+    h1{
+        font-size: 1.7rem;
+        font-weight: 900;
+    }
+}
+
+
+
 .logoS{
     cursor: pointer;
     align-items: center;

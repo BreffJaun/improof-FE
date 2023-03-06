@@ -81,7 +81,7 @@ const Login = () => {
                   onChange={handleInput}
                 />
               </div>
-              <button className={`bg-FAV mb2`} type="submit">
+              <button className={`bg-gO mb2`} type="submit">
                 login
               </button>
               <div className="col central">

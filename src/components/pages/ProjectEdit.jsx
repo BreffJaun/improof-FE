@@ -12,6 +12,7 @@ import RadioPrivacy from "../buttons/RadioPrivacy";
 import Footer from "../elements/Footer.jsx";
 import { RadioColor } from "../buttons/RadioColor.jsx";
 import { TalentToProjectCard } from "../elements/TalentToProjectCard.jsx";
+import ConfirmBox from "../elements/ConfirmBox.jsx";
 
 // ICONS
 import { AiOutlineCamera as Camera } from "react-icons/ai";
@@ -57,7 +58,7 @@ const CreateProject = () => {
   const [addUserIdToProjectTrigger, setAddUserIdToProjectTrigger] =
     useState(false);
   const [search, setSearch] = useState("");
-  const [trigger, setTrigger] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
@@ -89,6 +90,7 @@ const CreateProject = () => {
       />
     ),
   };
+
   useEffect(() => {
     setPending(true);
     const getUsers = async () => {
@@ -249,28 +251,28 @@ const CreateProject = () => {
           toastOptions
         );
   };
-
-  const handleDelete = async () => {
-    if (confirm("are you sure you want to delete your project?")) {
-      await fetch(`${host}/projects/${project._id}`, {
-        credentials: "include",
-        method: "DELETE",
-        body: JSON.stringify({
-          userId: user._id,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((response) => response.json())
-        .then(
-          (json) => toast(`you deleted ${project.title}`, toastOptions),
-          navigate("/myprojects")
-        );
-    } else {
-      navigate(`/projectedit/${project._id}`);
-    }
+  const deleteProject = async () => {
+    await fetch(`${host}/projects/${project._id}`, {
+      credentials: "include",
+      method: "DELETE",
+      body: JSON.stringify({
+        userId: user._id,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then(
+        (json) => toast(`you deleted your project`, toastOptions),
+        setShowConfirm(!showConfirm),
+        navigate("/myprojects")
+      );
   };
+  const cancelDelete = () => {
+    setShowConfirm(!showConfirm);
+  };
+
   const handleSearch = (event) => {
     setSearch(event.target.value);
   };
@@ -329,8 +331,8 @@ const CreateProject = () => {
                 <div className="central"></div>
               )}
               <div title="upload">
-                <label for="thumbnail">
-                  <Camera className="fs2 mt1 pointer"/> edit image
+                <label htmlFor="thumbnail">
+                  <Camera /> edit image
                 </label>
                 <input
                   id="thumbnail"
@@ -484,11 +486,27 @@ const CreateProject = () => {
             <Danger />
           </h1>
           <button
-            className="dangerzone bg-alert"
-            onClick={() => handleDelete()}
+            className={
+              showConfirm
+                ? "hideButton dangerzone bg-alert"
+                : "dangerzone bg-alert"
+            }
+            onClick={() => {
+              setShowConfirm(!showConfirm);
+            }}
           >
             <p>delete project?</p>
           </button>
+          {showConfirm && (
+            <ConfirmBox
+              darkMode={darkMode}
+              title={"improof warning"}
+              message={"Are you sure you want to delete your project?"}
+              onConfirm={deleteProject}
+              onCancel={cancelDelete}
+              bg={bg}
+            />
+          )}
         </div>
         <Footer />
       </>
