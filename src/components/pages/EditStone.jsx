@@ -4,6 +4,7 @@ import { host } from "../../api/host.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../elements/Footer.jsx";
+import ConfirmBox from "../elements/ConfirmBox.jsx";
 
 // CONTEXT
 import UserContext from "../../context/userContext.jsx";
@@ -50,6 +51,7 @@ const EditStone = () => {
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
   const darkMode = user.meta.darkMode;
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const toastOptions = {
     theme: theme,
@@ -189,15 +191,31 @@ const EditStone = () => {
     e.preventDefault();
     setIdsTrigger(true);
 
-    const allowed = ["jpeg", "jpg", "png", "gif", "tiff", "bmp", "mp4", "mov", "wmv", "avi", "mkv", "flv"]
-    const avatarFormat = media?.name?.split(".")[1]
-    if(media && !allowed.includes(avatarFormat)){
-      toast.info("please choose a image in one of the following formats: jpeg, jpg, png, gif, tiff, bmp", toastOptions);
-    } else{      
+    const allowed = [
+      "jpeg",
+      "jpg",
+      "png",
+      "gif",
+      "tiff",
+      "bmp",
+      "mp4",
+      "mov",
+      "wmv",
+      "avi",
+      "mkv",
+      "flv",
+    ];
+    const avatarFormat = media?.name?.split(".")[1];
+    if (media && !allowed.includes(avatarFormat)) {
+      toast.info(
+        "please choose a image in one of the following formats: jpeg, jpg, png, gif, tiff, bmp",
+        toastOptions
+      );
+    } else {
       const formData = new FormData();
       formData.append("media", media);
       formData.append("data", JSON.stringify(editedStone));
-      
+
       setEditStonePending(true);
       await fetch(`${host}/stones/${stoneId}`, {
         credentials: "include",
@@ -233,6 +251,10 @@ const EditStone = () => {
     })
       .then((response) => response.json())
       .then((json) => navigate(`/projectdetails/${projectId}`));
+  };
+
+  const cancelDelete = () => {
+    setShowConfirm(!showConfirm);
   };
 
   return editStonePending ? (
@@ -401,9 +423,28 @@ const EditStone = () => {
         <h1 className="c-alert">
           <Danger />
         </h1>
-        <button className="dangerzone bg-alert" onClick={() => handleDelete()}>
+        <button
+          className={
+            showConfirm
+              ? "hideButton dangerzone bg-alert"
+              : "dangerzone bg-alert"
+          }
+          onClick={() => {
+            setShowConfirm(!showConfirm);
+          }}
+        >
           <p>delete stone?</p>
         </button>
+        {showConfirm && (
+          <ConfirmBox
+            darkMode={darkMode}
+            title={"improof warning"}
+            message={"Are you sure you want to delete this stone?"}
+            onConfirm={handleDelete}
+            onCancel={cancelDelete}
+            bg={bg}
+          />
+        )}
       </div>
       <Footer />
     </>

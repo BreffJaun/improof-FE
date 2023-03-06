@@ -275,3 +275,52 @@ input[type=file]::before {
         object-fit: cover;
     }
 }
+
+
+.confirm-box-light {
+    background-color: rgb(242,246, 245);
+    color:rgb(35,42,61);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .confirm-box-dark {
+    background-color: rgb(35,42,61);
+    color:rgb(242,246, 245);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .confirm-box__title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .confirm-box__message {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .confirm-box__buttons {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .confirm-box__button {
+    border-radius: 4px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px 16px;
+    margin: 0 8px;
+  }

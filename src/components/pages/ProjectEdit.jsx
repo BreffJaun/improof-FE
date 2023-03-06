@@ -12,6 +12,7 @@ import RadioPrivacy from "../buttons/RadioPrivacy";
 import Footer from "../elements/Footer.jsx";
 import { RadioColor } from "../buttons/RadioColor.jsx";
 import { TalentToProjectCard } from "../elements/TalentToProjectCard.jsx";
+import ConfirmBox from "../elements/ConfirmBox.jsx";
 
 // ICONS
 import { AiOutlineCamera as Camera } from "react-icons/ai";
@@ -57,7 +58,7 @@ const CreateProject = () => {
   const [addUserIdToProjectTrigger, setAddUserIdToProjectTrigger] =
     useState(false);
   const [search, setSearch] = useState("");
-  const [trigger, setTrigger] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const color = user.meta.colorTheme[0];
   const bg = user.meta.colorTheme[1];
@@ -89,6 +90,7 @@ const CreateProject = () => {
       />
     ),
   };
+
   useEffect(() => {
     setPending(true);
     const getUsers = async () => {
@@ -137,10 +139,6 @@ const CreateProject = () => {
     return clean;
   };
   const noTeamFollows = project && noTeamFollowsFilter(follows, project.team);
-
-  // console.log("team: ", team)
-  // console.log("follows: ", follows)
-  // console.log("noTeamFollows: ", noTeamFollows)
 
   // Community without team members and follows // You filter noTeamFollows out of the community
   const noFollowsFilter = (arr1, arr2) => {
@@ -217,8 +215,6 @@ const CreateProject = () => {
 
     // Add your own userId to the project, because we need to check if you should could change something in the project.
 
-    console.log("Z 169, newProject: ", newProject);
-
     const formData = new FormData();
     formData.append("thumbnail", thumbnail);
     formData.append("data", JSON.stringify(newProject));
@@ -255,28 +251,28 @@ const CreateProject = () => {
           toastOptions
         );
   };
-  // project && console.log(project.team)
-  const handleDelete = async () => {
-    if (confirm("are you sure you want to delete your project?")) {
-      await fetch(`${host}/projects/${project._id}`, {
-        credentials: "include",
-        method: "DELETE",
-        body: JSON.stringify({
-          userId: user._id,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((response) => response.json())
-        .then(
-          (json) => toast(`you deleted ${project.title}`, toastOptions),
-          navigate("/myprojects")
-        );
-    } else {
-      navigate(`/projectedit/${project._id}`);
-    }
+  const deleteProject = async () => {
+    await fetch(`${host}/projects/${project._id}`, {
+      credentials: "include",
+      method: "DELETE",
+      body: JSON.stringify({
+        userId: user._id,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then(
+        (json) => toast(`you deleted your project`, toastOptions),
+        setShowConfirm(!showConfirm),
+        navigate("/myprojects")
+      );
   };
+  const cancelDelete = () => {
+    setShowConfirm(!showConfirm);
+  };
+
   const handleSearch = (event) => {
     setSearch(event.target.value);
   };
@@ -335,7 +331,7 @@ const CreateProject = () => {
                 <div className="central"></div>
               )}
               <div title="upload">
-                <label for="thumbnail">
+                <label htmlFor="thumbnail">
                   <Camera /> edit image
                 </label>
                 <input
@@ -419,22 +415,6 @@ const CreateProject = () => {
                   />
                 ))}
           </div>
-          {/* <div className="talent-container">
-            {noFollows &&
-              noFollows.map(
-                (talent) =>
-                  talent._id !== user._id && (
-                    <TalentToProjectCard
-                      team={team}
-                      setTeam={setTeam}
-                      key={talent._id}
-                      talent={talent}
-                      user={user}
-                      // projectEdit={true}
-                    />
-                  )
-              )}
-          </div> */}
 
           {/*  - - - - - INVITATION - - - - - */}
           <div className="maxM">
@@ -506,11 +486,27 @@ const CreateProject = () => {
             <Danger />
           </h1>
           <button
-            className="dangerzone bg-alert"
-            onClick={() => handleDelete()}
+            className={
+              showConfirm
+                ? "hideButton dangerzone bg-alert"
+                : "dangerzone bg-alert"
+            }
+            onClick={() => {
+              setShowConfirm(!showConfirm);
+            }}
           >
             <p>delete project?</p>
           </button>
+          {showConfirm && (
+            <ConfirmBox
+              darkMode={darkMode}
+              title={"improof warning"}
+              message={"Are you sure you want to delete your project?"}
+              onConfirm={deleteProject}
+              onCancel={cancelDelete}
+              bg={bg}
+            />
+          )}
         </div>
         <Footer />
       </>

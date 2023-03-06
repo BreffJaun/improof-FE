@@ -335,7 +335,7 @@ const UserEdit = () => {
         <div className="col mb1">
           <p className="ml1 mt1 mb05">mobile</p>
           <input
-            onChange={handleInputProfile}
+            onChange={handleInputContact}
             placeholder="please give a valid telephone number"
             name="mobile"
             type="text"
