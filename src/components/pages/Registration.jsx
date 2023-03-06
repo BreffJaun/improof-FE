@@ -102,11 +102,11 @@ const Registration = () => {
 
   return (
     <div className="maxHH central">
-      <div className="">
-        <div className="mb2 mt2">
+      <div>
+        <div className="mb2">
           <LogoM />
         </div>
-        <p className="central c-FAV mb1">create your account</p>
+        <p className="central c-FAV mb05">create your account</p>
 
         <form onSubmit={handleSubmit}>
           <div className="col">
@@ -135,7 +135,7 @@ const Registration = () => {
               onChange={handleInput}
             />
           </div>
-          <div className="col mb2 mt3">
+          <div className="col mb2 mt2">
             <input
               title="min. 8 characters & at least 1 lowercase, 1 uppercase, 1 special character & 1 number"
               type="password"
