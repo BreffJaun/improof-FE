@@ -64,7 +64,7 @@ const Congrats = () => {
         </div>
       </div>
 
-      <div className="text-container col">
+      <div className="congrats-text-container col">
         <h1>Congratulation!</h1>
       </div>
 
