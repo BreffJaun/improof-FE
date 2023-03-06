@@ -138,10 +138,6 @@ const CreateProject = () => {
   };
   const noTeamFollows = project && noTeamFollowsFilter(follows, project.team);
 
-  // console.log("team: ", team)
-  // console.log("follows: ", follows)
-  // console.log("noTeamFollows: ", noTeamFollows)
-
   // Community without team members and follows // You filter noTeamFollows out of the community
   const noFollowsFilter = (arr1, arr2) => {
     let clean = [];
@@ -199,7 +195,7 @@ const CreateProject = () => {
 
   useEffect(() => {
     setNewProject({ ...newProject, userId: user._id });
-    // console.log('ICH WURDE AUSGEFÜHRT')
+
   }, [project]);
 
   useEffect(() => {
@@ -216,8 +212,6 @@ const CreateProject = () => {
     event.preventDefault();
 
     // Add your own userId to the project, because we need to check if you should could change something in the project.
-
-    console.log("Z 169, newProject: ", newProject);
 
     const formData = new FormData();
     formData.append("thumbnail", thumbnail);
@@ -255,7 +249,7 @@ const CreateProject = () => {
           toastOptions
         );
   };
-  // project && console.log(project.team)
+
   const handleDelete = async () => {
     if (confirm("are you sure you want to delete your project?")) {
       await fetch(`${host}/projects/${project._id}`, {

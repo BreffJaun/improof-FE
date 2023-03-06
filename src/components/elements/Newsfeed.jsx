@@ -38,7 +38,7 @@ const Newsfeed = () => {
 
   const color = user?.meta?.colorTheme[0];
   const bg = user?.meta?.colorTheme[1];
-  // console.log(category);
+
 
   useEffect(() => {
     const sorted = projects.sort((a, b) => {
@@ -110,8 +110,7 @@ const Newsfeed = () => {
     getStarProjects();
   }, []);
 
-  // console.log(starProjects);
-  // console.log(stoneswithProjects);
+
   return (
     <>
       <div className="x">

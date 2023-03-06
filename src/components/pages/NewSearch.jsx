@@ -74,10 +74,10 @@ const NewSearch = () => {
               )
                 .then((res) => res.json())
                 .then((json) => {
-                  // console.log(i);
+
                   const lat = json.features[0].center[1];
                   const lon = json.features[0].center[0];
-                  // console.log(lat, lon)
+
                   const newTalent = {
                     ...talent,
                     location: {
@@ -86,8 +86,7 @@ const NewSearch = () => {
                       longitude: lon,
                     },
                   };
-                  // console.log('newTalent: ', newTalent)
-                  setTalents((t) =>
+                    setTalents((t) =>
                     t.map((talent, index) => (i === index ? newTalent : talent))
                   );
                 })

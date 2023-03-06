@@ -63,7 +63,6 @@ const Registration = () => {
       })
         .then((response) => response.json())
         .then((json) => {
-          console.log(json);
           if (!json.status) {
             toast(`${json.errors[0].msg}`, {
               hideProgressBar: "true",
