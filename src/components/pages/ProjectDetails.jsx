@@ -238,9 +238,9 @@ const ProjectDetails = () => {
         </Chrono>
 
         <div className="bo-DARK"></div>
-        <div className="center mb2">
+        <div className="center mb2 ">
           <h4 className={color}>project members</h4>
-          <div className="central mt2 g1">
+          <div className="central mt2 g1 wrap">
             {project.team.map((member) => (
               <TalentCard
                 key={member._id}
