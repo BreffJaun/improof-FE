@@ -61,6 +61,12 @@ const Login = () => {
         <div className="">
           <div className="mb2">
             <LogoL />
+            <h3 className="c-O2 central  mt2">
+              Empowering Job Seekers to Succeed
+            </h3>
+            <h3 className="c-O2 central">
+              Fair chances for Talents through Project Presentation
+            </h3>
           </div>
 
           <form onSubmit={handleSubmit}>
