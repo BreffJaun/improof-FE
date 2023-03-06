@@ -443,7 +443,7 @@ const UserEdit = () => {
             className="shadow-s"
           />
         </div>
-        <div className="col mb1">
+        <div className="col mb3">
           <p className="ml1 mb05">confirm new password</p>
           <input
             name=""
@@ -453,23 +453,25 @@ const UserEdit = () => {
           />
         </div>
 
-        <div className="bo-DARK"></div>
-        <div className="flex sticky-bottom">
-          <button type="submit" title="save changes" className={bg}>
-            <div className="central">
-              <BiCheck className="mb-025 mr05"/>save
+          <div className="sticky-container">
+            {/* "y sticky-buttons shadow-s " */}
+            <div className={darkMode? `sticky-buttons shadow-l bgG` : `sticky-buttons shadow-l bgL` }>
+              <button type="submit" title="save changes" className={bg}>
+                <div className="central">
+                  <BiCheck className="mb-025 mr05"/>save
+                </div>
+              </button>
+              <button
+                onClick={() => navigate(`/userdetails/${user._id}`)}
+                title="cancel"
+                className={bg}
+                >
+                <div className="central">
+                  <RxCross2 className="mb-025 mr05"/>cancel
+                </div>
+              </button>
             </div>
-          </button>
-          <button
-            onClick={() => navigate(`/userdetails/${user._id}`)}
-            title="cancel"
-            className={bg}
-            >
-              <div className="central">
-                <RxCross2 className="mb-025 mr05"/>cancel
-              </div>
-          </button>
-        </div>
+          </div>
         <Footer />
       </form>
     </div>
@@ -627,7 +629,7 @@ const UserEdit = () => {
           <input type="text" placeholder="new password" className="shadow-s" />
         </div>
         <div className="col mb1">
-          <p className="ml1 mb05">confirm new password</p>
+          <p className="ml1 mb3">confirm new password</p>
           <input
             type="text"
             placeholder="confirm password"
@@ -635,19 +637,25 @@ const UserEdit = () => {
           />
         </div>
 
-        <div className="bo-DARK"></div>
-        <div className="central sticky-bottom">
-          <button type="submit" title="save changes" className="bg-FAV">
-            <BiCheck />
-          </button>
-          <button
-            onClick={() => navigate(`/userdetails/${user._id}`)}
-            title="cancel"
-            className="bg-FAV"
-          >
-            <RxCross2 />
-          </button>
-        </div>
+          <div className="sticky-container">
+            {/* "y sticky-buttons shadow-s " */}
+            <div className={darkMode? `sticky-buttons shadow-l bgG` : `sticky-buttons shadow-l bgL` }>
+              <button type="submit" title="save changes" className={bg}>
+                <div className="central">
+                  <BiCheck className="mb-025 mr05"/>save
+                </div>
+              </button>
+              <button
+                onClick={() => navigate(`/userdetails/${user._id}`)}
+                title="cancel"
+                className={bg}
+                >
+                <div className="central">
+                  <RxCross2 className="mb-025 mr05"/>cancel
+                </div>
+              </button>
+            </div>
+          </div>
         <Footer />
       </form>
     </>
