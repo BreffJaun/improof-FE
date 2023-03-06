@@ -38,7 +38,7 @@ const Newsfeed = () => {
 
   const color = user?.meta?.colorTheme[0];
   const bg = user?.meta?.colorTheme[1];
-  // console.log(category);
+
 
   useEffect(() => {
     const sorted = projects.sort((a, b) => {
@@ -110,28 +110,30 @@ const Newsfeed = () => {
     getStarProjects();
   }, []);
 
-  // console.log(starProjects);
-  // console.log(stoneswithProjects);
+
   return (
     <>
-      <div className="x">
+      <div className="mr1">
         <CarouselProvider
           interval={5000}
           naturalSlideWidth={width * 0.75}
-          naturalSlideHeight={width>600 ? width * 0.3 : width *0.5}
+          naturalSlideHeight={width> 700 ? width * 0.35 : width * 0.35}
           totalSlides={sortedList.length}
           infinite={true}
           lockOnWindowScroll={true}
           isPlaying={true}
         >
           <div className="row">
+
+            {width > 700 && 
             <div className="carousel-btn-container">
               <ButtonBack className={`circle40 central ${bg}`}>
                 <>
                   <Back />
                 </>
               </ButtonBack>
-            </div>
+            </div>}
+            
             <Slider className="w100d">
               {category === undefined ||
               category === "all categories" ||
@@ -162,14 +164,18 @@ const Newsfeed = () => {
                     );
                   })}
             </Slider>
+
+            {width > 700 &&
             <div className="carousel-btn-container">
               <ButtonNext className={`circle40 central ${bg}`}>
                 <>
                   <Forward />
                 </>
               </ButtonNext>
-            </div>
+              </div>
+            }
           </div>
+
         </CarouselProvider>
       </div>
 

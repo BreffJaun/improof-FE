@@ -6,7 +6,7 @@ import { host } from "../../api/host.jsx";
 const CategoriesFilter = ({ setCategory, category, searchTrigger, last }) => {
   const [user, setUser] = useContext(UserContext);
   const [trigger, setTrigger] = useContext(TriggerContext);
-  // console.log(category);
+
 
   const handleCategory = (event) => {
     setCategory(event.target.value);

@@ -25,10 +25,6 @@ const TalentToProjectCard = ({ talent, user, team, setTeam, projectEdit }) => {
 
   const checkTeam = team?.find(member=> member._id === talent._id);
 
-  // console.log("team: ", team)
-  // console.log("talent._id: ", talent._id)
-  // console.log("checkTeam: ", checkTeam)
-
   return (
     <>
       <div className="t-card rel">

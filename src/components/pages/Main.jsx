@@ -42,8 +42,6 @@ const Main = ({ modeTrigger, setModeTrigger }) => {
   // const [modeTrigger, setModeTrigger] = useState(false)
   const navigate = useNavigate();
   const mode = user?.meta?.darkMode;
-  // const body = document.querySelector("body");
-  // mode && body.classList.add(`bgG`);
 
   // AUTHENTIFIZIERUNG VOM COOKIE
   useEffect(() => {
@@ -60,7 +58,7 @@ const Main = ({ modeTrigger, setModeTrigger }) => {
             navigate("/congrats");
           }
         } else {
-          navigate("/login");
+          navigate("/login"); 
         }
       });
   }, [modeTrigger]);

@@ -16,7 +16,7 @@ const handleMessage = async (navigate, talent, user) => {
   })
     .then((response) => response.json())
     .then((json) => {
-      console.log(json.data._id);
+
       navigate(`/messages/${json.data._id}`);
     });
 };

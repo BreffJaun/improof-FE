@@ -40,10 +40,6 @@ function App() {
       .then((json) => {
         if (json.status) {
           setUser(json.user);
-
-        //   if (json.user?.meta?.loginCount === 1) {
-        //     navigate("/congrats");
-        //   }
         } else {
           navigate("/login");
         }

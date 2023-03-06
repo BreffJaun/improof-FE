@@ -197,7 +197,7 @@ const CreateProject = () => {
 
   useEffect(() => {
     setNewProject({ ...newProject, userId: user._id });
-    // console.log('ICH WURDE AUSGEFÜHRT')
+
   }, [project]);
 
   useEffect(() => {

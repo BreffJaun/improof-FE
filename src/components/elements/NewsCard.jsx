@@ -23,8 +23,7 @@ const News = ({ project, user }) => {
   return Object.keys(project).length &&
     <>
     <div className="central">
-      {/* style={{height: `${width * 0.35}px`}} */}
-        <div className="y carousel-card" >
+        <div className="carousel-card" >
           <div className="optic-container central col bg-gA">
             {!project.thumbnail && (
             <div
@@ -48,16 +47,16 @@ const News = ({ project, user }) => {
           <div>
             <div onClick={() => navigate(`/projectdetails/${project._id}`)}>
               <h3>{project?.name}</h3>
-              <p className="c-A60">{project.description.length > 80 ? project?.description.slice(0,80) + "..." : project?.description }</p>
+
+              {width > 775 && <p className="c-A60">{project.description.length > 80 ? project?.description.slice(0, 80) + "..." : project?.description}</p>}
             </div>
             <div>
-              {project?.team?.length && (
+              {project?.team?.length && width > 775 &&(
                 <div className="members-container col">
                   <div className="members">
                     <div className="flex">
                       {project?.team?.length &&
                         project?.team?.map((member) => (
-                    
                           <div key={member._id} className="col central">
                             <div className="col central">
                               <div
@@ -83,7 +82,7 @@ const News = ({ project, user }) => {
               </div>
             </div>
             <div className="central star">
-            <div className={`circle50 central`}>
+              <div className={`circle50 central`}>
                 <ProjectBtn project={project} user={user} />
               </div>
             </div>
