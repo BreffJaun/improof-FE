@@ -164,3 +164,14 @@ input:checked + .slider:before {
   align-items: center;
 }
 
+
+.safezone{
+    display: flex;
+    border: 2px solid var(--ALERT1);
+    justify-content: center;
+    align-items: center;
+}
+
+.hideButton{
+  display: none;
+}
