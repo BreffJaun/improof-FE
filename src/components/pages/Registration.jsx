@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 // COMPONENTS
-import { LogoL } from "../../components/Logo";
+import { LogoM } from "../../components/Logo";
 import logoOr from "../../images/improof_OR.png";
 import Footer from "../elements/Footer.jsx";
 
@@ -104,7 +104,7 @@ const Registration = () => {
     <div className="maxHH central">
       <div className="">
         <div className="mb2 mt2">
-          <LogoL />
+          <LogoM />
         </div>
         <p className="central c-FAV mb1">create your account</p>
 
@@ -190,7 +190,6 @@ const Registration = () => {
           </div>
         </form>
         <ToastContainer />
-        <Footer/>
       </div>
     </div>
   );

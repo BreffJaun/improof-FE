@@ -17,6 +17,19 @@ const LogoS = () => {
   );
 };
 
+
+const LogoM = () => {
+  return (
+    <div className="logoContainer">
+      <div className="logoM col">
+        <img src={logo} alt="improof-logo"/>
+        <h1 className="c-FAV">improof</h1>
+      </div>
+    </div>
+  );
+};
+
+
 const LogoL = () => {
   return (
     <div className="logoContainer">
@@ -28,4 +41,4 @@ const LogoL = () => {
   );
 };
 
-export {LogoS, LogoL};
+export {LogoS, LogoM, LogoL};
