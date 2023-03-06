@@ -301,10 +301,8 @@ const CreateStone = () => {
             <div className="flex">
               <div className="col">
                 <div className="upload">
-                  <label for="media-pic">
-                    <Camera className="fs2 mt1 pointer" />
                   <label htmlFor="media-pic">
-                    <Camera className="fs2 mt1 pointer"/>
+                    <Camera className="fs2 mt1 pointer" />
                     photos
                   </label>
                   <input
