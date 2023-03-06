@@ -178,7 +178,7 @@ const Registration = () => {
             </div>
           </div>
           <div className="central mb2 mt2">
-            <button type="submit" className="bg-FAV">
+            <button type="submit" className="bg-gO">
               register
             </button>
           </div>

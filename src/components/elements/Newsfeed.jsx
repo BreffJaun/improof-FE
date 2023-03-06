@@ -118,7 +118,7 @@ const Newsfeed = () => {
         <CarouselProvider
           interval={5000}
           naturalSlideWidth={width * 0.75}
-          naturalSlideHeight={width * 0.35}
+          naturalSlideHeight={width>600 ? width * 0.3 : width *0.5}
           totalSlides={sortedList.length}
           infinite={true}
           lockOnWindowScroll={true}
