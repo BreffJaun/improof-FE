@@ -101,7 +101,7 @@ const Registration = () => {
   };
 
   return (
-    <div className="maxHH central col">
+    <div className="maxHH central">
       <div className="">
         <div className="mb2 mt2">
           <LogoL />
