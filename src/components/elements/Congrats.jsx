@@ -40,7 +40,7 @@ const Congrats = () => {
         }
         setFirstLogin()
       navigate("/");
-    }, 5000000);
+    }, 5000);
   }, []);
 
   return (
