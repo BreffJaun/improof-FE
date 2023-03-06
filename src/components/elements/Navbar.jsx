@@ -37,6 +37,7 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
 
   const navigate = useNavigate();
   console.log(width);
+  console.log(showSearch);
 
   const unreadNots = user?.notifications?.filter((not) => !not.isRead);
   const unreadMsgsSTEPONE = user?.conversations?.map((con) =>
@@ -110,7 +111,7 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
 
       <div>
         <div className="navbar-right">
-          {!showSearch && width < 500 && 
+          { width > 500 || width < 500 && !showSearch ? 
           <>
             <div className="bell rel">
               <Bell
@@ -142,7 +143,7 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
                 </div>
               )}
             </div>
-          </>
+          </> : null
           }
           <div>
             {showSearch && (
