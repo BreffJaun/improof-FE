@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
-import efjm from "../../images/efjm_logo.png"
 import UserContext from "../../context/userContext.jsx";
 
 
 // STYLE
 import '../../styles/logo.scss'
 import Up from "../elements/Up.jsx"
+import efjm from "../../images/efjm_logo_A60.png"
 
 
 const Footer = () => {
