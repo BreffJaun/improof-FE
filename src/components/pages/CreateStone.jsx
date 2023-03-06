@@ -159,17 +159,33 @@ const CreateStone = () => {
 
   // console.log("newStone: ", newStone.team?.length);
   const handleSubmit = async (e) => {
-    const allowed = ["jpeg", "jpg", "png", "gif", "tiff", "bmp", "mp4", "mov", "wmv", "avi", "mkv", "flv"]
-    const avatarFormat = media?.name?.split(".")[1]
+    const allowed = [
+      "jpeg",
+      "jpg",
+      "png",
+      "gif",
+      "tiff",
+      "bmp",
+      "mp4",
+      "mov",
+      "wmv",
+      "avi",
+      "mkv",
+      "flv",
+    ];
+    const avatarFormat = media?.name?.split(".")[1];
     e.preventDefault();
-    if(media && !allowed.includes(avatarFormat)){
-      toast.info("please choose a image in one of the following formats: jpeg, jpg, png, gif, tiff, bmp", toastOptions);
-    } else{
+    if (media && !allowed.includes(avatarFormat)) {
+      toast.info(
+        "please choose a image in one of the following formats: jpeg, jpg, png, gif, tiff, bmp",
+        toastOptions
+      );
+    } else {
       if (newStone.team.length !== 0) {
         const formData = new FormData();
         formData.append("media", media);
         formData.append("data", JSON.stringify(newStone));
-  
+
         await fetch(`${host}/stones`, {
           credentials: "include",
           method: "POST",
@@ -189,7 +205,7 @@ const CreateStone = () => {
       } else {
         toast.info("please add a contributor");
       }
-    }  
+    }
   };
 
   return createStonePending ? (
@@ -215,7 +231,9 @@ const CreateStone = () => {
           </div>
           <div className="col maxM">
             <p className="ml1 mb05">description</p>
-            <input
+            <textarea
+              id="description"
+              rows="7"
               type="text"
               name="description"
               placeholder="stone description"
@@ -284,7 +302,7 @@ const CreateStone = () => {
               <div className="col">
                 <div className="upload">
                   <label for="media-pic">
-                    <Camera className="fs2 mt1 pointer"/>
+                    <Camera className="fs2 mt1 pointer" />
                     photos
                   </label>
                   <input
@@ -310,7 +328,7 @@ const CreateStone = () => {
               </div>
               <div className="col">
                 <label for="media-vid">
-                  <Camera className="fs2 mt1 pointer"/>
+                  <Camera className="fs2 mt1 pointer" />
                   videos
                 </label>
                 <input
@@ -323,7 +341,11 @@ const CreateStone = () => {
                   hidden
                 />
                 {videoTrigger && (
-                  <button className={bg} type="button" onClick={resetVideoHandler}>
+                  <button
+                    className={bg}
+                    type="button"
+                    onClick={resetVideoHandler}
+                  >
                     reset video selection
                   </button>
                 )}
