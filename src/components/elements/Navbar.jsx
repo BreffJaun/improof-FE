@@ -34,7 +34,7 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
   const color = user?.meta?.colorTheme[0];
   const bg = user?.meta?.colorTheme[1];
   const width = window.innerWidth
-
+  console.log("showsearch:",showSearch);
   const navigate = useNavigate();
 
   const unreadNots = user?.notifications?.filter((not) => !not.isRead);
@@ -104,12 +104,12 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
         <div className={`logo-container ${bg}`}>
           <img src={logo} alt="improof-logo" />
         </div>
-        {width > 600 && <h1 className={`logo-HL ${user?.meta?.colorTheme[0]}`}>improof</h1>}
+        {width >= 580 && <h1 className={`logo-HL ${user?.meta?.colorTheme[0]}`}>improof</h1>}
       </div>
 
       <div>
         <div className="navbar-right">
-          { width > 500 || width < 500 && !showSearch ? 
+          { width >= 500 || width < 500 && !showSearch ? 
           <>
             <div className="bell rel">
               <Bell
@@ -160,7 +160,7 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
               }}
             />
           </div>
-         { width > 500 && <div onClick={() => navigate("/")} className="rel">
+         { width >= 500 && <div onClick={() => navigate("/")} className="rel">
             <Home />
           </div>}
           <div
