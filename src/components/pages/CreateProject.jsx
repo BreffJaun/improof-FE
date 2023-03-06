@@ -369,7 +369,7 @@ const CreateProject = () => {
                 type="email"
                 name={`inviteOthers${i}`}
                 onChange={inviteInputHandler}
-                placeholder="invite to improof"
+                placeholder="email"
                 key={i}
                 className="shadow-s mb1"
               />

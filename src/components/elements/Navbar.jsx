@@ -34,7 +34,6 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
   const color = user?.meta?.colorTheme[0];
   const bg = user?.meta?.colorTheme[1];
   const width = window.innerWidth
-  console.log("showsearch:",showSearch);
   const navigate = useNavigate();
 
   const unreadNots = user?.notifications?.filter((not) => !not.isRead);
