@@ -2,12 +2,21 @@ import { useNavigate } from "react-router";
 import ReactPlayer from "react-player";
 
 const NewsfeedCard = ({stone, projectId}) => {
+  const paragraphs = stone?.description?.split("\n");
   const navigate = useNavigate()
+
   return (
     <div className="mt1">
-      <div className="">
+      <div>
         <h4 onClick={()=>navigate(`/projectdetails/${projectId}`)}>{stone.title}</h4>
-        <h5>{stone.description}</h5>
+        <div className="mt05">  
+        {paragraphs?.map((par, i) => (
+            <div key={stone._id+i}>
+              <span>{par}</span>
+              <br />
+            </div>
+          ))}
+        </div>
         <div className="player" onClick={()=>navigate(`/projectdetails/${projectId}`)}>
           {!stone.media ? null : stone.contentType.includes("image") ? (
             <img className="player" src={stone.media} />
