@@ -40,7 +40,7 @@ const Congrats = () => {
         }
         setFirstLogin()
       navigate("/");
-    }, 5000);
+    }, 4000);
   }, []);
 
   return (
@@ -65,7 +65,8 @@ const Congrats = () => {
       </div>
 
       <div className="congrats-text-container col">
-        <h1>Congratulation!</h1>
+        <h1>Congratulations!</h1>
+        <p>Now you can improof yourself</p>
       </div>
 
     </div >
