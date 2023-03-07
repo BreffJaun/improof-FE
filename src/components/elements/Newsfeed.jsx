@@ -210,7 +210,7 @@ const Newsfeed = () => {
               <div key={stone._id} className="newsfeed-card">
                 <h5 className={`${color} mgleft`}>new {stone.kind}:</h5>
                 <h2 className={`${color} mgleft`}>{project?.name}</h2>
-                <p className={`${color} mt05`}><span className="fw700">{time}</span> - {date}</p>
+                <p className={`${color}`}><span className="fw700">{time}</span> - {date}</p>
 
                 <div className="flex mt1">
                   {stone.team.map((member) => {

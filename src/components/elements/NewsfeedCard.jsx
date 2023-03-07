@@ -5,9 +5,9 @@ const NewsfeedCard = ({stone, projectId}) => {
   const navigate = useNavigate()
   return (
     <div className="mt1">
-      <div className="">
+      <div>
         <h4 onClick={()=>navigate(`/projectdetails/${projectId}`)}>{stone.title}</h4>
-        <h5>{stone.description}</h5>
+        <p className="mt05">{stone.description}</p>
         <div className="player" onClick={()=>navigate(`/projectdetails/${projectId}`)}>
           {!stone.media ? null : stone.contentType.includes("image") ? (
             <img className="player" src={stone.media} />
