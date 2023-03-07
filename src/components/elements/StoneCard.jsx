@@ -27,11 +27,11 @@ const StoneCard = ({ stone, project, theme }) => {
       <div className="mt2">
         <p className={`${color} center`}>achievement:</p>
         <div>
-          {paragraphs.map((par) => (
-            <>
-              <p>{par}</p>
+          {paragraphs.map((par, i) => (
+            <div key={stone._id + i}>
+              <span>{par}</span>
               <br />
-            </>
+            </div>
           ))}
         </div>
         <div>

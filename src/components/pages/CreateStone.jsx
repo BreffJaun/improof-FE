@@ -203,7 +203,7 @@ const CreateStone = () => {
             }
           });
       } else {
-        toast.info("please add a contributor");
+        toast("please add a contributor".toastOptions);
       }
     }
   };
