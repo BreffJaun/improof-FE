@@ -173,7 +173,7 @@ const CreateStone = () => {
       "mkv",
       "flv",
     ];
-    const avatarFormat = media?.name?.split(".")[1];
+    const avatarFormat = media?.name?.split(".").at(-1);
     e.preventDefault();
     if (media && !allowed.includes(avatarFormat)) {
       toast.info(
