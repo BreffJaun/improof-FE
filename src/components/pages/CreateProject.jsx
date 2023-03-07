@@ -210,7 +210,8 @@ const CreateProject = () => {
       toast("please choose a category", toastOptions);
     }
     const allowed = ["jpeg", "jpg", "png", "gif", "tiff", "bmp"];
-    const avatarFormat = thumbnail?.name?.split(".")[1];
+
+    const avatarFormat = thumbnail?.name?.split(".").at(-1);
     (category && category !== "" && !thumbnail) ||
     allowed.includes(avatarFormat)
       ? sendProjectData()

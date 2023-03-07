@@ -174,6 +174,7 @@ const CreateStone = () => {
       "flv",
     ];
     const avatarFormat = media?.name?.split(".").at(-1);
+
     e.preventDefault();
     if (media && !allowed.includes(avatarFormat)) {
       toast.info(
@@ -327,7 +328,7 @@ const CreateStone = () => {
                 )}
               </div>
               <div className="col">
-                <label for="media-vid">
+                <label htmlFor="media-vid">
                   <Camera className="fs2 mt1 pointer" />
                   videos
                 </label>

@@ -163,7 +163,7 @@ const TalentCardStones = ({
   const navigate = useNavigate();
   return (
     <>
-      <div className="t-cardS  col mt1">
+      <div className="t-cardSstone  col mt1">
         <div className=" mt1 mb2 row">
           <div className={`${bg} t-picS central`}>
             {talent?.profile?.avatar ? (
