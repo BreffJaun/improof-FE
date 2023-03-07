@@ -20,12 +20,20 @@ const StoneCard = ({ stone, project, theme }) => {
     "-" +
     stone.createdAt.slice(6, 8) +
     stone.createdAt.slice(0, 4);
+  const paragraphs = stone.description.split("\n");
 
   return (
     <div className="bo-top-DARK mt15">
       <div className="mt2">
         <p className={`${color} center`}>achievement:</p>
-        <p>{stone.description}</p>
+        <div>
+          {paragraphs.map((par) => (
+            <>
+              <p>{par}</p>
+              <br />
+            </>
+          ))}
+        </div>
         <div>
           {stone.team.map((member) => (
             <TalentCardContact
