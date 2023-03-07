@@ -3,7 +3,7 @@ import { FaXing as Xing } from "react-icons/fa";
 import { AiFillGithub as GitHub } from "react-icons/ai";
 import { TbWorld as Website } from "react-icons/tb";
 
-import eleni from "../../images/avatars/eleni.png";
+import eleni from "../../images/avatars/eleni.jpg";
 
 const Eleni = ({ darkMode }) => {
   return (
