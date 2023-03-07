@@ -66,7 +66,7 @@ const Congrats = () => {
 
       <div className="congrats-text-container col">
         <h1>Congratulations!</h1>
-        <p>Now you can improof yourself</p>
+        <h2>Now you can improof yourself</h2>
       </div>
 
     </div >
