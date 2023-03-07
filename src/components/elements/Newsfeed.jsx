@@ -40,6 +40,8 @@ const Newsfeed = () => {
   const bg = user?.meta?.colorTheme[1];
 
 
+
+
   useEffect(() => {
     const sorted = projects.sort((a, b) => {
       if (a.updatedAt && b.updatedAt) {
@@ -194,6 +196,7 @@ const Newsfeed = () => {
       <div className="">
         <div>
           {stoneswithProjects.map((stone) => {
+
             const date1 = stone.createdAt?.toString().split("T");
             const date = date1[0].split("-").reverse().join(".");
             const time1 = parseInt(date1[1].slice(0, 2)) + 1;
@@ -206,6 +209,8 @@ const Newsfeed = () => {
               );
               if (pro !== undefined) project = starProjects[i];
             }
+
+
             return (
               <div key={stone._id} className="newsfeed-card">
                 <h5 className={`${color} mgleft`}>new {stone.kind}:</h5>
