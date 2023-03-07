@@ -96,7 +96,6 @@ const EditStone = () => {
             setContributors(newCon);
             darkMode ? setTheme("dark") : setTheme("light");
             setPending(false);
-
           }
         });
     };
@@ -109,14 +108,12 @@ const EditStone = () => {
           if (json.status) {
             setProject(json.data);
             setPending(false);
-
           }
         });
     };
     fetchStone();
     fetchProject();
   }, []); // warum auf editedStone?
-
 
   const handleInput = (e) => {
     setEditedStone({ ...editedStone, [e.target.name]: e.target.value });
@@ -205,7 +202,7 @@ const EditStone = () => {
       "mkv",
       "flv",
     ];
-    const avatarFormat = media?.name?.split(".")[1];
+    const avatarFormat = media?.name?.split(".").at(-1);
     if (media && !allowed.includes(avatarFormat)) {
       toast.info(
         "please choose a image in one of the following formats: jpeg, jpg, png, gif, tiff, bmp",
@@ -347,7 +344,7 @@ const EditStone = () => {
               {/* </div> */}
               <div className="col">
                 <label for="media-pic">
-                  <Camera className="fs2 mt1 pointer"/>
+                  <Camera className="fs2 mt1 pointer" />
                   photos
                 </label>
                 <input
@@ -362,7 +359,7 @@ const EditStone = () => {
               </div>
               <div className="col">
                 <label for="media-vid">
-                  <Camera className="fs2 mt1 pointer"/>
+                  <Camera className="fs2 mt1 pointer" />
                   videos
                 </label>
                 <input

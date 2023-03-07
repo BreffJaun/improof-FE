@@ -6,7 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 import UserContext from "../../context/userContext.jsx";
 import "../../styles/colors.scss";
-import "../../styles/user-edit.scss"
+import "../../styles/user-edit.scss";
 
 //ICONS
 import { AiOutlineCamera } from "react-icons/ai";
@@ -175,13 +175,10 @@ const UserEdit = () => {
     };
 
     const allowed = ["jpeg", "jpg", "png", "gif", "tiff", "bmp"];
-    const avatarFormat = avatar?.name?.split(".")[1];
+    const avatarFormat = avatar?.name?.split(".").at(-1);
     !avatar || allowed.includes(avatarFormat)
       ? updateUserData()
-      : toast.info(
-          "We love: jpeg, jpg, png, gif, tiff, bmp!",
-          toastOptions
-        );
+      : toast.info("We love: jpeg, jpg, png, gif, tiff, bmp!", toastOptions);
   };
 
   return uploadPending ? (
@@ -235,11 +232,15 @@ const UserEdit = () => {
           >
             Hi, {talent.profile.firstName}!
           </h1>
-        <h5 className={`central ${color ? color : user.meta.colorTheme[0]} mt05`} >
-          Let´s spice up your profile!
-        </h5>
-          </div>
-          
+          <h5
+            className={`central ${
+              color ? color : user.meta.colorTheme[0]
+            } mt05`}
+          >
+            Let´s spice up your profile!
+          </h5>
+        </div>
+
         <div className="bo-DARK"></div>
         <div className="central">
           <RadioColor user={talent} setFavColor={setFavColor} />
@@ -394,7 +395,9 @@ const UserEdit = () => {
         >
           location
         </h1>
-        <h5 className={`central ${color ? color : user.meta.colorTheme[0]} mt05`} >
+        <h5
+          className={`central ${color ? color : user.meta.colorTheme[0]} mt05`}
+        >
           It´s just for the recruiters to find you!
         </h5>
         <div className="col mb1">
@@ -453,25 +456,33 @@ const UserEdit = () => {
           />
         </div>
 
-          <div className="sticky-container">
-            {/* "y sticky-buttons shadow-s " */}
-            <div className={darkMode? `sticky-buttons shadow-l bgG` : `sticky-buttons shadow-l bgL` }>
-              <button type="submit" title="save changes" className={bg}>
-                <div className="central">
-                  <BiCheck className="mb-025 mr05"/>save
-                </div>
-              </button>
-              <button
-                onClick={() => navigate(`/userdetails/${user._id}`)}
-                title="cancel"
-                className={bg}
-                >
-                <div className="central">
-                  <RxCross2 className="mb-025 mr05"/>cancel
-                </div>
-              </button>
-            </div>
+        <div className="sticky-container">
+          {/* "y sticky-buttons shadow-s " */}
+          <div
+            className={
+              darkMode
+                ? `sticky-buttons shadow-l bgG`
+                : `sticky-buttons shadow-l bgL`
+            }
+          >
+            <button type="submit" title="save changes" className={bg}>
+              <div className="central">
+                <BiCheck className="mb-025 mr05" />
+                save
+              </div>
+            </button>
+            <button
+              onClick={() => navigate(`/userdetails/${user._id}`)}
+              title="cancel"
+              className={bg}
+            >
+              <div className="central">
+                <RxCross2 className="mb-025 mr05" />
+                cancel
+              </div>
+            </button>
           </div>
+        </div>
         <Footer />
       </form>
     </div>
@@ -637,25 +648,33 @@ const UserEdit = () => {
           />
         </div>
 
-          <div className="sticky-container">
-            {/* "y sticky-buttons shadow-s " */}
-            <div className={darkMode? `sticky-buttons shadow-l bgG` : `sticky-buttons shadow-l bgL` }>
-              <button type="submit" title="save changes" className={bg}>
-                <div className="central">
-                  <BiCheck className="mb-025 mr05"/>save
-                </div>
-              </button>
-              <button
-                onClick={() => navigate(`/userdetails/${user._id}`)}
-                title="cancel"
-                className={bg}
-                >
-                <div className="central">
-                  <RxCross2 className="mb-025 mr05"/>cancel
-                </div>
-              </button>
-            </div>
+        <div className="sticky-container">
+          {/* "y sticky-buttons shadow-s " */}
+          <div
+            className={
+              darkMode
+                ? `sticky-buttons shadow-l bgG`
+                : `sticky-buttons shadow-l bgL`
+            }
+          >
+            <button type="submit" title="save changes" className={bg}>
+              <div className="central">
+                <BiCheck className="mb-025 mr05" />
+                save
+              </div>
+            </button>
+            <button
+              onClick={() => navigate(`/userdetails/${user._id}`)}
+              title="cancel"
+              className={bg}
+            >
+              <div className="central">
+                <RxCross2 className="mb-025 mr05" />
+                cancel
+              </div>
+            </button>
           </div>
+        </div>
         <Footer />
       </form>
     </>
