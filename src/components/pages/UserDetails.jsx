@@ -146,7 +146,7 @@ const TalentDetails = () => {
                     src={
                       user._id === talent._id
                         ? user.profile.avatar
-                        : talent.profile.avatar
+                        : talent.profile.avatar 
                     }
                     className={`${bg} rel head-pic`}
                     alt="avatar"
