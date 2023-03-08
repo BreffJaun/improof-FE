@@ -107,9 +107,9 @@ const Messages = () => {
   return (
     conversation &&
     sender && (
-      <div className="center">
+      <div className="max650 center">
         <div className="w90d">
-          <h1 className={`${color} mb1`}>messages</h1>
+          <h1 className={`${color} mb1 center`}>messages</h1>
           <div className="center">
             <Sender user={user} sender={sender} />
           </div>
