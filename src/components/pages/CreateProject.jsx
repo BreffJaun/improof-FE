@@ -303,7 +303,7 @@ const CreateProject = () => {
 
         <div>
           <h1 className={`central ${color} mt05`}>your team </h1>
-          <div className="flex">
+          <div className="flex g1">
             {team.length > 0 &&
               team.map(
                 (talent) =>
