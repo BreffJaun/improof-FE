@@ -181,7 +181,7 @@ const ProjectDetails = () => {
                       )}
                     </div>
                     <p className="center">{stone.kind}</p>
-                    <h2>"{stone.title}"</h2>
+                    <h2 className="center">"{stone.title}"</h2>
                     <p className="center">
                       <strong>
                         {" "}
