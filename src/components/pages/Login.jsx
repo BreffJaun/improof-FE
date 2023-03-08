@@ -98,10 +98,8 @@ const Login = () => {
               </div>
             </div>
           </form>
-
           <ToastContainer />
         </div>
-        <Footer />
       </div>
     </div>
   );
