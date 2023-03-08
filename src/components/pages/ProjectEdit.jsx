@@ -243,7 +243,7 @@ const CreateProject = () => {
         });
     };
     const allowed = ["jpeg", "jpg", "png", "gif", "tiff", "bmp"];
-    const avatarFormat = thumbnail?.name?.split(".")[1];
+    const avatarFormat = thumbnail?.name?.split(".").at(-1);
     !thumbnail.name || allowed.includes(avatarFormat)
       ? sendProjectData()
       : toast.info(

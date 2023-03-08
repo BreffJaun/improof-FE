@@ -106,10 +106,10 @@ const TalentCardContact = ({ talent, user, theme }) => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="t-cardS col mt1">
+      <div className="t-cardSstone col  mt1">
         <div className="mt1 mb2 row">
           <div
-            className={`${bg} t-picS  central`}
+            className={`${bg} t-picS  `}
             onClick={() => navigate(`/userDetails/${talent._id}`)}
           >
             {talent?.profile?.avatar ? (
@@ -163,11 +163,9 @@ const TalentCardStones = ({
   const navigate = useNavigate();
   return (
     <>
-      <div className="t-cardS  col mt1">
+      <div className="t-cardSstone  col mt1">
         <div className=" mt1 mb2 row">
-          <div
-            className={`${bg} t-picS central`}
-          >
+          <div className={`${bg} t-picS central`}>
             {talent?.profile?.avatar ? (
               <img src={talent.profile?.avatar} />
             ) : (
@@ -176,9 +174,7 @@ const TalentCardStones = ({
           </div>
 
           <div>
-            <p
-              className={`fw500 ${color}`}
-            >
+            <p className={`fw500 ${color}`}>
               {talent.profile?.firstName} {talent.profile?.lastName}
             </p>
             <p>{talent.profile?.category}</p>

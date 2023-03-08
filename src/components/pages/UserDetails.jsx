@@ -49,6 +49,13 @@ const TalentDetails = () => {
   const [showInfos, setShowInfos] = useState(false);
   const [theme, setTheme] = useState("");
 
+  const [imageViewer, setImageViewer] = useState(false);
+  const [stoneImage, setStoneImage] = useState("");
+  const showImage = (img) => {
+    setImageViewer(true);
+    setStoneImage(img);
+  }
+
   const color = talent?.meta?.colorTheme[0];
   const bg = talent?.meta?.colorTheme[1];
   const darkMode = user?.meta?.darkMode;
@@ -125,15 +132,21 @@ const TalentDetails = () => {
     talent && (
       <>
         <div className="central col mt3">
+        {imageViewer &&
+        <div className="image-container-other shadow-xl" 
+        onClick={() => setImageViewer(false)}>
+          <img className="img-other" src={stoneImage} alt="stoneImage" />
+        </div>
+        }
           <div className="rel">
-            <div className="circle90 central">
+            <div className="circle90 central" >
               {talent.profile.avatar ? (
-                <div className="head90 shadow-s">
+                <div className="head90 shadow-s" onClick={() => showImage(talent.profile.avatar)}>
                   <img
                     src={
                       user._id === talent._id
                         ? user.profile.avatar
-                        : talent.profile.avatar
+                        : talent.profile.avatar 
                     }
                     className={`${bg} rel head-pic`}
                     alt="avatar"
