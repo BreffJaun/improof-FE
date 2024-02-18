@@ -12,9 +12,11 @@ import "../../styles/navbar.scss";
 import { BiMessageAlt as Message } from "react-icons/bi";
 import { AiOutlineBell as Bell } from "react-icons/ai";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { RxMagnifyingGlass as Lupe } from "react-icons/rx";
+import { RxMagnifyingGlass as Lupe } from "react-icons/rx";;
 import { RiHome2Line as Home } from "react-icons/ri";
 import logo from "../../images/improof_A100.png";
+import logos from "./LogoChecker.jsx";
+
 
 // CONTEXT
 import UserContext from "../../context/userContext.jsx";
@@ -95,13 +97,17 @@ const Navbar = ({ setModeTrigger, modeTrigger }) => {
     showNotifications !== undefined && handleReadNotification();
   }, [showNotifications, showConversations]);
 
+  const tagToFind = user?.meta?.colorTheme[0];
+  const imageWithTag = logos.find(obj => obj.tag === tagToFind);
+  const imageSrc = imageWithTag.src;
+
   return (
 
     <div className={`navbar-container`} id={darkMode ? `` : ``}>
     {/* <div className={`navbar-container`} id={darkMode ? `bgG` : ``}> */}
       <div onClick={() => navigate("/")} className="navbar-left">
-        <div className={`logo-container ${bg}`}>
-          <img src={logo} alt="improof-logo" />
+        <div className={`logo-container`}>
+          <img src={imageSrc}  alt="improof-logo" />
         </div>
         {width >= 580 && <h1 className={`logo-HL ${user?.meta?.colorTheme[0]}`}>improof</h1>}
       </div>
