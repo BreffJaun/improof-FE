@@ -58,7 +58,7 @@ const Main = ({ modeTrigger, setModeTrigger }) => {
             navigate("/congrats");
           }
         } else {
-          navigate("/login"); 
+          navigate("/login");
         }
       });
   }, [modeTrigger]);
@@ -108,8 +108,8 @@ const Main = ({ modeTrigger, setModeTrigger }) => {
               <Route path="/conversations" element={<Conversations />} />
               <Route path="/congrats" element={<Congrats />} />
             </Routes>
-            </div>
           </div>
+        </div>
         <ToastContainer />
       </>
     )

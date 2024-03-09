@@ -4,6 +4,7 @@
 // Vor dem Push & Pull auf IONOS nginx server diese Zeile wieder auskommentieren.
 // Für die lokale Arbeit einkommentieren
 // const host = "https://improof-be-atur.onrender.com/api";
+// const host = "http://localhost:2404/api";
 
 // Vor dem Push & Pull auf IONOS nginx server diese Zeile wieder einkommentieren.
 // Für die lokale Arbeit auskommentieren

@@ -88,9 +88,15 @@ const Login = () => {
                 login
               </button>
               <div className="col central">
-                <p>Not registered yet?</p>
                 <p>
+                  Not registered yet?{" "}
                   <NavLink to="/registration">click here</NavLink>
+                </p>
+              </div>
+              <div className="col central">
+                <p>
+                  Forgot your password?{" "}
+                  <NavLink to="/forgottenpassword">click here</NavLink>
                 </p>
               </div>
             </div>

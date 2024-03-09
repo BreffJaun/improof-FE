@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,12 +19,14 @@ import "./styles/projects.scss";
 // COMPONENTEN
 import Login from "./components/pages/Login.jsx";
 import Registration from "./components/pages/Registration.jsx";
+import ForgottenPassword from "./components/pages/ForgottenPassword.jsx";
+import SetNewPassword from "./components/pages/SetNewPassword.jsx";
 import Main from "./components/pages/Main.jsx";
 
 // CONTEXT
 import UserContext from "./context/userContext.jsx";
 function App() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [count, setCount] = useState(0);
   const [user, setUser] = useContext(UserContext);
   const [modeTrigger, setModeTrigger] = useState(false);
@@ -33,6 +35,15 @@ function App() {
   // mode && body.classList.add(`bgG`);
 
   useEffect(() => {
+    const publicPaths = [
+      "/setnewpassword",
+      "/registration",
+      "/forgottenpassword",
+      "/login",
+    ];
+    if (publicPaths.includes(location.pathname)) {
+      return;
+    }
     fetch(`${host}/users/checklogin`, {
       credentials: "include",
     })
@@ -51,6 +62,8 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
+        <Route path="/forgottenpassword" element={<ForgottenPassword />} />
+        <Route path="/setnewpassword" element={<SetNewPassword />} />
         <Route
           path="*"
           element={

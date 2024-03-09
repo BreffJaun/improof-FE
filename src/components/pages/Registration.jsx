@@ -4,7 +4,6 @@ import { host } from "../../api/host.jsx";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 // COMPONENTS
 import { LogoM } from "../../components/Logo";
 import logoOr from "../../images/improof_OR.png";
@@ -183,8 +182,7 @@ const Registration = () => {
           </div>
           <div className="central">
             <p>
-              already registered?
-              <NavLink to="/login">login here</NavLink>
+              Already registered? <NavLink to="/login">login here</NavLink>
             </p>
           </div>
         </form>
