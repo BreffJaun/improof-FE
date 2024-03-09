@@ -1,20 +1,14 @@
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import { host } from "../../api/host.jsx";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // COMPONENTS
 import { LogoM } from "../Logo.jsx";
-import logoOr from "../../images/improof_OR.png";
 
 const SetNewPassword = () => {
   const navigate = useNavigate();
-  // const { token } = useParams();
-  // console.log("doc.cookie: ", document.cookie);
-
-  // =========
 
   const toastOptions = {
     position: "bottom-right",
